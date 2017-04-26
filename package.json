@@ -1,0 +1,36 @@
+{
+  "name": "OpenBazaar-Browser",
+  "version": "1.0.0",
+  "description": "Gulp file",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^6.3.7",
+    "del": "*",
+    "graceful-fs": "^4.1.11",
+    "gulp": "^3.8.11",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cache": "*",
+    "gulp-clean": "*",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "*",
+    "gulp-imagemin": "^3.2.0",
+    "gulp-jshint": "^2.0.0",
+    "gulp-livereload": "*",
+    "gulp-minify-css": "*",
+    "gulp-notify": "^3.0.0",
+    "gulp-order": "^1.1.1",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "*",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "*",
+    "jshint": "^2.9.1",
+    "lodash": "^4.17.4",
+    "minimatch": "^3.0.2",
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Austin Williams",
+  "license": "MIT"
+}

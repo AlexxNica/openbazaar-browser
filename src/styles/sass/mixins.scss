@@ -1,0 +1,57 @@
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+@mixin transition($string) {
+	-webkit-transition: $string;
+	-moz-transition: $string;
+	-o-transition: $string;
+	transition: $string;
+}
+
+@mixin border-radius($string) {
+	-webkit-border-radius: $string;
+	-moz-border-radius: $string;
+	border-radius: $string;
+}
+
+@mixin transform($string) {
+  -webkit-transform: $string;
+  -moz-transform: $string;
+  -ms-transform: $string;
+  -o-transform: $string;
+  transform: $string;
+}
+
+@mixin box-sizing($string) {
+	-webkit-box-sizing: $string;
+	-moz-box-sizing: $string;
+	box-sizing: $string;
+}
+
+@mixin box-shadow($string) {
+  -moz-box-shadow: $string;
+  -webkit-box-shadow: $string;
+  box-shadow: $string;
+}
+
+@mixin columns($number) {
+  -webkit-column-count: $number;
+  -moz-column-count: $number;
+  column-count: $number;
+}
+
+@mixin filter($string) {
+  -webkit-filter: $string;
+  filter: $string;
+}
+
+@mixin placeholder {
+  ::-webkit-input-placeholder { @content }
+  :-moz-placeholder { @content }
+  ::-moz-placeholder { @content }
+  :-ms-input-placeholder { @content }
+}
