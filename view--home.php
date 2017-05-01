@@ -18,76 +18,18 @@
 
 <body>
 	<div class="Page">
-		<header class="Header">
-			<div class="Header__left">
-				<img class="Header__logo" src=""> <!-- TODO: Check BEM compliance of this class name and the class names of its descendants -->
-				<div class="Header__left__branding">
-					<div class="Header__branding__top">
-						OpenBazaar
-					</div>
-					<div class="Header__branding__bottom">
-						<div class="StoreNav__info__name">
-							<img src=""> <!-- small bitcoin image -->
-							<img src=""> <!-- small Earth image -->
-							<img src=""> <!-- small peace image -->
-						</div>
-						<div class="StoreNav__info__ratings">
-							<img src=""> <!-- small star image -->
-							4.2
-							(<a href="">192</a>) <!-- link to ratings and reviews -->
-						</div>
-					</div>
-				</div>
-				<div class="Header__left__search">
-					<input type="text" placeholder="Enter an OpenBazaar @handle or ID">
-					<button type="submit" class="searchButton">
-						Go
-					</button>
-				</div>
-			</div>
-			<div class="Header__right">
-				<a href="https://openbazaar.org/download.html" target="_blank">Download OpenBazzar</a>
-				<a href="https://openbazaar.org/" target="_blank">About OpenBazaar</a>
-			</div>
-		</header>
+		<?php include 'inc--page-header.php';?>
 		<main class="Store">
-			<nav class="StoreNav">
-				<div class="StoreNav__left">
-					<img class="StoreNav__avatar" src=""> <!-- TODO: Check BEM compliance of this class name and the class names of its descendants -->
-					<div class="StoreNav__info">
-						<div class="StoreNav__info__top">
-							Ski Shop
-						</div>
-						<div class="StoreNav__info__bottom">
-							<div class="StoreNav__info__name">
-								<img src=""> <!-- small location pin image -->
-								Seattle, WA
-							</div>
-							<div class="StoreNav__info__ratings">
-								<img src=""> <!-- small star image -->
-								4.2
-								(<a href="">192</a>) <!-- link to ratings and reviews -->
-							</div>
-						</div>
-
-					</div>
-				</div>
-				<div class="StoreNave__right">
-					<ul>
-						<li>Home</li>
-						<li>Store <span>26</span></li>
-						<li>Following <span>5</span></li>
-						<li>Followers <span>10.3k</span></li>
-					</ul>
-				</div>
-			</nav>
+			<?php include 'inc--store-nav.php';?>
 			<div class="Store__header">
 				<h1>Home</h1>
 			</div>
 			<div class="Column--left">
 				<div class="StoreCard">
-					<img class="StoreCard__header" src=""> <!-- Store's header img -->
-					<img class="StoreCard__avatar" src=""> <!-- Store avatar image -->
+					<!-- Store's header img -->
+					<img class="StoreCard__header" src="./dist/images/example--cat01.jpg">
+					<!-- Store Avatar -->
+					<img class="Avatar" src="./dist/images/example--cat-avatar.jpg">
 					<span class="StoreCard__name">Ski Shop</span>
 					<span class="StoreCard__handle">@skiShop</span>
 					<p>
@@ -95,13 +37,14 @@
 					</p>
 					<div class="StoreCard__bottom">
 						<div class="StoreCard__bottom__location">
-							<img src=""> <!-- small location pin image -->
+							<img src="./dist/images/icon--pin.png">
 							Seattle, WA
 						</div>
 						<div class="StoreCard__bottom__ratings">
-							<img src=""> <!-- small star image -->
+							<img src="./dist/images/icon--star.png">
 							4.2
-							(<a href="">192</a>) <!-- link to ratings and reviews -->
+							<!-- link to store's ratings and reviews -->
+							(<a href="">192</a>)
 						</div>
 					</div>
 				</div>
