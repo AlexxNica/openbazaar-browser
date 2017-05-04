@@ -26,7 +26,7 @@
 			<div class="Store__header">
 				<h1>Home</h1>
 			</div>
-			<div class="Store__body">
+			<div class="Store__body View--home">
 				<div class="Column--left">
 					<div class="StoreCard">
 						<!-- Store's header img -->

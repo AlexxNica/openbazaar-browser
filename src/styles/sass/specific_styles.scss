@@ -5,9 +5,11 @@ $border-gray: #d2d2d9;
 $font-gray: #7a7a7a;
 $font-gray--dark: #555;
 $avatar-width: 50px;
+$filter-card-padding: 10px;
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	color: $font-gray--dark;
 }
 
 h1, h2, h3, h4, h5 {
@@ -28,11 +30,16 @@ h3 {
 }
 h4 {
 	font-size: 16px;
+	font-weight: 600;
 }
 h5 {
 	font-size: 14px;
 }
-
+p {
+	color: #7a7a7a;
+	font-size: 16px;
+	line-height: 24px;
+}
 .Page {
 	max-width: 1240px;
 	margin: 32px auto 100px;
@@ -70,6 +77,7 @@ h5 {
 		> h3 {
 			line-height: 24px;
 			letter-spacing: 0.5px;
+			font-weight: 300;
 		}
 		> div {
 			> img {
@@ -132,15 +140,17 @@ h5 {
 		display: flex;
 		align-items: center;
 		height: 100%;
+		margin-bottom: 2px;
 		> li {
 			height: 100%;
 			margin-right: 25px;
 			&:last-child() {
 				margin-right: 0;
 			}
-			&.active {
+			&.active, &:hover {
 				color: #252525;
 				border-bottom: 2px solid #252525;
+				margin-bottom: -2px;
 			}
 			> a {
 				padding: 0 12px;
@@ -159,6 +169,7 @@ h5 {
 	> .Avatar {
 		display: inline-block;
 		margin-right: 8px;
+		width: 45px;
 	}
 	> .StoreSummary {
 		display: inline-flex;
@@ -296,16 +307,11 @@ h5 {
 	> h3 {
 
 	}
-	> p {
-		color: $font-gray;
-		font-size: 16px;
-		line-height: 24px;
-	}
 }
 .Section--store-information {
 	@extend .Section;
 	margin-top: 10px;
-	padding-bottom: 20px;
+	padding: 10px 10px 20px 10px;
 	> ul {
 		margin-top: 10px;
 		list-style-type: none;
@@ -327,6 +333,80 @@ h5 {
 				margin-top: 20px;
 				line-height: 16px;
 			}
+			&:first-child(){
+				> h5 {
+					margin-top: 0;
+				}
+			}
 		}
 	}
 }
+
+.FilterCard {
+	padding: 10px;
+	background-color: #fff;
+	margin-bottom: 10px;
+	border: 1px solid $border-gray;
+	width: 230px;
+	font-size: 14px;
+	> ul {
+		list-style-type: none;
+		li {
+			img {
+				//image styles
+			}
+			> input[type='radio'] {
+				margin-right: 5px;
+				margin-bottom: -2px;
+				vertical-align: text-bottom;
+				zoom: 1.5;
+			}
+		}
+	}
+}
+
+.FilterCard--shipping { 
+	@extend .FilterCard;
+	input[type='checkbox'] {
+		margin-right: 5px;
+		vertical-align: text-bottom;
+		margin-bottom: -2px;
+		zoom: 1.5;
+	}
+	label[for='filter--listings--ships-to'] {
+		margin-right: 5px;
+	}
+	select[name='filter--listings--ships-to'] {
+		height: 30px;
+		background-color: #fff;
+		width: 65%;
+	}
+}
+.FilterCard--category { @extend .FilterCard; }
+.FilterCard--rating { 
+	@extend .FilterCard; 
+	> ul > li {
+		input[type='radio'] {
+			margin-right: 0;
+		}
+		> img {
+			display: inline-block;
+			width: 18px;
+			vertical-align: text-bottom;
+			&:last-child() {
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
+.tag--green {
+	background-color: $green;
+	color: #fff;
+	font-size: 10px;
+	padding: 4px;
+}
+.View--home .Column--left { width: 32%; }
+.View--home .Column--right { width: 65%; }
+.View--store .Column--left { width: 27%; }
+.View--store .Column--right { width: 70%; }

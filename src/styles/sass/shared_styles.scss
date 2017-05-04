@@ -34,6 +34,12 @@ img {
 
 button:focus, input:focus, textarea:focus { outline: none; }
 
+fieldset {
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
 .alignleft {
 	float: left;
 	margin: 5px 15px 15px 0;
