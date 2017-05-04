@@ -359,9 +359,6 @@ html {
   font-weight: 400;
   font-style: normal; }
 
-body {
-  font-family: 'Open Sans', sans-serif; }
-
 body.no-scroll {
   overflow-y: hidden; }
 
@@ -487,8 +484,11 @@ button:focus, input:focus, textarea:focus {
   display: inline-block;
   vertical-align: middle; }
 
-h1, h2, h3, h4 {
-  color: #444;
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+h1, h2, h3, h4, h5 {
+  color: #222;
   font-weight: 300; }
 
 h1 {
@@ -499,7 +499,14 @@ h2 {
   line-height: 38px; }
 
 h3 {
-  font-size: 18px; }
+  font-size: 18px;
+  font-weight: 600; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
 
 .Page {
   max-width: 1240px;
@@ -721,7 +728,8 @@ h3 {
 
 .StoreCard__name {
   font-size: 18px;
-  font-weight: 600; }
+  font-weight: 600;
+  color: #222; }
 
 .StoreCard__handle {
   color: #7a7a7a;
@@ -746,14 +754,36 @@ h3 {
 .StoreCard__ratings > a {
   text-decoration: underline; }
 
-.Section {
+.Section, .Section--store-information {
   padding: 20px 20px 40px 20px;
   background-color: #fff;
+  border: 1px solid #d2d2d9;
   color: #555;
   margin-bottom: 10px; }
-  .Section > h2 {
+  .Section > h2, .Section--store-information > h2 {
     margin-bottom: 8px; }
-  .Section > p {
+  .Section > p, .Section--store-information > p {
     color: #7a7a7a;
     font-size: 16px;
     line-height: 24px; }
+
+.Section--store-information {
+  margin-top: 10px;
+  padding-bottom: 20px; }
+  .Section--store-information > ul {
+    margin-top: 10px;
+    list-style-type: none; }
+    .Section--store-information > ul > li > p {
+      color: #7a7a7a;
+      font-size: 13px;
+      line-height: 16px;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      .Section--store-information > ul > li > p > img {
+        display: inline-block;
+        margin: 0 0 1px 3px;
+        vertical-align: bottom;
+        width: 11px; }
+    .Section--store-information > ul > li > h5 {
+      margin-top: 20px;
+      line-height: 16px; }
