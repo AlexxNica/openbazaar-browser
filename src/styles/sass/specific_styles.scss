@@ -231,7 +231,7 @@ p {
 }
 .Column--left {
 	@extend .Column;
-	margin-right: 10px;
+	margin-right: 15px;
 }
 .Column--left .Section {
 	margin-right: 0;
@@ -244,7 +244,6 @@ p {
 .StoreCard {
 	position: relative;
 	border: 1px solid $border-gray;
-	min-width: 250px;
 }
 .StoreCard__header {
 	height: 100px;
@@ -403,6 +402,7 @@ p {
 }
 
 .tag--green {
+	@extend .caps;
 	background-color: $green;
 	color: #fff;
 	font-size: 10px;
@@ -453,13 +453,62 @@ p {
 }
 .CardContainer {
 	list-style-type: none;
-	background-color: #fff; //remove
 	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: stretch;
 }
+.CardContainer__card {
+	width: 32%;
+	background-color: #fff; // remove
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+
+// Listing Cards
+.ListingCard__header {
+	width: 100%;
+	padding: 10px 10px 100% 10px;
+	background-size: cover;
+	background-position: center center;
+	display: flex;
+	flex-direction: row-reverse;
+	> .tag {
+		position: absolute;
+		line-height: 8px;
+	}
+}
+.ListingCard__body {
+	background-color: #fff;
+	padding: 10px;
+	color: #222;
+}
+.ListingCard__bottom {
+	display: flex;
+	justify-content: space-between;
+	line-height: 14px;
+}
+.ListingCard__ratings {
+	color: $font-gray--dark;
+	> img {
+		display: inline-block;
+		width: 15px;
+		vertical-align: text-bottom;
+		margin-bottom: 1px;
+	}
+	> a {
+		text-decoration: underline;
+	}
+}
+.ListingCard__price {
+	text-align: right;
+	color: #222;
+}
+//End Listing Cards
 
 
 
 .View--home .Column--left { width: 32%; }
-.View--home .Column--right { width: 65%; }
+.View--home .Column--right { width: 68%; }
 .View--store .Column--left { width: 27%; }
-.View--store .Column--right { width: 71%; }
+.View--store .Column--right { width: 72%; }

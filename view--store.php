@@ -47,7 +47,7 @@
 								</fieldset>
 								<fieldset>	
 									<input type="checkbox" id="filter--listings--free-shipping" name="filter--listings--free-shipping" value="free-shipping">
-									<label for="filter--listings--free-shipping"><span class="tag--green caps">Free Shipping</span></label>
+									<label for="filter--listings--free-shipping"><span class="tag--green">Free Shipping</span></label>
 								</fieldset>
 							</form>
 						</section>
@@ -125,73 +125,81 @@
 						<ul class="CardContainer">
 							<li class="CardContainer__card">
 								<div class="ListingCard">
-									<div class="ListingCard__header" style="background-image: url('')"> <!-- Listing thumbnail img as div background img-->
-										<span class="tag--green caps">Free Shipping</span>
+									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog00.jpg')"> <!-- Listing thumbnail img as div background img-->
+										<span class="tag tag--green">Free Shipping</span>
 									</div>
-									<span class="ListingCard__title">Full Ski Set</span> <!-- item title -->
-									<div class="ListingCard__bottom">
-										<div class="ListingCard__bottom__ratings">
-											<img src=""> <!-- small star image -->
-											4.2
-											(<a href="">14</a>) <!-- link to ratings and reviews -->
-										</div>
-										<div class="ListingCard__bottom__price">
-											<span class="strong">$499.50</span>
-										</div>
-									</div>
-								</div>
-							</li>
-							<li class="CardContainer__card">
-								<div class="ListingCard">
-									<div class="ListingCard__header" style="background-image: url('')"> <!-- Listing thumbnail img as div background img-->
-										<span class="tag--green">Free Shipping</span>
-										<img class="tag--pin" src=""><!-- pushpin icon for pinned tag -->
-									</div>
-									<span class="ListingCard__title">Fischer Ski Shoes</span> <!-- item title -->
-									<div class="ListingCard__bottom">
-										<div class="ListingCard__bottom__ratings">
-											<img src=""> <!-- small star image -->
-											5.0
-											(<a href="">7</a>) <!-- link to ratings and reviews -->
-										</div>
-										<div class="ListingCard__bottom__price">
-											<span class="strong">$129.85</span>
+									<div class="ListingCard__body">
+										<span class="ListingCard__title">Full Ski Set</span> <!-- item title -->
+										<div class="ListingCard__bottom">
+											<div class="ListingCard__ratings">
+												<img src="./dist/images/icon--star.png">
+												4.2
+												(<a href="">14</a>) <!-- link to ratings and reviews -->
+											</div>
+											<div class="ListingCard__price">
+												<span class="strong">$499.50</span>
+											</div>
 										</div>
 									</div>
 								</div>
 							</li>
 							<li class="CardContainer__card">
 								<div class="ListingCard">
-									<div class="ListingCard__header" style="background-image: url('')"> <!-- Listing thumbnail img as div background img-->
-										<span class="tag--green">Free Shipping</span>
+									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog01.jpg')"> <!-- Listing thumbnail img as div background img-->
+										<span class="tag tag--green">Free Shipping</span>
+										<img class="tag tag--pin" src=""><!-- pushpin icon for pinned tag -->
 									</div>
-									<span class="ListingCard__title">Sketcher Running Shoes</span> <!-- item title -->
-									<div class="ListingCard__bottom">
-										<div class="ListingCard__bottom__ratings">
-											<img src=""> <!-- small star image -->
-											4.1
-											(<a href="">24</a>) <!-- link to ratings and reviews -->
+									<div class="ListingCard__body">
+										<span class="ListingCard__title">Fischer Ski Shoes</span> <!-- item title -->
+										<div class="ListingCard__bottom">
+											<div class="ListingCard__ratings">
+												<img src="./dist/images/icon--star.png">
+												5.0
+												(<a href="">7</a>) <!-- link to ratings and reviews -->
+											</div>
+											<div class="ListingCard__price">
+												<span class="strong">$129.85</span>
+											</div>
 										</div>
-										<div class="ListingCard__bottom__price">
-											<span class="strong">$42.25</span>
+									</div>
+								</div>
+							</li>
+							<li class="CardContainer__card">
+								<div class="ListingCard">
+									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog02.jpg')"> <!-- Listing thumbnail img as div background img-->
+										<span class="tag tag--green">Free Shipping</span>
+									</div>
+									<div class="ListingCard__body">
+										<span class="ListingCard__title">Sketcher Running Shoes</span> <!-- item title -->
+										<div class="ListingCard__bottom">
+											<div class="ListingCard__ratings">
+												<img src="./dist/images/icon--star.png">
+												4.1
+												(<a href="">24</a>) <!-- link to ratings and reviews -->
+											</div>
+											<div class="ListingCard__price">
+												<span class="strong">$42.25</span>
+											</div>
 										</div>
 									</div>
 								</div>
 							</li>
 							<li class="CardContainer__card">
 								<div class="ListingCard--nsfw">
-									<div class="ListingCard__header" style="background-image: url('')"> <!-- Listing thumbnail is overridden for nsfw content-->
-										<span class="tag--green">Free Shipping</span>
+									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog03.jpg')"> <!-- Listing thumbnail is overridden for nsfw content-->
+										<span class="tag tag--green">Free Shipping</span>
 									</div>
-									<span class="ListingCard__title">Sketchy Running Shoes</span> <!-- item title -->
-									<div class="ListingCard__bottom">
-										<div class="ListingCard__bottom__ratings">
-											<img src=""> <!-- small star image -->
-											3.7
-											(<a href="">921</a>) <!-- link to ratings and reviews -->
-										</div>
-										<div class="ListingCard__bottom__price">
-											<span class="strong">$129.99</span>
+									<div class="ListingCard__body">
+										<span class="ListingCard__title">Sketchy Running Shoes</span> <!-- item title -->
+										<div class="ListingCard__bottom">
+											<div class="ListingCard__ratings">
+												<img src="./dist/images/icon--star.png">
+												3.7
+												(<a href="">921</a>) <!-- link to ratings and reviews -->
+											</div>
+											<div class="ListingCard__price">
+												<span class="strong">$129.99</span>
+											</div>
 										</div>
 									</div>
 								</div>
