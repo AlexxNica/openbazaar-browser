@@ -230,12 +230,10 @@ p {
 }
 .Column--left {
 	@extend .Column;
-	width: 32%;
 }
 .Column--right {
 	@extend .Column;
 	margin-left: 2%;
-	width: 65%;
 }
 
 // Store Cards
@@ -405,6 +403,41 @@ p {
 	color: #fff;
 	font-size: 10px;
 	padding: 4px;
+}
+.SearchListings {
+	margin-bottom: 15px;
+	> input[type='text'] {
+		height: 38px;
+		box-sizing: border-box;
+		width: calc(100% - 60px);
+		border: 1px solid $border-gray;
+		padding: 10px;
+		font-weight: 100;
+		letter-spacing: .5px;
+	}
+	> button {
+		width: 50px;
+		height: 38px;
+		float: right;
+		border: 1px solid $border-gray;
+		background-color: #fff;
+	}
+}
+.ListingsHeading {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+.ListingsHeading__left {
+	color: #222;
+}
+.ListingsHeading__right {
+	> form {
+		> select {
+			height: 30px;
+			background-color: #fff;
+		}
+	}
 }
 .View--home .Column--left { width: 32%; }
 .View--home .Column--right { width: 65%; }

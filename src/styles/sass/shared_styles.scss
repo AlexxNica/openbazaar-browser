@@ -55,7 +55,9 @@ fieldset {
 
 .caps { text-transform: uppercase; }
 .italic { font-style: italic; }
-.strong { font-weight: 700; }
+.strong {
+	font-weight: 700;
+}
 
 .background-clear {
 	background-position: center center;

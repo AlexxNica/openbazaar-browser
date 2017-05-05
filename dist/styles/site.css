@@ -710,12 +710,8 @@ p {
   display: inline-block;
   vertical-align: top; }
 
-.Column--left {
-  width: 32%; }
-
 .Column--right {
-  margin-left: 2%;
-  width: 65%; }
+  margin-left: 2%; }
 
 .StoreCard {
   position: relative;
@@ -846,6 +842,37 @@ p {
   color: #fff;
   font-size: 10px;
   padding: 4px; }
+
+.SearchListings {
+  margin-bottom: 15px; }
+  .SearchListings > input[type='text'] {
+    height: 38px;
+    box-sizing: border-box;
+    width: calc(100% - 60px);
+    border: 1px solid #d2d2d9;
+    padding: 10px;
+    font-weight: 100;
+    letter-spacing: .5px; }
+  .SearchListings > button {
+    width: 50px;
+    height: 38px;
+    float: right;
+    border: 1px solid #d2d2d9;
+    background-color: #fff; }
+
+.ListingsHeading {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  margin-bottom: 10px; }
+
+.ListingsHeading__left {
+  color: #222; }
+
+.ListingsHeading__right > form > select {
+  height: 30px;
+  background-color: #fff; }
 
 .View--home .Column--left {
   width: 32%; }

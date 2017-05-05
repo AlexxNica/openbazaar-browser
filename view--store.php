@@ -26,9 +26,9 @@
 			</div>
 			<div class="Store__body">
 				<div class="SearchListings">
-					<input type="text" placeholder="Search">
+					<input type="text" placeholder="Search Ski Shop">
 					<button type="submit" class="Button--search-listings">
-						<img src=""> <!-- sprites image -->
+						<img src="">Go <!-- sprites image -->
 					</button>
 				</div>
 				<div class="Column--left">
