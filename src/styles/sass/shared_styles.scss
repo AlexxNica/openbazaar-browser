@@ -54,6 +54,10 @@ fieldset {
 }
 
 .caps { text-transform: uppercase; }
+.flex {
+	display: flex;
+	justify-content: space-between;
+}
 .italic { font-style: italic; }
 .strong {
 	font-weight: 700;
@@ -85,7 +89,7 @@ fieldset {
 
 .display-block { display: block; }
 
-div { @extend .border-box; }
+section, div { box-sizing: border-box; }
 
 .full-width { width: 100%; }
 .full-height {

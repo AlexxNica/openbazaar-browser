@@ -222,7 +222,8 @@ p {
 	padding: 42px 110px;
 }
 .Store__body {
-	padding: 20px 120px 20px 110px;;
+	margin: 20px auto;
+	max-width: 1080px;
 }
 .Column {
 	display: inline-block;
@@ -230,10 +231,13 @@ p {
 }
 .Column--left {
 	@extend .Column;
+	margin-right: 10px;
+}
+.Column--left .Section {
+	margin-right: 0;
 }
 .Column--right {
 	@extend .Column;
-	margin-left: 2%;
 }
 
 // Store Cards
@@ -345,7 +349,7 @@ p {
 	background-color: #fff;
 	margin-bottom: 10px;
 	border: 1px solid $border-gray;
-	width: 230px;
+	width: 100%;
 	font-size: 14px;
 	> ul {
 		list-style-type: none;
@@ -411,16 +415,24 @@ p {
 		box-sizing: border-box;
 		width: calc(100% - 60px);
 		border: 1px solid $border-gray;
-		padding: 10px;
+		padding: 10px 10px 10px 35px;
 		font-weight: 100;
 		letter-spacing: .5px;
 	}
 	> button {
 		width: 50px;
 		height: 38px;
-		float: right;
 		border: 1px solid $border-gray;
 		background-color: #fff;
+	}
+	&:before {
+		content: "";
+		width: 30px;
+		height: 30px;
+		background: url("../images/icon--search.png") no-repeat center center;
+		display: block;
+		position: absolute;
+		margin: 3px;
 	}
 }
 .ListingsHeading {
@@ -439,7 +451,15 @@ p {
 		}
 	}
 }
+.CardContainer {
+	list-style-type: none;
+	background-color: #fff; //remove
+	display: flex;
+}
+
+
+
 .View--home .Column--left { width: 32%; }
 .View--home .Column--right { width: 65%; }
 .View--store .Column--left { width: 27%; }
-.View--store .Column--right { width: 70%; }
+.View--store .Column--right { width: 71%; }
