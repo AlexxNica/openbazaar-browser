@@ -11,7 +11,7 @@
 		</div>
 		<div class="Header__search">
 			<input class="border-box" type="text" placeholder="Enter an OpenBazaar @handle or ID">
-			<button type="submit" class="searchButton">Go</button>
+			<button type="submit" class="button--search">Go</button>
 		</div>
 	</div>
 	<div class="Header__right">

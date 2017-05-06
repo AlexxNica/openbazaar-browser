@@ -123,74 +123,109 @@
 							</div>
 						</section>
 						<ul class="CardContainer">
-							<li class="CardContainer__card">
+							<li class="Card">
 								<div class="ListingCard">
-									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog00.jpg')"> <!-- Listing thumbnail img as div background img-->
-										<span class="tag tag--green">Free Shipping</span>
+									<div class="ListingCard__header">
+										<div class='ListingCard__header__bg' style="background-image: url('./dist/images/example--dog00.jpg')">
+										</div>
+										<div class='ListingCard__header__nsfw'>
+										</div>
+										<ul class='ListingCard__header__tags'>
+											<li>
+												<span class="tag tag--green">Free Shipping</span>
+											</li>
+										</ul>
 									</div>
 									<div class="ListingCard__body">
-										<span class="ListingCard__title">Full Ski Set</span> <!-- item title -->
+										<span class="ListingCard__title">Dog 00</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
 												<img src="./dist/images/icon--star.png">
-												4.2
-												(<a href="">14</a>) <!-- link to ratings and reviews -->
+												3.7
+												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
 											<div class="ListingCard__price">
-												<span class="strong">$499.50</span>
+												<span class="strong">$129.99</span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</li>
-							<li class="CardContainer__card">
+							<li class="Card">
 								<div class="ListingCard">
-									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog01.jpg')"> <!-- Listing thumbnail img as div background img-->
-										<span class="tag tag--green">Free Shipping</span>
-										<img class="tag tag--pin" src=""><!-- pushpin icon for pinned tag -->
+									<div class="ListingCard__header">
+										<div class='ListingCard__header__bg' style="background-image: url('./dist/images/example--dog01.jpg')">
+										</div>
+										<div class='ListingCard__header__nsfw'>
+										</div>
+										<ul class='ListingCard__header__tags'>
+											<li>
+												<span class="tag tag--green">Free Shipping</span>
+											</li>
+										</ul>
 									</div>
 									<div class="ListingCard__body">
-										<span class="ListingCard__title">Fischer Ski Shoes</span> <!-- item title -->
+										<span class="ListingCard__title">Dog 01</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
 												<img src="./dist/images/icon--star.png">
-												5.0
-												(<a href="">7</a>) <!-- link to ratings and reviews -->
+												3.7
+												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
 											<div class="ListingCard__price">
-												<span class="strong">$129.85</span>
+												<span class="strong">$129.99</span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</li>
-							<li class="CardContainer__card">
+							<li class="Card">
 								<div class="ListingCard">
-									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog02.jpg')"> <!-- Listing thumbnail img as div background img-->
-										<span class="tag tag--green">Free Shipping</span>
+									<div class="ListingCard__header">
+										<div class='ListingCard__header__bg' style="background-image: url('./dist/images/example--dog02.jpg')">
+										</div>
+										<div class='ListingCard__header__nsfw'>
+										</div>
+										<ul class='ListingCard__header__tags'>
+											<li>
+												<span class="tag tag--green">Free Shipping</span>
+											</li>
+										</ul>
 									</div>
 									<div class="ListingCard__body">
-										<span class="ListingCard__title">Sketcher Running Shoes</span> <!-- item title -->
+										<span class="ListingCard__title">Dog 02</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
 												<img src="./dist/images/icon--star.png">
-												4.1
-												(<a href="">24</a>) <!-- link to ratings and reviews -->
+												3.7
+												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
 											<div class="ListingCard__price">
-												<span class="strong">$42.25</span>
+												<span class="strong">$129.99</span>
 											</div>
 										</div>
 									</div>
 								</div>
 							</li>
-							<li class="CardContainer__card">
-								<div class="ListingCard--nsfw">
-									<div class="ListingCard__header" style="background-image: url('./dist/images/example--dog03.jpg')"> <!-- Listing thumbnail is overridden for nsfw content-->
-										<span class="tag tag--green">Free Shipping</span>
+							<li class="Card">
+								<div class="ListingCard nsfw">
+									<div class="ListingCard__header">
+										<div class="ListingCard__header__bg" style="background-image: url('./dist/images/example--dog03.jpg')">
+										</div>
+										<div class="ListingCard__header__nsfw">
+											<div>
+												<img src="./dist/images/icon--nsfw.png">
+												<button class="button">Show Mature Content</button>
+											</div>
+										</div>
+										<ul class="ListingCard__header__tags">
+											<li>
+												<span class="tag tag--green">Free Shipping</span>
+											</li>
+										</ul>
 									</div>
 									<div class="ListingCard__body">
-										<span class="ListingCard__title">Sketchy Running Shoes</span> <!-- item title -->
+										<span class="ListingCard__title">Dog 03</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
 												<img src="./dist/images/icon--star.png">

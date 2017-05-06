@@ -60,7 +60,7 @@
 							<ul>
 								<li>
 									<h5>OpenBazaar ID</h5>
-									<p>Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>
+									<p class="obid">Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>
 								</li>
 								<li>
 									<h5>Website</h5>
