@@ -107,28 +107,9 @@ section, div { box-sizing: border-box; }
 	margin: 0;
 }
 
-.max-width-wrap {
-	@extend .border-box; 
-	width: 100%; 
-	max-width: $max-width; 
-	margin: 0 auto;
-}
-
 .position-relative { position: relative; }
 
 .text-center { text-align: center; }
 .text-right { text-align: right; }
 .text-left { text-align: left; }
-
-.vertical-center-parent:before {
-	content: ''; 
-	display: inline-block; 
-	height: 100%; 
-	vertical-align: middle; 
-	margin-right: -0.25em;
-}
-.vertical-center-parent > .vertical-center-child {
-	display: inline-block; 
-	vertical-align: middle;
-}
 

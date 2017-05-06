@@ -19,7 +19,7 @@
 <body>
 	<div class="Page">
 		<?php include 'inc--page-header.php';?>
-		<main class="Store View--store">
+		<div class="Store View--store">
 			<?php include 'inc--store-nav.php';?>
 			<div class="Store__header">
 				<h1>Store</h1>
@@ -243,7 +243,8 @@
 					</div>
 				</div>
 			</div>
-		</main>
+			<?php include 'inc--listing-overlay.php';?>
+		</div>
 	</div>
 
 	<script src="./dist/scripts/site.min.js"></script>

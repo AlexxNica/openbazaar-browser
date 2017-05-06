@@ -431,7 +431,7 @@ fieldset {
 .background-contain {
   background-size: contain; }
 
-.border-box, .column, .max-width-wrap {
+.border-box, .column {
   box-sizing: border-box; }
 
 .clear-both {
@@ -470,11 +470,6 @@ section, div {
   padding: 0;
   margin: 0; }
 
-.max-width-wrap {
-  width: 100%;
-  max-width: 90%;
-  margin: 0 auto; }
-
 .position-relative {
   position: relative; }
 
@@ -486,17 +481,6 @@ section, div {
 
 .text-left {
   text-align: left; }
-
-.vertical-center-parent:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-  margin-right: -0.25em; }
-
-.vertical-center-parent > .vertical-center-child {
-  display: inline-block;
-  vertical-align: middle; }
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -553,6 +537,30 @@ p {
   color: #fff;
   font-size: 10px;
   padding: 4px; }
+
+.max-width {
+  max-width: 1080px;
+  margin: 0 auto; }
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100%;
+  max-height: 100%;
+  background-color: rgba(237, 239, 243, 0.9);
+  margin: -1px;
+  padding: 0 30px;
+  border: 1px solid #d2d2d9;
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+  overflow-y: hidden; }
+
+.overlay--active {
+  opacity: 1;
+  max-height: initial;
+  overflow-y: initial; }
 
 .Column, .Column--left, .Column--right {
   display: inline-block;
@@ -637,8 +645,10 @@ p {
     margin-right: 6px; }
 
 .Store {
+  position: relative;
   border: 1px solid #d2d2d9;
-  background-color: #eef0f4; }
+  background-color: #eef0f4;
+  transition: opacity 300ms ease-in; }
 
 .StoreNav {
   background-color: #fff;
@@ -864,6 +874,43 @@ p {
 .ListingsHeading__right > form > select {
   height: 30px;
   background-color: #fff; }
+
+.ListingOverlay__nav {
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  margin: 10px 0; }
+
+.ListingOverlay__nav__left {
+  padding: 5px 10px;
+  background-color: #fff;
+  border: 1px solid #d2d2d9;
+  cursor: pointer; }
+  .ListingOverlay__nav__left > .Avatar {
+    position: absolute;
+    width: 30px; }
+
+.ListingOverlay__store-name {
+  margin: 0 10px 0 42px;
+  font-size: 16px;
+  color: #555; }
+
+.ListingOverlay__return {
+  font-size: 12px;
+  text-decoration: underline;
+  color: #7a7a7a; }
+
+.ListingOverlay__nav__right {
+  width: 45px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border: 1px solid #d2d2d9;
+  cursor: pointer; }
+  .ListingOverlay__nav__right > img {
+    margin: auto; }
 
 .CardContainer {
   list-style-type: none;

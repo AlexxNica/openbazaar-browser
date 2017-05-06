@@ -69,6 +69,31 @@ p {
 	font-size: 10px;
 	padding: 4px;
 }
+.max-width {
+	max-width: $max-width;
+	margin: 0 auto;
+}
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	min-height: 100%;
+	max-height: 100%;
+	background-color: rgba(237,239,243,0.9);
+	margin: -1px;
+	padding: 0 30px;
+	border: 1px solid $border-gray;
+	opacity: 0;
+	transition: opacity 300ms ease-in;
+	overflow-y: hidden;
+
+}
+.overlay--active {
+	opacity: 1;
+	max-height: initial;
+	overflow-y: initial;
+}
 
 // Columns
 .Column {
@@ -97,6 +122,7 @@ p {
 .View--store .Column--right {
 	width: 72%;
 }
+// End columns
 
 .Page {
 	margin: 10px auto 100px;
@@ -158,9 +184,12 @@ p {
 	}
 }
 .Store {
+	position: relative;
 	border: 1px solid $border-gray;
 	background-color: #eef0f4;
+	transition: opacity 300ms ease-in;
 }
+
 .StoreNav {
 	background-color: #fff;
 	display: flex;
@@ -425,6 +454,48 @@ p {
 		}
 	}
 }
+
+// Single Listing Overlay
+.ListingOverlay__nav {
+	display: flex;
+	position: relative;
+	margin: 10px 0;
+}
+.ListingOverlay__nav__left {
+	padding: 5px 10px;
+	background-color: #fff;
+	border: 1px solid $border-gray;
+	cursor: pointer;
+	> .Avatar {
+		position: absolute;
+		width: 30px;
+	}
+}
+.ListingOverlay__store-name {
+	margin: 0 10px 0 42px;
+	font-size: 16px;
+	color: $font-gray--dark;
+}
+.ListingOverlay__return {
+	font-size: 12px;
+	text-decoration: underline;
+	color: $font-gray;
+}
+.ListingOverlay__nav__right {
+	width: 45px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #fff;
+	border: 1px solid #d2d2d9;
+	cursor: pointer;
+	> img {
+		margin: auto;
+	}
+}
+// End Single Listing Overlay
+
 .CardContainer {
 	list-style-type: none;
 	display: flex;
