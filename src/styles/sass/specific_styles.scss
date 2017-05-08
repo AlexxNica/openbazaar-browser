@@ -4,6 +4,7 @@ $background-gray: #eef0f4;
 $border-gray: #d2d2d9;
 $font-gray: #7a7a7a;
 $font-gray--dark: #555;
+$font-black: #222;
 $avatar-width: 50px;
 $filter-card-padding: 10px;
 $max-width: 1080px;
@@ -14,7 +15,7 @@ body {
 }
 
 h1, h2, h3, h4, h5 {
-	color: #222;
+	color: $font-black;
 	font-weight: 300;
 	box-sizing: border-box;
 }
@@ -435,7 +436,7 @@ p {
 	margin-bottom: 10px;
 }
 .ListingsHeading__left {
-	color: #222;
+	color: $font-black;
 }
 .ListingsHeading__right {
 	> form {
@@ -504,7 +505,6 @@ p {
 		}
 	}
 	> .Column--right {
-		background-color: $background-gray;
 		width: 45%;
 		display: flex;
 		flex-direction: column;
@@ -515,6 +515,7 @@ p {
 	border: 1px solid $border-gray;
 	padding: 45px 15%;
 	text-align: center;
+	margin-bottom: 10px;
 	> .button--buy-now {
 		@extend .button;
 		width: 100%;
@@ -528,7 +529,7 @@ p {
 	}
 }
 .ListingOverview__buy-now__options {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	list-style-type: none;
 	> li {
 		> span {
@@ -549,6 +550,41 @@ p {
 	background-color: $background-gray;
 	background-size: cover;
 	background-position: center center;
+}
+.ListingOverview__info {
+	list-style-type: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	border-bottom: 1px solid $border-gray;
+    padding: 0 15% 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+	> li {
+		text-align: center;
+		> span {
+			font-weight: 600;
+			color: $font-black;
+		}
+	}
+}
+.ListingOverview__tags {
+	> ul {
+		list-style-type: none;
+		display: flex;
+		flex-wrap: wrap;
+		> li {
+			border: 1px solid $border-gray;
+			padding: 0 15px;
+			margin: 0 10px 20px 0;
+			font-weight: 600;
+			color: $font-black;
+			box-shadow: 1px 1px 0 0px $border-gray;
+			> span:before {
+				content: '#';
+			}
+		}
+	}
 }
 // End Single Listing Overlay
 
@@ -594,7 +630,7 @@ p {
 .StoreCard__name {
 	font-size: 18px;
 	font-weight: 600;
-	color: #222;
+	color: $font-black;
 }
 .StoreCard__handle {
 	color: #7a7a7a;
@@ -674,7 +710,7 @@ p {
 .ListingCard__body {
 	background-color: #fff;
 	padding: 0 10px 10px;
-	color: #222;
+	color: $font-black;
 }
 .ListingCard__bottom {
 	display: flex;
@@ -696,7 +732,7 @@ p {
 }
 .ListingCard__price {
 	text-align: right;
-	color: #222;
+	color: $font-black;
 }
 .ListingCard.nsfw > .ListingCard__header {
 	cursor: auto;

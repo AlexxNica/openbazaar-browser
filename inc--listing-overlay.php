@@ -30,6 +30,7 @@
 							<li class="flex">
 								<span>Size</span>
 								<select>
+									<option>Choose Size</option>
 									<option>10</option>
 									<option>9</option>
 								</select>
@@ -48,8 +49,8 @@
 					<div class="ListingOverview__tags">
 						<h4>Tags</h4>
 						<ul>
-							<li>#skiing</li>
-							<li>#ski</li>
+							<li><span>skiing</span></li>
+							<li><span>ski</span></li>
 						</ul>
 					</div>
 				</div>
