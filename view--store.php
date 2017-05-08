@@ -68,36 +68,36 @@
 							<ul>
 								<li>
 									<input type="radio" name="filter--listings--rating" value="five">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</li>
 								<li>
 									<input type="radio" name="filter--listings--rating" value="four-or-more">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 									&amp; up
 								</li>
 								<li>
 									<input type="radio" name="filter--listings--rating" value="three-or-more">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 									&amp; up
 								</li>
 								<li>
 									<input type="radio" name="filter--listings--rating" value="two-or-more">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 									&amp; up
 								</li>
 								<li>
 									<input type="radio" name="filter--listings--rating" value="one-or-more" checked>
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 									&amp; up
 								</li>
 							</ul>
@@ -140,7 +140,7 @@
 										<span class="ListingCard__title">Dog 00</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
-												<img src="./dist/images/icon--star.png">
+												<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 												3.7
 												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
@@ -168,7 +168,7 @@
 										<span class="ListingCard__title">Dog 01</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
-												<img src="./dist/images/icon--star.png">
+												<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 												3.7
 												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
@@ -196,7 +196,7 @@
 										<span class="ListingCard__title">Dog 02</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
-												<img src="./dist/images/icon--star.png">
+												<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 												3.7
 												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
@@ -228,7 +228,7 @@
 										<span class="ListingCard__title">Dog 03</span> <!-- item title -->
 										<div class="ListingCard__bottom">
 											<div class="ListingCard__ratings">
-												<img src="./dist/images/icon--star.png">
+												<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 												3.7
 												(<a href="">921</a>) <!-- link to ratings and reviews -->
 											</div>
@@ -246,6 +246,8 @@
 			<?php include 'inc--listing-overlay.php';?>
 		</div>
 	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="http://malsup.github.com/jquery.cycle2.js"></script>
 
 	<script src="./dist/scripts/site.min.js"></script>
 

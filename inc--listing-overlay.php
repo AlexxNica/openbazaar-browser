@@ -7,7 +7,7 @@
 				<span class="ListingOverlay__return">Return to Store</span>
 			</div>
 			<div class="ListingOverlay__nav__right flex">
-				<img src="../dist/images/icon--close.png">
+				<i class="fa fa-times" aria-hidden="true"></i>
 			</div>
 		</nav>
 		<section class="section ListingOverview">
@@ -62,8 +62,26 @@
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</p>
 		</section>
-		<section id="ListingSlideshow" class="ListingSlideshow">
-			<!-- TODO -->
+		<section id="ListingSlideshow" class="Slideshow">
+			<div class="Slidehow__controls">
+				<i class="fa fa-chevron-left" aria-hidden="true"></i>
+			</div>
+			<div class="Slideshow__show cycle-slideshow"
+				data-cycle-fx=scrollHorz
+    			data-cycle-timeout=0
+    			data-cycle-pager="#Slideshow__pager"
+    			data-cycle-pager-template='<li><img src="{{src}}"></li>'
+    		>
+				<img src="./dist/images/example--dog05.jpg">
+				<img src="./dist/images/example--dog06.jpg">
+				<img src="./dist/images/example--dog07.jpg">
+				<img src="./dist/images/example--dog08.jpg">
+			</div>
+			<div class="Slidehow__controls">
+				<i class="fa fa-chevron-right" aria-hidden="true"></i>
+			</div>
+			<!-- empty element for pager links -->
+			<ul id="Slideshow__pager" class="Slideshow__pager center external"></ul>
 		</section>
 		<section class="section ListingReviews">
 			<h2>Reviews</h2>
@@ -89,11 +107,11 @@
 									Overall
 								</div>
 								<div class="ListingRating__right stars--4">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -101,11 +119,11 @@
 									Quality
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -113,11 +131,11 @@
 									Delivery Speed
 								</div>
 								<div class="ListingRating__right stars--3">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -125,11 +143,11 @@
 									Matched Description
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -137,11 +155,11 @@
 									Customer Service
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 						</ul>
@@ -169,11 +187,11 @@
 									Overall
 								</div>
 								<div class="ListingRating__right stars--3">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -181,11 +199,11 @@
 									Quality
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -193,11 +211,11 @@
 									Delivery Speed
 								</div>
 								<div class="ListingRating__right stars--2">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -205,11 +223,11 @@
 									Matched Description
 								</div>
 								<div class="ListingRating__right stars--4">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -217,11 +235,11 @@
 									Customer Service
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 						</ul>
@@ -249,11 +267,11 @@
 									Overall
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -261,11 +279,11 @@
 									Quality
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -273,11 +291,11 @@
 									Delivery Speed
 								</div>
 								<div class="ListingRating__right stars--4">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -285,11 +303,11 @@
 									Matched Description
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 							<li class="ListingRating">
@@ -297,11 +315,11 @@
 									Customer Service
 								</div>
 								<div class="ListingRating__right stars--5">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
-									<img src="./dist/images/icon--star.png">
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
+									<i class="fa fa-star icon--star" aria-hidden="true"></i>
 								</div>
 							</li>
 						</ul>

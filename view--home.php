@@ -43,11 +43,11 @@
 								</p>
 								<div class="StoreCard__bottom">
 									<div class="StoreCard__location">
-										<img src="./dist/images/icon--pin.png">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
 										Seattle, WA
 									</div>
 									<div class="StoreCard__ratings">
-										<img src="./dist/images/icon--star.png">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 										4.2
 										<!-- link to store's ratings and reviews -->
 										(<a href="">192</a>)
@@ -64,23 +64,23 @@
 								</li>
 								<li>
 									<h5>Website</h5>
-									<p><a href="http://urbanart.com">http://urbanart.com</a><img src="./dist/images/icon--offsite.png"></p>
+									<p><a href="http://urbanart.com">http://urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>
 								</li>
 								<li>
 									<h5>Email</h5>
-									<p><a href="mailto:contact@urbanart.com">contact@urbanart.com</a><img src="./dist/images/icon--offsite.png"></p>
+									<p><a href="mailto:contact@urbanart.com">contact@urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>
 								</li>
 								<li>
 									<h5>Twitter</h5>
-									<p><a href="https://twitter.com/@urbanart">@urbanart</a><img src="./dist/images/icon--offsite.png"></p>
+									<p><a href="https://twitter.com/@urbanart">@urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>
 								</li>
 								<li>
 									<h5>Facebook</h5>
-									<p><a href="https://www.facebook.com/">/urbanart</a><img src="./dist/images/icon--offsite.png"></p>
+									<p><a href="https://www.facebook.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>
 								</li>
 								<li>
 									<h5>Instagram</h5>
-									<p><a href="https://www.instagram.com/">/urbanart</a><img src="./dist/images/icon--offsite.png"></p>
+									<p><a href="https://www.instagram.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>
 								</li>
 								<li>
 									<h5>SnapChat</h5>

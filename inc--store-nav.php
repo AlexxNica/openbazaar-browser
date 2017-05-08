@@ -6,11 +6,11 @@
 				<h3>Ski Shop</h3>
 				<div>
 					<div class="StoreLocation">
-						<img src="./dist/images/icon--pin.png">
+						<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
 						Seattle, WA
 					</div>
 					<div class="StoreRatings">
-						<img src="./dist/images/icon--star.png">
+						<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 						4.2
 						(<a href="">192</a>) <!-- link to ratings and reviews -->
 					</div>

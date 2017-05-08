@@ -1,5 +1,6 @@
 $blue: #3602ff;
 $green: #00b823;
+$yellow: #e7cc0d;
 $background-gray: #eef0f4;
 $border-gray: #d2d2d9;
 $font-gray: #7a7a7a;
@@ -60,6 +61,7 @@ p {
 	@extend .button;
 	height: 36px;
 	border: 2px solid $background-gray;
+	padding: 5px 10px;
 	font-weight: 100;
 	color: #7e757e;
 }
@@ -114,6 +116,18 @@ p {
 	> h3 {
 
 	}
+}
+.icon--star {
+	color: $yellow;
+	font-size: 20px;
+}
+.icon--star--small {
+	color: $yellow;
+	font-size: 15px;
+}
+.icon--map-pin {
+	color: #b91303;
+	font-size: 16px;
 }
 // Columns
 .Column {
@@ -285,10 +299,6 @@ p {
 }
 .StoreLocation, .StoreRatings {
 	display: inline-block;
-	> img {
-		display: inline-block;
-		height: 14px;
-	}
 	> a {
 		text-decoration: underline;
 	}
@@ -339,11 +349,9 @@ p {
 				line-height: 16px;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				> img {
-					display: inline-block;
-					margin: 0 0 1px 3px;
-					vertical-align: bottom;
-					width: 11px;
+				> .icon--offsite {
+					margin-left: 5px;
+					font-size: 11px;
 				}
 			}
 			> h5 {
@@ -400,11 +408,9 @@ p {
 	> ul > li {
 		input[type='radio'] {
 			margin-right: 0;
+			margin-bottom: -1px;
 		}
-		> img {
-			display: inline-block;
-			width: 18px;
-			vertical-align: text-bottom;
+		> .icon--star {
 			&:last-child() {
 				margin-right: 5px;
 			}
@@ -489,8 +495,9 @@ p {
 	background-color: #fff;
 	border: 1px solid #d2d2d9;
 	cursor: pointer;
-	> img {
+	> .fa {
 		margin: auto;
+		font-size: 18px;
 	}
 }
 .ListingOverview__top {
@@ -658,55 +665,53 @@ p {
 .ListingRating__right {
 	display: flex;
 	align-items: center;
-	> img {
-		display: inline-block;
-		height: 20px;
-		margin: 0 2px 2px 0;
+	> .icon--star {
+		letter-spacing: 5px;
 	}
 }
 .stars--5 {
-	> img {
-		opacity: 0.45;
+	> .icon--star {
+		opacity: 0.25;
 		&:nth-child(-n+5) {
 			opacity: 1;
 		}
 	}
 }
 .stars--4 {
-	> img {
-		opacity: 0.45;
+	> .icon--star {
+		opacity: 0.25;
 		&:nth-child(-n+4) {
 			opacity: 1;
 		}
 	}
 }
 .stars--3 {
-	> img {
-		opacity: 0.45;
+	> .icon--star {
+		opacity: 0.25;
 		&:nth-child(-n+3) {
 			opacity: 1;
 		}
 	}
 }
 .stars--2 {
-	> img {
-		opacity: 0.45;
+	> .icon--star {
+		opacity: 0.25;
 		&:nth-child(-n+2) {
 			opacity: 1;
 		}
 	}
 }
 .stars--1 {
-	> img {
-		opacity: 0.45;
+	> .icon--star {
+		opacity: 0.25;
 		&:nth-child(-n+1) {
 			opacity: 1;
 		}
 	}
 }
 .stars--0 {
-	> img {
-		opacity: 0.45;
+	> .icon--star {
+		opacity: 0.25;
 	}
 }
 .ListingShipping__header {
@@ -747,6 +752,53 @@ p {
 	font-weight: 600;
 }
 // End Single Listing Overlay
+
+.Slideshow {
+	background-color: #000;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	color: #fff;
+	margin-bottom: 10px;
+}
+.Slideshow__show {
+	width: 60%;
+	position: relative;
+	background-color: red;
+	> img { // slides
+		width: 100%;
+		object-fit: cover;
+	}
+}
+.Slidehow__controls {
+	width: 20%;
+	font-size: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.Slideshow__pager {
+	list-style-type: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	height: 15%;
+	> li {
+		width: 60px;
+		height: 60px;
+		position: relative;
+		> img {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			object-fit: cover;
+		}
+	}
+}
 
 
 .CardContainer {
@@ -880,12 +932,6 @@ p {
 }
 .ListingCard__ratings {
 	color: $font-gray--dark;
-	> img {
-		display: inline-block;
-		width: 15px;
-		vertical-align: text-bottom;
-		margin-bottom: 1px;
-	}
 	> a {
 		text-decoration: underline;
 		cursor: pointer;
