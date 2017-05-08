@@ -484,7 +484,7 @@ section, div {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #555; }
+  color: #222; }
 
 h1, h2, .ListingOverview__top__left, .ListingOverview__top__right, h3, h4, .ListingOverview__buy-now__options > li > span, h5 {
   color: #222;
@@ -510,7 +510,7 @@ h5 {
   font-size: 14px; }
 
 p {
-  color: #7a7a7a;
+  color: #222;
   font-size: 16px;
   line-height: 24px; }
 
@@ -572,7 +572,7 @@ p {
   padding: 20px 20px 40px 20px;
   background-color: #fff;
   border: 1px solid #d2d2d9;
-  color: #555;
+  color: #222;
   margin-bottom: 10px; }
   .section > h2, .StoreInformation > h2, .section > .ListingOverview__top__left, .StoreInformation > .ListingOverview__top__left, .section > .ListingOverview__top__right, .StoreInformation > .ListingOverview__top__right {
     margin-bottom: 8px; }
@@ -1105,6 +1105,41 @@ p {
 
 .stars--0 > img {
   opacity: 0.45; }
+
+.ListingShipping__header {
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  color: #222; }
+  .ListingShipping__header > div:first-child {
+    margin-right: 20px; }
+  .ListingShipping__header > div {
+    white-space: nowrap; }
+    .ListingShipping__header > div > select {
+      background-color: #fff;
+      margin-left: 5px; }
+
+.ListingShipping__body {
+  list-style-type: none;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+
+.ListingShipping__option, .ListingShipping__option--free {
+  display: -ms-flexbox;
+  display: flex; }
+  .ListingShipping__option > div, .ListingShipping__option--free > div {
+    width: 30%;
+    padding-left: 100px;
+    white-space: nowrap; }
+  .ListingShipping__option > div:first-child, .ListingShipping__option--free > div:first-child {
+    padding-left: 0; }
+
+.ListingShipping__option--free {
+  font-weight: 600; }
 
 .CardContainer {
   list-style-type: none;
