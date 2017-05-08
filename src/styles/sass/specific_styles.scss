@@ -63,6 +63,13 @@ p {
 	font-weight: 100;
 	color: #7e757e;
 }
+.button--txn-details {
+	@extend .button;
+	color: $font-black;
+	box-shadow: 1px 1px 0 0 #d2d2d9;
+	padding-right: 25px;
+	padding-left: 25px;
+}
 .tag--green {
 	@extend .caps;
 	background-color: $green;
@@ -586,7 +593,124 @@ p {
 		}
 	}
 }
+.ListingReviews__wrapper {
+	display: flex;
+	flex-direction: column;
+}
+.ListingReviews.section {
+	padding-bottom: 20px;
+}
+.ListingReviews__bottom {
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+}
+.ListingReview {
+	border-bottom: 1px solid $border-gray;
+	margin-top: 25px;
+	padding-bottom: 20px;
+	position: relative;
+	&:first-child() {
+		margin-top: 0;
+	}
+}
+.ListingReview__left {
+	display: flex;
+	flex-direction: column;
+	width: calc(100% - 350px);
+	margin-right: 60px;
+	padding-bottom: 38px; // allows room for button
+}
+.ListingReview__header {
+	font-weight: 600;
+	color: $font-black;
+	> a {
+		text-decoration: underline;
+	}
+}
+.ListingReview__bottom {
+	> .button--txn-details {
+		position: absolute;
+		bottom: 20px;
+	}
+}
+.ListingRatings {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+	> li.ListingRating:first-child() {
+		> .ListingRating__left {
+			font-weight: 600;
+			color: $font-black;
+		}
+	}
+}
+.ListingRating {
+	display: flex;
+}
+.ListingRating__left {
+	display: flex;
+	width: 45%;
+	margin-right: 10px;
+	white-space: nowrap;
+}
+.ListingRating__right {
+	display: flex;
+	align-items: center;
+	> img {
+		display: inline-block;
+		height: 20px;
+		margin: 0 2px 2px 0;
+	}
+}
+.stars--5 {
+	> img {
+		opacity: 0.45;
+		&:nth-child(-n+5) {
+			opacity: 1;
+		}
+	}
+}
+.stars--4 {
+	> img {
+		opacity: 0.45;
+		&:nth-child(-n+4) {
+			opacity: 1;
+		}
+	}
+}
+.stars--3 {
+	> img {
+		opacity: 0.45;
+		&:nth-child(-n+3) {
+			opacity: 1;
+		}
+	}
+}
+.stars--2 {
+	> img {
+		opacity: 0.45;
+		&:nth-child(-n+2) {
+			opacity: 1;
+		}
+	}
+}
+.stars--1 {
+	> img {
+		opacity: 0.45;
+		&:nth-child(-n+1) {
+			opacity: 1;
+		}
+	}
+}
+.stars--0 {
+	> img {
+		opacity: 0.45;
+	}
+}
 // End Single Listing Overlay
+
 
 .CardContainer {
 	list-style-type: none;
