@@ -23,7 +23,7 @@
 			<nav class="PurchaseOverlay__nav">
 					X closing <!-- TODO -->
 			</nav>
-			<section class="Section">
+			<section class="section">
 				<h3 .text-center>Purchasing isn't supported on the web yet.</h3>
 				<p .text-center>
 					Purchase this listing in the OpenBazzar app. It's available for: Windows, Mac &amp; Linux. Mobile coming soon.

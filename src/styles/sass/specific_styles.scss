@@ -94,7 +94,19 @@ p {
 	max-height: initial;
 	overflow-y: initial;
 }
+.section {
+	padding: 20px 20px 40px 20px;
+	background-color: #fff;
+	border: 1px solid $border-gray;
+	color: $font-gray--dark;
+	margin-bottom: 10px;
+	> h2 {
+		margin-bottom: 8px;
+	}
+	> h3 {
 
+	}
+}
 // Columns
 .Column {
 	display: inline-block;
@@ -104,7 +116,7 @@ p {
 	@extend .Column;
 	margin-right: 15px;
 }
-.Column--left .Section {
+.Column--left .section {
 	margin-right: 0;
 }
 .Column--right {
@@ -122,6 +134,7 @@ p {
 .View--store .Column--right {
 	width: 72%;
 }
+
 // End columns
 
 .Page {
@@ -304,22 +317,8 @@ p {
 	max-width: $max-width;
 	padding: 0 30px;
 }
-
-.Section {
-	padding: 20px 20px 40px 20px;
-	background-color: #fff;
-	border: 1px solid $border-gray;
-	color: $font-gray--dark;
-	margin-bottom: 10px;
-	> h2 {
-		margin-bottom: 8px;
-	}
-	> h3 {
-
-	}
-}
-.Section--store-information {
-	@extend .Section;
+.StoreInformation {
+	@extend .section;
 	margin-top: 10px;
 	padding: 10px 10px 20px 10px;
 	> ul {
@@ -332,14 +331,6 @@ p {
 				line-height: 16px;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				&.obid {
-					&:hover {
-						overflow: visible;
-						background-color: #fff;
-						border: 1px solid $border-gray;
-						z-index: 10;
-					}
-				}
 				> img {
 					display: inline-block;
 					margin: 0 0 1px 3px;
@@ -493,6 +484,71 @@ p {
 	> img {
 		margin: auto;
 	}
+}
+.ListingOverview__top {
+	margin-bottom: 10px;
+}
+.ListingOverview__top__left, .ListingOverview__top__right {
+	@extend h2;
+}
+.ListingOverview__body {
+	> .Column--left {
+		width: 55%;
+		margin-right: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		> a {
+			text-decoration: underline;
+			margin: 10px auto 0;
+		}
+	}
+	> .Column--right {
+		background-color: $background-gray;
+		width: 45%;
+		display: flex;
+		flex-direction: column;
+
+	}
+}
+.ListingOverview__buy-now {
+	border: 1px solid $border-gray;
+	padding: 45px 15%;
+	text-align: center;
+	> .button--buy-now {
+		@extend .button;
+		width: 100%;
+		background: linear-gradient(#03e52e,#00b823);
+		border: 2px solid #fff;
+		box-shadow: 0px 0px 0px 2px #dadada;
+		color: #fff;
+		text-transform: uppercase;
+		font-size: 20px;
+		line-height: 32px;
+	}
+}
+.ListingOverview__buy-now__options {
+	margin-bottom: 10px;
+	list-style-type: none;
+	> li {
+		> span {
+			@extend h4;
+			width: 40px;
+			margin-right: 15px;
+		}
+		> select {
+			width: calc(100% - 40px);
+			background-color: #fff;
+			color: $font-gray;
+		}
+	}
+}
+.ListingOverview__img {
+	width: 100%;
+	padding-bottom: 100%;
+	background-color: $background-gray;
+	background-size: cover;
+	background-position: center center;
 }
 // End Single Listing Overlay
 

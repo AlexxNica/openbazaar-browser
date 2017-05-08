@@ -55,12 +55,12 @@
 								</div>
 							</div>
 						</div>
-						<section class="Section--store-information">
+						<section class="section StoreInformation">
 							<h3>Information</h3>
 							<ul>
 								<li>
 									<h5>OpenBazaar ID</h5>
-									<p class="obid">Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>
+									<p>Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>
 								</li>
 								<li>
 									<h5>Website</h5>
@@ -90,7 +90,7 @@
 						</section> 
 					</div>
 					<div class="Column--right">
-						<section class="Section">
+						<section class="section">
 							<h2>About</h2>
 							<p>
 								At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
