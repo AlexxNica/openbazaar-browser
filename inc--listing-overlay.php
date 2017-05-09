@@ -63,7 +63,7 @@
 			</p>
 		</section>
 		<section id="ListingSlideshow" class="Slideshow">
-			<div class="Slidehow__controls">
+			<div class="Slidehow__controls" data-cycle-cmd="prev">
 				<i class="fa fa-chevron-left" aria-hidden="true"></i>
 			</div>
 			<div class="Slideshow__show cycle-slideshow"
@@ -71,13 +71,15 @@
     			data-cycle-timeout=0
     			data-cycle-pager="#Slideshow__pager"
     			data-cycle-pager-template='<li><img src="{{src}}"></li>'
-    		>
+    			data-cycle-auto-height="1:1"
+    			>
+    			<!-- listing images -->
 				<img src="./dist/images/example--dog05.jpg">
 				<img src="./dist/images/example--dog06.jpg">
 				<img src="./dist/images/example--dog07.jpg">
 				<img src="./dist/images/example--dog08.jpg">
 			</div>
-			<div class="Slidehow__controls">
+			<div class="Slidehow__controls" data-cycle-cmd="next">
 				<i class="fa fa-chevron-right" aria-hidden="true"></i>
 			</div>
 			<!-- empty element for pager links -->
