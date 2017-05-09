@@ -22,7 +22,7 @@
 		<main class="Store">
 			<?php include 'inc--store-nav.php';?>
 			<div class="Store__header">
-				<h1>Following</h1>
+				<h1>Followers</h1>
 			</div>
 			<div class="Store__body max-width">
 				<ul class="CardContainer">

@@ -31,9 +31,9 @@
 					<div class="Column--left">
 						<div class="StoreCard">
 							<!-- Store's header img -->
-							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat01.jpg');"">
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat02.jpg');"">
 								<!-- Store Avatar -->
-								<img class="Avatar" src="./dist/images/example--cat-avatar.jpg">
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat03.jpg')"></div>
 							</div>
 							<div class="StoreCard__body">
 								<span class="StoreCard__name">Ski Shop</span>

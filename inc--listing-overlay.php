@@ -1,8 +1,8 @@
-<div class="overlay overlay--active"> <!-- TODO remove overlay--active from this div before live -->
-	<div class="ListingOverlay view--listing-overlay max-width">
+<div class="view--listing-overlay overlay overlay--active">
+	<div class="ListingOverlay max-width">
 		<nav class="ListingOverlay__nav flex">
 			<div class="ListingOverlay__nav__left flex">
-				<img class="Avatar" src="../dist/images/example--cat-avatar.jpg">
+				<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
 				<span class="ListingOverlay__store-name">Ski Store</span>
 				<span class="ListingOverlay__return">Return to Store</span>
 			</div>
@@ -97,7 +97,7 @@
 							<p>This vendor sells amazing dogs. They don't chase cats and take most of the blame when there is a mess in the house.<p>
 						</div>
 						<div class="ListingReview__bottom">
-							<button class="button--txn-details">
+							<button class="button--shadowed">
 								Transaction Details
 							</button>
 						</div>
@@ -177,7 +177,7 @@
 							<p>Bought two dogs to watch my back while I stalk mice in my yard. The dogs came well trained. Will use again, but delivery could be faster.<p>
 						</div>
 						<div class="ListingReview__bottom">
-							<button class="button--txn-details">
+							<button class="button--shadowed">
 								Transaction Details
 							</button>
 						</div>
@@ -257,7 +257,7 @@
 							<p>This vendor sells the best dogs!<p>
 						</div>
 						<div class="ListingReview__bottom">
-							<button class="button--txn-details">
+							<button class="button--shadowed">
 								Transaction Details
 							</button>
 						</div>
@@ -329,7 +329,7 @@
 				</div>
 			</div>
 			<div class="ListingReviews__bottom">
-				<button class="button--txn-details strong">
+				<button class="button--shadowed strong">
 					Load More
 				</button>
 			</div>
@@ -421,4 +421,5 @@
 			</p>
 		</section>
 	</div>
+	<?php include 'inc--purchase-overlay.php';?>
 </div>

@@ -244,6 +244,7 @@
 				</div>
 			</div>
 			<?php include 'inc--listing-overlay.php';?>
+			<?php include 'inc--not-viewable-overlay.php';?>
 		</div>
 	</div>
 

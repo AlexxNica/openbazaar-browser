@@ -1,7 +1,7 @@
 <nav class="StoreNav">
 	<div class="StoreNav__left">
 		<div class="StoreInfo">
-			<img class="Avatar" src="./dist/images/example--cat-avatar.jpg">
+			<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
 			<div class="StoreSummary">
 				<h3>Ski Shop</h3>
 				<div>

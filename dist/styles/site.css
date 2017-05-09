@@ -2825,14 +2825,15 @@ p {
   font-size: 16px;
   line-height: 24px; }
 
-.button, .button--search, .button--txn-details, .SearchListings > button, .ListingOverview__buy-now > .button--buy-now {
+.button, .button--search, .button--shadowed, .SearchListings > button, .ListingOverview__buy-now > .button--buy-now {
   border: 1px solid #d2d2d9;
   border-radius: 3px;
   padding: 10px 12px;
   background-color: #fff;
   line-height: 16px;
   letter-spacing: 0.5px;
-  font-size: 14px; }
+  font-size: 14px;
+  cursor: pointer; }
 
 .green {
   color: #00b823; }
@@ -2844,7 +2845,7 @@ p {
   font-weight: 100;
   color: #7e757e; }
 
-.button--txn-details {
+.button--shadowed {
   color: #222;
   box-shadow: 1px 1px 0 0 #d2d2d9;
   padding-right: 25px;
@@ -2873,12 +2874,14 @@ p {
   border: 1px solid #d2d2d9;
   opacity: 0;
   transition: opacity 300ms ease-in;
-  overflow-y: hidden; }
+  overflow-y: hidden;
+  z-index: -1; }
 
 .overlay--active {
   opacity: 1;
   max-height: initial;
-  overflow-y: initial; }
+  overflow-y: initial;
+  z-index: 200; }
 
 .section, .StoreInformation {
   padding: 20px 20px 40px 20px;
@@ -2890,11 +2893,11 @@ p {
     margin-bottom: 8px; }
 
 .icon--star {
-  color: #e7cc0d;
+  color: #ffc200;
   font-size: 20px; }
 
 .icon--star--small {
-  color: #e7cc0d;
+  color: #ffc200;
   font-size: 15px; }
 
 .icon--map-pin {
@@ -3044,7 +3047,8 @@ p {
   .StoreInfo > .Avatar {
     display: inline-block;
     margin-right: 8px;
-    width: 45px; }
+    width: 45px;
+    height: 45px; }
   .StoreInfo > .StoreSummary {
     display: -ms-inline-flexbox;
     display: inline-flex;
@@ -3074,8 +3078,8 @@ p {
   display: inline-block;
   width: 54px;
   height: 52px;
+  border: 2px solid white;
   border-radius: 50%;
-  padding: 2px;
   box-shadow: 0px 1px 1px 0px #dadada;
   background-size: cover; }
 
@@ -3207,10 +3211,12 @@ p {
   cursor: pointer; }
   .ListingOverlay__nav__left > .Avatar {
     position: absolute;
-    width: 30px; }
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff; }
 
 .ListingOverlay__store-name {
-  margin: 0 10px 0 42px;
+  margin: 0 10px 0 36px;
   font-size: 16px;
   color: #555; }
 
@@ -3533,6 +3539,9 @@ p {
   width: 32%;
   margin-bottom: 15px;
   position: relative; }
+  > .Card:last-of-type {
+    -ms-flex-item-align: start;
+        align-self: flex-start; }
 
 .StoreCard {
   position: relative;
@@ -3546,7 +3555,7 @@ p {
   background-position: center center; }
   .StoreCard__header > .Avatar {
     position: absolute;
-    bottom: 5px;
+    bottom: 10px;
     left: 10px; }
 
 .StoreCard__body {
@@ -3670,3 +3679,115 @@ p {
   .ListingCard.nsfw > .ListingCard__header > .ListingCard__header__nsfw {
     opacity: 1;
     pointer-events: auto; }
+
+.PurchaseOverlay.max-width {
+  max-width: 700px; }
+
+.PurchaseOverlay__nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  margin: 10px 0; }
+  .PurchaseOverlay__nav > div {
+    display: -ms-flexbox;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border: 1px solid #d2d2d9;
+    cursor: pointer; }
+    .PurchaseOverlay__nav > div > .fa {
+      margin: auto;
+      font-size: 18px; }
+
+.PurchaseOverlay__body {
+  margin: 0 auto;
+  color: #7a7a7a; }
+
+.PurchaseOverlay__body__top {
+  text-align: center;
+  margin: 30px auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid gray; }
+  .PurchaseOverlay__body__top > p {
+    width: 75%;
+    margin: 20px auto 20px;
+    color: #7a7a7a; }
+
+.PurchaseOverlay__body__bottom {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .PurchaseOverlay__body__bottom > p {
+    color: #7a7a7a; }
+  .PurchaseOverlay__body__bottom > div {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 15px;
+    -ms-flex-align: center;
+        align-items: center; }
+    .PurchaseOverlay__body__bottom > div > a {
+      margin-right: 10px; }
+    .PurchaseOverlay__body__bottom > div > p {
+      color: #7a7a7a;
+      font-size: 14px; }
+    .PurchaseOverlay__body__bottom > div:last-child {
+      margin-bottom: 0; }
+
+.NotViewable.max-width {
+  max-width: 700px; }
+
+.NotViewable__nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  margin: 10px 0; }
+  .NotViewable__nav > div {
+    display: -ms-flexbox;
+    display: flex;
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border: 1px solid #d2d2d9;
+    cursor: pointer; }
+    .NotViewable__nav > div > .fa {
+      margin: auto;
+      font-size: 18px; }
+
+.NotViewable__body {
+  margin: 0 auto;
+  color: #7a7a7a; }
+
+.NotViewable__body__top {
+  text-align: center;
+  margin: 30px auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid gray; }
+  .NotViewable__body__top > p {
+    width: 75%;
+    margin: 20px auto 20px;
+    color: #7a7a7a; }
+
+.NotViewable__body__bottom {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  .NotViewable__body__bottom > p {
+    color: #7a7a7a; }
+  .NotViewable__body__bottom > div {
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 15px;
+    -ms-flex-align: center;
+        align-items: center; }
+    .NotViewable__body__bottom > div > a {
+      margin-right: 10px; }
+    .NotViewable__body__bottom > div > p {
+      color: #7a7a7a;
+      font-size: 14px; }
+    .NotViewable__body__bottom > div:last-child {
+      margin-bottom: 0; }
