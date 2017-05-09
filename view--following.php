@@ -24,89 +24,233 @@
 			<div class="Store__header">
 				<h1>Following</h1>
 			</div>
-			<div class="Column--single">
-				<div class="CardContainer">					
-					<div class="StoreCard">
-						<img class="StoreCard__header" src=""> <!-- Store's header img -->
-						<img class="Avatar" src=""> <!-- Store avatar image -->
-						<span class="StoreCard__name">Brad Gutierrez</span>
-						<span class="StoreCard__handle">@sbg23</span>
-						<p>
-							We sell rare and high quality art sourced from big cities around the world. Follow us.
-						</p>
-						<div class="StoreCard__bottom">
-							<div class="StoreCard__bottom__location">
-								<img src=""> <!-- small location pin image -->
-								Mexico City, Mexico
+			<div class="Store__body max-width">
+				<ul class="CardContainer">
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat02.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat03.jpg')"></div>
 							</div>
-							<div class="StoreCard__bottom__ratings">
-								<img src=""> <!-- small star image -->
-								4.2
-								(<a href="">123</a>) <!-- link to ratings and reviews -->
-							</div>
-						</div>
-					</div>
-					<div class="StoreCard">
-						<img class="StoreCard__header" src=""> <!-- Store's header img -->
-						<img class="Avatar" src=""> <!-- Store avatar image -->
-						<span class="StoreCard__name">Effective Studio</span>
-						<span class="StoreCard__handle">@estudio</span>
-						<p>
-							We sell rare and high quality art sourced from big cities around the world. Follow us.
-						</p>
-						<div class="StoreCard__bottom">
-							<div class="StoreCard__bottom__location">
-								<img src=""> <!-- small location pin image -->
-								Toronto, ON
-							</div>
-							<div class="StoreCard__bottom__ratings">
-								<img src=""> <!-- small star image -->
-								5.0
-								(<a href="">97</a>) <!-- link to ratings and reviews -->
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="StoreCard">
-						<img class="StoreCard__header" src=""> <!-- Store's header img -->
-						<img class="Avatar" src=""> <!-- Store avatar image -->
-						<span class="StoreCard__name">Francis Collins</span>
-						<span class="StoreCard__handle">@fcollins</span>
-						<p>
-							We sell rare and high quality art sourced from big cities around the world. Follow us.
-						</p>
-						<div class="StoreCard__bottom">
-							<div class="StoreCard__bottom__location">
-								<img src=""> <!-- small location pin image -->
-								Orlando, FL
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat04.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat05.jpg')"></div>
 							</div>
-							<div class="StoreCard__bottom__ratings">
-								<img src=""> <!-- small star image -->
-								4.9
-								(<a href="">721</a>) <!-- link to ratings and reviews -->
-							</div>
-						</div>
-					</div>
-					<div class="StoreCard">
-						<img class="StoreCard__header" src=""> <!-- Store's header img -->
-						<img class="Avatar" src=""> <!-- Store avatar image -->
-						<span class="StoreCard__name">Petes Catering</span>
-						<span class="StoreCard__handle">@pete_eats</span>
-						<p>
-							We sell rare and high quality art sourced from big cities around the world. Follow us.
-						</p>
-						<div class="StoreCard__bottom">
-							<div class="StoreCard__bottom__location">
-								<img src=""> <!-- small location pin image -->
-								London, UK
-							</div>
-							<div class="StoreCard__bottom__ratings">
-								<img src=""> <!-- small star image -->
-								3.7
-								(<a href="">392</a>) <!-- link to ratings and reviews -->
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat06.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat07.jpg')"></div>
+							</div>
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat08.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat09.jpg')"></div>
+							</div>
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat01.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
+							</div>
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat01.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
+							</div>
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat01.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
+							</div>
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="Card">
+						<div class="StoreCard">
+							<!-- Store's header img -->
+							<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat01.jpg');"">
+								<!-- Store Avatar -->
+								<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
+							</div>
+							<div class="StoreCard__body">
+								<span class="StoreCard__name">Ski Shop</span>
+								<span class="StoreCard__handle">@skiShop</span>
+								<p>
+									We sell rare and high quality art sourced from big cities around the world. Follow us.
+								</p>
+								<div class="StoreCard__bottom">
+									<div class="StoreCard__location">
+										<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
+										Seattle, WA
+									</div>
+									<div class="StoreCard__ratings">
+										<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
+										4.2
+										<!-- link to store's ratings and reviews -->
+										(<a href="">192</a>)
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
 			</div>
 		</main>
 	</div>
