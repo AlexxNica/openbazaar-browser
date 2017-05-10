@@ -147,16 +147,16 @@ p {
 .Column--right {
 	@extend .Column;
 }
-.View--home .Column--left {
+.tab--home .Column--left {
 	width: 32%;
 }
-.View--home .Column--right {
+.tab--home .Column--right {
 	width: 68%;
 }
-.View--store .Column--left {
+.tab--store .Column--left {
 	width: 27%;
 }
-.View--store .Column--right {
+.tab--store .Column--right {
 	width: 72%;
 }
 
@@ -223,7 +223,6 @@ p {
 }
 .Store {
 	position: relative;
-	border: 1px solid $border-gray;
 	background-color: #eef0f4;
 	transition: opacity 300ms ease-in;
 }
@@ -234,6 +233,8 @@ p {
 	justify-content: space-between;
 	padding: 2px 0 0;
 	height: 50px;
+	border: 1px solid $border-gray;
+	border-bottom: none;
 }
 .StoreNav__left {
 	display: inline-flex;
@@ -370,6 +371,27 @@ p {
 				}
 			}
 		}
+	}
+}
+.TabContainer {
+	position: absolute;
+	width: 100%;
+	> .tab {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		margin-bottom: 80px;
+		background-color: $background-gray;
+		opacity: 0;
+		transition: opacity 300ms ease-in;
+		z-index: -1;
+		border: 1px solid $border-gray;
+		border-top: none;
+	}
+	> .tab--active {
+		opacity: 1;
+		z-index: 1;
 	}
 }
 .FilterCard {

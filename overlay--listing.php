@@ -1,4 +1,4 @@
-<div class="view--listing-overlay overlay overlay--active">
+<div class="view--listing-overlay overlay">
 	<div class="ListingOverlay max-width">
 		<nav class="ListingOverlay__nav flex">
 			<div class="ListingOverlay__nav__left flex">
@@ -421,5 +421,5 @@
 			</p>
 		</section>
 	</div>
-	<?php include 'inc--purchase-overlay.php';?>
+	<?php include 'overlay--purchase.php';?>
 </div>

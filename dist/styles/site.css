@@ -2914,16 +2914,16 @@ p {
 .Column--left .section, .Column--left .StoreInformation {
   margin-right: 0; }
 
-.View--home .Column--left {
+.tab--home .Column--left {
   width: 32%; }
 
-.View--home .Column--right {
+.tab--home .Column--right {
   width: 68%; }
 
-.View--store .Column--left {
+.tab--store .Column--left {
   width: 27%; }
 
-.View--store .Column--right {
+.tab--store .Column--right {
   width: 72%; }
 
 .Page {
@@ -2988,7 +2988,6 @@ p {
 
 .Store {
   position: relative;
-  border: 1px solid #d2d2d9;
   background-color: #eef0f4;
   transition: opacity 300ms ease-in; }
 
@@ -2999,7 +2998,9 @@ p {
   -ms-flex-pack: justify;
       justify-content: space-between;
   padding: 2px 0 0;
-  height: 50px; }
+  height: 50px;
+  border: 1px solid #d2d2d9;
+  border-bottom: none; }
 
 .StoreNav__left {
   display: -ms-inline-flexbox;
@@ -3125,6 +3126,25 @@ p {
       line-height: 16px; }
     .StoreInformation > ul > li:first-child > h5 {
       margin-top: 0; }
+
+.TabContainer {
+  position: absolute;
+  width: 100%; }
+  .TabContainer > .tab {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin-bottom: 80px;
+    background-color: #eef0f4;
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+    z-index: -1;
+    border: 1px solid #d2d2d9;
+    border-top: none; }
+  .TabContainer > .tab--active {
+    opacity: 1;
+    z-index: 1; }
 
 .FilterCard, .FilterCard--shipping, .FilterCard--category, .FilterCard--rating {
   padding: 10px;

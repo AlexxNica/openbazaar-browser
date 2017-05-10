@@ -20,7 +20,7 @@
 
 <body>
 	<div class="Page">
-		<div class="Start view--start">
+		<div class="Start page--start">
 			<div class="Start__header">
 				Logo
 				Browse OpenBazaar on the Web [beta tag]
