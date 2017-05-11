@@ -19,8 +19,8 @@
 <body>
 	<div class="Page">
 		<?php include 'inc--page-header.php';?>
-		<div class="Store page--store">
-			<?php include 'inc--page--store__nav.php';?>
+		<div class="Node page--node">
+			<?php include 'inc--page--node__nav.php';?>
 			<div class="TabContainer">
 				<?php include 'tab--store.php';?> <!-- load first -->
 				<?php include 'tab--home.php';?>

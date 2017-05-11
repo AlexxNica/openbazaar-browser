@@ -1,8 +1,8 @@
-<div class="tab tab--store tab--active">
-	<div class="Store__header">
+<div class="tab tab--store">
+	<div class="Node__header">
 		<h1>Store</h1>
 	</div>
-	<div class="Store__body">
+	<div class="Node__body">
 		<div class="SearchListings flex">
 			<input type="text" placeholder="Search Ski Shop">
 			<button type="submit" class="Button--search-listings">

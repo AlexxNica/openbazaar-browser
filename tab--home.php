@@ -1,28 +1,28 @@
-<div class="tab tab--home">
-	<div class="Store__header">
+<div class="tab tab--home tab--active">
+	<div class="Node__header">
 		<h1>Home</h1>
 	</div>
-	<div class="Store__body tab--home">
+	<div class="Node__body tab--home">
 		<div class="flex">
 			<div class="Column--left">
-				<div class="StoreCard">
+				<div class="NodeCard">
 					<!-- Store's header img -->
-					<div class="StoreCard__header" style="background-image: url('./dist/images/example--cat02.jpg');"">
+					<div class="NodeCard__header" style="background-image: url('./dist/images/example--cat02.jpg');"">
 						<!-- Store Avatar -->
 						<div class="Avatar" style="background-image: url('./dist/images/example--cat03.jpg')"></div>
 					</div>
-					<div class="StoreCard__body">
-						<span class="StoreCard__name">Ski Shop</span>
-						<span class="StoreCard__handle">@skiShop</span>
+					<div class="NodeCard__body">
+						<span class="NodeCard__name">Ski Shop</span>
+						<span class="NodeCard__handle">@skiShop</span>
 						<p>
 							We sell rare and high quality art sourced from big cities around the world. Follow us.
 						</p>
-						<div class="StoreCard__bottom">
-							<div class="StoreCard__location">
+						<div class="NodeCard__bottom">
+							<div class="NodeCard__location">
 								<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
 								Seattle, WA
 							</div>
-							<div class="StoreCard__ratings">
+							<div class="NodeCard__ratings">
 								<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 								4.2
 								<!-- link to store's ratings and reviews -->
@@ -31,7 +31,7 @@
 						</div>
 					</div>
 				</div>
-				<section class="section StoreInformation">
+				<section class="section NodeInformation">
 					<h3>Information</h3>
 					<ul>
 						<li>

@@ -2883,13 +2883,13 @@ p {
   overflow-y: initial;
   z-index: 200; }
 
-.section, .StoreInformation {
+.section, .NodeInformation {
   padding: 20px 20px 40px 20px;
   background-color: #fff;
   border: 1px solid #d2d2d9;
   color: #222;
   margin-bottom: 10px; }
-  .section > h2, .StoreInformation > h2, .section > .ListingOverview__top__left, .StoreInformation > .ListingOverview__top__left, .section > .ListingOverview__top__right, .StoreInformation > .ListingOverview__top__right {
+  .section > h2, .NodeInformation > h2, .section > .ListingOverview__top__left, .NodeInformation > .ListingOverview__top__left, .section > .ListingOverview__top__right, .NodeInformation > .ListingOverview__top__right {
     margin-bottom: 8px; }
 
 .icon--star {
@@ -2911,7 +2911,7 @@ p {
 .Column--left {
   margin-right: 15px; }
 
-.Column--left .section, .Column--left .StoreInformation {
+.Column--left .section, .Column--left .NodeInformation {
   margin-right: 0; }
 
 .tab--home .Column--left {
@@ -2986,12 +2986,12 @@ p {
     font-size: 14px;
     margin-right: 6px; }
 
-.Store {
+.Node {
   position: relative;
   background-color: #eef0f4;
   transition: opacity 300ms ease-in; }
 
-.StoreNav {
+.NodeNav {
   background-color: #fff;
   display: -ms-flexbox;
   display: flex;
@@ -3002,12 +3002,12 @@ p {
   border: 1px solid #d2d2d9;
   border-bottom: none; }
 
-.StoreNav__left {
+.NodeNav__left {
   display: -ms-inline-flexbox;
   display: inline-flex;
   margin-left: 34px; }
 
-.StoreNav__right {
+.NodeNav__right {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -ms-flex-align: center;
@@ -3016,7 +3016,7 @@ p {
   font-size: 15px;
   font-weight: 400;
   margin-right: 130px; }
-  .StoreNav__right > ul {
+  .NodeNav__right > ul {
     list-style-type: none;
     display: -ms-flexbox;
     display: flex;
@@ -3024,55 +3024,55 @@ p {
         align-items: center;
     height: 100%;
     margin-bottom: 2px; }
-    .StoreNav__right > ul > li {
+    .NodeNav__right > ul > li {
       height: 100%;
       margin-right: 25px; }
-      .StoreNav__right > ul > li:last-child {
+      .NodeNav__right > ul > li:last-child {
         margin-right: 0; }
-      .StoreNav__right > ul > li.active, .StoreNav__right > ul > li:hover {
+      .NodeNav__right > ul > li.active, .NodeNav__right > ul > li:hover {
         color: #252525;
         border-bottom: 2px solid #252525;
         margin-bottom: -2px; }
-      .StoreNav__right > ul > li > a {
+      .NodeNav__right > ul > li > a {
         padding: 0 12px;
         display: -ms-inline-flexbox;
         display: inline-flex;
         -ms-flex-align: center;
             align-items: center;
         height: 100%; }
-        .StoreNav__right > ul > li > a > span.green {
+        .NodeNav__right > ul > li > a > span.green {
           margin-left: 5px; }
 
-.StoreInfo {
+.NodeInfo {
   margin-right: 26px; }
-  .StoreInfo > .Avatar {
+  .NodeInfo > .Avatar {
     display: inline-block;
     margin-right: 8px;
     width: 45px;
     height: 45px; }
-  .StoreInfo > .StoreSummary {
+  .NodeInfo > .NodeSummary {
     display: -ms-inline-flexbox;
     display: inline-flex;
     -ms-flex-direction: column;
         flex-direction: column;
     vertical-align: top; }
-    .StoreInfo > .StoreSummary > h3 {
+    .NodeInfo > .NodeSummary > h3 {
       font-weight: 300;
       font-size: 20px;
       line-height: 24px;
       letter-spacing: 0.5px; }
-    .StoreInfo > .StoreSummary > div {
+    .NodeInfo > .NodeSummary > div {
       color: #757575;
       font-weight: 100;
       line-height: 18px;
       font-size: 14px; }
 
-.StoreLocation, .StoreRatings {
+.NodeLocation, .NodeRatings {
   display: inline-block; }
-  .StoreLocation > a, .StoreRatings > a {
+  .NodeLocation > a, .NodeRatings > a {
     text-decoration: underline; }
 
-.StoreLocation {
+.NodeLocation {
   margin-right: 10px; }
 
 .Avatar {
@@ -3084,7 +3084,7 @@ p {
   box-shadow: 0px 1px 1px 0px #dadada;
   background-size: cover; }
 
-.Store__header {
+.Node__header {
   background-image: url("../images/example--cat00.jpg");
   padding-bottom: 32%;
   background-size: cover;
@@ -3092,7 +3092,7 @@ p {
   display: -ms-flexbox;
   display: flex;
   position: relative; }
-  .Store__header > h1 {
+  .Node__header > h1 {
     max-width: 1080px;
     position: absolute;
     bottom: 30px;
@@ -3101,30 +3101,30 @@ p {
     margin: auto;
     padding: 0 30px; }
 
-.Store__body {
+.Node__body {
   margin: 20px auto;
   max-width: 1080px;
   padding: 0 30px; }
 
-.StoreInformation {
+.NodeInformation {
   margin-top: 10px;
   padding: 10px 10px 20px 10px; }
-  .StoreInformation > ul {
+  .NodeInformation > ul {
     margin-top: 10px;
     list-style-type: none; }
-    .StoreInformation > ul > li > p {
+    .NodeInformation > ul > li > p {
       color: #7a7a7a;
       font-size: 13px;
       line-height: 16px;
       overflow: hidden;
       text-overflow: ellipsis; }
-      .StoreInformation > ul > li > p > .icon--offsite {
+      .NodeInformation > ul > li > p > .icon--offsite {
         margin-left: 5px;
         font-size: 11px; }
-    .StoreInformation > ul > li > h5 {
+    .NodeInformation > ul > li > h5 {
       margin-top: 20px;
       line-height: 16px; }
-    .StoreInformation > ul > li:first-child > h5 {
+    .NodeInformation > ul > li:first-child > h5 {
       margin-top: 0; }
 
 .TabContainer {
@@ -3354,7 +3354,7 @@ p {
   -ms-flex-direction: column;
       flex-direction: column; }
 
-.ListingReviews.section, .ListingReviews.StoreInformation {
+.ListingReviews.section, .ListingReviews.NodeInformation {
   padding-bottom: 20px; }
 
 .ListingReviews__bottom {
@@ -3563,56 +3563,56 @@ p {
     -ms-flex-item-align: start;
         align-self: flex-start; }
 
-.StoreCard {
+.NodeCard {
   position: relative;
   border: 1px solid #d2d2d9; }
 
-.StoreCard__header {
+.NodeCard__header {
   width: 100%;
   padding-bottom: 33%;
   position: relative;
   background-size: cover;
   background-position: center center; }
-  .StoreCard__header > .Avatar {
+  .NodeCard__header > .Avatar {
     position: absolute;
     bottom: 10px;
     left: 10px; }
 
-.StoreCard__body {
+.NodeCard__body {
   background-color: #fff;
   padding: 10px; }
-  .StoreCard__body > p {
+  .NodeCard__body > p {
     color: #7a7a7a;
     line-height: 18px;
     font-size: 13px;
     margin-bottom: 10px; }
 
-.StoreCard__name {
+.NodeCard__name {
   font-size: 18px;
   font-weight: 600;
   color: #222; }
 
-.StoreCard__handle {
+.NodeCard__handle {
   color: #7a7a7a;
   line-height: 18px;
   font-size: 13px; }
 
-.StoreCard__bottom {
+.NodeCard__bottom {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
       justify-content: space-between;
   color: #555; }
 
-.StoreCard__location, .StoreCard__ratings {
+.NodeCard__location, .NodeCard__ratings {
   font-size: 14px; }
-  .StoreCard__location > img, .StoreCard__ratings > img {
+  .NodeCard__location > img, .NodeCard__ratings > img {
     display: inline-block;
     height: 14px;
     vertical-align: middle;
     margin-bottom: 5px; }
 
-.StoreCard__ratings > a {
+.NodeCard__ratings > a {
   text-decoration: underline; }
 
 .ListingCard__header {

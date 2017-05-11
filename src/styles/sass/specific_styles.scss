@@ -221,13 +221,13 @@ p {
 		margin-right: 6px;
 	}
 }
-.Store {
+.Node {
 	position: relative;
 	background-color: #eef0f4;
 	transition: opacity 300ms ease-in;
 }
 
-.StoreNav {
+.NodeNav {
 	background-color: #fff;
 	display: flex;
 	justify-content: space-between;
@@ -236,11 +236,11 @@ p {
 	border: 1px solid $border-gray;
 	border-bottom: none;
 }
-.StoreNav__left {
+.NodeNav__left {
 	display: inline-flex;
 	margin-left: 34px;
 }
-.StoreNav__right {
+.NodeNav__right {
 	display: inline-flex;
 	align-items: center;
 	color: $font-gray;
@@ -276,7 +276,7 @@ p {
 		}
 	}
 }
-.StoreInfo {
+.NodeInfo {
 	margin-right: 26px;
 	> .Avatar {
 		display: inline-block;
@@ -284,7 +284,7 @@ p {
 		width: 45px;
 		height: 45px;
 	}
-	> .StoreSummary {
+	> .NodeSummary {
 		display: inline-flex;
 		flex-direction: column;
 		vertical-align: top;
@@ -302,13 +302,13 @@ p {
 		}
 	}
 }
-.StoreLocation, .StoreRatings {
+.NodeLocation, .NodeRatings {
 	display: inline-block;
 	> a {
 		text-decoration: underline;
 	}
 }
-.StoreLocation {
+.NodeLocation {
 	margin-right: 10px;
 }
 .Avatar {
@@ -320,7 +320,7 @@ p {
 	box-shadow: 0px 1px 1px 0px #dadada;
 	background-size: cover;
 }
-.Store__header {
+.Node__header {
 	background-image: url('../images/example--cat00.jpg');
 	padding-bottom: 32%;
 	background-size: cover;
@@ -337,12 +337,12 @@ p {
 		padding: 0 30px;
 	}
 }
-.Store__body {
+.Node__body {
 	margin: 20px auto;
 	max-width: $max-width;
 	padding: 0 30px;
 }
-.StoreInformation {
+.NodeInformation {
 	@extend .section;
 	margin-top: 10px;
 	padding: 10px 10px 20px 10px;
@@ -858,12 +858,12 @@ p {
 	}
 }
 
-// Store Cards
-.StoreCard {
+// Node Cards
+.NodeCard {
 	position: relative;
 	border: 1px solid $border-gray;
 }
-.StoreCard__header {
+.NodeCard__header {
 	width: 100%;
 	padding-bottom: 33%;
 	position: relative;
@@ -875,7 +875,7 @@ p {
 		left: 10px;
 	}
 }
-.StoreCard__body {
+.NodeCard__body {
 	background-color: #fff;
 	padding: 10px;
 	> p {
@@ -885,22 +885,22 @@ p {
 		margin-bottom: 10px;
 	}
 }
-.StoreCard__name {
+.NodeCard__name {
 	font-size: 18px;
 	font-weight: 600;
 	color: $font-black;
 }
-.StoreCard__handle {
+.NodeCard__handle {
 	color: #7a7a7a;
 	line-height: 18px;
 	font-size: 13px;
 }
-.StoreCard__bottom {
+.NodeCard__bottom {
 	display: flex;
 	justify-content: space-between;
 	color: $font-gray--dark;
 }
-.StoreCard__location, .StoreCard__ratings {
+.NodeCard__location, .NodeCard__ratings {
 	font-size: 14px;
 	> img {
 		display: inline-block;
@@ -909,10 +909,10 @@ p {
 		margin-bottom: 5px;
 	}
 }
-.StoreCard__ratings > a {
+.NodeCard__ratings > a {
 	text-decoration: underline;
 }
-// End Store Cards
+// End Node Cards
 
 // Listing Cards
 .ListingCard__header {
