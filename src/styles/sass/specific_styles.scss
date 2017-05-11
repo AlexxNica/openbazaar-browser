@@ -78,7 +78,8 @@ p {
 	background-color: $green;
 	color: #fff;
 	font-size: 10px;
-	padding: 4px;
+	line-height: 14px;
+	padding: 1px 4px;
 }
 .max-width {
 	max-width: $max-width;
@@ -131,6 +132,10 @@ p {
 .icon--map-pin {
 	color: #b91303;
 	font-size: 16px;
+}
+.vertical-center {
+	display: flex;
+	vertical-align: center;
 }
 // Columns
 .Column {
@@ -418,7 +423,7 @@ p {
 	input[type='checkbox'] {
 		margin-right: 5px;
 		vertical-align: text-bottom;
-		margin-bottom: -2px;
+		margin-bottom: -3px;
 		zoom: 1.5;
 	}
 	label[for='filter--listings--ships-to'] {
@@ -1121,3 +1126,57 @@ p {
 	}
 }
 //End NotViewable overlay
+.Start {
+	text-align: center;
+	margin-top: 80px;
+}
+.Start__header {
+	> img {
+		width: 100px;
+		margin: auto;
+	}
+	> p {
+		font-size: 18px;
+		letter-spacing: 0.4px;
+		display: inline-block;
+	}
+	> .tag--green {
+		position: relative;
+		bottom: 3px;
+	}
+}
+.Start__search {
+	display: inline-flex;
+	justify-content: center;
+	width: 100%;
+	margin-bottom: 15px;
+	> input {
+		height: 48px;
+		width: 50%;
+		border: 2px solid $background-gray;
+		border-radius: 3px;
+		padding: 10px 12px;
+		font-weight: 100;
+		letter-spacing: 0.5px;
+		font-size: 14px;
+		margin-right: 8px;
+	}
+	> .button--search {
+		height: 48px;
+		border: 2px solid #eef0f4;
+		padding: 0 25px;
+		font-weight: 100;
+		color: #7e757e;
+	}
+}
+.Start__bottom {
+	display: inline-flex;
+	align-items: center;
+	color: $blue;
+	font-size: 14px;
+	letter-spacing: 0.5px;
+	font-weight: 400;
+	> a:first-child() {
+		margin-right: 15px;
+	}
+}

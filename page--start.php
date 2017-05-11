@@ -20,13 +20,14 @@
 
 <body>
 	<div class="Page">
-		<div class="Start page--start">
+		<div class="Start page--start max-width">
 			<div class="Start__header">
-				Logo
-				Browse OpenBazaar on the Web [beta tag]
+				<img src="./dist/images/logo--openbazaar--med.png">
+				<p>Browse OpenBazaar on the Web</p>
+				<span class="tag--green">beta</span>
 			</div>
 			<div class="Start__search">
-				<input type="text" placeholder="Enter an OpenBazaar @handle or ID">
+				<input class="border-box" type="text" placeholder="Enter an OpenBazaar @handle or ID">
 				<button type="submit" class="button--search">Go</button>
 			</div>
 			<div class="Start__bottom">

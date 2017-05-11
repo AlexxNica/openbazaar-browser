@@ -1,7 +1,7 @@
 <header class="Header">
 	<div class="Header__left">
 		<div class="Header__logo">
-			<img class="ob-logo" src="./dist/images/icon--openbazaar.png">
+			<img class="ob-logo" src="./dist/images/logo--openbazaar.png">
 			<div class="ob-icons">
 				<h3>OpenBazaar</h3>
 				<div>

@@ -1,4 +1,4 @@
-<div class="tab tab--store">
+<div class="tab tab--store tab--active">
 	<div class="Node__header">
 		<h1>Store</h1>
 	</div>

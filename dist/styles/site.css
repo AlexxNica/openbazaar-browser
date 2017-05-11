@@ -2855,7 +2855,8 @@ p {
   background-color: #00b823;
   color: #fff;
   font-size: 10px;
-  padding: 4px; }
+  line-height: 14px;
+  padding: 1px 4px; }
 
 .max-width {
   max-width: 1080px;
@@ -2903,6 +2904,11 @@ p {
 .icon--map-pin {
   color: #b91303;
   font-size: 16px; }
+
+.vertical-center {
+  display: -ms-flexbox;
+  display: flex;
+  vertical-align: center; }
 
 .Column, .Column--left, .Column--right {
   display: inline-block;
@@ -3164,7 +3170,7 @@ p {
 .FilterCard--shipping input[type='checkbox'] {
   margin-right: 5px;
   vertical-align: text-bottom;
-  margin-bottom: -2px;
+  margin-bottom: -3px;
   zoom: 1.5; }
 
 .FilterCard--shipping label[for='filter--listings--ships-to'] {
@@ -3811,3 +3817,56 @@ p {
       font-size: 14px; }
     .NotViewable__body__bottom > div:last-child {
       margin-bottom: 0; }
+
+.Start {
+  text-align: center;
+  margin-top: 80px; }
+
+.Start__header > img {
+  width: 100px;
+  margin: auto; }
+
+.Start__header > p {
+  font-size: 18px;
+  letter-spacing: 0.4px;
+  display: inline-block; }
+
+.Start__header > .tag--green {
+  position: relative;
+  bottom: 3px; }
+
+.Start__search {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  width: 100%;
+  margin-bottom: 15px; }
+  .Start__search > input {
+    height: 48px;
+    width: 50%;
+    border: 2px solid #eef0f4;
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    margin-right: 8px; }
+  .Start__search > .button--search {
+    height: 48px;
+    border: 2px solid #eef0f4;
+    padding: 0 25px;
+    font-weight: 100;
+    color: #7e757e; }
+
+.Start__bottom {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-align: center;
+      align-items: center;
+  color: #3602ff;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  font-weight: 400; }
+  .Start__bottom > a:first-child {
+    margin-right: 15px; }
