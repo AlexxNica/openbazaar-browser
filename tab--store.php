@@ -1,4 +1,4 @@
-<div class="tab tab--store tab--active">
+<div class="tab tab--store active">
 	<div class="Node__header">
 		<h1>Store</h1>
 	</div>
@@ -39,7 +39,7 @@
 						<li><input type="radio" name="filter--listings--category" value="accessories">Accessories</li>
 						<li><input type="radio" name="filter--listings--category" value="snowboards">Snowboards</li>
 					</ul>
-					<a href="">24 more...</a> <!--  expands to show more categories -->
+					<a>24 more...</a> <!--  expands to show more categories -->
 				</section>
 				<section class="FilterCard--rating">
 					<h4>Rating</h4>

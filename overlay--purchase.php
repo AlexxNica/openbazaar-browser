@@ -1,4 +1,4 @@
-<div class="view--purchase-overlay overlay">
+<div class="overlay--purchase overlay">
 	<div class="PurchaseOverlay max-width">
 		<nav class="PurchaseOverlay__nav">
 			<div>

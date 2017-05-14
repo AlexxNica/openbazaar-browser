@@ -1,12 +1,12 @@
-<div class="view--listing-overlay overlay">
+<div class="overlay--listing overlay">
 	<div class="ListingOverlay max-width">
 		<nav class="ListingOverlay__nav flex">
-			<div class="ListingOverlay__nav__left flex">
+			<div class="ListingOverlay__nav__left click-to-close flex">
 				<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
 				<span class="ListingOverlay__store-name">Ski Store</span>
 				<span class="ListingOverlay__return">Return to Store</span>
 			</div>
-			<div class="ListingOverlay__nav__right flex">
+			<div class="ListingOverlay__nav__right click-to-close flex">
 				<i class="fa fa-times" aria-hidden="true"></i>
 			</div>
 		</nav>

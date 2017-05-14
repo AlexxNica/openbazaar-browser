@@ -2,7 +2,7 @@
 	<div class="Node__header">
 		<h1>Following</h1>
 	</div>
-	<div class="Node__body tab--following max-width">
+	<div class="Node__body">
 		<ul class="CardContainer">
 			<li class="Card">
 				<div class="NodeCard">

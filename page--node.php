@@ -19,10 +19,10 @@
 <body>
 	<div class="Page">
 		<?php include 'inc--page-header.php';?>
-		<div class="Node page--node">
+		<div class="Node page--node" id="page--node">
 			<?php include 'inc--page--node__nav.php';?>
 			<div class="TabContainer">
-				<?php include 'tab--store.php';?> <!-- load first -->
+				<?php include 'tab--store.php';?>
 				<?php include 'tab--home.php';?>
 				<?php include 'tab--following.php';?>
 				<?php include 'tab--followers.php';?>

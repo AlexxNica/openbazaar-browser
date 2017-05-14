@@ -1,4 +1,4 @@
-<div class="view--not-viewable-overlay overlay">
+<div class="overlay--not-viewable overlay">
 	<div class="NotViewable max-width">
 		<nav class="NotViewable__nav">
 			<div>

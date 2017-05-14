@@ -2874,11 +2874,11 @@ p {
   padding: 0 30px;
   border: 1px solid #d2d2d9;
   opacity: 0;
-  transition: opacity 300ms ease-in;
+  transition: opacity 300ms, z-index 500ms ease-in;
   overflow-y: hidden;
   z-index: -1; }
 
-.overlay--active {
+.overlay.active {
   opacity: 1;
   max-height: initial;
   overflow-y: initial;
@@ -3039,14 +3039,15 @@ p {
         color: #252525;
         border-bottom: 2px solid #252525;
         margin-bottom: -2px; }
-      .NodeNav__right > ul > li > a {
+      .NodeNav__right > ul > li > div {
         padding: 0 12px;
         display: -ms-inline-flexbox;
         display: inline-flex;
         -ms-flex-align: center;
             align-items: center;
-        height: 100%; }
-        .NodeNav__right > ul > li > a > span.green {
+        height: 100%;
+        cursor: pointer; }
+        .NodeNav__right > ul > li > div > span.green {
           margin-left: 5px; }
 
 .NodeInfo {
@@ -3135,22 +3136,24 @@ p {
 
 .TabContainer {
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  height: 0; }
   .TabContainer > .tab {
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    margin-bottom: 80px;
+    margin-bottom: 30px;
     background-color: #eef0f4;
     opacity: 0;
     transition: opacity 300ms ease-in;
     z-index: -1;
     border: 1px solid #d2d2d9;
     border-top: none; }
-  .TabContainer > .tab--active {
+  .TabContainer > .tab.active {
     opacity: 1;
-    z-index: 1; }
+    z-index: 1;
+    overflow-y: initial; }
 
 .FilterCard, .FilterCard--shipping, .FilterCard--category, .FilterCard--rating {
   padding: 10px;
@@ -3170,7 +3173,7 @@ p {
 .FilterCard--shipping input[type='checkbox'] {
   margin-right: 5px;
   vertical-align: text-bottom;
-  margin-bottom: -3px;
+  margin-bottom: -2px;
   zoom: 1.5; }
 
 .FilterCard--shipping label[for='filter--listings--ships-to'] {
@@ -3180,6 +3183,12 @@ p {
   height: 30px;
   background-color: #fff;
   width: 65%; }
+
+.FilterCard--category > a {
+  text-decoration: underline;
+  cursor: pointer;
+  color: gray;
+  margin-left: 25px; }
 
 .FilterCard--rating > ul > li input[type='radio'] {
   margin-right: 0;
@@ -3548,7 +3557,8 @@ p {
     .Slideshow__pager > li > img {
       width: 100%;
       height: 100%;
-      object-fit: cover; }
+      object-fit: cover;
+      cursor: pointer; }
     .Slideshow__pager > li.cycle-pager-active {
       border: 2px solid #fff; }
 

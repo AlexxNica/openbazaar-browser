@@ -20,17 +20,17 @@
 	</div>
 	<div class="NodeNav__right">
 		<ul>
-			<li>
-				<a href="">Home</a>
+			<li class="navtab" name="tab--home">
+				<div>Home</div>
 			</li>
-			<li class="active">
-				<a href="">Store <span class="green">26</span></a>
+			<li class="navtab active" name="tab--store">
+				<div>Store <span class="green">26</span></div>
 			</li>
-			<li>
-				<a href="">Following <span class="green">5</span></a>
+			<li class="navtab" name="tab--following">
+				<div>Following <span class="green">5</span></div>
 			</li>
-			<li>
-				<a href="">Followers <span class="green">10.3k</span></a>
+			<li class="navtab" name="tab--followers">
+				<div>Followers <span class="green">10.3k</span></div>
 			</li>
 		</ul>
 	</div>
