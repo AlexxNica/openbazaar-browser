@@ -36,6 +36,14 @@ $(document).ready(function() {
         }, 'slow');
     });
 
+    // clicking "View photos" on overlay--listing scrolls to Slideshow
+    $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
+        // scroll back to top of slideshow
+        $('html, body').animate({
+            scrollTop: $('#ListingSlideshow').offset().top
+        }, 'slow');
+    });
+
     // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
     $(".overlay--listing .button--buy-now").click(function () {
         $(".overlay--purchase").addClass("active");

@@ -559,9 +559,10 @@ p {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		> a {
+		> div.click-to-slideshow {
 			text-decoration: underline;
 			margin: 10px auto 0;
+			cursor: pointer;
 		}
 	}
 	> .Column--right {

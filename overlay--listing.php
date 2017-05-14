@@ -22,7 +22,7 @@
 			<div class="flex ListingOverview__body">
 				<div class="Column--left">
 					<div class="ListingOverview__img" style="background-image: url('./dist/images/example--dog00.jpg')"></div>
-					<a href="#ListingSlideshow">View 4 photos</a>
+					<div class="click-to-slideshow">View 4 photos</div>
 				</div>
 				<div class="Column--right">
 					<div class="ListingOverview__buy-now">

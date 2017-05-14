@@ -3285,9 +3285,10 @@ p {
       flex-direction: column;
   -ms-flex-pack: center;
       justify-content: center; }
-  .ListingOverview__body > .Column--left > a {
+  .ListingOverview__body > .Column--left > div.click-to-slideshow {
     text-decoration: underline;
-    margin: 10px auto 0; }
+    margin: 10px auto 0;
+    cursor: pointer; }
 
 .ListingOverview__body > .Column--right {
   width: 45%;
