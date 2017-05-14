@@ -1,4 +1,4 @@
-<div class="overlay--listing overlay">
+<div class="overlay--listing overlay" id="overlay--listing">
 	<div class="ListingOverlay max-width">
 		<nav class="ListingOverlay__nav flex">
 			<div class="ListingOverlay__nav__left click-to-close flex">
@@ -25,7 +25,7 @@
 					<a href="#ListingSlideshow">View 4 photos</a>
 				</div>
 				<div class="Column--right">
-					<form class="ListingOverview__buy-now">
+					<div class="ListingOverview__buy-now">
 						<ul class="ListingOverview__buy-now__options">
 							<li class="flex">
 								<span>Size</span>
@@ -36,8 +36,8 @@
 								</select>
 							</li>
 						</ul>
-						<button class="button--buy-now" name="button--buy-now">BUY NOW</button>
-					</form>
+						<div class="button--buy-now" name="button--buy-now">BUY NOW</div>
+					</div>
 					<ul class="ListingOverview__info">
 						<li>
 							Type: <span>Physical</span>

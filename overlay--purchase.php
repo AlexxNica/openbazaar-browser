@@ -1,7 +1,7 @@
-<div class="overlay--purchase overlay">
+<div class="overlay--purchase overlay" id="overlay--purchase">
 	<div class="PurchaseOverlay max-width">
 		<nav class="PurchaseOverlay__nav">
-			<div>
+			<div class="click-to-close">
 				<i class="fa fa-times" aria-hidden="true"></i>
 			</div>
 		</nav>
@@ -29,8 +29,8 @@
 					<a href="" class="button--shadowed strong">
 						Copy URL
 					</a>
-						<p>
-					Listing URL: ob://@skishop/store/full-ski-set
+					<p>
+						Listing URL: ob://@skishop/store/full-ski-set
 					</p>
 				</div>
 			</div>

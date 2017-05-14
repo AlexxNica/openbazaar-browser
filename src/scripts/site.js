@@ -16,15 +16,46 @@ $(document).ready(function() {
         }, 'slow');
     });
 
-    // clicking &times; or "return to store" on lsiting--overlay hides overlay
-    $(".overlay--listing .click-to-close").click(function () {
-        $(".overlay--listing").removeClass("active");
+    // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
+    $(".overlay--listing .button--buy-now").click(function () {
+        $(".overlay--purchase").addClass("active");
+        // scroll to top
+        $('html, body').animate({
+            scrollTop: $('#page--node').offset().top
+        }, 'slow');
     });
 
-    // pressing ESC key on lsiting--overlay hides overlay
+    // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
+    $(".overlay--purchase .PurchaseOverlay__nav .click-to-close").click(function () {
+        $(".overlay--purchase").removeClass("active");
+
+    });
+
+    // clicking &times; or "return to store" on overlay--listing hides overlay--listing
+    $(".overlay--listing .ListingOverlay__nav .click-to-close").click(function () {
+        $(".overlay--listing").removeClass("active");
+        // scroll back to top of listings
+        $('html, body').animate({
+            scrollTop: $('#TabContainer .Node__body').offset().top
+        }, 'slow');
+    });
+
+    // pressing ESC key hides overlay--purchase of overlay--listing as appropriate
     $(document).keyup(function(e) {
         if (e.keyCode == 27) { // escape key maps to keycode `27`
-            $(".overlay--listing").removeClass("active");
+            if ($("#overlay--purchase").hasClass("active")) {
+                $(".overlay--purchase").removeClass("active");
+            }
+            else {
+                $(".overlay--listing").removeClass("active");
+                // scroll back to top of listings
+                $('html, body').animate({
+                    scrollTop: $('#TabContainer .Node__body').offset().top
+                }, 'slow');
+            }
         }
     });
+
+
+
 });
