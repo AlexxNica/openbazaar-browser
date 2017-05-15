@@ -476,13 +476,15 @@ $(document).ready(function() {
         $(".tab." + tab_target).addClass("active");
     });
 
-    // clicking a listing card reveals listing overlay
+    // clicking a listing card reveals listing overlay (unless NSFW)
     $(".ListingCard").click(function () {
-        $(".overlay--listing").addClass("active");
-        // scroll to top of overlay--listing
-        $('html, body').animate({
-            scrollTop: $('#page--node').offset().top
-        }, 'slow');
+        if (!$(this).hasClass("nsfw")) {
+            $(".overlay--listing").addClass("active");
+            // scroll to top of overlay--listing
+            $('html, body').animate({
+                scrollTop: $('#page--node').offset().top
+            }, 'slow');
+        }
     });
 
     // clicking "View photos" on overlay--listing scrolls to Slideshow
