@@ -1,3 +1,5 @@
+var OBB = {};
+
 $(document).ready(function() {
     // store nav tab functionality
     $(".navtab").click(function () {
@@ -64,6 +66,14 @@ $(document).ready(function() {
         }
     });
 
-
+    // clicking "Show Mature Content" reveals the NSFW listing images
+    $(".ListingCard__header__nsfw .button").click(function (e) {
+        e.stopPropagation();
+        $(this).closest(".ListingCard.nsfw").removeClass("nsfw")
+    });
 
 });
+
+
+
+

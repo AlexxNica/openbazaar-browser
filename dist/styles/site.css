@@ -2865,12 +2865,11 @@ p {
 .overlay {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
+  left: -1px;
+  right: -1px;
   min-height: 100%;
   max-height: 100%;
   background-color: rgba(237, 239, 243, 0.9);
-  margin: -1px;
   padding: 0 30px;
   border: 1px solid #d2d2d9;
   opacity: 0;
@@ -3028,17 +3027,17 @@ p {
     display: flex;
     -ms-flex-align: center;
         align-items: center;
-    height: 100%;
-    margin-bottom: 2px; }
+    height: 100%; }
     .NodeNav__right > ul > li {
       height: 100%;
-      margin-right: 25px; }
+      margin-right: 25px;
+      box-sizing: border-box;
+      border-bottom: 2px solid #fff; }
       .NodeNav__right > ul > li:last-child {
         margin-right: 0; }
       .NodeNav__right > ul > li.active, .NodeNav__right > ul > li:hover {
         color: #252525;
-        border-bottom: 2px solid #252525;
-        margin-bottom: -2px; }
+        border-bottom: 2px solid #252525; }
       .NodeNav__right > ul > li > div {
         padding: 0 12px;
         display: -ms-inline-flexbox;
@@ -3051,7 +3050,11 @@ p {
           margin-left: 5px; }
 
 .NodeInfo {
-  margin-right: 26px; }
+  margin-right: 26px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center; }
   .NodeInfo > .Avatar {
     display: inline-block;
     margin-right: 8px;
@@ -3629,8 +3632,9 @@ p {
     vertical-align: middle;
     margin-bottom: 5px; }
 
-.NodeCard__ratings > a {
-  text-decoration: underline; }
+.NodeCard__ratings > .NodeCard__ratings__count {
+  text-decoration: underline;
+  display: inline-block; }
 
 .ListingCard__header {
   width: 100%;

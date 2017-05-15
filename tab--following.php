@@ -7,7 +7,7 @@
 			<li class="Card">
 				<div class="NodeCard">
 					<!-- Store's header img -->
-					<div class="NodeCard__header" style="background-image: url('./dist/images/example--cat02.jpg');"">
+					<div class="NodeCard__header" style="background-image: url('./dist/images/example--cat02.jpg');">
 						<!-- Store Avatar -->
 						<div class="Avatar" style="background-image: url('./dist/images/example--cat03.jpg')"></div>
 					</div>

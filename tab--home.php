@@ -26,7 +26,7 @@
 								<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
 								4.2
 								<!-- link to store's ratings and reviews -->
-								(<a href="">192</a>)
+								(<div class="NodeCard__ratings__count">192</div>)
 							</div>
 						</div>
 					</div>

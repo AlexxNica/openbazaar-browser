@@ -18,6 +18,8 @@ function(a){"use strict";function b(b,c,d){var e,f=b.API.getComponent("pager");f
 function(a){"use strict";a.extend(a.fn.cycle.defaults,{next:"> .cycle-next",nextEvent:"click.cycle",disabledClass:"disabled",prev:"> .cycle-prev",prevEvent:"click.cycle",swipe:!1}),a(document).on("cycle-initialized",function(a,b){if(b.API.getComponent("next").on(b.nextEvent,function(a){a.preventDefault(),b.API.next()}),b.API.getComponent("prev").on(b.prevEvent,function(a){a.preventDefault(),b.API.prev()}),b.swipe){var c=b.swipeVert?"swipeUp.cycle":"swipeLeft.cycle swipeleft.cycle",d=b.swipeVert?"swipeDown.cycle":"swipeRight.cycle swiperight.cycle";b.container.on(c,function(){b._tempFx=b.swipeFx,b.API.next()}),b.container.on(d,function(){b._tempFx=b.swipeFx,b.API.prev()})}}),a(document).on("cycle-update-view",function(a,b){if(!b.allowWrap){var c=b.disabledClass,d=b.API.getComponent("next"),e=b.API.getComponent("prev"),f=b._prevBoundry||0,g=void 0!==b._nextBoundry?b._nextBoundry:b.slideCount-1;b.currSlide==g?d.addClass(c).prop("disabled",!0):d.removeClass(c).prop("disabled",!1),b.currSlide===f?e.addClass(c).prop("disabled",!0):e.removeClass(c).prop("disabled",!1)}}),a(document).on("cycle-destroyed",function(a,b){b.API.getComponent("prev").off(b.nextEvent),b.API.getComponent("next").off(b.prevEvent),b.container.off("swipeleft.cycle swiperight.cycle swipeLeft.cycle swipeRight.cycle swipeUp.cycle swipeDown.cycle")})}(jQuery),/*! progressive loader plugin for Cycle2;  version: 20130315 */
 function(a){"use strict";a.extend(a.fn.cycle.defaults,{progressive:!1}),a(document).on("cycle-pre-initialize",function(b,c){if(c.progressive){var d,e,f=c.API,g=f.next,h=f.prev,i=f.prepareTx,j=a.type(c.progressive);if("array"==j)d=c.progressive;else if(a.isFunction(c.progressive))d=c.progressive(c);else if("string"==j){if(e=a(c.progressive),d=a.trim(e.html()),!d)return;if(/^(\[)/.test(d))try{d=a.parseJSON(d)}catch(k){return void f.log("error parsing progressive slides",k)}else d=d.split(new RegExp(e.data("cycle-split")||"\n")),d[d.length-1]||d.pop()}i&&(f.prepareTx=function(a,b){var e,f;return a||0===d.length?void i.apply(c.API,[a,b]):void(b&&c.currSlide==c.slideCount-1?(f=d[0],d=d.slice(1),c.container.one("cycle-slide-added",function(a,b){setTimeout(function(){b.API.advanceSlide(1)},50)}),c.API.add(f)):b||0!==c.currSlide?i.apply(c.API,[a,b]):(e=d.length-1,f=d[e],d=d.slice(0,e),c.container.one("cycle-slide-added",function(a,b){setTimeout(function(){b.currSlide=1,b.API.advanceSlide(-1)},50)}),c.API.add(f,!0)))}),g&&(f.next=function(){var a=this.opts();if(d.length&&a.currSlide==a.slideCount-1){var b=d[0];d=d.slice(1),a.container.one("cycle-slide-added",function(a,b){g.apply(b.API),b.container.removeClass("cycle-loading")}),a.container.addClass("cycle-loading"),a.API.add(b)}else g.apply(a.API)}),h&&(f.prev=function(){var a=this.opts();if(d.length&&0===a.currSlide){var b=d.length-1,c=d[b];d=d.slice(0,b),a.container.one("cycle-slide-added",function(a,b){b.currSlide=1,b.API.advanceSlide(-1),b.container.removeClass("cycle-loading")}),a.container.addClass("cycle-loading"),a.API.add(c,!0)}else h.apply(a.API)})}})}(jQuery),/*! tmpl plugin for Cycle2;  version: 20121227 */
 function(a){"use strict";a.extend(a.fn.cycle.defaults,{tmplRegex:"{{((.)?.*?)}}"}),a.extend(a.fn.cycle.API,{tmpl:function(b,c){var d=new RegExp(c.tmplRegex||a.fn.cycle.defaults.tmplRegex,"g"),e=a.makeArray(arguments);return e.shift(),b.replace(d,function(b,c){var d,f,g,h,i=c.split(".");for(d=0;d<e.length;d++)if(g=e[d]){if(i.length>1)for(h=g,f=0;f<i.length;f++)g=h,h=h[i[f]]||c;else h=g[c];if(a.isFunction(h))return h.apply(g,e);if(void 0!==h&&null!==h&&h!=c)return h}return c})}})}(jQuery);
+var OBB = {};
+
 $(document).ready(function() {
     // store nav tab functionality
     $(".navtab").click(function () {
@@ -84,6 +86,93 @@ $(document).ready(function() {
         }
     });
 
-
+    // clicking "Show Mature Content" reveals the NSFW listing images
+    $(".ListingCard__header__nsfw .button").click(function (e) {
+        e.stopPropagation();
+        $(this).closest(".ListingCard.nsfw").removeClass("nsfw")
+    });
 
 });
+
+
+
+
+
+OBB.templates = {
+
+    nodeCard: function(name, handle, about, avatar, header_img, location, ave_rating, rating_count){
+        var to_print = '';
+
+        to_print += '<div class="NodeCard">\n';
+        to_print += '   <div class="NodeCard__header" style="background-image: url(' + header_img + ');">\n';
+        to_print += '       <!-- Store Avatar -->\n';
+        to_print += '       <div class="Avatar" style="background-image: url(' + avatar + ')"></div>\n';
+        to_print += '   </div>\n';
+        to_print += '   <div class="NodeCard__body">\n';
+        to_print += '       <span class="NodeCard__name">' + name + '</span>\n';
+        to_print += '       <span class="NodeCard__handle">' + handle + '</span>\n';
+        to_print += '       <p>\n';
+        to_print += '           ' + about + '\n';
+        to_print += '       </p>\n';
+        to_print += '       <div class="NodeCard__bottom">\n';
+        to_print += '           <div class="NodeCard__location">\n';
+        to_print += '               <i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>\n';
+        to_print += '               ' + location + '\n';
+        to_print += '           </div>\n';
+        to_print += '           <div class="NodeCard__ratings">\n';
+        to_print += '               <i class="fa fa-star icon--star--small" aria-hidden="true"></i>\n';
+        to_print += '               ' + ave_rating + '\n';
+        to_print += '               (<a>' + rating_count + '</a>)\n';
+        to_print += '           </div>\n';
+        to_print += '       </div>\n';
+        to_print += '   </div>\n';
+        to_print += '</div>\n';
+
+        return to_print;
+    },
+
+    listingCard : function(title, categories_array, price, img_url, ave_rating, rating_count, nsfw, free_shipping) {
+        var to_print = '';
+
+        to_print += '<div class="ListingCard';
+        if (nsfw) {
+            to_print += ' nsfw';
+        }
+        to_print += '"> \n';
+        to_print += '   <div class="ListingCard__header"> \n';
+        to_print += '       <div class="ListingCard__header__bg" style="background-image: url(' + img_url + ')"> \n';
+        to_print += '       </div> \n';
+        to_print += '       <div class="ListingCard__header__nsfw"> \n';
+        to_print += '       </div> \n';
+        to_print += '       <ul class="ListingCard__header__tags"> \n';
+        if (free_shipping) {
+            to_print += '           <li> \n';
+            to_print += '               <span class="tag tag--green">Free Shipping</span> \n';
+            to_print += '           </li> \n';
+        }
+        to_print += '       </ul> \n';
+        to_print += '   </div> \n';
+        to_print += '   <div class="ListingCard__body"> \n';
+        to_print += '       <span class="ListingCard__title">' + title + '</span> \n';
+        to_print += '       <div class="ListingCard__bottom"> \n';
+        to_print += '           <div class="ListingCard__ratings"> \n';
+        to_print += '               <i class="fa fa-star icon--star--small" aria-hidden="true"></i> \n';
+        to_print += '               ' + ave_rating + ' \n';
+        to_print += '               (<a href="">' + rating_count + '</a>) \n';
+        to_print += '           </div> \n';
+        to_print += '           <div class="ListingCard__price"> \n';
+        to_print += '               <span class="strong">$' + price + '</span> \n';
+        to_print += '           </div> \n';
+        to_print += '       </div> \n';
+        to_print += '   </div> \n';
+        to_print += '</div> \n';
+
+        return to_print;
+    },
+
+
+};
+// OBB.templates.listingCard('Waffles', ['nothing', 'important'], '599.68', './dist/images/example--cat02.jpg' , '2.7', '21', false, 'true')
+// OBB.templates.nodeCard('Austin Williams', 'superman', 'This is a really cool store folks.', './dist/images/example--cat02.jpg', './dist/images/example--cat03.jpg', 'Washington, DC', '5.4', '300')
+
+
