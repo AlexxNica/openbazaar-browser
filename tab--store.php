@@ -11,7 +11,7 @@
         </div>
         <div class="flex">
             <div class="Column--left">
-                <section class="FilterCard--shipping">
+                <section class="FilterCard--shipping" id="FilterCard--shipping">
                     <h4>Shipping</h4>
                     <form>
                         <fieldset>
@@ -20,7 +20,7 @@
                                 <option value="any">(Any Country)</option>
                                 <option value="merica">USA</option>
                                 <option value="uk">UK</option>
-                                <option value="china">China</option>
+                                <option value="china">china prov</option>
                             </select>
                         </fieldset>
                         <fieldset>  
@@ -29,7 +29,7 @@
                         </fieldset>
                     </form>
                 </section>
-                <section class="FilterCard--category">
+                <section class="FilterCard--category" id="FilterCard--category">
                     <h4>Category</h4>
                     <ul>
                         <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>
@@ -100,7 +100,7 @@
                         </form>
                     </div>
                 </section>
-                <ul class="CardContainer">
+                <ul class="CardContainer" id="CardContainer--listings">
                     <li class="Card">
                         <div class="ListingCard">
                             <div class="ListingCard__header">

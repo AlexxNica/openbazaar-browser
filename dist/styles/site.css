@@ -3050,7 +3050,7 @@ p {
           margin-left: 5px; }
 
 .NodeInfo {
-  margin-right: 26px;
+  margin: 0 26px 3px 0;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
@@ -3186,6 +3186,8 @@ p {
   height: 30px;
   background-color: #fff;
   width: 65%; }
+  .FilterCard--shipping select[name='filter--listings--ships-to'] > option {
+    text-transform: capitalize; }
 
 .FilterCard--category > a {
   text-decoration: underline;

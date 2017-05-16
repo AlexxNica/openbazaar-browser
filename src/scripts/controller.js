@@ -1,7 +1,7 @@
 OBB = {};
 OBB.controller = {};
 
-
+// controller.api_returns stores API responses
 OBB.controller.api_returns = { // TODO remove this default testing data before live.
     // Keep the API calls separate from the rest of the model.
     // This will make it much easier to swap out the API later on without
@@ -430,7 +430,9 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
     ],
 };
 
-
+// controller.get_data grabs data from API responses and formats it appropriately for use by the model.
+//  If you want use another API or data source, OBB.controller.get_data is the place where you'll specify 
+//  those changes.
 OBB.controller.get_data = {};
 OBB.controller.get_data.ListingCardInfo = function() {
     var listings = OBB.controller.api_returns.listings;
@@ -456,5 +458,46 @@ OBB.controller.get_data.categories = function() {
         $.merge(result,listing.categories);
         result = $.unique(result);
     });
+    // Make each string in array lowercase
+    $.each(result, function(index, string) {
+        result[index] = string.toLowerCase();
+    });
+
     return result;
+};
+OBB.controller.get_data.countries = function() {
+    var listings = OBB.controller.api_returns.listings;
+    var result = [];
+    $.each(listings, function(index, listing) {
+        $.merge(result,listing.shipsTo);
+        result = $.unique(result);
+    });
+    return result;
+};
+OBB.controller.get_data.node_summary = function() {
+    result = {
+        name: OBB.controller.api_returns.profile.name,
+        handle: OBB.controller.api_returns.profile.handle,
+        about: OBB.controller.api_returns.profile.about,
+        avatar: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/avatar',
+        header_img: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/header',
+        location: OBB.controller.api_returns.profile.location,
+        ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
+        rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
+    }
+
+    return result;
+}
+
+
+// controller.render will render the view for the current model
+OBB.controller.render = {
+    tabStore: function() {
+        // render #FilterCard--shipping
+        $( "#FilterCard--shipping" ).replaceWith( OBB.templates.filterCardShipping(OBB.model.current_store.countries) );
+        // render #FilterCard--category
+        $( "#FilterCard--category" ).replaceWith( OBB.templates.filterCardCategory(OBB.model.current_store.categories) );
+        // render #CardContainer--listings
+        $( "#CardContainer--listings" ).replaceWith( OBB.templates.cardContainer(OBB.model.current_store.listing_cards_info, 'CardContainer--listings') );
+    },
 }

@@ -21,7 +21,7 @@ function(a){"use strict";a.extend(a.fn.cycle.defaults,{tmplRegex:"{{((.)?.*?)}}"
 OBB = {};
 OBB.controller = {};
 
-
+// controller.api_returns stores API responses
 OBB.controller.api_returns = { // TODO remove this default testing data before live.
     // Keep the API calls separate from the rest of the model.
     // This will make it much easier to swap out the API later on without
@@ -450,7 +450,9 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
     ],
 };
 
-
+// controller.get_data grabs data from API responses and formats it appropriately for use by the model.
+//  If you want use another API or data source, OBB.controller.get_data is the place where you'll specify 
+//  those changes.
 OBB.controller.get_data = {};
 OBB.controller.get_data.ListingCardInfo = function() {
     var listings = OBB.controller.api_returns.listings;
@@ -476,25 +478,59 @@ OBB.controller.get_data.categories = function() {
         $.merge(result,listing.categories);
         result = $.unique(result);
     });
+    // Make each string in array lowercase
+    $.each(result, function(index, string) {
+        result[index] = string.toLowerCase();
+    });
+
+    return result;
+};
+OBB.controller.get_data.countries = function() {
+    var listings = OBB.controller.api_returns.listings;
+    var result = [];
+    $.each(listings, function(index, listing) {
+        $.merge(result,listing.shipsTo);
+        result = $.unique(result);
+    });
+    return result;
+};
+OBB.controller.get_data.node_summary = function() {
+    result = {
+        name: OBB.controller.api_returns.profile.name,
+        handle: OBB.controller.api_returns.profile.handle,
+        about: OBB.controller.api_returns.profile.about,
+        avatar: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/avatar',
+        header_img: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/header',
+        location: OBB.controller.api_returns.profile.location,
+        ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
+        rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
+    }
+
     return result;
 }
 
-OBB.model = {};
 
+// controller.render will render the view for the current model
+OBB.controller.render = {
+    tabStore: function() {
+        // render #FilterCard--shipping
+        $( "#FilterCard--shipping" ).replaceWith( OBB.templates.filterCardShipping(OBB.model.current_store.countries) );
+        // render #FilterCard--category
+        $( "#FilterCard--category" ).replaceWith( OBB.templates.filterCardCategory(OBB.model.current_store.categories) );
+        // render #CardContainer--listings
+        $( "#CardContainer--listings" ).replaceWith( OBB.templates.cardContainer(OBB.model.current_store.listing_cards_info, 'CardContainer--listings') );
+    },
+}
+
+OBB.model = {};
+// TODO: before going live, remove this data initialisation. The current_store model should begin empty.
+//  I'm only initialising the model with this data to minimize API calls during development.
 OBB.model.current_store = {};
 OBB.model.current_store.peer_id = "Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J";
-OBB.model.current_store.node_card_info = {
-    name: OBB.controller.api_returns.profile.name,
-    handle: OBB.controller.api_returns.profile.handle,
-    about: OBB.controller.api_returns.profile.about,
-    avatar: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/avatar',
-    header_img: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/header',
-    location: OBB.controller.api_returns.profile.location,
-    ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
-    rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
-};
+OBB.model.current_store.node_summary = OBB.controller.get_data.node_summary();
 OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCardInfo();
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
+OBB.model.current_store.countries = OBB.controller.get_data.countries();
 OBB.templates = {
 
     nodeCard: function( data ){
@@ -568,15 +604,17 @@ OBB.templates = {
         return to_print;
     },
 
-    cardContainer: function ( listing_cards ) {
+    cardContainer: function ( listing_cards, id ) {
         var to_print = '';
 
-        to_print += '<ul class="CardContainer">\n';
+        to_print += '<ul class="CardContainer" id="' + id + '">\n';
+
         $.each(listing_cards, function(index, listing) {
             to_print += '    <li class="Card">\n';
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';
         });
+
         to_print += '    <li class="Card">\n';
         to_print += '        <!-- Empty li.Card for proper card alignment. Do not remove. -->\n';
         to_print += '    </li>\n';
@@ -588,7 +626,7 @@ OBB.templates = {
     filterCardCategory: function ( categories_array ) {
         var to_print = '';
 
-        to_print += '<section class="FilterCard--category">\n';
+        to_print += '<section class="FilterCard--category" id="FilterCard--category">\n';
         to_print += '    <h4>Category</h4>\n';
         to_print += '    <ul>\n';
         to_print += '        <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>\n';
@@ -596,9 +634,60 @@ OBB.templates = {
         $.each(categories_array, function(index, category) {
             to_print += '        <li><input type="radio" name="filter--listings--category" value="' + category.replace(/\s+/g, "-").toLowerCase() + '">' + category + '</li>\n';
         });
+
         to_print += '    </ul>\n';
         to_print += '    <a>more...</a> <!--  expands to show more categories -->\n';
         to_print += '</section>\n';
+
+        return to_print;
+    },
+
+    filterCardShipping: function ( countries_array ) {
+        var to_print = '';
+
+        to_print += '<section class="FilterCard--shipping" id="FilterCard--shipping">\n';
+        to_print += '    <h4>Shipping</h4>\n';
+        to_print += '    <form>\n';
+        to_print += '        <fieldset>\n';
+        to_print += '            <label for="filter--listings--ships-to">Ships to:</label>\n';
+        to_print += '            <select name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
+
+        $.each(countries_array, function(index, country) {
+            to_print += '           <option value="' + country.replace(/\s+/g, "-").toLowerCase() + '">' + country + '</option>\n';
+        });
+
+        to_print += '            </select>\n';
+        to_print += '        </fieldset>\n';
+        to_print += '        <fieldset>  \n';
+        to_print += '            <input type="checkbox" id="filter--listings--free-shipping" name="filter--listings--free-shipping" value="free-shipping">\n';
+        to_print += '            <label for="filter--listings--free-shipping"><span class="tag--green">Free Shipping</span></label>\n';
+        to_print += '        </fieldset>\n';
+        to_print += '    </form>\n';
+        to_print += '</section>\n';
+
+        return to_print;
+    },
+
+    nodeInfo: function ( node_summary ) {
+        to_print = '';
+
+        to_print += '<div class="NodeInfo">\n';
+        to_print += '    <div class="Avatar" style="background-image: url(' + node_summary.avatar + ')"></div>\n';
+        to_print += '    <div class="NodeSummary">\n';
+        to_print += '        <h3>'+ node_summary.name +'</h3>\n';
+        to_print += '        <div>\n';
+        to_print += '            <div class="NodeLocation">\n';
+        to_print += '                <i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>\n';
+        to_print += '                ' + node_summary.location + '\n';
+        to_print += '            </div>\n';
+        to_print += '            <div class="NodeRatings">\n';
+        to_print += '                <i class="fa fa-star icon--star--small" aria-hidden="true"></i>\n';
+        to_print += '                ' + node_summary.ave_rating + '\n';
+        to_print += '                (<a>' + node_summary.rating_count + '</a>)\n';
+        to_print += '            </div>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '</div>\n';
 
         return to_print;
     },
@@ -616,6 +705,7 @@ OBB.templates = {
 
 
 $(document).ready(function() {
+
     // store nav tab functionality
     $(".navtab").click(function () {
         var tab_target = $(this)["0"].attributes[1].value;

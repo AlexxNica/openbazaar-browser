@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+
     // store nav tab functionality
     $(".navtab").click(function () {
         var tab_target = $(this)["0"].attributes[1].value;
