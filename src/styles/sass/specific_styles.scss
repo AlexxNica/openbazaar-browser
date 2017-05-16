@@ -447,6 +447,9 @@ p {
         color: gray;
         margin-left: 25px;
     }
+    > ul {
+        text-transform: capitalize;
+    }
 }
 .FilterCard--rating { 
     @extend .FilterCard; 

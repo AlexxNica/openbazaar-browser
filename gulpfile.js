@@ -29,7 +29,7 @@ gulp.task('styles', function() {
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
-// Scripts
+// Lint
 gulp.task('lint', function() {
     return gulp.src('src/scripts/site.js')
     .pipe(jshint('.jshintrc'))
@@ -43,6 +43,9 @@ gulp.task('scripts', function() {
     .pipe(order([
        "libs/jquery-3.2.1.min.js",
        "libs/jquery.cycle2.min.js",
+       "controller.js",
+       "model.js",
+       "templates.js",
        "libs/*.js",
        "site.js"
      ]))

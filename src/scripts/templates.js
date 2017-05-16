@@ -31,7 +31,7 @@ OBB.templates = {
         return to_print;
     },
 
-    listingCard : function( data ) {
+    listingCard: function( data ) {
         var to_print = '';
 
         to_print += '<div class="ListingCard';
@@ -71,9 +71,48 @@ OBB.templates = {
         return to_print;
     },
 
+    cardContainer: function ( listing_cards ) {
+        var to_print = '';
+
+        to_print += '<ul class="CardContainer">\n';
+        $.each(listing_cards, function(index, listing) {
+            to_print += '    <li class="Card">\n';
+            to_print += OBB.templates.listingCard( listing ) + '\n';
+            to_print += '    </li>\n';
+        });
+        to_print += '    <li class="Card">\n';
+        to_print += '        <!-- Empty li.Card for proper card alignment. Do not remove. -->\n';
+        to_print += '    </li>\n';
+        to_print += '</ul>\n';
+
+        return to_print;
+    },
+
+    filterCardCategory: function ( categories_array ) {
+        var to_print = '';
+
+        to_print += '<section class="FilterCard--category">\n';
+        to_print += '    <h4>Category</h4>\n';
+        to_print += '    <ul>\n';
+        to_print += '        <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>\n';
+
+        $.each(categories_array, function(index, category) {
+            to_print += '        <li><input type="radio" name="filter--listings--category" value="' + category.replace(/\s+/g, "-").toLowerCase() + '">' + category + '</li>\n';
+        });
+        to_print += '    </ul>\n';
+        to_print += '    <a>more...</a> <!--  expands to show more categories -->\n';
+        to_print += '</section>\n';
+
+        return to_print;
+    },
 
 };
-// OBB.templates.listingCard('Waffles', ['nothing', 'important'], '599.68', './dist/images/example--cat02.jpg' , '2.7', '21', false, 'true')
-// OBB.templates.nodeCard('Austin Williams', 'superman', 'This is a really cool store folks.', './dist/images/example--cat02.jpg', './dist/images/example--cat03.jpg', 'Washington, DC', '5.4', '300')
+
+
+
+
+
+
+
 
 

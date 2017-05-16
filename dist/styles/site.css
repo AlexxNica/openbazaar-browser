@@ -3193,6 +3193,9 @@ p {
   color: gray;
   margin-left: 25px; }
 
+.FilterCard--category > ul {
+  text-transform: capitalize; }
+
 .FilterCard--rating > ul > li input[type='radio'] {
   margin-right: 0;
   margin-bottom: -1px; }
