@@ -474,13 +474,13 @@ OBB.controller.get_data.countries = function() {
     });
     return result;
 };
-OBB.controller.get_data.node_summary = function() {
+OBB.controller.get_data.summary = function() {
     result = {
         name: OBB.controller.api_returns.profile.name,
         handle: OBB.controller.api_returns.profile.handle,
         about: OBB.controller.api_returns.profile.about,
-        avatar: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/avatar',
-        header_img: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/header',
+        avatar: './dist/images/example--dog-avatar.jpg',
+        header_img: './dist/images/example--dog04.jpg',
         location: OBB.controller.api_returns.profile.location,
         ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
@@ -490,14 +490,56 @@ OBB.controller.get_data.node_summary = function() {
 }
 
 
-// controller.render will render the view for the current model
+// controller.render is used to render components using data from OBB.model
 OBB.controller.render = {
     tabStore: function() {
+        // render header image and h1
+        $( "#Node__header" ).replaceWith( OBB.templates.tabNodeHeader(OBB.model.current_store.summary) );
         // render #FilterCard--shipping
-        $( "#FilterCard--shipping" ).replaceWith( OBB.templates.filterCardShipping(OBB.model.current_store.countries) );
+        $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions(OBB.model.current_store.countries) );
         // render #FilterCard--category
-        $( "#FilterCard--category" ).replaceWith( OBB.templates.filterCardCategory(OBB.model.current_store.categories) );
+        $( "#FilterCard--category__list" ).replaceWith( OBB.templates.filterCardCategoryOptions(OBB.model.current_store.categories) );
         // render #CardContainer--listings
         $( "#CardContainer--listings" ).replaceWith( OBB.templates.cardContainer(OBB.model.current_store.listing_cards_info, 'CardContainer--listings') );
+        // render store name and avatar on overlay--listing
+        $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore(OBB.model.current_store.summary) );
     },
-}
+
+    tabHome: function() {
+        // TODO render current_node's store card in left column
+
+        // TODO render information card in left column
+
+        // TODO render About info
+    },
+
+    tabFollowing: function() {
+        // TODO render following cards
+    },
+
+    tabFollowers: function() {
+        // TODO render following cards
+    },
+
+    pageNodeNavSummary: function() {
+        // render #NodeNavSummary in left of NodeNav
+        $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
+    },
+
+    pageNode: function() {
+
+        OBB.controller.render.pageNodeNavSummary();
+        OBB.controller.render.tabStore();
+        OBB.controller.render.tabHome();
+        OBB.controller.render.tabFollowing();
+        OBB.controller.render.tabFollowers();
+    },
+
+};
+
+
+
+
+
+
+

@@ -90,12 +90,10 @@ OBB.templates = {
         return to_print;
     },
 
-    filterCardCategory: function ( categories_array ) {
+    filterCardCategoryOptions: function ( categories_array ) {
         var to_print = '';
 
-        to_print += '<section class="FilterCard--category" id="FilterCard--category">\n';
-        to_print += '    <h4>Category</h4>\n';
-        to_print += '    <ul>\n';
+        to_print += '    <ul id="FilterCard--category__list">\n';
         to_print += '        <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>\n';
 
         $.each(categories_array, function(index, category) {
@@ -103,34 +101,18 @@ OBB.templates = {
         });
 
         to_print += '    </ul>\n';
-        to_print += '    <a>more...</a> <!--  expands to show more categories -->\n';
-        to_print += '</section>\n';
 
         return to_print;
     },
 
-    filterCardShipping: function ( countries_array ) {
+    filterCardShippingOptions: function ( countries_array ) {
         var to_print = '';
 
-        to_print += '<section class="FilterCard--shipping" id="FilterCard--shipping">\n';
-        to_print += '    <h4>Shipping</h4>\n';
-        to_print += '    <form>\n';
-        to_print += '        <fieldset>\n';
-        to_print += '            <label for="filter--listings--ships-to">Ships to:</label>\n';
         to_print += '            <select name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
-
         $.each(countries_array, function(index, country) {
             to_print += '           <option value="' + country.replace(/\s+/g, "-").toLowerCase() + '">' + country + '</option>\n';
         });
-
         to_print += '            </select>\n';
-        to_print += '        </fieldset>\n';
-        to_print += '        <fieldset>  \n';
-        to_print += '            <input type="checkbox" id="filter--listings--free-shipping" name="filter--listings--free-shipping" value="free-shipping">\n';
-        to_print += '            <label for="filter--listings--free-shipping"><span class="tag--green">Free Shipping</span></label>\n';
-        to_print += '        </fieldset>\n';
-        to_print += '    </form>\n';
-        to_print += '</section>\n';
 
         return to_print;
     },
@@ -159,6 +141,51 @@ OBB.templates = {
         return to_print;
     },
 
+    overlayListingReturnToStore: function ( node_summary ) {
+        to_print = '';
+
+        to_print += '    <div class="ListingOverlay__nav__left click-to-close flex" id="ListingOverlay__nav__return-to-store">\n';
+        to_print += '        <div class="Avatar" style="background-image: url(' + node_summary.avatar + ')"></div>\n';
+        to_print += '        <span class="ListingOverlay__store-name">'+ node_summary.name +'</span>\n';
+        to_print += '        <span class="ListingOverlay__return">Return to Store</span>\n';
+        to_print += '    </div>\n';
+
+        return to_print;
+    },
+
+    pageNodeNavSummary: function( node_summary ) {
+        to_print = '';
+
+        to_print += '<div class="NodeInfo" id="NodeNavSummary">\n';
+        to_print += '    <div class="Avatar" style="background-image: url(' + node_summary.avatar + ')"></div>\n';
+        to_print += '    <div class="NodeSummary">\n';
+        to_print += '        <h3>' + node_summary.name + '</h3>\n';
+        to_print += '        <div>\n';
+        to_print += '            <div class="NodeLocation">\n';
+        to_print += '                <i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>\n';
+        to_print += '                ' + node_summary.location + '\n';
+        to_print += '            </div>\n';
+        to_print += '            <div class="NodeRatings">\n';
+        to_print += '                <i class="fa fa-star icon--star--small" aria-hidden="true"></i>\n';
+        to_print += '                ' + node_summary.ave_rating + '\n';
+        to_print += '                (<a>' + node_summary.rating_count + '</a>)\n';
+        to_print += '            </div>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '</div>\n';
+
+        return to_print;
+    },
+
+    tabNodeHeader: function( node_summary ) {
+        to_print = '';
+
+        to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img + ');" id="Node__header">\n';
+        to_print += '    <h1>Store</h1>\n';
+    //     to_print += '</div>\n';
+
+        return to_print;
+    },
 };
 
 

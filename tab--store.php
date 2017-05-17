@@ -1,5 +1,5 @@
 <div class="tab tab--store active">
-    <div class="Node__header">
+    <div class="Node__header" style="background-image: url(../images/example--dog06.jpg);" id="Node__header">
         <h1>Store</h1>
     </div>
     <div class="Node__body">
@@ -11,16 +11,13 @@
         </div>
         <div class="flex">
             <div class="Column--left">
-                <section class="FilterCard--shipping" id="FilterCard--shipping">
+                <section class="FilterCard--shipping">
                     <h4>Shipping</h4>
                     <form>
                         <fieldset>
                             <label for="filter--listings--ships-to">Ships to:</label>
                             <select name="filter--listings--ships-to" id="filter--listings--ships-to">
-                                <option value="any">(Any Country)</option>
-                                <option value="merica">USA</option>
-                                <option value="uk">UK</option>
-                                <option value="china">china prov</option>
+                                <!-- OBB.controller.render.TabStore() will render the options -->
                             </select>
                         </fieldset>
                         <fieldset>  
@@ -29,15 +26,10 @@
                         </fieldset>
                     </form>
                 </section>
-                <section class="FilterCard--category" id="FilterCard--category">
+                <section class="FilterCard--category">
                     <h4>Category</h4>
-                    <ul>
-                        <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>
-                        <li><input type="radio" name="filter--listings--category" value="skis">Skis</li>
-                        <li><input type="radio" name="filter--listings--category" value="gear">Gear</li>
-                        <li><input type="radio" name="filter--listings--category" value="lift-passes">Lift Passes</li>
-                        <li><input type="radio" name="filter--listings--category" value="accessories">Accessories</li>
-                        <li><input type="radio" name="filter--listings--category" value="snowboards">Snowboards</li>
+                    <ul id="FilterCard--category__list">
+                        <!-- OBB.controller.render.TabStore() will render the options -->
                     </ul>
                     <a>24 more...</a> <!--  expands to show more categories -->
                 </section>
@@ -101,157 +93,7 @@
                     </div>
                 </section>
                 <ul class="CardContainer" id="CardContainer--listings">
-                    <li class="Card">
-                        <div class="ListingCard">
-                            <div class="ListingCard__header">
-                                <div class='ListingCard__header__bg' style="background-image: url('./dist/images/example--dog00.jpg')">
-                                </div>
-                                <div class='ListingCard__header__nsfw'>
-                                </div>
-                                <ul class='ListingCard__header__tags'>
-                                    <li>
-                                        <span class="tag tag--green">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ListingCard__body">
-                                <span class="ListingCard__title">Dog 00</span> <!-- item title -->
-                                <div class="ListingCard__bottom">
-                                    <div class="ListingCard__ratings">
-                                        <i class="fa fa-star icon--star--small" aria-hidden="true"></i>
-                                        3.7
-                                        (<a href="">921</a>) <!-- link to ratings and reviews -->
-                                    </div>
-                                    <div class="ListingCard__price">
-                                        <span class="strong">$129.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="Card">
-                        <div class="ListingCard">
-                            <div class="ListingCard__header">
-                                <div class='ListingCard__header__bg' style="background-image: url('./dist/images/example--dog01.jpg')">
-                                </div>
-                                <div class='ListingCard__header__nsfw'>
-                                </div>
-                                <ul class='ListingCard__header__tags'>
-                                    <li>
-                                        <span class="tag tag--green">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ListingCard__body">
-                                <span class="ListingCard__title">Dog 01</span> <!-- item title -->
-                                <div class="ListingCard__bottom">
-                                    <div class="ListingCard__ratings">
-                                        <i class="fa fa-star icon--star--small" aria-hidden="true"></i>
-                                        3.7
-                                        (<a href="">921</a>) <!-- link to ratings and reviews -->
-                                    </div>
-                                    <div class="ListingCard__price">
-                                        <span class="strong">$129.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="Card">
-                        <div class="ListingCard">
-                            <div class="ListingCard__header">
-                                <div class='ListingCard__header__bg' style="background-image: url('./dist/images/example--dog02.jpg')">
-                                </div>
-                                <div class='ListingCard__header__nsfw'>
-                                </div>
-                                <ul class='ListingCard__header__tags'>
-                                    <li>
-                                        <span class="tag tag--green">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ListingCard__body">
-                                <span class="ListingCard__title">Dog 02</span> <!-- item title -->
-                                <div class="ListingCard__bottom">
-                                    <div class="ListingCard__ratings">
-                                        <i class="fa fa-star icon--star--small" aria-hidden="true"></i>
-                                        3.7
-                                        (<a href="">921</a>) <!-- link to ratings and reviews -->
-                                    </div>
-                                    <div class="ListingCard__price">
-                                        <span class="strong">$129.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="Card">
-                        <div class="ListingCard nsfw">
-                            <div class="ListingCard__header">
-                                <div class="ListingCard__header__bg" style="background-image: url('./dist/images/example--dog03.jpg')">
-                                </div>
-                                <div class="ListingCard__header__nsfw">
-                                    <div>
-                                        <img src="./dist/images/icon--nsfw.png">
-                                        <button class="button">Show Mature Content</button>
-                                    </div>
-                                </div>
-                                <ul class="ListingCard__header__tags">
-                                    <li>
-                                        <span class="tag tag--green">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ListingCard__body">
-                                <span class="ListingCard__title">Dog 03</span> <!-- item title -->
-                                <div class="ListingCard__bottom">
-                                    <div class="ListingCard__ratings">
-                                        <i class="fa fa-star icon--star--small" aria-hidden="true"></i>
-                                        3.7
-                                        (<a href="">921</a>) <!-- link to ratings and reviews -->
-                                    </div>
-                                    <div class="ListingCard__price">
-                                        <span class="strong">$129.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="Card">
-                        <div class="ListingCard nsfw">
-                            <div class="ListingCard__header">
-                                <div class="ListingCard__header__bg" style="background-image: url('./dist/images/example--dog03.jpg')">
-                                </div>
-                                <div class="ListingCard__header__nsfw">
-                                    <div>
-                                        <img src="./dist/images/icon--nsfw.png">
-                                        <button class="button">Show Mature Content</button>
-                                    </div>
-                                </div>
-                                <ul class="ListingCard__header__tags">
-                                    <li>
-                                        <span class="tag tag--green">Free Shipping</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ListingCard__body">
-                                <span class="ListingCard__title">Dog 03</span> <!-- item title -->
-                                <div class="ListingCard__bottom">
-                                    <div class="ListingCard__ratings">
-                                        <i class="fa fa-star icon--star--small" aria-hidden="true"></i>
-                                        3.7
-                                        (<a href="">921</a>) <!-- link to ratings and reviews -->
-                                    </div>
-                                    <div class="ListingCard__price">
-                                        <span class="strong">$129.99</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="Card">
-                        <!-- Empty li.Card for proper card alignment. Do not remove. -->
-                    </li>
+                    <!-- OBB.controller.render.TabStore() will render this component -->
                 </ul>
             </div>
         </div>

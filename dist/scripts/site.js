@@ -494,13 +494,13 @@ OBB.controller.get_data.countries = function() {
     });
     return result;
 };
-OBB.controller.get_data.node_summary = function() {
+OBB.controller.get_data.summary = function() {
     result = {
         name: OBB.controller.api_returns.profile.name,
         handle: OBB.controller.api_returns.profile.handle,
         about: OBB.controller.api_returns.profile.about,
-        avatar: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/avatar',
-        header_img: 'http://gateway.ob1.io/ipns/' + OBB.controller.api_returns.profile.peerID + '/images/tiny/header',
+        avatar: './dist/images/example--dog-avatar.jpg',
+        header_img: './dist/images/example--dog04.jpg',
         location: OBB.controller.api_returns.profile.location,
         ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
@@ -510,24 +510,66 @@ OBB.controller.get_data.node_summary = function() {
 }
 
 
-// controller.render will render the view for the current model
+// controller.render is used to render components using data from OBB.model
 OBB.controller.render = {
     tabStore: function() {
+        // render header image and h1
+        $( "#Node__header" ).replaceWith( OBB.templates.tabNodeHeader(OBB.model.current_store.summary) );
         // render #FilterCard--shipping
-        $( "#FilterCard--shipping" ).replaceWith( OBB.templates.filterCardShipping(OBB.model.current_store.countries) );
+        $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions(OBB.model.current_store.countries) );
         // render #FilterCard--category
-        $( "#FilterCard--category" ).replaceWith( OBB.templates.filterCardCategory(OBB.model.current_store.categories) );
+        $( "#FilterCard--category__list" ).replaceWith( OBB.templates.filterCardCategoryOptions(OBB.model.current_store.categories) );
         // render #CardContainer--listings
         $( "#CardContainer--listings" ).replaceWith( OBB.templates.cardContainer(OBB.model.current_store.listing_cards_info, 'CardContainer--listings') );
+        // render store name and avatar on overlay--listing
+        $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore(OBB.model.current_store.summary) );
     },
-}
+
+    tabHome: function() {
+        // TODO render current_node's store card in left column
+
+        // TODO render information card in left column
+
+        // TODO render About info
+    },
+
+    tabFollowing: function() {
+        // TODO render following cards
+    },
+
+    tabFollowers: function() {
+        // TODO render following cards
+    },
+
+    pageNodeNavSummary: function() {
+        // render #NodeNavSummary in left of NodeNav
+        $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
+    },
+
+    pageNode: function() {
+
+        OBB.controller.render.pageNodeNavSummary();
+        OBB.controller.render.tabStore();
+        OBB.controller.render.tabHome();
+        OBB.controller.render.tabFollowing();
+        OBB.controller.render.tabFollowers();
+    },
+
+};
+
+
+
+
+
+
+
 
 OBB.model = {};
 // TODO: before going live, remove this data initialisation. The current_store model should begin empty.
 //  I'm only initialising the model with this data to minimize API calls during development.
 OBB.model.current_store = {};
 OBB.model.current_store.peer_id = "Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J";
-OBB.model.current_store.node_summary = OBB.controller.get_data.node_summary();
+OBB.model.current_store.summary = OBB.controller.get_data.summary();
 OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCardInfo();
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
 OBB.model.current_store.countries = OBB.controller.get_data.countries();
@@ -623,12 +665,10 @@ OBB.templates = {
         return to_print;
     },
 
-    filterCardCategory: function ( categories_array ) {
+    filterCardCategoryOptions: function ( categories_array ) {
         var to_print = '';
 
-        to_print += '<section class="FilterCard--category" id="FilterCard--category">\n';
-        to_print += '    <h4>Category</h4>\n';
-        to_print += '    <ul>\n';
+        to_print += '    <ul id="FilterCard--category__list">\n';
         to_print += '        <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>\n';
 
         $.each(categories_array, function(index, category) {
@@ -636,34 +676,18 @@ OBB.templates = {
         });
 
         to_print += '    </ul>\n';
-        to_print += '    <a>more...</a> <!--  expands to show more categories -->\n';
-        to_print += '</section>\n';
 
         return to_print;
     },
 
-    filterCardShipping: function ( countries_array ) {
+    filterCardShippingOptions: function ( countries_array ) {
         var to_print = '';
 
-        to_print += '<section class="FilterCard--shipping" id="FilterCard--shipping">\n';
-        to_print += '    <h4>Shipping</h4>\n';
-        to_print += '    <form>\n';
-        to_print += '        <fieldset>\n';
-        to_print += '            <label for="filter--listings--ships-to">Ships to:</label>\n';
         to_print += '            <select name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
-
         $.each(countries_array, function(index, country) {
             to_print += '           <option value="' + country.replace(/\s+/g, "-").toLowerCase() + '">' + country + '</option>\n';
         });
-
         to_print += '            </select>\n';
-        to_print += '        </fieldset>\n';
-        to_print += '        <fieldset>  \n';
-        to_print += '            <input type="checkbox" id="filter--listings--free-shipping" name="filter--listings--free-shipping" value="free-shipping">\n';
-        to_print += '            <label for="filter--listings--free-shipping"><span class="tag--green">Free Shipping</span></label>\n';
-        to_print += '        </fieldset>\n';
-        to_print += '    </form>\n';
-        to_print += '</section>\n';
 
         return to_print;
     },
@@ -692,6 +716,51 @@ OBB.templates = {
         return to_print;
     },
 
+    overlayListingReturnToStore: function ( node_summary ) {
+        to_print = '';
+
+        to_print += '    <div class="ListingOverlay__nav__left click-to-close flex" id="ListingOverlay__nav__return-to-store">\n';
+        to_print += '        <div class="Avatar" style="background-image: url(' + node_summary.avatar + ')"></div>\n';
+        to_print += '        <span class="ListingOverlay__store-name">'+ node_summary.name +'</span>\n';
+        to_print += '        <span class="ListingOverlay__return">Return to Store</span>\n';
+        to_print += '    </div>\n';
+
+        return to_print;
+    },
+
+    pageNodeNavSummary: function( node_summary ) {
+        to_print = '';
+
+        to_print += '<div class="NodeInfo" id="NodeNavSummary">\n';
+        to_print += '    <div class="Avatar" style="background-image: url(' + node_summary.avatar + ')"></div>\n';
+        to_print += '    <div class="NodeSummary">\n';
+        to_print += '        <h3>' + node_summary.name + '</h3>\n';
+        to_print += '        <div>\n';
+        to_print += '            <div class="NodeLocation">\n';
+        to_print += '                <i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>\n';
+        to_print += '                ' + node_summary.location + '\n';
+        to_print += '            </div>\n';
+        to_print += '            <div class="NodeRatings">\n';
+        to_print += '                <i class="fa fa-star icon--star--small" aria-hidden="true"></i>\n';
+        to_print += '                ' + node_summary.ave_rating + '\n';
+        to_print += '                (<a>' + node_summary.rating_count + '</a>)\n';
+        to_print += '            </div>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '</div>\n';
+
+        return to_print;
+    },
+
+    tabNodeHeader: function( node_summary ) {
+        to_print = '';
+
+        to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img + ');" id="Node__header">\n';
+        to_print += '    <h1>Store</h1>\n';
+    //     to_print += '</div>\n';
+
+        return to_print;
+    },
 };
 
 
@@ -703,8 +772,9 @@ OBB.templates = {
 
 
 
-
 $(document).ready(function() {
+
+    OBB.controller.render.pageNode();
 
     // store nav tab functionality
     $(".navtab").click(function () {

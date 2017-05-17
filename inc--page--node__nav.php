@@ -1,21 +1,7 @@
 <nav class="NodeNav">
 	<div class="NodeNav__left">
-		<div class="NodeInfo">
-			<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
-			<div class="NodeSummary">
-				<h3>Ski Shop</h3>
-				<div>
-					<div class="NodeLocation">
-						<i class="fa fa-map-marker icon--map-pin" aria-hidden="true"></i>
-						Seattle, WA
-					</div>
-					<div class="NodeRatings">
-						<i class="fa fa-star icon--star--small" aria-hidden="true"></i>
-						4.2
-						(<a href="">192</a>) <!-- link to ratings and reviews -->
-					</div>
-				</div>
-			</div>
+		<div class="NodeInfo" id="NodeNavSummary">
+			<!-- OBB.controller.render.pageNode() will render the options -->
 		</div>
 	</div>
 	<div class="NodeNav__right">

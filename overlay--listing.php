@@ -1,7 +1,7 @@
 <div class="overlay--listing overlay" id="overlay--listing">
 	<div class="ListingOverlay max-width">
 		<nav class="ListingOverlay__nav flex">
-			<div class="ListingOverlay__nav__left click-to-close flex">
+			<div class="ListingOverlay__nav__left click-to-close flex" id="ListingOverlay__nav__return-to-store">
 				<div class="Avatar" style="background-image: url('./dist/images/example--cat-avatar.jpg')"></div>
 				<span class="ListingOverlay__store-name">Ski Store</span>
 				<span class="ListingOverlay__return">Return to Store</span>

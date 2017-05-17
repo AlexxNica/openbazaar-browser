@@ -1,5 +1,6 @@
-
 $(document).ready(function() {
+
+    OBB.controller.render.pageNode();
 
     // store nav tab functionality
     $(".navtab").click(function () {
