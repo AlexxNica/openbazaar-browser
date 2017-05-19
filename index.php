@@ -10,17 +10,17 @@
     <title>OpenBazaar Browser</title>
 
     <link rel="stylesheet" href="./dist/styles/site.min.css">
-
-    <!--[if lt IE 9]>
-        <script src="./dist/scripts/ie-only.js"></script>
-    <![endif]-->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 
 </head>
 
 <body>
 
-    <script src="./dist/scripts/site.min.js"></script>
+	<?php include './php/page--node.php';?>
 
+
+    <script src="./dist/scripts/site.min.js"></script>
 </body>
 
 </html>

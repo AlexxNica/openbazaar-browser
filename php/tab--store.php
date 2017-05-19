@@ -1,5 +1,5 @@
 <div class="tab tab--store active">
-    <div class="Node__header" style="background-image: url(../images/example--dog06.jpg);" id="Node__header">
+    <div class="Node__header" style="background-image: url(./dist/images/example--dog06.jpg);" id="Node__header">
         <h1>Store</h1>
     </div>
     <div class="Node__body">
