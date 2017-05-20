@@ -10,7 +10,7 @@
 				<i class="fa fa-times" aria-hidden="true"></i>
 			</div>
 		</nav>
-		<section class="section ListingOverview">
+		<section class="section ListingOverview" id="overlayListingOverview">
 			<div class="flex ListingOverview__top">
 				<div class="ListingOverview__top__left">
 					Full Ski Set

@@ -44,6 +44,8 @@ gulp.task('scripts', function() {
        "libs/jquery-3.2.1.min.js",
        "libs/jquery.cycle2.min.js",
        "controller.js",
+       "api_returns.js",
+       "get_data.js",
        "render.js",
        "model.js",
        "templates.js",

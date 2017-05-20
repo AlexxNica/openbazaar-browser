@@ -35,7 +35,7 @@ OBB.controller.render = {
     tabFollowers: function() {
         // render header image and h1
         $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
-        // TODO render following cards
+        // TODO render followers cards
     },
 
     pageNodeNavSummary: function() {
@@ -50,6 +50,44 @@ OBB.controller.render = {
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();
         OBB.controller.render.tabFollowers();
+    },
+
+    overlayListingOverview: function(){
+        // TODO
+    },
+
+    overlayListingDescription: function(){
+        // TODO
+    },
+
+    overlayListingSlideShow: function(){
+        // TODO
+    },
+
+    overlayListingReviews: function(){
+        // TODO
+    },
+
+    overlayListingShipping: function(){
+        // TODO
+    },
+
+    overlayReturnPolicy: function(){
+        // TODO
+    },
+
+    overlayTermsofService: function(){
+        // TODO
+    },
+
+    overlayListing: function() {
+        OBB.controller.render.overlayListingBuyNow();
+        OBB.controller.render.overlayListingDescription();
+        OBB.controller.render.overlayListingSlideShow();
+        OBB.controller.render.overlayListingReviews();
+        OBB.controller.render.overlayListingShipping();
+        OBB.controller.render.overlayReturnPolicy();
+        OBB.controller.render.overlayTermsofService();
     },
 
 };

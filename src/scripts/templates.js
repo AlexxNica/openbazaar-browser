@@ -237,6 +237,108 @@ OBB.templates = {
         return to_print;
     },
 
+    overlayListingOverview: function( listing ){
+        to_print = '';
+        // TODO
+        to_print += '<section class="section ListingOverview" id="overlayListingOverview">\n';
+        to_print += '    <div class="flex ListingOverview__top">\n';
+        to_print += '        <div class="ListingOverview__top__left">\n';
+        to_print += '            ' + listing.title + '\n';
+        to_print += '        </div>\n';
+        to_print += '        <div class="ListingOverview__top__right">\n';
+        to_print += '            $499.99\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '    <div class="flex ListingOverview__body">\n';
+        to_print += '        <div class="Column--left">\n';
+        to_print += '            <div class="ListingOverview__img" style="background-image: url(URL)"></div>\n';
+        to_print += '            <div class="click-to-slideshow">View 4 photos</div>\n';
+        to_print += '        </div>\n';
+        to_print += '        <div class="Column--right">\n';
+        to_print += '            <div class="ListingOverview__buy-now">\n';
+        to_print += '                <ul class="ListingOverview__buy-now__options">\n';
+        to_print += '                    <li class="flex">\n';
+        to_print += '                        <span>Size</span>\n';
+        to_print += '                        <select>\n';
+        to_print += '                            <option>Choose Size</option>\n';
+        to_print += '                            <option>10</option>\n';
+        to_print += '                            <option>9</option>\n';
+        to_print += '                        </select>\n';
+        to_print += '                    </li>\n';
+        to_print += '                </ul>\n';
+        to_print += '                <div class="button--buy-now" name="button--buy-now">BUY NOW</div>\n';
+        to_print += '            </div>\n';
+        to_print += '            <ul class="ListingOverview__info">\n';
+        to_print += '                <li>\n';
+        to_print += '                    Type: <span>Physical</span>\n';
+        to_print += '                </li>\n';
+        to_print += '                <li>\n';
+        to_print += '                    Condition: <span>New</span>\n';
+        to_print += '                </li>\n';
+        to_print += '            </ul>\n';
+        to_print += '            <div class="ListingOverview__tags">\n';
+        to_print += '                <h4>Tags</h4>\n';
+        to_print += '                <ul>\n';
+        to_print += '                    <li><span>skiing</span></li>\n';
+        to_print += '                    <li><span>ski</span></li>\n';
+        to_print += '                </ul>\n';
+        to_print += '            </div>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '</section>\n';
+
+        return to_print;
+    },
+
+    overlayListingDescription: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayListingSlideShow: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayListingReviews: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayListingShipping: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayReturnPolicy: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayTermsofService: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+
 };
 
 

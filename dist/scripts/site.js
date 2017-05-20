@@ -21,6 +21,10 @@ function(a){"use strict";a.extend(a.fn.cycle.defaults,{tmplRegex:"{{((.)?.*?)}}"
 OBB = {};
 OBB.controller = {};
 
+
+
+
+
 // controller.api_returns stores API responses
 OBB.controller.api_returns = { // TODO remove this default testing data before live.
     // Keep the API calls separate from the rest of the model.
@@ -836,11 +840,231 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "slug": "physical-options"
         }
     ],
+    // TODO find out where to get this response
+    single_listing: {
+        "listing": {
+            "slug": "vintage-dress-physical-options",
+            "vendorID": {
+                "peerID": "QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486",
+                "pubkeys": {
+                    "identity": "CAESIHbzRf6rFp6+G7IRfNa958pZhw2ry9v9vUhnYCW91Jhl",
+                    "bitcoin": "A/pQRimsUjNAO4g5v1M+DYPVM3rmKadFw2r+3Ahvdx2J"
+                },
+                "bitcoinSig": "MEQCIA25T8QsYr3KEJxgR6C3qFGe2salolII/sczFB6Q6EIsAiBJRFZyQGf86pR5MJVABGmgBeED4l4AJphVp3QkilqZmw=="
+            },
+            "metadata": {
+                "version": 1,
+                "contractType": "PHYSICAL_GOOD",
+                "format": "FIXED_PRICE",
+                "expiry": "2037-12-31T05:00:00.000Z",
+                "acceptedCurrency": "TBTC",
+                "pricingCurrency": "USD"
+            },
+            "item": {
+                "title": "Vintage dress (physical; w/ options)",
+                "description": "This is a listing example.",
+                "processingTime": "3 days",
+                "price": 200,
+                "tags": [
+                    "vintage dress"
+                ],
+                "images": [
+                    {
+                        "filename": "front",
+                        "original": "QmNexx7SaJCVCjyGGG3j2k7fenn3iVhtWdm9RvKvT7GTLq",
+                        "large": "QmfTKL3Z67mWKTKf9XKSCj1ptmDRaZLr5yjPS4JrVDgo5h",
+                        "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                        "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                        "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+                    },
+                    {
+                        "filename": "cream",
+                        "original": "QmTEUnCjuQPj1ggj5UL5vJujkgBiNYY4jkteugnogiCJny",
+                        "large": "QmNsFdsX2LNALG2WBxw6E6FTPZWgJcRAcLHnKdWczrCNf9",
+                        "medium": "QmQaSzaoHzp8raZLtPEFyCjTnwfXvDGKdXFM83STDVWG43",
+                        "small": "QmP3BVFuga7N4XEX8iU2MFYC7pc6mfTRQRrpZbKiVy2Csr",
+                        "tiny": "QmU1cBgjyHpuzDYbEd4iDVuPzxgKM3CqhRhDJqkHWCKBXq"
+                    },
+                    {
+                        "filename": "black",
+                        "original": "QmZsZ78FJwt281gfeUvGzDnsBW7WNjPWW3aJWDKskhpCRr",
+                        "large": "QmXixGseetihe6vZiWcTw9N1pieok1YtRoxwvyd5d7jz6s",
+                        "medium": "QmZydpAJoLsJWbP5vmh59W6bW1kuiCV34yD62hq28AtP7b",
+                        "small": "QmcADxUo89ZsEAWiYsuUk7hrgjWDMKXL1CtoA9sTNrQFFP",
+                        "tiny": "QmdA3Nmc8VnwSvt98Deo2RQztEiCsAkNLhron73bnBzARe"
+                    },
+                    {
+                        "filename": "other_red",
+                        "original": "QmZpgjK4jXmdqPg8Jt9YHGVmiuowVve3sbN2AZx7GXioDF",
+                        "large": "QmbSQZNAL3pZspUYWm6WNBD1oEQ6i9EnWPEsnk1DfdKnAv",
+                        "medium": "QmcD4pkp7SwCmN95pFnED2hz1LfsoYTPpynxeZbxCMoYPL",
+                        "small": "QmRdYph9YrfpdzMsaDnuySj6U4AY9dZhmjd8Cv2e6SscUG",
+                        "tiny": "QmbRFtxNWqACak1vvMJrrxUjzWjTJbMqi3vdUK5ZYvibgt"
+                    }
+                ],
+                "categories": [
+                    "👚 Apparel \u0026 Accessories"
+                ],
+                "condition": "New",
+                "options": [
+                    {
+                        "name": "Color",
+                        "description": "Color of the dress.",
+                        "variants": [
+                            {
+                                "name": "Red",
+                                "image": {
+                                    "filename": "front",
+                                    "original": "QmNexx7SaJCVCjyGGG3j2k7fenn3iVhtWdm9RvKvT7GTLq",
+                                    "large": "QmfTKL3Z67mWKTKf9XKSCj1ptmDRaZLr5yjPS4JrVDgo5h",
+                                    "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                                    "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                                    "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+                                }
+                            },
+                            {
+                                "name": "Cream",
+                                "image": {
+                                    "filename": "cream",
+                                    "original": "QmTEUnCjuQPj1ggj5UL5vJujkgBiNYY4jkteugnogiCJny",
+                                    "large": "QmNsFdsX2LNALG2WBxw6E6FTPZWgJcRAcLHnKdWczrCNf9",
+                                    "medium": "QmQaSzaoHzp8raZLtPEFyCjTnwfXvDGKdXFM83STDVWG43",
+                                    "small": "QmP3BVFuga7N4XEX8iU2MFYC7pc6mfTRQRrpZbKiVy2Csr",
+                                    "tiny": "QmU1cBgjyHpuzDYbEd4iDVuPzxgKM3CqhRhDJqkHWCKBXq"
+                                }
+                            },
+                            {
+                                "name": "Black",
+                                "image": {
+                                    "filename": "black",
+                                    "original": "QmZsZ78FJwt281gfeUvGzDnsBW7WNjPWW3aJWDKskhpCRr",
+                                    "large": "QmXixGseetihe6vZiWcTw9N1pieok1YtRoxwvyd5d7jz6s",
+                                    "medium": "QmZydpAJoLsJWbP5vmh59W6bW1kuiCV34yD62hq28AtP7b",
+                                    "small": "QmcADxUo89ZsEAWiYsuUk7hrgjWDMKXL1CtoA9sTNrQFFP",
+                                    "tiny": "QmdA3Nmc8VnwSvt98Deo2RQztEiCsAkNLhron73bnBzARe"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Sizes",
+                        "description": "Size of the dress.",
+                        "variants": [
+                            {
+                                "name": "Small"
+                            },
+                            {
+                                "name": "Medium"
+                            },
+                            {
+                                "name": "Large"
+                            },
+                            {
+                                "name": "Extra Large"
+                            }
+                        ]
+                    }
+                ],
+                "skus": [
+                    {
+                        "variantCombo": [
+                            0,
+                            0
+                        ],
+                        "productID": "dress-red-small"
+                    },
+                    {
+                        "variantCombo": [
+                            0,
+                            1
+                        ],
+                        "productID": "dress-red-medium"
+                    },
+                    {
+                        "variantCombo": [
+                            0,
+                            2
+                        ],
+                        "productID": "dress-red-large"
+                    },
+                    {
+                        "variantCombo": [
+                            1,
+                            0
+                        ],
+                        "productID": "dress-cream-small"
+                    },
+                    {
+                        "variantCombo": [
+                            1,
+                            1
+                        ],
+                        "productID": "dress-cream-medium"
+                    },
+                    {
+                        "variantCombo": [
+                            1,
+                            2
+                        ],
+                        "productID": "dress-cream-large"
+                    },
+                    {
+                        "variantCombo": [
+                            2,
+                            0
+                        ],
+                        "productID": "dress-black-small"
+                    },
+                    {
+                        "variantCombo": [
+                            2,
+                            1
+                        ],
+                        "productID": "dress-black-medium"
+                    },
+                    {
+                        "variantCombo": [
+                            2,
+                            2
+                        ],
+                        "productID": "dress-black-large"
+                    }
+                ]
+            },
+            "shippingOptions": [
+                {
+                    "name": "Worldwide",
+                    "type": "FIXED_PRICE",
+                    "regions": [
+                        "ALL"
+                    ],
+                    "services": [
+                        {
+                            "name": "Standard",
+                            "estimatedDelivery": "3 days"
+                        },
+                        {
+                            "name": "Express",
+                            "price": 1,
+                            "estimatedDelivery": "3 days"
+                        }
+                    ]
+                }
+            ],
+            "taxes": [
+            ],
+            "coupons": [
+            ],
+            "moderators": [
+            ],
+            "termsAndConditions": "Terms and conditions.",
+            "refundPolicy": "Refund policy."
+        },
+        "signature": "PrVMTogOSfK/qmnINJaCYGja07nvKe1Vsw9kGO7ktUtGslCgj/L+71dt+4Gi2kNvqmapuoqtMYj8rCbJIlQIBA=="
+    },
 };
-
-
-
-// controller.get_data grabs data from API responses and formats it appropriately for use by the model.
+// controller.get_data grabs data from API responses (stored in OBB.controller.api_returns) and 
+// formats it appropriately for use by the model.
 //  If you want use another API or data source, OBB.controller.get_data is the place where you'll specify 
 //  those changes.
 OBB.controller.get_data = {};
@@ -907,11 +1131,6 @@ OBB.controller.get_data.contactInfo = function() {
 };
 
 
-
-
-
-
-
 // controller.render is used to render components using data from OBB.model
 OBB.controller.render = {
     tabStore: function() {
@@ -949,7 +1168,7 @@ OBB.controller.render = {
     tabFollowers: function() {
         // render header image and h1
         $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
-        // TODO render following cards
+        // TODO render followers cards
     },
 
     pageNodeNavSummary: function() {
@@ -964,6 +1183,44 @@ OBB.controller.render = {
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();
         OBB.controller.render.tabFollowers();
+    },
+
+    overlayListingOverview: function(){
+        // TODO
+    },
+
+    overlayListingDescription: function(){
+        // TODO
+    },
+
+    overlayListingSlideShow: function(){
+        // TODO
+    },
+
+    overlayListingReviews: function(){
+        // TODO
+    },
+
+    overlayListingShipping: function(){
+        // TODO
+    },
+
+    overlayReturnPolicy: function(){
+        // TODO
+    },
+
+    overlayTermsofService: function(){
+        // TODO
+    },
+
+    overlayListing: function() {
+        OBB.controller.render.overlayListingBuyNow();
+        OBB.controller.render.overlayListingDescription();
+        OBB.controller.render.overlayListingSlideShow();
+        OBB.controller.render.overlayListingReviews();
+        OBB.controller.render.overlayListingShipping();
+        OBB.controller.render.overlayReturnPolicy();
+        OBB.controller.render.overlayTermsofService();
     },
 
 };
@@ -1219,6 +1476,108 @@ OBB.templates = {
 
         return to_print;
     },
+
+    overlayListingOverview: function( listing ){
+        to_print = '';
+        // TODO
+        to_print += '<section class="section ListingOverview" id="overlayListingOverview">\n';
+        to_print += '    <div class="flex ListingOverview__top">\n';
+        to_print += '        <div class="ListingOverview__top__left">\n';
+        to_print += '            ' + listing.title + '\n';
+        to_print += '        </div>\n';
+        to_print += '        <div class="ListingOverview__top__right">\n';
+        to_print += '            $499.99\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '    <div class="flex ListingOverview__body">\n';
+        to_print += '        <div class="Column--left">\n';
+        to_print += '            <div class="ListingOverview__img" style="background-image: url(URL)"></div>\n';
+        to_print += '            <div class="click-to-slideshow">View 4 photos</div>\n';
+        to_print += '        </div>\n';
+        to_print += '        <div class="Column--right">\n';
+        to_print += '            <div class="ListingOverview__buy-now">\n';
+        to_print += '                <ul class="ListingOverview__buy-now__options">\n';
+        to_print += '                    <li class="flex">\n';
+        to_print += '                        <span>Size</span>\n';
+        to_print += '                        <select>\n';
+        to_print += '                            <option>Choose Size</option>\n';
+        to_print += '                            <option>10</option>\n';
+        to_print += '                            <option>9</option>\n';
+        to_print += '                        </select>\n';
+        to_print += '                    </li>\n';
+        to_print += '                </ul>\n';
+        to_print += '                <div class="button--buy-now" name="button--buy-now">BUY NOW</div>\n';
+        to_print += '            </div>\n';
+        to_print += '            <ul class="ListingOverview__info">\n';
+        to_print += '                <li>\n';
+        to_print += '                    Type: <span>Physical</span>\n';
+        to_print += '                </li>\n';
+        to_print += '                <li>\n';
+        to_print += '                    Condition: <span>New</span>\n';
+        to_print += '                </li>\n';
+        to_print += '            </ul>\n';
+        to_print += '            <div class="ListingOverview__tags">\n';
+        to_print += '                <h4>Tags</h4>\n';
+        to_print += '                <ul>\n';
+        to_print += '                    <li><span>skiing</span></li>\n';
+        to_print += '                    <li><span>ski</span></li>\n';
+        to_print += '                </ul>\n';
+        to_print += '            </div>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '</section>\n';
+
+        return to_print;
+    },
+
+    overlayListingDescription: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayListingSlideShow: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayListingReviews: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayListingShipping: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayReturnPolicy: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
+    overlayTermsofService: function( listing ){
+        to_print = '';
+
+        // TODO
+
+        return to_print;
+    },
+
 
 };
 
