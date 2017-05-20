@@ -64,4 +64,32 @@ OBB.controller.get_data.contactInfo = function() {
 
     return result;
 };
+OBB.controller.get_data.singleListing = function(){
+    var listing = OBB.controller.api_returns.single_listing.listing,
+        images = [];
+
+    $.each(listing.item.images, function(index, img_obj) {
+        // Using the medium images to save on bandwidth. May change to large images later.
+        images.push('https://gateway.ob1.io/ob/images/' + img_obj.medium);
+    });
+
+    result = {
+        title: listing.item.title,
+        price: listing.item.price,
+        primary_img: 'https://gateway.ob1.io/ob/images/' + listing.item.images[0].medium,
+        options: listing.item.options,
+        type: listing.metadata.contractType,
+        condition: listing.item.condition,
+        tags: listing.item.tags,
+        num_of_photos: listing.item.images.length,
+        description: listing.item.description,
+        images: images,
+        reviews: [], // TODO
+        shipping_options: listing.shipping_options,
+        return_policy: listing.refundPolicy,
+        terms_and_conditions: listing.termsAndConditions,
+    };
+
+    return result;
+};
 
