@@ -4,6 +4,7 @@ OBB.model = {};
 OBB.model.current_store = {};
 OBB.model.current_store.peer_id = "Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J";
 OBB.model.current_store.summary = OBB.controller.get_data.summary();
+OBB.model.current_store.contact_info = OBB.controller.get_data.contactInfo();
 OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCardInfo();
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
 OBB.model.current_store.countries = OBB.controller.get_data.countries();

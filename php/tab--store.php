@@ -1,6 +1,6 @@
 <div class="tab tab--store active">
-    <div class="Node__header" style="background-image: url(./dist/images/example--dog06.jpg);" id="Node__header">
-        <h1>Store</h1>
+    <div class="Node__header" id="Tab--node__header">
+        <!-- OBB.controller.render.TabStore() will render the header -->
     </div>
     <div class="Node__body">
         <div class="SearchListings flex">

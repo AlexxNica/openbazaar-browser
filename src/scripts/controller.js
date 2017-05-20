@@ -7,7 +7,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
     // This will make it much easier to swap out the API later on without
     // interfering with the model.
 
-    // response from http://gateway.ob1.io/ipns/[nodeID]/followers
+    // response from https://gateway.ob1.io/ob/profile/[peerID]
     profile: {
         "peerID": "Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J",
         "handle": "drwasho",
@@ -72,315 +72,703 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
         "bitcoinPubkey": "03b54f70a26768dfc6335ff1896de9fb34c7c8de98b45141fc264913583b867387",
         "lastModified": "2017-05-12T14:08:18.678533994Z"
     },
-    // response from http://gateway.ob1.io/ipns/[nodeID]/listings/index.json
+    // response from https://gateway.ob1.io/ob/listings/[peerID]
     listings: [
         {
-            "hash": "QmaEejHcEVZKbJ6iHFKd6idWtLKTCK13Lh2YyyL2Q3vQY6",
-            "slug": "shoe",
-            "title": "Shoe",
+            "averageRating": 0,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Shoe",
-            "thumbnail": {
-                "tiny": "QmPuXLACw2uhjLfX8wwy3udxHXsXAHPBDZEKA95ST6Vn7v",
-                "small": "QmU6NsKDr34zA7wPiCRhdaWa5QRnouUgSmR27tujLLMeNR",
-                "medium": "QmfP7aCXFd9mzjnn3csCmTHxTMPMFMS4fF8hcDc3zxQmvg"
-            },
+            "freeShipping": [],
+            "hash": "QmaEejHcEVZKbJ6iHFKd6idWtLKTCK13Lh2YyyL2Q3vQY6",
+            "language": "",
+            "nsfw": false,
             "price": {
-                "currencyCode": "USD",
-                "amount": 200
+                "amount": 200,
+                "currencyCode": "USD"
             },
+            "ratingCount": 0,
             "shipsTo": [
                 "ALL"
             ],
-            "freeShipping": [],
-            "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "slug": "shoe",
+            "thumbnail": {
+                "medium": "QmfP7aCXFd9mzjnn3csCmTHxTMPMFMS4fF8hcDc3zxQmvg",
+                "small": "QmU6NsKDr34zA7wPiCRhdaWa5QRnouUgSmR27tujLLMeNR",
+                "tiny": "QmPuXLACw2uhjLfX8wwy3udxHXsXAHPBDZEKA95ST6Vn7v"
+            },
+            "title": "Shoe"
         },
         {
-            "hash": "QmSYvSgedB1ZPr4v9aMWLLtZWzPnbzNKBtv4DXQ8B3KTjd",
-            "slug": "nike",
-            "title": "Nike",
-            "categories": ['cows', 'pigs'],
+            "averageRating": 0,
+            "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Yo",
-            "thumbnail": {
-                "tiny": "QmWGgYrnAbZGJFAYeBXzcMn5KxhDom3oktDNZSuYBoxhnf",
-                "small": "QmdgEc9k2k2131VWKzvDBaaasaRFQGrfgm9cR47PRL4371",
-                "medium": "QmRMpfUn1z4gFcJrADJd6tNhfY63tYUGqD6Pe8HaBXAWLz"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 200
-            },
-            "shipsTo": [
-                "ALL"
-            ],
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmSYvSgedB1ZPr4v9aMWLLtZWzPnbzNKBtv4DXQ8B3KTjd",
             "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "nike",
+            "thumbnail": {
+                "medium": "QmRMpfUn1z4gFcJrADJd6tNhfY63tYUGqD6Pe8HaBXAWLz",
+                "small": "QmdgEc9k2k2131VWKzvDBaaasaRFQGrfgm9cR47PRL4371",
+                "tiny": "QmWGgYrnAbZGJFAYeBXzcMn5KxhDom3oktDNZSuYBoxhnf"
+            },
+            "title": "Nike"
         },
         {
-            "hash": "QmcfWt6Gogofy1R5kGKFDTT5DtKg3tnZxqPeco7WZxx6Nc",
-            "slug": "a-leaf-on-the-wind",
-            "title": "A leaf on the wind",
-            "categories": ['pigs', 'hampsters'],
+            "averageRating": 0,
+            "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Blah",
-            "thumbnail": {
-                "tiny": "Qmb22kXXvG8HJUoNWQHkjuPnwaVNnnpkP3jerYZnLAm5CK",
-                "small": "QmVTw7N6n29wHqLAi9vhwQxwYMAsuUUZ4eKbeRqWKAceeR",
-                "medium": "QmVsk85NzufcZtqoxZzU8N1PnksmoyuTQSVKJ65UycFzzb"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 100
-            },
-            "shipsTo": [
-                "ALL"
-            ],
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmcfWt6Gogofy1R5kGKFDTT5DtKg3tnZxqPeco7WZxx6Nc",
             "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "a-leaf-on-the-wind",
+            "thumbnail": {
+                "medium": "QmVsk85NzufcZtqoxZzU8N1PnksmoyuTQSVKJ65UycFzzb",
+                "small": "QmVTw7N6n29wHqLAi9vhwQxwYMAsuUUZ4eKbeRqWKAceeR",
+                "tiny": "Qmb22kXXvG8HJUoNWQHkjuPnwaVNnnpkP3jerYZnLAm5CK"
+            },
+            "title": "A leaf on the wind"
         },
         {
-            "hash": "QmU28bqgq2EBDV2qCGSyFs8ASDYD8k22Cu7nrWmxGC4T74",
-            "slug": "cheap-leaft",
-            "title": "Cheap leaft",
-            "categories": ['pigs'],
+            "averageRating": 0,
+            "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "",
-            "thumbnail": {
-                "tiny": "QmaVMBtKADCBW68hYn8mHDQForhPAwTyNZU4B2xds7gN7v",
-                "small": "QmRu6tMFaTbquWfAHKMDRVueasc6Sb5hWTMZCs3B5Y39ej",
-                "medium": "QmeaNff4y6RxmHrVG5Y4LfciBickJxWzh5MGSzKmmxV3TZ"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 200
-            },
-            "shipsTo": [
-                "ALL"
-            ],
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmU28bqgq2EBDV2qCGSyFs8ASDYD8k22Cu7nrWmxGC4T74",
             "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "cheap-leaft",
+            "thumbnail": {
+                "medium": "QmeaNff4y6RxmHrVG5Y4LfciBickJxWzh5MGSzKmmxV3TZ",
+                "small": "QmRu6tMFaTbquWfAHKMDRVueasc6Sb5hWTMZCs3B5Y39ej",
+                "tiny": "QmaVMBtKADCBW68hYn8mHDQForhPAwTyNZU4B2xds7gN7v"
+            },
+            "title": "Cheap leaft"
         },
         {
-            "hash": "QmZXEaFtMm2WrgsSTVWjcbVaWjiVwPa6as2xUPFEoDFwVo",
-            "slug": "blarf",
-            "title": "Blarf",
+            "averageRating": 0,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Sounds like vomit, but apparently it is clothing.",
-            "thumbnail": {
-                "tiny": "Qmar7W17swHhYmEqhanDuvfHUCKWz5iq6D7t23s3idUt6X",
-                "small": "QmP7Z8m6p3RYdArT6xCyEJGET4RSyJAe8KZ2MQpTCzzWes",
-                "medium": "QmcsiL2wP7kviyN4jbx6UeXwioFqFxyXVocgQEx1YAnBWu"
-            },
+            "freeShipping": [],
+            "hash": "QmZXEaFtMm2WrgsSTVWjcbVaWjiVwPa6as2xUPFEoDFwVo",
+            "language": "",
+            "nsfw": false,
             "price": {
-                "currencyCode": "USD",
-                "amount": 100
+                "amount": 100,
+                "currencyCode": "USD"
             },
+            "ratingCount": 0,
             "shipsTo": [
                 "ALL"
             ],
-            "freeShipping": [],
-            "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "slug": "blarf",
+            "thumbnail": {
+                "medium": "QmcsiL2wP7kviyN4jbx6UeXwioFqFxyXVocgQEx1YAnBWu",
+                "small": "QmP7Z8m6p3RYdArT6xCyEJGET4RSyJAe8KZ2MQpTCzzWes",
+                "tiny": "Qmar7W17swHhYmEqhanDuvfHUCKWz5iq6D7t23s3idUt6X"
+            },
+            "title": "Blarf"
         },
         {
-            "hash": "QmcLyNhwFYKozsSLSzqyyq2NksZpz3x9mLW2e6BVmLnQWd",
-            "slug": "earrings",
-            "title": "Earrings",
-            "categories": ['hampsters'],
+            "averageRating": 0,
+            "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "1 earring",
-            "thumbnail": {
-                "tiny": "QmPeGyFqLCTDUhFWkhCXqsp5mEPYgFPyvFA4eLwWKRCuiq",
-                "small": "QmTZFsGgfs96YbvSzjCShNup9eQorfX1TmmBoshPrFjceY",
-                "medium": "QmUXDeFwD19KwEsGt8oECVSUgepjDYQadzNmLkjboGVGGs"
-            },
+            "freeShipping": [],
+            "hash": "QmcLyNhwFYKozsSLSzqyyq2NksZpz3x9mLW2e6BVmLnQWd",
+            "language": "",
+            "nsfw": false,
             "price": {
-                "currencyCode": "USD",
-                "amount": 200
+                "amount": 200,
+                "currencyCode": "USD"
             },
+            "ratingCount": 0,
             "shipsTo": [
                 "AFGHANISTAN"
             ],
-            "freeShipping": [],
-            "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "slug": "earrings",
+            "thumbnail": {
+                "medium": "QmUXDeFwD19KwEsGt8oECVSUgepjDYQadzNmLkjboGVGGs",
+                "small": "QmTZFsGgfs96YbvSzjCShNup9eQorfX1TmmBoshPrFjceY",
+                "tiny": "QmPeGyFqLCTDUhFWkhCXqsp5mEPYgFPyvFA4eLwWKRCuiq"
+            },
+            "title": "Earrings"
         },
         {
-            "hash": "QmbEdUjpEXfvwzb8NkdYzbJaN8xutkNWo1SDyL15VdUQ97",
-            "slug": "test",
-            "title": "Test",
-            "categories": ['cows', 'hampsters', 'pigs', 'dogs'],
+            "averageRating": 0,
+            "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Test",
-            "thumbnail": {
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m"
-            },
+            "freeShipping": [],
+            "hash": "QmbEdUjpEXfvwzb8NkdYzbJaN8xutkNWo1SDyL15VdUQ97",
+            "language": "",
+            "nsfw": false,
             "price": {
-                "currencyCode": "USD",
-                "amount": 100
+                "amount": 100,
+                "currencyCode": "USD"
             },
+            "ratingCount": 0,
             "shipsTo": [
                 "ALL"
             ],
-            "freeShipping": [],
-            "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "slug": "test",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Test"
         },
         {
-            "hash": "QmY1QkeGbr5qAGasA7GHcggDn8R6mc2LVhna8SqcVSEszd",
-            "slug": "stuff",
-            "title": "Stuff",
+            "averageRating": 0,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Stuff",
-            "thumbnail": {
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 100
-            },
-            "shipsTo": [
-                "ALL"
-            ],
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmY1QkeGbr5qAGasA7GHcggDn8R6mc2LVhna8SqcVSEszd",
             "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "stuff",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Stuff"
         },
         {
-            "hash": "QmNoEPqv8DzzeJgkT4HHP6oNY7uqdzK1fS55hDqSq8VLj5",
-            "slug": "whatever",
-            "title": "Whatever",
+            "averageRating": 0,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
-            "description": "I don't care",
-            "thumbnail": {
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 100
-            },
-            "shipsTo": [
-                "ALL"
-            ],
+            "description": "I don\u0026#39;t care",
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmNoEPqv8DzzeJgkT4HHP6oNY7uqdzK1fS55hDqSq8VLj5",
             "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "whatever",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Whatever"
         },
         {
-            "hash": "QmatqBSAtWzMwqX1iARErGnq3t3wAyo6pg99UpPKdf1Mgi",
-            "slug": "assfall",
-            "title": "Assfall",
+            "averageRating": 0,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Water",
-            "thumbnail": {
-                "tiny": "QmaBnTE5SsaWmNs52XSZF3yiJQr8Q9kZwDeobER1Ep7y4i",
-                "small": "QmQMhXC1NgdwaAxScUnQRsQdRA2oxqvxm1m3rtnehJ454Q",
-                "medium": "QmbBigxQ9W9MhHt9u4xEawfbctBqunZsaryJ1VHNDwg18L"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 100
-            },
-            "shipsTo": [
-                "ALL"
-            ],
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmatqBSAtWzMwqX1iARErGnq3t3wAyo6pg99UpPKdf1Mgi",
             "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "assfall",
+            "thumbnail": {
+                "medium": "QmbBigxQ9W9MhHt9u4xEawfbctBqunZsaryJ1VHNDwg18L",
+                "small": "QmQMhXC1NgdwaAxScUnQRsQdRA2oxqvxm1m3rtnehJ454Q",
+                "tiny": "QmaBnTE5SsaWmNs52XSZF3yiJQr8Q9kZwDeobER1Ep7y4i"
+            },
+            "title": "Assfall"
         },
         {
-            "hash": "QmVpADARfkvqsEqqGqGXdfVrVQvT4uP4vo3SDE62htvdHi",
-            "slug": "a-small-tree",
-            "title": "A small tree",
+            "averageRating": 0,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Green thing",
-            "thumbnail": {
-                "tiny": "QmZLuV99jy7eqfadLR7z4ucqvdgSqy8QhyavtfcTq7CPQK",
-                "small": "QmVR9PQiTKnGwc3Vgx624hcTtoPN7vscXipNLNEaYptjCX",
-                "medium": "QmWK43EEst27qShmAFqPMgGCj1cowjvggcuJjKyK7Aem8N"
-            },
+            "freeShipping": [],
+            "hash": "QmVpADARfkvqsEqqGqGXdfVrVQvT4uP4vo3SDE62htvdHi",
+            "language": "",
+            "nsfw": false,
             "price": {
-                "currencyCode": "USD",
-                "amount": 100
+                "amount": 100,
+                "currencyCode": "USD"
             },
+            "ratingCount": 0,
             "shipsTo": [
                 "AFGHANISTAN",
                 "ALGERIA"
             ],
-            "freeShipping": [],
-            "language": "",
-            "averageRating": 0,
-            "ratingCount": 0
+            "slug": "a-small-tree",
+            "thumbnail": {
+                "medium": "QmWK43EEst27qShmAFqPMgGCj1cowjvggcuJjKyK7Aem8N",
+                "small": "QmVR9PQiTKnGwc3Vgx624hcTtoPN7vscXipNLNEaYptjCX",
+                "tiny": "QmZLuV99jy7eqfadLR7z4ucqvdgSqy8QhyavtfcTq7CPQK"
+            },
+            "title": "A small tree"
         },
         {
-            "hash": "QmYxWoTH683GvzRMrum19iaRa61x5WLhvbb1cwFNk4WFCq",
-            "slug": "vintage-dress-options",
-            "title": "YuooMuoo V-neck Knitted Dress",
+            "averageRating": 0,
             "categories": [
-                "ðŸ‘š Apparel \u0026 Accessories"
+                "ðŸ‘š Apparel \u0026amp; Accessories"
             ],
             "contractType": "PHYSICAL_GOOD",
             "description": "This is a listing example.",
-            "thumbnail": {
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF"
-            },
-            "price": {
-                "currencyCode": "USD",
-                "amount": 200
-            },
-            "shipsTo": [
-                "ALL"
-            ],
             "freeShipping": [
                 "ALL"
             ],
+            "hash": "QmYxWoTH683GvzRMrum19iaRa61x5WLhvbb1cwFNk4WFCq",
             "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "vintage-dress-options",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
             "averageRating": 0,
-            "ratingCount": 0
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Test",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmeAr6oTt3H8kTwkzdFZcckH7gYbJruTVVuVhyxmeQuGSK",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "test1",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Test"
+        },
+        {
+            "averageRating": 0,
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Test 2",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmckU3dnmTcHsPK3FgkB1cPajaKmhUr1sjPy3Nhn2FvtHQ",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "test-2",
+            "thumbnail": {
+                "medium": "QmcsiL2wP7kviyN4jbx6UeXwioFqFxyXVocgQEx1YAnBWu",
+                "small": "QmP7Z8m6p3RYdArT6xCyEJGET4RSyJAe8KZ2MQpTCzzWes",
+                "tiny": "Qmar7W17swHhYmEqhanDuvfHUCKWz5iq6D7t23s3idUt6X"
+            },
+            "title": "Test 2"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "This is a listing example.",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmebrxpfdsimQmBa2CBF7fM8iyj2kkGjZm4NHW47kZbka2",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "vintage-nice-dress-image-variants-a",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "This is a listing example.",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmaJ1gSSA8Hefwo6ZsP7D6BVoeDHwXm31jjujUhwrA1UUC",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "vintage-nice-dress-image-variants-b",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
+            "averageRating": 0,
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Testing",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "Qmc7AreZNJv9SxuwksSqpQgLZjTdvYVqQ8Tjj8U5dpcw5J",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "test-mix-in",
+            "thumbnail": {
+                "medium": "QmZvKEHvg9Qvf8344Eo5uRTpLAS8xZLGVpkpc2KCiqYYyU",
+                "small": "QmdySNWcF5DRa4mJiPaeWMcugNiCxeFv2hG9fzbabN25DM",
+                "tiny": "QmXM5YLcaiGj9DnfnTwGuJSyshQR9j1xZkHfwsgaUuNH4E"
+            },
+            "title": "Test mix-in"
+        },
+        {
+            "averageRating": 0,
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Blah",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmV4U7QqrbkZboqGe4WLHHY6XjbyUfpGhQGmPKCKZCqdVx",
+            "language": "",
+            "nsfw": true,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "testing-something-else",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Testing something else"
+        },
+        {
+            "averageRating": 0,
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Test",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmQfWiWSWfu4cXRSPRBrfm6pHsxeesn84NQ8Jpe2LSRA4P",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "test-2-options-mobile",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Test 2 options mobile"
+        },
+        {
+            "averageRating": 0,
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Very shy",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "Qmbn5aM3eBRLEmnKdQc8T1iEJio6NR6PcBPds3wrbuGwYk",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "shy-leaf",
+            "thumbnail": {
+                "medium": "QmWk4NQPjPkjpQyWE2315MjMmdjqpwUsnF9m3orvrQmDZn",
+                "small": "QmZdieEwv9FjKzDZqiCnwrLfxSDAXnUuFKifjfH1FHHLny",
+                "tiny": "QmZuHP9kLcb73iuf6facowVjAp1TjvwnBdTMj1sJyyYHBe"
+            },
+            "title": "Shy Leaf"
+        },
+        {
+            "averageRating": 0,
+            "categories": [],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "Stuff",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmSF4Z98FYa68G4LFgDp7D5t1vn6jPHGjpqajy6qenMrJK",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 100,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "testing-stuff",
+            "thumbnail": {
+                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
+                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
+                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
+            },
+            "title": "Testing stuff"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "PHYSICAL_GOOD",
+            "description": "This is a listing example.",
+            "freeShipping": [
+                "ALL"
+            ],
+            "hash": "QmRaDLFvra1dGcxoHU8qnve8WLJeyfFuMG3cPGRouYUjtV",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [
+                "ALL"
+            ],
+            "slug": "vintage-dress-no-options",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "DIGITAL_GOOD",
+            "description": "This is a listing example.",
+            "freeShipping": [],
+            "hash": "QmYn8G41EfTXm8zsH6iLXHjDMtiYozQWhnfqtxCddnYgQT",
+            "language": "",
+            "nsfw": true,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [],
+            "slug": "vintage-nice-dress-image-variants-digital",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "DIGITAL_GOOD",
+            "description": "This is a listing example.",
+            "freeShipping": [],
+            "hash": "QmSxCxzZkMPoBN2iJAoUJ5BgvAxrz28AiV47sZCZimeFSS",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [],
+            "slug": "vintage-dress-no-options-digital",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "SERVICE",
+            "description": "This is a listing example.",
+            "freeShipping": [],
+            "hash": "QmV9bXsL3MK5mhRuLyEC8fFyVrAydtRm5xaUiChCFJpv1c",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [],
+            "slug": "vintage-nice-dress-image-variants-service",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
+        },
+        {
+            "averageRating": 0,
+            "categories": [
+                "ðŸ‘š Apparel \u0026amp; Accessories"
+            ],
+            "contractType": "SERVICE",
+            "description": "This is a listing example.",
+            "freeShipping": [],
+            "hash": "QmaZuxXSyBR6ru5zYiTVwyG8L3yruhMUDq6ShkS4K6wB7Y",
+            "language": "",
+            "nsfw": false,
+            "price": {
+                "amount": 200,
+                "currencyCode": "USD"
+            },
+            "ratingCount": 0,
+            "shipsTo": [],
+            "slug": "vintage-dress-no-options-service",
+            "thumbnail": {
+                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
+                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
+                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
+            },
+            "title": "YuooMuoo V-neck Knitted Dress"
         }
     ],
-    // response from http://gateway.ob1.io/ipns/[nodeID]/followers
+    // response from https://gateway.ob1.io/ob/followers/[peerID]
     followers: [
         "QmdbhP3spXaunm7k6gSbU5M3nwjTQxsBuzsyDLPzibSPtz",
         "QmdswpzsKYsSNPXBmw7mFnfHwi31PwaGbnk8QPKFK9ZoAX",
@@ -392,7 +780,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
         "QmQd7NtnAwucjcoSyspX55usLiAQD2xYXZvWxe92XEdv8v",
         "QmTdEppZWPcMhk7kPHL6qqxW7LUMX2SrymMfHExSrhXctZ"
     ],
-    // response from http://gateway.ob1.io/ipns/[nodeID]/following
+    // response from https://gateway.ob1.io/ob/following/[peerID]
     following: [
         "QmNyYyRCEQPAvZRbwUqnvDkuqnrjni7VLWXirWMCzbzjPm",
         "QmechoNQEBi3EJPYLrexRkuUCHLHKPsrNiS7BvAa5s5CNS",
@@ -430,6 +818,8 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
     ],
 };
 
+
+
 // controller.get_data grabs data from API responses and formats it appropriately for use by the model.
 //  If you want use another API or data source, OBB.controller.get_data is the place where you'll specify 
 //  those changes.
@@ -442,10 +832,10 @@ OBB.controller.get_data.ListingCardInfo = function() {
             title: listing.title,
             categories_array: listing.categories,
             price: listing.price.amount,
-            img_url: "./dist/images/example--dog00.jpg", //TODO call the API again for this info if this issue hasn't been resolved: https://github.com/OpenBazaar/openbazaar-go/issues/528
+            img_url: 'https://gateway.ob1.io/ob/image/' + listing.thumbnail.small,
             ave_rating: listing.averageRating,
             rating_count: listing.ratingCount,
-            nsfw: false, //TODO call the API again for this info if this issue hasn't been resolved: https://github.com/OpenBazaar/openbazaar-go/issues/528
+            nsfw: listing.nsfw,
             free_shipping: listing.freeShipping,
         });
     });
@@ -479,64 +869,22 @@ OBB.controller.get_data.summary = function() {
         name: OBB.controller.api_returns.profile.name,
         handle: OBB.controller.api_returns.profile.handle,
         about: OBB.controller.api_returns.profile.about,
-        avatar: './dist/images/example--dog-avatar.jpg',
-        header_img: './dist/images/example--dog04.jpg',
+        description: OBB.controller.api_returns.profile.shortDescription,
+        avatar: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.avatarHashes.tiny,
+        header_img: './dist/images/example--dog05.jpg',// TODO replace with: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.headerHashes.large,
         location: OBB.controller.api_returns.profile.location,
         ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
     }
 
     return result;
-}
-
-
-// controller.render is used to render components using data from OBB.model
-OBB.controller.render = {
-    tabStore: function() {
-        // render header image and h1
-        $( "#Node__header" ).replaceWith( OBB.templates.tabNodeHeader(OBB.model.current_store.summary) );
-        // render #FilterCard--shipping
-        $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions(OBB.model.current_store.countries) );
-        // render #FilterCard--category
-        $( "#FilterCard--category__list" ).replaceWith( OBB.templates.filterCardCategoryOptions(OBB.model.current_store.categories) );
-        // render #CardContainer--listings
-        $( "#CardContainer--listings" ).replaceWith( OBB.templates.cardContainer(OBB.model.current_store.listing_cards_info, 'CardContainer--listings') );
-        // render store name and avatar on overlay--listing
-        $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore(OBB.model.current_store.summary) );
-    },
-
-    tabHome: function() {
-        // TODO render current_node's store card in left column
-
-        // TODO render information card in left column
-
-        // TODO render About info
-    },
-
-    tabFollowing: function() {
-        // TODO render following cards
-    },
-
-    tabFollowers: function() {
-        // TODO render following cards
-    },
-
-    pageNodeNavSummary: function() {
-        // render #NodeNavSummary in left of NodeNav
-        $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
-    },
-
-    pageNode: function() {
-
-        OBB.controller.render.pageNodeNavSummary();
-        OBB.controller.render.tabStore();
-        OBB.controller.render.tabHome();
-        OBB.controller.render.tabFollowing();
-        OBB.controller.render.tabFollowers();
-    },
-
 };
+OBB.controller.get_data.contactInfo = function() {
 
+    result = OBB.controller.api_returns.profile.contactInfo;
+
+    return result;
+};
 
 
 

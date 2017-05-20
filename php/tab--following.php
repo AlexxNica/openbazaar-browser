@@ -1,6 +1,6 @@
 <div class="tab tab--following">
-	<div class="Node__header">
-		<h1>Following</h1>
+	<div class="Node__header" id="Tab--node__header">
+		<!-- OBB.controller.render.TabFollowing() will render the header -->
 	</div>
 	<div class="Node__body">
 		<ul class="CardContainer">

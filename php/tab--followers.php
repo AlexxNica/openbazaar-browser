@@ -1,6 +1,6 @@
 <div class="tab tab--followers">
-	<div class="Node__header">
-		<h1>Followers</h1>
+	<div class="Node__header" id="Tab--node__header">
+		<!-- OBB.controller.render.TabFollowers() will render the header -->
 	</div>
 	<div class="Node__body tab--followers max-width">
 		<ul class="CardContainer">

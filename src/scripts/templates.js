@@ -1,9 +1,14 @@
 OBB.templates = {
 
-    nodeCard: function( data ){
+    nodeCard: function( data, card_id ){
         var to_print = '';
 
-        to_print += '<div class="NodeCard">\n';
+        to_print += '<div class="NodeCard"';
+        // add the card_id if it was passed as a parameter
+        if (card_id) {
+            to_print += ' id="' + card_id + '"';
+        }
+        to_print += '>\n';
         to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img + ');">\n';
         to_print += '       <!-- Store Avatar -->\n';
         to_print += '       <div class="Avatar" style="background-image: url(' + data.avatar + ')"></div>\n';
@@ -44,6 +49,10 @@ OBB.templates = {
         to_print += '       <div class="ListingCard__header__bg" style="background-image: url(' + data.img_url + ')"> \n';
         to_print += '       </div> \n';
         to_print += '       <div class="ListingCard__header__nsfw"> \n';
+        to_print += '           <div>\n';
+        to_print += '               <img src="./dist/images/icon--nsfw.png">\n';
+        to_print += '               <button class="button">Show Mature Content</button>\n';
+        to_print += '           </div>\n';
         to_print += '       </div> \n';
         to_print += '       <ul class="ListingCard__header__tags"> \n';
         if (data.free_shipping) {
@@ -177,15 +186,57 @@ OBB.templates = {
         return to_print;
     },
 
-    tabNodeHeader: function( node_summary ) {
+    tabNodeHeader: function( node_summary, title ) {
         to_print = '';
 
         to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img + ');" id="Node__header">\n';
-        to_print += '    <h1>Store</h1>\n';
-    //     to_print += '</div>\n';
+        to_print += '    <h1>' + title + '</h1>\n';
+        to_print += '</div>\n';
 
         return to_print;
     },
+
+    tabHomeInformation: function( info_obj ){
+        to_print = '';
+
+        // TODO loop through OBB.model.current_store.contact_info and replace this info.
+        // I need a more representative example of OBB.api_returns.current_node.profile.contactInfo 
+        // before I can code this properly.
+
+        to_print += '<ul id="Tab--home__information">\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>OpenBazaar ID</h5>\n';
+        to_print += '        <p title="Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J">Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>Website</h5>\n';
+        to_print += '        <p><a href="http://urbanart.com">http://urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>Email</h5>\n';
+        to_print += '        <p><a href="mailto:contact@urbanart.com">contact@urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>Twitter</h5>\n';
+        to_print += '        <p><a href="https://twitter.com/@urbanart">@urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>Facebook</h5>\n';
+        to_print += '        <p><a href="https://www.facebook.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>Instagram</h5>\n';
+        to_print += '        <p><a href="https://www.instagram.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li>\n';
+        to_print += '        <h5>SnapChat</h5>\n';
+        to_print += '        <p>urbanart</p>\n';
+        to_print += '    </li>\n';
+        to_print += '</ul>\n';
+
+        return to_print;
+    },
+
 };
 
 
