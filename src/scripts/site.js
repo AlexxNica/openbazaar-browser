@@ -18,24 +18,12 @@ $(document).ready(function() {
             $('html, body').animate({
                 scrollTop: $('#page--node').offset().top
             }, 'slow');
-        }
-    });
+        };
+        // TODO update model with clicked-listing data from API. My need to promise.
 
-    // clicking "View photos" on overlay--listing scrolls to Slideshow
-    $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
-        // scroll back to top of slideshow
-        $('html, body').animate({
-            scrollTop: $('#ListingSlideshow').offset().top
-        }, 'slow');
-    });
-
-    // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
-    $(".overlay--listing .button--buy-now").click(function () {
-        $(".overlay--purchase").addClass("active");
-        // scroll to top
-        $('html, body').animate({
-            scrollTop: $('#page--node').offset().top
-        }, 'slow');
+        // Render overlay listing.
+        console.log('fired');
+        OBB.controller.render.overlayListing();
     });
 
     // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
@@ -53,7 +41,7 @@ $(document).ready(function() {
         }, 'slow');
     });
 
-    // pressing ESC key hides overlay--purchase of overlay--listing as appropriate
+    // pressing ESC key hides overlay--purchase or overlay--listing as appropriate
     $(document).keyup(function(e) {
         if (e.keyCode == 27) { // escape key maps to keycode `27`
             if ($("#overlay--purchase").hasClass("active")) {
@@ -65,8 +53,8 @@ $(document).ready(function() {
                 $('html, body').animate({
                     scrollTop: $('#TabContainer .Node__body').offset().top
                 }, 'slow');
-            }
-        }
+            };
+        };
     });
 
     // clicking "Show Mature Content" reveals the NSFW listing images

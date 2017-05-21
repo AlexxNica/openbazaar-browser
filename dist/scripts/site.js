@@ -840,7 +840,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "slug": "physical-options"
         }
     ],
-    // TODO find out where to get this response
+    // response from https://gateway.ob1.io/ob/listing/[peerID]/[listing hash or slug]
     single_listing: {
         "listing": {
             "slug": "vintage-dress-physical-options",
@@ -1138,19 +1138,35 @@ OBB.controller.get_data.singleListing = function(){
         images.push('https://gateway.ob1.io/ob/images/' + img_obj.medium);
     });
 
+    type = (function(){
+            switch( listing.metadata.contractType ) {
+                case 'PHYSICAL_GOOD':
+                    result = 'Physical';
+                    break;
+                case 'DIGITAL_GOOD':
+                    result = 'Digital';
+                    break;
+                case 'SERVICE':
+                    result = 'Service';
+                    break;
+                default:
+                    result = 'Other';
+                };
+            return result;
+        })();
+
     result = {
         title: listing.item.title,
         price: listing.item.price,
-        primary_img: 'https://gateway.ob1.io/ob/images/' + listing.item.images[0].medium,
         options: listing.item.options,
-        type: listing.metadata.contractType,
+        type: type,
         condition: listing.item.condition,
         tags: listing.item.tags,
         num_of_photos: listing.item.images.length,
         description: listing.item.description,
         images: images,
         reviews: [], // TODO
-        shipping_options: listing.shipping_options,
+        shipping_options: listing.shippingOptions, // This could be more loosley coupled to the api
         return_policy: listing.refundPolicy,
         terms_and_conditions: listing.termsAndConditions,
     };
@@ -1163,7 +1179,7 @@ OBB.controller.get_data.singleListing = function(){
 OBB.controller.render = {
     tabStore: function() {
         // render header image and h1
-        $( "#Tab--Node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
+        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
         // render #FilterCard--shipping
         $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions( OBB.model.current_store.countries ) );
         // render #FilterCard--category
@@ -1176,26 +1192,26 @@ OBB.controller.render = {
 
     tabHome: function() {
         // render header image and h1
-        $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
+        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
 
-        // TODO render current_node's store card in left column
+        // render current_node's store card in left column
         $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
 
         // TODO render information card in left column
 
-        // TODO render About info
+        // render About info
         $( "#Tab--home__about" ).text( OBB.model.current_store.summary.description );
     },
 
     tabFollowing: function() {
         // render header image and h1
-        $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
+        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
         // TODO render following cards
     },
 
     tabFollowers: function() {
         // render header image and h1
-        $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
+        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
         // TODO render followers cards
     },
 
@@ -1214,15 +1230,19 @@ OBB.controller.render = {
     },
 
     overlayListingOverview: function(){
-        // TODO
+        $( "#overlayListingOverview" ).replaceWith( OBB.templates.overlayListingOverview( OBB.model.current_store.single_listing ) );
+
     },
 
     overlayListingDescription: function(){
-        // TODO
+        // render description on overlay--listing
+        $( "#overlayListingDescription" ).text( OBB.model.current_store.single_listing.description );
     },
 
     overlayListingSlideShow: function(){
-        // TODO
+        // render slideshow on overlay--listing
+        $( "#ListingSlideshow" ).replaceWith( OBB.templates.overlayListingSlideShow( OBB.model.current_store.single_listing ) );
+        $( '.cycle-slideshow' ).cycle();
     },
 
     overlayListingReviews: function(){
@@ -1230,25 +1250,47 @@ OBB.controller.render = {
     },
 
     overlayListingShipping: function(){
-        // TODO
+        // render shipping options on overlay--listing
+        $( "#overlayListingShipping" ).replaceWith( OBB.templates.overlayListingShipping( OBB.model.current_store.single_listing ) );
     },
 
     overlayReturnPolicy: function(){
-        // TODO
+        // render Return Policy on overlay--listing
+        $( "#overlayListingReturnPolicy" ).text( OBB.model.current_store.single_listing.return_policy );
+
     },
 
-    overlayTermsofService: function(){
-        // TODO
+    overlayTermsAndConditions: function(){
+        // render Terms and Conditions on overlay--listing
+        $( "#overlayListingTermsAndConditions" ).text( OBB.model.current_store.single_listing.terms_and_conditions );
+
     },
 
     overlayListing: function() {
-        OBB.controller.render.overlayListingBuyNow();
+        OBB.controller.render.overlayListingOverview();
         OBB.controller.render.overlayListingDescription();
         OBB.controller.render.overlayListingSlideShow();
         OBB.controller.render.overlayListingReviews();
         OBB.controller.render.overlayListingShipping();
         OBB.controller.render.overlayReturnPolicy();
-        OBB.controller.render.overlayTermsofService();
+        OBB.controller.render.overlayTermsAndConditions();
+
+         // clicking "View photos" on overlay--listing scrolls to Slideshow
+        $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
+            // scroll back to top of slideshow
+            $('html, body').animate({
+                scrollTop: $('#ListingSlideshow').offset().top
+            }, 'slow');
+        });
+
+        // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
+        $(".overlay--listing .button--buy-now").click(function () {
+            $(".overlay--purchase").addClass("active");
+            // scroll to top
+            $('html, body').animate({
+                scrollTop: $('#page--node').offset().top
+            }, 'slow');
+        });
     },
 
 };
@@ -1266,6 +1308,7 @@ OBB.model.current_store.contact_info = OBB.controller.get_data.contactInfo();
 OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCardInfo();
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
 OBB.model.current_store.countries = OBB.controller.get_data.countries();
+OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
 OBB.templates = {
 
     nodeCard: function( data, card_id ){
@@ -1507,50 +1550,68 @@ OBB.templates = {
 
     overlayListingOverview: function( listing ){
         to_print = '';
-        // TODO
         to_print += '<section class="section ListingOverview" id="overlayListingOverview">\n';
         to_print += '    <div class="flex ListingOverview__top">\n';
         to_print += '        <div class="ListingOverview__top__left">\n';
         to_print += '            ' + listing.title + '\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingOverview__top__right">\n';
-        to_print += '            $499.99\n';
+        to_print += '            $' + listing.price + '\n';
         to_print += '        </div>\n';
         to_print += '    </div>\n';
         to_print += '    <div class="flex ListingOverview__body">\n';
         to_print += '        <div class="Column--left">\n';
-        to_print += '            <div class="ListingOverview__img" style="background-image: url(URL)"></div>\n';
-        to_print += '            <div class="click-to-slideshow">View 4 photos</div>\n';
+        to_print += '            <div class="ListingOverview__img" style="background-image: url(' + listing.images[0] + ')"></div>\n';
+        to_print += '            <div class="click-to-slideshow">View ' + listing.num_of_photos + ' photos</div>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="Column--right">\n';
         to_print += '            <div class="ListingOverview__buy-now">\n';
-        to_print += '                <ul class="ListingOverview__buy-now__options">\n';
-        to_print += '                    <li class="flex">\n';
-        to_print += '                        <span>Size</span>\n';
-        to_print += '                        <select>\n';
-        to_print += '                            <option>Choose Size</option>\n';
-        to_print += '                            <option>10</option>\n';
-        to_print += '                            <option>9</option>\n';
-        to_print += '                        </select>\n';
-        to_print += '                    </li>\n';
-        to_print += '                </ul>\n';
+
+        if ( listing.options.length > 0 ) {
+            to_print += '                <ul class="ListingOverview__buy-now__options">\n';
+
+            $.each(listing.options, function(index, option) {
+               
+                to_print += '                    <li class="flex">\n';
+                to_print += '                        <span>' + option.name + '</span>\n';
+                to_print += '                        <select>\n';
+                to_print += '                            <option>' + option.description + '</option>\n';
+                    $.each(option.variants, function(index, variant) {
+                        to_print += '                            <option>' + variant.name + '</option>\n';
+                    });
+
+                to_print += '                        </select>\n';
+                to_print += '                    </li>\n';
+
+            });
+
+            to_print += '                </ul>\n';
+        };
+
         to_print += '                <div class="button--buy-now" name="button--buy-now">BUY NOW</div>\n';
         to_print += '            </div>\n';
         to_print += '            <ul class="ListingOverview__info">\n';
         to_print += '                <li>\n';
-        to_print += '                    Type: <span>Physical</span>\n';
+        to_print += '                    Type: <span>' + listing.type + '</span>\n';
         to_print += '                </li>\n';
         to_print += '                <li>\n';
-        to_print += '                    Condition: <span>New</span>\n';
+        to_print += '                    Condition: <span>' + listing.condition + '</span>\n';
         to_print += '                </li>\n';
         to_print += '            </ul>\n';
-        to_print += '            <div class="ListingOverview__tags">\n';
-        to_print += '                <h4>Tags</h4>\n';
-        to_print += '                <ul>\n';
-        to_print += '                    <li><span>skiing</span></li>\n';
-        to_print += '                    <li><span>ski</span></li>\n';
-        to_print += '                </ul>\n';
-        to_print += '            </div>\n';
+
+        if ( listing.tags.length > 0 ) {
+            to_print += '            <div class="ListingOverview__tags">\n';
+            to_print += '                <h4>Tags</h4>\n';
+            to_print += '                <ul>\n';
+
+            $.each(listing.tags, function(index, tag) {
+                to_print += '                    <li><span>' + tag + '</span></li>\n';
+            });
+
+            to_print += '                </ul>\n';
+            to_print += '            </div>\n';
+        };
+
         to_print += '        </div>\n';
         to_print += '    </div>\n';
         to_print += '</section>\n';
@@ -1558,18 +1619,32 @@ OBB.templates = {
         return to_print;
     },
 
-    overlayListingDescription: function( listing ){
-        to_print = '';
-
-        // TODO
-
-        return to_print;
-    },
-
     overlayListingSlideShow: function( listing ){
         to_print = '';
+        to_print += '<section class="Slideshow" id="ListingSlideshow">\n';
+        to_print += '    <div class="Slidehow__controls" data-cycle-cmd="prev">\n';
+        to_print += '        <i class="fa fa-chevron-left" aria-hidden="true"></i>\n';
+        to_print += '    </div>\n';
+        to_print += '   <div class="Slideshow__show cycle-slideshow"\n';
+        to_print += '       data-cycle-fx=scrollHorz\n';
+        to_print += '       data-cycle-timeout=0\n';
+        to_print += '       data-cycle-pager="#Slideshow__pager"\n';
+        to_print += '       data-cycle-pager-template="<li><img src={{src}}></li>"\n';
+        to_print += '       data-cycle-auto-height="1:1"\n';
+        to_print += '       >\n';
 
-        // TODO
+        $.each(listing.images, function(index, image) {
+            to_print += '       <img src="' + image + '">\n';   
+        });
+
+        to_print += '   </div>\n';
+        to_print += '   <div class="Slidehow__controls" data-cycle-cmd="next">\n';
+        to_print += '       <i class="fa fa-chevron-right" aria-hidden="true"></i>\n';
+        to_print += '   </div>\n';
+
+        to_print += '    <!-- empty element for pager links -->';
+        to_print += '    <ul id="Slideshow__pager" class="Slideshow__pager center external"></ul>';
+        to_print += '</section>';
 
         return to_print;
     },
@@ -1585,23 +1660,57 @@ OBB.templates = {
     overlayListingShipping: function( listing ){
         to_print = '';
 
-        // TODO
+        to_print += '<section class="section ListingShipping" id="overlayListingShipping">\n';
+        to_print += '    <h2>Shipping</h2>\n';
+        to_print += '    <div class="ListingShipping__header">\n';
+        to_print += '        <div>\n';
+        to_print += '            Ships from: <span class="strong">United States</span>\n';
+        to_print += '        </div>\n';
+        to_print += '        <div>\n';
+        to_print += '            Ships to: \n';
+        to_print += '            <select>\n';
+        $.each(listing.shipping_options, function(index, option) {
+            to_print += '                <option vale="' + option.name.replace(/\s+/g, "-").toLowerCase() + '">' + option.name + '</option>\n';
+        });
+        to_print += '            </select>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
 
-        return to_print;
-    },
+        $.each(listing.shipping_options, function(index, option) {
+            to_print += '    <ul class="ListingShipping__body" id="shiping-option--' + option.name.replace(/\s+/g, "-").toLowerCase() + '">\n';
+            
+            $.each(option.services, function(index, service) {
 
-    overlayReturnPolicy: function( listing ){
-        to_print = '';
+                to_print += '        <li class="ListingShipping__option';
+                // API returns no price property if price is 'FREE'
+                if (service.price === undefined) {
+                    to_print += '--free';
+                };
+                to_print += '">\n';
 
-        // TODO
+                to_print += '            <div>\n';
+                to_print += '                ' + service.name + '\n';
+                to_print += '            </div>\n';
+                to_print += '            <div>\n';
+                to_print += '                ' + service.estimatedDelivery + '\n';
+                to_print += '            </div>\n';
+                to_print += '            <div>\n';
 
-        return to_print;
-    },
+                if (service.price === undefined) {
+                    to_print += '                FREE\n';
+                } else {
+                    to_print += '                $' + service.price + '\n';
+                }
 
-    overlayTermsofService: function( listing ){
-        to_print = '';
+                to_print += '            </div>\n';
+                to_print += '        </li>\n';
 
-        // TODO
+            });
+
+            to_print += '    </ul>\n';
+        });
+
+        to_print += '</section>\n';
 
         return to_print;
     },
@@ -1638,24 +1747,12 @@ $(document).ready(function() {
             $('html, body').animate({
                 scrollTop: $('#page--node').offset().top
             }, 'slow');
-        }
-    });
+        };
+        // TODO update model with clicked-listing data from API. My need to promise.
 
-    // clicking "View photos" on overlay--listing scrolls to Slideshow
-    $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
-        // scroll back to top of slideshow
-        $('html, body').animate({
-            scrollTop: $('#ListingSlideshow').offset().top
-        }, 'slow');
-    });
-
-    // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
-    $(".overlay--listing .button--buy-now").click(function () {
-        $(".overlay--purchase").addClass("active");
-        // scroll to top
-        $('html, body').animate({
-            scrollTop: $('#page--node').offset().top
-        }, 'slow');
+        // Render overlay listing.
+        console.log('fired');
+        OBB.controller.render.overlayListing();
     });
 
     // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
@@ -1673,7 +1770,7 @@ $(document).ready(function() {
         }, 'slow');
     });
 
-    // pressing ESC key hides overlay--purchase of overlay--listing as appropriate
+    // pressing ESC key hides overlay--purchase or overlay--listing as appropriate
     $(document).keyup(function(e) {
         if (e.keyCode == 27) { // escape key maps to keycode `27`
             if ($("#overlay--purchase").hasClass("active")) {
@@ -1685,8 +1782,8 @@ $(document).ready(function() {
                 $('html, body').animate({
                     scrollTop: $('#TabContainer .Node__body').offset().top
                 }, 'slow');
-            }
-        }
+            };
+        };
     });
 
     // clicking "Show Mature Content" reveals the NSFW listing images

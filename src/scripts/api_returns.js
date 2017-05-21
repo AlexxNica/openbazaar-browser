@@ -813,7 +813,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "slug": "physical-options"
         }
     ],
-    // TODO find out where to get this response
+    // response from https://gateway.ob1.io/ob/listing/[peerID]/[listing hash or slug]
     single_listing: {
         "listing": {
             "slug": "vintage-dress-physical-options",

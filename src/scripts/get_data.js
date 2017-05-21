@@ -73,19 +73,35 @@ OBB.controller.get_data.singleListing = function(){
         images.push('https://gateway.ob1.io/ob/images/' + img_obj.medium);
     });
 
+    type = (function(){
+            switch( listing.metadata.contractType ) {
+                case 'PHYSICAL_GOOD':
+                    result = 'Physical';
+                    break;
+                case 'DIGITAL_GOOD':
+                    result = 'Digital';
+                    break;
+                case 'SERVICE':
+                    result = 'Service';
+                    break;
+                default:
+                    result = 'Other';
+                };
+            return result;
+        })();
+
     result = {
         title: listing.item.title,
         price: listing.item.price,
-        primary_img: 'https://gateway.ob1.io/ob/images/' + listing.item.images[0].medium,
         options: listing.item.options,
-        type: listing.metadata.contractType,
+        type: type,
         condition: listing.item.condition,
         tags: listing.item.tags,
         num_of_photos: listing.item.images.length,
         description: listing.item.description,
         images: images,
         reviews: [], // TODO
-        shipping_options: listing.shipping_options,
+        shipping_options: listing.shippingOptions, // This could be more loosley coupled to the api
         return_policy: listing.refundPolicy,
         terms_and_conditions: listing.termsAndConditions,
     };

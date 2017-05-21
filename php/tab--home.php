@@ -1,5 +1,5 @@
 <div class="tab tab--home">
-	<div class="Node__header" id="Tab--node__header">
+	<div class="Node__header" id="Tab--home__header">
 		<!-- OBB.controller.render.TabHome() will render the header -->
 	</div>
 	<div class="Node__body tab--home">

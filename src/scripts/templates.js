@@ -239,50 +239,68 @@ OBB.templates = {
 
     overlayListingOverview: function( listing ){
         to_print = '';
-        // TODO
         to_print += '<section class="section ListingOverview" id="overlayListingOverview">\n';
         to_print += '    <div class="flex ListingOverview__top">\n';
         to_print += '        <div class="ListingOverview__top__left">\n';
         to_print += '            ' + listing.title + '\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingOverview__top__right">\n';
-        to_print += '            $499.99\n';
+        to_print += '            $' + listing.price + '\n';
         to_print += '        </div>\n';
         to_print += '    </div>\n';
         to_print += '    <div class="flex ListingOverview__body">\n';
         to_print += '        <div class="Column--left">\n';
-        to_print += '            <div class="ListingOverview__img" style="background-image: url(URL)"></div>\n';
-        to_print += '            <div class="click-to-slideshow">View 4 photos</div>\n';
+        to_print += '            <div class="ListingOverview__img" style="background-image: url(' + listing.images[0] + ')"></div>\n';
+        to_print += '            <div class="click-to-slideshow">View ' + listing.num_of_photos + ' photos</div>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="Column--right">\n';
         to_print += '            <div class="ListingOverview__buy-now">\n';
-        to_print += '                <ul class="ListingOverview__buy-now__options">\n';
-        to_print += '                    <li class="flex">\n';
-        to_print += '                        <span>Size</span>\n';
-        to_print += '                        <select>\n';
-        to_print += '                            <option>Choose Size</option>\n';
-        to_print += '                            <option>10</option>\n';
-        to_print += '                            <option>9</option>\n';
-        to_print += '                        </select>\n';
-        to_print += '                    </li>\n';
-        to_print += '                </ul>\n';
+
+        if ( listing.options.length > 0 ) {
+            to_print += '                <ul class="ListingOverview__buy-now__options">\n';
+
+            $.each(listing.options, function(index, option) {
+               
+                to_print += '                    <li class="flex">\n';
+                to_print += '                        <span>' + option.name + '</span>\n';
+                to_print += '                        <select>\n';
+                to_print += '                            <option>' + option.description + '</option>\n';
+                    $.each(option.variants, function(index, variant) {
+                        to_print += '                            <option>' + variant.name + '</option>\n';
+                    });
+
+                to_print += '                        </select>\n';
+                to_print += '                    </li>\n';
+
+            });
+
+            to_print += '                </ul>\n';
+        };
+
         to_print += '                <div class="button--buy-now" name="button--buy-now">BUY NOW</div>\n';
         to_print += '            </div>\n';
         to_print += '            <ul class="ListingOverview__info">\n';
         to_print += '                <li>\n';
-        to_print += '                    Type: <span>Physical</span>\n';
+        to_print += '                    Type: <span>' + listing.type + '</span>\n';
         to_print += '                </li>\n';
         to_print += '                <li>\n';
-        to_print += '                    Condition: <span>New</span>\n';
+        to_print += '                    Condition: <span>' + listing.condition + '</span>\n';
         to_print += '                </li>\n';
         to_print += '            </ul>\n';
-        to_print += '            <div class="ListingOverview__tags">\n';
-        to_print += '                <h4>Tags</h4>\n';
-        to_print += '                <ul>\n';
-        to_print += '                    <li><span>skiing</span></li>\n';
-        to_print += '                    <li><span>ski</span></li>\n';
-        to_print += '                </ul>\n';
-        to_print += '            </div>\n';
+
+        if ( listing.tags.length > 0 ) {
+            to_print += '            <div class="ListingOverview__tags">\n';
+            to_print += '                <h4>Tags</h4>\n';
+            to_print += '                <ul>\n';
+
+            $.each(listing.tags, function(index, tag) {
+                to_print += '                    <li><span>' + tag + '</span></li>\n';
+            });
+
+            to_print += '                </ul>\n';
+            to_print += '            </div>\n';
+        };
+
         to_print += '        </div>\n';
         to_print += '    </div>\n';
         to_print += '</section>\n';
@@ -290,18 +308,32 @@ OBB.templates = {
         return to_print;
     },
 
-    overlayListingDescription: function( listing ){
-        to_print = '';
-
-        // TODO
-
-        return to_print;
-    },
-
     overlayListingSlideShow: function( listing ){
         to_print = '';
+        to_print += '<section class="Slideshow" id="ListingSlideshow">\n';
+        to_print += '    <div class="Slidehow__controls" data-cycle-cmd="prev">\n';
+        to_print += '        <i class="fa fa-chevron-left" aria-hidden="true"></i>\n';
+        to_print += '    </div>\n';
+        to_print += '   <div class="Slideshow__show cycle-slideshow"\n';
+        to_print += '       data-cycle-fx=scrollHorz\n';
+        to_print += '       data-cycle-timeout=0\n';
+        to_print += '       data-cycle-pager="#Slideshow__pager"\n';
+        to_print += '       data-cycle-pager-template="<li><img src={{src}}></li>"\n';
+        to_print += '       data-cycle-auto-height="1:1"\n';
+        to_print += '       >\n';
 
-        // TODO
+        $.each(listing.images, function(index, image) {
+            to_print += '       <img src="' + image + '">\n';   
+        });
+
+        to_print += '   </div>\n';
+        to_print += '   <div class="Slidehow__controls" data-cycle-cmd="next">\n';
+        to_print += '       <i class="fa fa-chevron-right" aria-hidden="true"></i>\n';
+        to_print += '   </div>\n';
+
+        to_print += '    <!-- empty element for pager links -->';
+        to_print += '    <ul id="Slideshow__pager" class="Slideshow__pager center external"></ul>';
+        to_print += '</section>';
 
         return to_print;
     },
@@ -317,23 +349,57 @@ OBB.templates = {
     overlayListingShipping: function( listing ){
         to_print = '';
 
-        // TODO
+        to_print += '<section class="section ListingShipping" id="overlayListingShipping">\n';
+        to_print += '    <h2>Shipping</h2>\n';
+        to_print += '    <div class="ListingShipping__header">\n';
+        to_print += '        <div>\n';
+        to_print += '            Ships from: <span class="strong">United States</span>\n';
+        to_print += '        </div>\n';
+        to_print += '        <div>\n';
+        to_print += '            Ships to: \n';
+        to_print += '            <select>\n';
+        $.each(listing.shipping_options, function(index, option) {
+            to_print += '                <option vale="' + option.name.replace(/\s+/g, "-").toLowerCase() + '">' + option.name + '</option>\n';
+        });
+        to_print += '            </select>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
 
-        return to_print;
-    },
+        $.each(listing.shipping_options, function(index, option) {
+            to_print += '    <ul class="ListingShipping__body" id="shiping-option--' + option.name.replace(/\s+/g, "-").toLowerCase() + '">\n';
+            
+            $.each(option.services, function(index, service) {
 
-    overlayReturnPolicy: function( listing ){
-        to_print = '';
+                to_print += '        <li class="ListingShipping__option';
+                // API returns no price property if price is 'FREE'
+                if (service.price === undefined) {
+                    to_print += '--free';
+                };
+                to_print += '">\n';
 
-        // TODO
+                to_print += '            <div>\n';
+                to_print += '                ' + service.name + '\n';
+                to_print += '            </div>\n';
+                to_print += '            <div>\n';
+                to_print += '                ' + service.estimatedDelivery + '\n';
+                to_print += '            </div>\n';
+                to_print += '            <div>\n';
 
-        return to_print;
-    },
+                if (service.price === undefined) {
+                    to_print += '                FREE\n';
+                } else {
+                    to_print += '                $' + service.price + '\n';
+                }
 
-    overlayTermsofService: function( listing ){
-        to_print = '';
+                to_print += '            </div>\n';
+                to_print += '        </li>\n';
 
-        // TODO
+            });
+
+            to_print += '    </ul>\n';
+        });
+
+        to_print += '</section>\n';
 
         return to_print;
     },

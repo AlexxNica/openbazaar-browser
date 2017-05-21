@@ -1,5 +1,5 @@
 <div class="tab tab--followers">
-	<div class="Node__header" id="Tab--node__header">
+	<div class="Node__header" id="Tab--followers__header">
 		<!-- OBB.controller.render.TabFollowers() will render the header -->
 	</div>
 	<div class="Node__body tab--followers max-width">

@@ -1,5 +1,5 @@
 <div class="tab tab--store active">
-    <div class="Node__header" id="Tab--node__header">
+    <div class="Node__header" id="Tab--store__header">
         <!-- OBB.controller.render.TabStore() will render the header -->
     </div>
     <div class="Node__body">

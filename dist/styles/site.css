@@ -3322,13 +3322,15 @@ p {
 .ListingOverview__buy-now__options {
   margin-bottom: 15px;
   list-style-type: none; }
-  .ListingOverview__buy-now__options > li > span {
-    width: 40px;
-    margin-right: 15px; }
-  .ListingOverview__buy-now__options > li > select {
-    width: calc(100% - 40px);
-    background-color: #fff;
-    color: #7a7a7a; }
+  .ListingOverview__buy-now__options > li {
+    margin-bottom: 10px; }
+    .ListingOverview__buy-now__options > li > span {
+      width: 40px;
+      margin-right: 15px; }
+    .ListingOverview__buy-now__options > li > select {
+      width: calc(100% - 40px);
+      background-color: #fff;
+      color: #7a7a7a; }
 
 .ListingOverview__img {
   width: 100%;

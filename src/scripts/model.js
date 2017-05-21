@@ -8,3 +8,4 @@ OBB.model.current_store.contact_info = OBB.controller.get_data.contactInfo();
 OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCardInfo();
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
 OBB.model.current_store.countries = OBB.controller.get_data.countries();
+OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();

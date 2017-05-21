@@ -2,7 +2,7 @@
 OBB.controller.render = {
     tabStore: function() {
         // render header image and h1
-        $( "#Tab--Node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
+        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
         // render #FilterCard--shipping
         $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions( OBB.model.current_store.countries ) );
         // render #FilterCard--category
@@ -15,26 +15,26 @@ OBB.controller.render = {
 
     tabHome: function() {
         // render header image and h1
-        $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
+        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
 
-        // TODO render current_node's store card in left column
+        // render current_node's store card in left column
         $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
 
         // TODO render information card in left column
 
-        // TODO render About info
+        // render About info
         $( "#Tab--home__about" ).text( OBB.model.current_store.summary.description );
     },
 
     tabFollowing: function() {
         // render header image and h1
-        $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
+        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
         // TODO render following cards
     },
 
     tabFollowers: function() {
         // render header image and h1
-        $( "#Tab--node__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
+        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
         // TODO render followers cards
     },
 
@@ -53,15 +53,19 @@ OBB.controller.render = {
     },
 
     overlayListingOverview: function(){
-        // TODO
+        $( "#overlayListingOverview" ).replaceWith( OBB.templates.overlayListingOverview( OBB.model.current_store.single_listing ) );
+
     },
 
     overlayListingDescription: function(){
-        // TODO
+        // render description on overlay--listing
+        $( "#overlayListingDescription" ).text( OBB.model.current_store.single_listing.description );
     },
 
     overlayListingSlideShow: function(){
-        // TODO
+        // render slideshow on overlay--listing
+        $( "#ListingSlideshow" ).replaceWith( OBB.templates.overlayListingSlideShow( OBB.model.current_store.single_listing ) );
+        $( '.cycle-slideshow' ).cycle();
     },
 
     overlayListingReviews: function(){
@@ -69,25 +73,47 @@ OBB.controller.render = {
     },
 
     overlayListingShipping: function(){
-        // TODO
+        // render shipping options on overlay--listing
+        $( "#overlayListingShipping" ).replaceWith( OBB.templates.overlayListingShipping( OBB.model.current_store.single_listing ) );
     },
 
     overlayReturnPolicy: function(){
-        // TODO
+        // render Return Policy on overlay--listing
+        $( "#overlayListingReturnPolicy" ).text( OBB.model.current_store.single_listing.return_policy );
+
     },
 
-    overlayTermsofService: function(){
-        // TODO
+    overlayTermsAndConditions: function(){
+        // render Terms and Conditions on overlay--listing
+        $( "#overlayListingTermsAndConditions" ).text( OBB.model.current_store.single_listing.terms_and_conditions );
+
     },
 
     overlayListing: function() {
-        OBB.controller.render.overlayListingBuyNow();
+        OBB.controller.render.overlayListingOverview();
         OBB.controller.render.overlayListingDescription();
         OBB.controller.render.overlayListingSlideShow();
         OBB.controller.render.overlayListingReviews();
         OBB.controller.render.overlayListingShipping();
         OBB.controller.render.overlayReturnPolicy();
-        OBB.controller.render.overlayTermsofService();
+        OBB.controller.render.overlayTermsAndConditions();
+
+         // clicking "View photos" on overlay--listing scrolls to Slideshow
+        $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
+            // scroll back to top of slideshow
+            $('html, body').animate({
+                scrollTop: $('#ListingSlideshow').offset().top
+            }, 'slow');
+        });
+
+        // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
+        $(".overlay--listing .button--buy-now").click(function () {
+            $(".overlay--purchase").addClass("active");
+            // scroll to top
+            $('html, body').animate({
+                scrollTop: $('#page--node').offset().top
+            }, 'slow');
+        });
     },
 
 };

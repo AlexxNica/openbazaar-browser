@@ -1,5 +1,5 @@
 <div class="tab tab--following">
-	<div class="Node__header" id="Tab--node__header">
+	<div class="Node__header" id="Tab--following__header">
 		<!-- OBB.controller.render.TabFollowing() will render the header -->
 	</div>
 	<div class="Node__body">
