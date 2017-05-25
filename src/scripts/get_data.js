@@ -28,9 +28,9 @@ OBB.controller.get_data.categories = function() {
         $.merge(result,listing.categories);
         result = $.unique(result);
     });
-    // Make each string in array lowercase
+    // Make each string in array lowercase and remove special chars
     $.each(result, function(index, string) {
-        result[index] = string.toLowerCase();
+        result[index] = string.toLowerCase().replace(/[^a-zA-Z&\ ]/g, "").trim();
     });
 
     return result;

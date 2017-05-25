@@ -82,20 +82,26 @@ OBB.templates = {
     },
 
     listingCardContainer: function ( listing_cards, id ) {
-        var to_print = '';
+        var to_print = '',
+            temp = '';
 
         to_print += '<ul class="CardContainer" id="' + id + '">\n';
 
         $.each(listing_cards, function(index, listing) {
             to_print += '    <li class="Card';
             // add filter classes
+
             // category filter
             $.each(listing.categories_array, function(index, category) {
-                to_print += ' filter--categories--' + category.replace(/\s+/g, "-").toLowerCase();
+                temp = category;
+                temp = temp.replace(/[^a-zA-Z]/g, "").toLowerCase();
+                to_print += ' filter--categories--' + temp;
             });
             // shipping filter
             $.each(listing.ships_to, function(index, option) {
-                to_print += ' filter--ships-to--' + option.replace(/\s+/g, "-").toLowerCase();
+                temp = option;
+                temp = temp.replace(/[^a-zA-Z]/g, "").toLowerCase();
+                to_print += ' filter--ships-to--' + temp;
             });
             // free-shipping filter
             if (listing.free_shipping.length > 0) {
@@ -116,13 +122,16 @@ OBB.templates = {
     },
 
     filterCardCategoryOptions: function ( categories_array ) {
-        var to_print = '';
+        var to_print = '',
+            temp = '';
 
         to_print += '    <ul class="button-group radio-filters" data-filter-group="category">\n';
         to_print += '        <li><input class="filter-group--categories__category" type="radio" data-filter="" name="filter--listings--categories" checked>Any</li>\n';
 
         $.each(categories_array, function(index, category) {
-            to_print += '        <li><input class="filter-group--categories__category" type="radio" data-filter=".filter--categories--' + category.replace(/\s+/g, "-").toLowerCase() + '" name="filter--listings--categories">' + category + '</li>\n';
+            temp = category;
+            temp = temp.replace(/[^a-zA-Z]/g, "").toLowerCase();
+            to_print += '        <li><input class="filter-group--categories__category" type="radio" data-filter=".filter--categories--' + temp + '" name="filter--listings--categories">' + category + '</li>\n';
         });
 
         to_print += '    </ul>\n';
@@ -131,16 +140,19 @@ OBB.templates = {
     },
 
     filterCardShippingOptions: function ( countries_array ) {
-        var to_print = '';
+        var to_print = '',
+            temp = '';
 
         to_print += '            <select class="select-filters" name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
         to_print += '               <option value="">SHOW ALL</option>\n';
 
         $.each(countries_array, function(index, country) {
+            temp = country;
+            temp = temp.replace(/[^a-zA-Z]/g, "").toLowerCase();
             if (country.replace(/\s+/g, "-").toLowerCase() == 'all') {
-                to_print += '           <option value=".filter--ships-to--' + country.replace(/\s+/g, "-").toLowerCase() + '">WORLDWIDE</option>\n';
+                to_print += '           <option value=".filter--ships-to--' + temp + '">WORLDWIDE</option>\n';
             } else {
-                to_print += '           <option value=".filter--ships-to--' + country.replace(/\s+/g, "-").toLowerCase() + '">' + country + '</option>\n';
+                to_print += '           <option value=".filter--ships-to--' + temp + '">' + country + '</option>\n';
             }
         });
         to_print += '            </select>\n';
