@@ -872,6 +872,13 @@ p {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    // Correct/override style issues caused by isotope.js
+    &#CardContainer--listings {
+        margin-left: -1%;
+        > .Card {
+            margin-left: 1%;
+        }
+    }
 }
 .Card {
     width: 32%;

@@ -63,6 +63,83 @@ $(document).ready(function() {
         $(this).closest(".ListingCard.nsfw").removeClass("nsfw")
     });
 
+
+
+
+
+
+
+
+
+
+    // Listing Sorting / Filtering
+
+    var filterFns = {
+        ge1Stars: function() {
+            var number = $(this).find('.ListingCard__ratings__value').text();
+            return parseInt( number, 10 ) >= 1;
+        },
+        ge2Stars: function() {
+            var number = $(this).find('.ListingCard__ratings__value').text();
+            return parseInt( number, 10 ) >= 2;
+        },
+        ge3Stars: function() {
+            var number = $(this).find('.ListingCard__ratings__value').text();
+            return parseInt( number, 10 ) >= 3;
+        },
+        ge4Stars: function() {
+            var number = $(this).find('.ListingCard__ratings__value').text();
+            return parseInt( number, 10 ) >= 4;
+        },
+        even: function() {
+            var number = $(this).find('.number').text();
+            return parseInt( number, 10 ) % 2 === 0;
+        }
+    };
+
+    // store filter for each group
+    var filters = {};
+
+    // init Isotope
+    var $grid = $('#CardContainer--listings').isotope({
+        itemSelector: '.Card',
+        filter: function() {
+
+            var isMatched = true;
+            var $this = $(this);
+
+            for ( var prop in filters ) {
+                var filter = filters[ prop ];
+                // use function if it matches
+                filter = filterFns[ filter ] || filter;
+                // test each filter
+                if ( filter ) {
+                    isMatched = isMatched && $(this).is( filter );
+                }
+                // break if not matched
+                if ( !isMatched ) {
+                    break;
+                }
+            }
+            return isMatched;
+        }
+    });
+
+
+
+    $('.radio-filters').on( 'click', 'input', function() {
+        var $this = $(this);
+        // get group key
+        var $buttonGroup = $this.parents('.button-group');
+        var filterGroup = $buttonGroup.attr('data-filter-group');
+        // set filter for group
+        filters[ filterGroup ] = $this.attr('data-filter');
+        // arrange, and use filter fn
+        $grid.isotope();
+        console.log('fired off' + filters[ filterGroup ]);
+    });
+
+
 });
 
 

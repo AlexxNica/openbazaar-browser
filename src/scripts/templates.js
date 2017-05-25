@@ -44,6 +44,7 @@ OBB.templates = {
         if (data.nsfw) {
             to_print += ' nsfw';
         }
+
         to_print += '"> \n';
         to_print += '   <div class="ListingCard__header"> \n';
         to_print += '       <div class="ListingCard__header__bg" style="background-image: url(' + data.img_url + ')"> \n';
@@ -67,11 +68,11 @@ OBB.templates = {
         to_print += '       <div class="ListingCard__bottom"> \n';
         to_print += '           <div class="ListingCard__ratings"> \n';
         to_print += '               <i class="fa fa-star icon--star--small" aria-hidden="true"></i> \n';
-        to_print += '               ' + data.ave_rating + ' \n';
+        to_print += '               <span class="ListingCard__ratings__value">' + data.ave_rating + '</span> \n';
         to_print += '               (<a href="">' + data.rating_count + '</a>) \n';
         to_print += '           </div> \n';
         to_print += '           <div class="ListingCard__price"> \n';
-        to_print += '               <span class="strong">$' + data.price + '</span> \n';
+        to_print += '               <span class="strong ListingCard__price__value">$' + data.price + '</span> \n';
         to_print += '           </div> \n';
         to_print += '       </div> \n';
         to_print += '   </div> \n';
@@ -80,13 +81,24 @@ OBB.templates = {
         return to_print;
     },
 
-    cardContainer: function ( listing_cards, id ) {
+    listingCardContainer: function ( listing_cards, id ) {
         var to_print = '';
 
         to_print += '<ul class="CardContainer" id="' + id + '">\n';
 
         $.each(listing_cards, function(index, listing) {
-            to_print += '    <li class="Card">\n';
+            to_print += '    <li class="Card';
+            // add filter classes
+            // category filter
+            $.each(listing.categories_array, function(index, category) {
+                to_print += ' filter--categories--' + category.replace(/\s+/g, "-").toLowerCase();
+            });
+            // shipping filter
+            $.each(listing.ships_to, function(index, option) {
+                to_print += ' filter--listings--ships-to--' + option.replace(/\s+/g, "-").toLowerCase();
+            });
+            to_print += '">\n';
+
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';
         });
@@ -102,11 +114,11 @@ OBB.templates = {
     filterCardCategoryOptions: function ( categories_array ) {
         var to_print = '';
 
-        to_print += '    <ul id="FilterCard--category__list">\n';
-        to_print += '        <li><input type="radio" name="filter--listings--category" value="all" checked>All</li>\n';
+        to_print += '    <ul class="button-group radio-filters" data-filter-group="category">\n';
+        to_print += '        <li><input class="filter-group--categories__category" type="radio" data-filter="" name="filter--listings--categories" checked>Any</li>\n';
 
         $.each(categories_array, function(index, category) {
-            to_print += '        <li><input type="radio" name="filter--listings--category" value="' + category.replace(/\s+/g, "-").toLowerCase() + '">' + category + '</li>\n';
+            to_print += '        <li><input class="filter-group--categories__category" type="radio" data-filter=".filter--categories--' + category.replace(/\s+/g, "-").toLowerCase() + '" name="filter--listings--categories">' + category + '</li>\n';
         });
 
         to_print += '    </ul>\n';

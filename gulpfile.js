@@ -43,6 +43,7 @@ gulp.task('scripts', function() {
     .pipe(order([
        "libs/jquery-3.2.1.min.js",
        "libs/jquery.cycle2.min.js",
+       "libs/isotope.js",
        "controller.js",
        "api_returns.js",
        "get_data.js",

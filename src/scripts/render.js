@@ -8,7 +8,7 @@ OBB.controller.render = {
         // render #FilterCard--category
         $( "#FilterCard--category__list" ).replaceWith( OBB.templates.filterCardCategoryOptions( OBB.model.current_store.categories ) );
         // render #CardContainer--listings
-        $( "#CardContainer--listings" ).replaceWith( OBB.templates.cardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
+        $( "#CardContainer--listings" ).replaceWith( OBB.templates.listingCardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
         // render store name and avatar on overlay--listing
         $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore( OBB.model.current_store.summary ) );
     },

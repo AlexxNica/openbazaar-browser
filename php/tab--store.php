@@ -31,21 +31,12 @@
                     <ul id="FilterCard--category__list">
                         <!-- OBB.controller.render.TabStore() will render the options -->
                     </ul>
-                    <a>24 more...</a> <!--  expands to show more categories -->
                 </section>
                 <section class="FilterCard--rating">
                     <h4>Rating</h4>
-                    <ul>
+                    <ul class="button-group radio-filters" data-filter-group="rating">
                         <li>
-                            <input type="radio" name="filter--listings--rating" value="five">
-                            <i class="fa fa-star icon--star" aria-hidden="true"></i>
-                            <i class="fa fa-star icon--star" aria-hidden="true"></i>
-                            <i class="fa fa-star icon--star" aria-hidden="true"></i>
-                            <i class="fa fa-star icon--star" aria-hidden="true"></i>
-                            <i class="fa fa-star icon--star" aria-hidden="true"></i>
-                        </li>
-                        <li>
-                            <input type="radio" name="filter--listings--rating" value="four-or-more">
+                            <input type="radio" data-filter="ge4Stars" name="filter--listings--rating">
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
@@ -53,22 +44,26 @@
                             &amp; up
                         </li>
                         <li>
-                            <input type="radio" name="filter--listings--rating" value="three-or-more">
+                            <input type="radio" data-filter="ge3Stars" name="filter--listings--rating">
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             &amp; up
                         </li>
                         <li>
-                            <input type="radio" name="filter--listings--rating" value="two-or-more">
+                            <input type="radio" data-filter="ge2Stars" name="filter--listings--rating">
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             &amp; up
                         </li>
                         <li>
-                            <input type="radio" name="filter--listings--rating" value="one-or-more" checked>
+                            <input type="radio" data-filter="ge1Stars" name="filter--listings--rating">
                             <i class="fa fa-star icon--star" aria-hidden="true"></i>
                             &amp; up
+                        </li>
+                        <li>
+                            <input type="radio" data-filter="" name="filter--listings--rating" checked>
+                            Any
                         </li>
                     </ul>
                 </section>

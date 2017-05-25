@@ -10,6 +10,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
         result.push({
             title: listing.title,
             categories_array: listing.categories,
+            ships_to: listing.shipsTo,
             price: listing.price.amount,
             img_url: 'https://gateway.ob1.io/ob/image/' + listing.thumbnail.small,
             ave_rating: listing.averageRating,

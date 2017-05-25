@@ -72,8 +72,8 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
     // response from https://gateway.ob1.io/ob/listings/[peerID]
     listings: [
         {
-            "averageRating": 0,
-            "categories": [],
+            "averageRating": 3.2,
+            "categories": ['dogs', 'cats', 'shoes'],
             "contractType": "PHYSICAL_GOOD",
             "description": "Shoe",
             "freeShipping": [],
@@ -97,7 +97,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Shoe"
         },
         {
-            "averageRating": 0,
+            "averageRating": 1.5,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Yo",
@@ -124,8 +124,8 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Nike"
         },
         {
-            "averageRating": 0,
-            "categories": [],
+            "averageRating": 5.0,
+            "categories": ['cats', 'shoes'],
             "contractType": "PHYSICAL_GOOD",
             "description": "Blah",
             "freeShipping": [
@@ -151,8 +151,8 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "A leaf on the wind"
         },
         {
-            "averageRating": 0,
-            "categories": [],
+            "averageRating": 3.7,
+            "categories": ['shoes'],
             "contractType": "PHYSICAL_GOOD",
             "description": "",
             "freeShipping": [
@@ -178,7 +178,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Cheap leaft"
         },
         {
-            "averageRating": 0,
+            "averageRating": 4.4,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Sounds like vomit, but apparently it is clothing.",
@@ -203,7 +203,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Blarf"
         },
         {
-            "averageRating": 0,
+            "averageRating": 0.1,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "1 earring",
@@ -228,7 +228,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Earrings"
         },
         {
-            "averageRating": 0,
+            "averageRating": 2.5,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Test",
@@ -253,7 +253,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Test"
         },
         {
-            "averageRating": 0,
+            "averageRating": 5,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Stuff",
@@ -280,7 +280,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Stuff"
         },
         {
-            "averageRating": 0,
+            "averageRating": 4,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "I don\u0026#39;t care",
@@ -307,7 +307,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Whatever"
         },
         {
-            "averageRating": 0,
+            "averageRating": 2.9,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Water",
@@ -334,7 +334,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Assfall"
         },
         {
-            "averageRating": 0,
+            "averageRating": 3.3,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Green thing",
@@ -360,7 +360,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "A small tree"
         },
         {
-            "averageRating": 0,
+            "averageRating": 3,
             "categories": [
                 "ðŸ‘š Apparel \u0026amp; Accessories"
             ],
@@ -389,7 +389,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "YuooMuoo V-neck Knitted Dress"
         },
         {
-            "averageRating": 0,
+            "averageRating": 2.4,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Test",
@@ -416,7 +416,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Test"
         },
         {
-            "averageRating": 0,
+            "averageRating": 4.5,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Test 2",
@@ -443,7 +443,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "Test 2"
         },
         {
-            "averageRating": 0,
+            "averageRating": 4.7,
             "categories": [
                 "ðŸ‘š Apparel \u0026amp; Accessories"
             ],
@@ -501,7 +501,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "title": "YuooMuoo V-neck Knitted Dress"
         },
         {
-            "averageRating": 0,
+            "averageRating": 2.5,
             "categories": [],
             "contractType": "PHYSICAL_GOOD",
             "description": "Testing",
