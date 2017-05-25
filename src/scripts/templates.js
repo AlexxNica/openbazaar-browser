@@ -56,7 +56,7 @@ OBB.templates = {
         to_print += '           </div>\n';
         to_print += '       </div> \n';
         to_print += '       <ul class="ListingCard__header__tags"> \n';
-        if (data.free_shipping) {
+        if (data.free_shipping.length > 0) {
             to_print += '           <li> \n';
             to_print += '               <span class="tag tag--green">Free Shipping</span> \n';
             to_print += '           </li> \n';
@@ -97,6 +97,10 @@ OBB.templates = {
             $.each(listing.ships_to, function(index, option) {
                 to_print += ' filter--ships-to--' + option.replace(/\s+/g, "-").toLowerCase();
             });
+            // free-shipping filter
+            if (listing.free_shipping.length > 0) {
+                to_print += ' filter--free-shipping';
+            }
             to_print += '">\n';
 
             to_print += OBB.templates.listingCard( listing ) + '\n';
@@ -129,7 +133,7 @@ OBB.templates = {
     filterCardShippingOptions: function ( countries_array ) {
         var to_print = '';
 
-        to_print += '            <select class="select-filters" name="filter--listings--ships-to">\n';
+        to_print += '            <select class="select-filters" name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
         to_print += '               <option value="">SHOW ALL</option>\n';
 
         $.each(countries_array, function(index, country) {

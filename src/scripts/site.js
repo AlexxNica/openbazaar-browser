@@ -153,9 +153,27 @@ $(document).ready(function() {
 
         // arrange, and use filter fn
         $grid.isotope();
-        console.log();
     });
 
+    $('.checkbox-filters').on( 'change', function() {
+        var $this = $(this);
+        console.log($this[0].checked);
+        // get group key
+        var $buttonGroup = $this.parents('.button-group');
+        var filterGroup = $buttonGroup.attr('data-filter-group');
+
+        // get filter value from option value
+        var filterValue = this.value;
+
+        // set filter for group
+        if ($this[0].checked) {
+            OBB.controller.filter.filters[ filterGroup ] = filterValue;
+        } else {
+            OBB.controller.filter.filters[ filterGroup ] = "";
+        }
+        // arrange, and use filter fn
+        $grid.isotope();
+    });
 
 });
 
