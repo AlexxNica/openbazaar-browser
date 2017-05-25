@@ -1005,9 +1005,8 @@ p {
 }
 .ListingCard__ratings {
     color: $font-gray--dark;
-    > a {
+    > .ListingCard__ratings__count {
         text-decoration: underline;
-        cursor: pointer;
     }
 }
 .ListingCard__price {

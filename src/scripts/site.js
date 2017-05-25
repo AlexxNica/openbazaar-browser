@@ -122,7 +122,7 @@ $(document).ready(function() {
             timeout = setTimeout( delayed, threshold || 100 );
         }
     }
-    //
+    // add quickSearch to filters
     OBB.controller.filter.filters[ 'quick_search' ] = 'quickSearch';
 
     // init Isotope
@@ -147,7 +147,15 @@ $(document).ready(function() {
                 }
             }
             return isMatched;
-        }
+        },
+        getSortData: {
+            rating_ave: '.ListingCard__ratings__value', // text from querySelector
+            rating_count: '.ListingCard__ratings__count',
+            price: function( itemElem ) {
+                var price_string = $( itemElem ).find('.ListingCard__price__value').text();
+                return parseFloat( price_string.replace(/\$/g, '') );
+            },
+        },
     });
 
     $('.radio-filters').on( 'click', 'input', function() {
@@ -195,6 +203,65 @@ $(document).ready(function() {
         // arrange, and use filter fn
         $grid.isotope();
     });
+
+    $('.select-sort').on( 'change', function() {
+        var $this = $(this);
+
+        // get sort-by value from option value
+        var sortByValue = this.value;
+
+        // sort according to choice
+        switch(sortByValue) {
+            case 'price-low-to-high':
+                $grid.isotope({
+                    sortBy: 'price',
+                    sortAscending: true,
+                });
+                break;
+            case 'price-high-to-low':
+                $grid.isotope({
+                    sortBy: 'price',
+                    sortAscending: false,
+                });
+                break;
+            case 'ave-rating-high-to-low':
+                $grid.isotope({
+                    sortBy: 'rating_ave',
+                    sortAscending: false,
+                });
+                break;
+            case 'ave-rating-low-to-high':
+                $grid.isotope({
+                    sortBy: 'rating_ave',
+                    sortAscending: true,
+                });
+                break;
+            case 'rating-count-high-to-low':
+                $grid.isotope({
+                    sortBy: 'rating_count',
+                    sortAscending: false,
+                });
+                break;
+            case 'rating-count-low-to-high':
+                $grid.isotope({
+                    sortBy: 'rating_count',
+                    sortAscending: true,
+                });
+                break;
+            case 'original':
+                $grid.isotope({
+                    sortBy: 'original-order',
+                });
+            default:
+                // NA
+        }
+
+    });
+
+
+
+
+
 
 });
 

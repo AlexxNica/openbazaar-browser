@@ -3711,9 +3711,8 @@ p {
 
 .ListingCard__ratings {
   color: #555; }
-  .ListingCard__ratings > a {
-    text-decoration: underline;
-    cursor: pointer; }
+  .ListingCard__ratings > .ListingCard__ratings__count {
+    text-decoration: underline; }
 
 .ListingCard__price {
   text-align: right;

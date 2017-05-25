@@ -69,7 +69,7 @@ OBB.templates = {
         to_print += '           <div class="ListingCard__ratings"> \n';
         to_print += '               <i class="fa fa-star icon--star--small" aria-hidden="true"></i> \n';
         to_print += '               <span class="ListingCard__ratings__value">' + data.ave_rating + '</span> \n';
-        to_print += '               (<a href="">' + data.rating_count + '</a>) \n';
+        to_print += '               (<span class="ListingCard__ratings__count">' + data.rating_count + '</span>) \n';
         to_print += '           </div> \n';
         to_print += '           <div class="ListingCard__price"> \n';
         to_print += '               <span class="strong ListingCard__price__value">$' + data.price + '</span> \n';
