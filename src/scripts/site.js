@@ -73,8 +73,9 @@ $(document).ready(function() {
 
 
     // Listing Sorting / Filtering
+    OBB.controller.filter = {}
 
-    var filterFns = {
+    OBB.controller.filter.filterFns = {
         ge1Stars: function() {
             var number = $(this).find('.ListingCard__ratings__value').text();
             return parseInt( number, 10 ) >= 1;
@@ -98,7 +99,7 @@ $(document).ready(function() {
     };
 
     // store filter for each group
-    var filters = {};
+    OBB.controller.filter.filters = {};
 
     // init Isotope
     var $grid = $('#CardContainer--listings').isotope({
@@ -108,10 +109,10 @@ $(document).ready(function() {
             var isMatched = true;
             var $this = $(this);
 
-            for ( var prop in filters ) {
-                var filter = filters[ prop ];
+            for ( var prop in OBB.controller.filter.filters ) {
+                var filter = OBB.controller.filter.filters[ prop ];
                 // use function if it matches
-                filter = filterFns[ filter ] || filter;
+                filter = OBB.controller.filter.filterFns[ filter ] || filter;
                 // test each filter
                 if ( filter ) {
                     isMatched = isMatched && $(this).is( filter );
@@ -133,10 +134,26 @@ $(document).ready(function() {
         var $buttonGroup = $this.parents('.button-group');
         var filterGroup = $buttonGroup.attr('data-filter-group');
         // set filter for group
-        filters[ filterGroup ] = $this.attr('data-filter');
+        OBB.controller.filter.filters[ filterGroup ] = $this.attr('data-filter');
         // arrange, and use filter fn
         $grid.isotope();
-        console.log('fired off' + filters[ filterGroup ]);
+    });
+
+    $('.select-filters').on( 'change', function() {
+        var $this = $(this);
+        // get group key
+        var $buttonGroup = $this.parents('.button-group');
+        var filterGroup = $buttonGroup.attr('data-filter-group');
+
+        // get filter value from option value
+        var filterValue = this.value;
+
+        // set filter for group
+        OBB.controller.filter.filters[ filterGroup ] = filterValue;
+
+        // arrange, and use filter fn
+        $grid.isotope();
+        console.log();
     });
 
 

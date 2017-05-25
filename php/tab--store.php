@@ -14,7 +14,7 @@
                 <section class="FilterCard--shipping">
                     <h4>Shipping</h4>
                     <form>
-                        <fieldset>
+                        <fieldset class="button-group" data-filter-group="ships_to">
                             <label for="filter--listings--ships-to">Ships to:</label>
                             <select name="filter--listings--ships-to" id="filter--listings--ships-to">
                                 <!-- OBB.controller.render.TabStore() will render the options -->
