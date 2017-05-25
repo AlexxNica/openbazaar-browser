@@ -4,10 +4,7 @@
     </div>
     <div class="Node__body">
         <div class="SearchListings flex">
-            <input type="text" placeholder="Search Ski Shop">
-            <button type="submit" class="Button--search-listings">
-                <img src="">Go <!-- sprites image -->
-            </button>
+            <input type="text" class="quicksearch" placeholder="Search Ski Shop">
         </div>
         <div class="flex">
             <div class="Column--left">

@@ -1856,14 +1856,38 @@ $(document).ready(function() {
             var number = $(this).find('.ListingCard__ratings__value').text();
             return parseInt( number, 10 ) >= 4;
         },
-        even: function() {
-            var number = $(this).find('.number').text();
-            return parseInt( number, 10 ) % 2 === 0;
-        }
+        quickSearch: function() {
+            return qsRegex ? $(this).text().match( qsRegex ) : true;
+        },
     };
 
     // store filter for each group
     OBB.controller.filter.filters = {};
+    // quick search regex
+    var qsRegex;
+
+    // use value of search field to filter
+    var $quicksearch = $('.quicksearch').keyup( debounce( function() {
+        qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+        $grid.isotope();
+    }, 200 ) );
+
+    // debounce so filtering doesn't happen every millisecond
+    function debounce( fn, threshold ) {
+        var timeout;
+        return function debounced() {
+            if ( timeout ) {
+                clearTimeout( timeout );
+            }
+            function delayed() {
+                fn();
+                timeout = null;
+            }
+            timeout = setTimeout( delayed, threshold || 100 );
+        }
+    }
+    //
+    OBB.controller.filter.filters[ 'quick_search' ] = 'quickSearch';
 
     // init Isotope
     var $grid = $('#CardContainer--listings').isotope({
@@ -1889,8 +1913,6 @@ $(document).ready(function() {
             return isMatched;
         }
     });
-
-
 
     $('.radio-filters').on( 'click', 'input', function() {
         var $this = $(this);
@@ -1921,7 +1943,6 @@ $(document).ready(function() {
 
     $('.checkbox-filters').on( 'change', function() {
         var $this = $(this);
-        console.log($this[0].checked);
         // get group key
         var $buttonGroup = $this.parents('.button-group');
         var filterGroup = $buttonGroup.attr('data-filter-group');
