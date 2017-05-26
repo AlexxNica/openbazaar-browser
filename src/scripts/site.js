@@ -12,6 +12,8 @@ $(document).ready(function() {
 
     // clicking a listing card reveals listing overlay (unless NSFW)
     $(".ListingCard").click(function () {
+        var api_request;
+
         if (!$(this).hasClass("nsfw")) {
             $(".overlay--listing").addClass("active");
             // scroll to top of overlay--listing
@@ -19,11 +21,21 @@ $(document).ready(function() {
                 scrollTop: $('#page--node').offset().top
             }, 'slow');
         };
-        // TODO update model with clicked-listing data from API. My need to promise.
+        
+        // update model with clicked-listing data from API.
+        //  construct api request string
+        listing_hash = $(this).closest('.Card').attr('listing-hash');
+        api_request = 'https://gateway.ob1.io/ob/listing/' + OBB.model.current_store.peer_id + '/' + listing_hash;
+        
+        //  call api with that request string
+        $.getJSON(api_request, function( json ) {
+            OBB.controller.api_returns.single_listing = json;
+            // run get-data and store the result in the model
+            OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
+            // run render to render that overlay
+            OBB.controller.render.overlayListing();
+        });
 
-        // Render overlay listing.
-        console.log('fired');
-        OBB.controller.render.overlayListing();
     });
 
     // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
@@ -62,14 +74,6 @@ $(document).ready(function() {
         e.stopPropagation();
         $(this).closest(".ListingCard.nsfw").removeClass("nsfw")
     });
-
-
-
-
-
-
-
-
 
 
     // Listing Sorting / Filtering
@@ -260,11 +264,32 @@ $(document).ready(function() {
 
 
 
+// header search
 
+// header search
+$('#Header__search__button').click( function() {
+        // get user input
+        var user_input = $('#Header__search__input').val();
+        
+        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
+        // TODO
 
+        // update model with OBB.controller.get_data and store in OBB.model.current_store
+        //  TODO
+
+        // re-render page--node using OBB.controller.render
+        //  TODO
+    });
 
 });
 
-
+// 'return' key does same thing as clicking on header search button
+$('#Header__search__input').keypress(function (e) {
+    var key = e.which;
+    if(key == 13) {
+        $('#Header__search__button').click();
+        return false;  
+    }
+});   
 
 

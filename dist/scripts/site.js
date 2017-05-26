@@ -32,6 +32,7 @@ function(a){"use strict";a.extend(a.fn.cycle.defaults,{tmplRegex:"{{((.)?.*?)}}"
 var e;t?(t=n.makeArray(t),e=this.getItems(t)):e=this.items,this._getSorters(),this._updateItemsSortData(e)},l._getSorters=function(){var t=this.options.getSortData;for(var e in t){var i=t[e];this._sorters[e]=f(i)}},l._updateItemsSortData=function(t){for(var e=t&&t.length,i=0;e&&i<e;i++){var o=t[i];o.updateSortData()}};var f=function(){function t(t){if("string"!=typeof t)return t;var i=h(t).split(" "),o=i[0],n=o.match(/^\[(.+)\]$/),s=n&&n[1],r=e(s,o),a=d.sortDataParsers[i[1]];return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e(t,e){return t?function(e){return e.getAttribute(t)}:function(t){var i=t.querySelector(e);return i&&i.textContent}}return t}();d.sortDataParsers={parseInt:function(t){return parseInt(t,10)},parseFloat:function(t){return parseFloat(t)}},l._sort=function(){if(this.options.sortBy){var t=n.makeArray(this.options.sortBy);this._getIsSameSortBy(t)||(this.sortHistory=t.concat(this.sortHistory));var e=a(this.sortHistory,this.options.sortAscending);this.filteredItems.sort(e)}},l._getIsSameSortBy=function(t){for(var e=0;e<t.length;e++)if(t[e]!=this.sortHistory[e])return!1;return!0},l._mode=function(){var t=this.options.layoutMode,e=this.modes[t];if(!e)throw new Error("No layout mode: "+t);return e.options=this.options[t],e},l._resetLayout=function(){e.prototype._resetLayout.call(this),this._mode()._resetLayout()},l._getItemLayoutPosition=function(t){return this._mode()._getItemLayoutPosition(t)},l._manageStamp=function(t){this._mode()._manageStamp(t)},l._getContainerSize=function(){return this._mode()._getContainerSize()},l.needsResizeLayout=function(){return this._mode().needsResizeLayout()},l.appended=function(t){var e=this.addItems(t);if(e.length){var i=this._filterRevealAdded(e);this.filteredItems=this.filteredItems.concat(i)}},l.prepended=function(t){var e=this._itemize(t);if(e.length){this._resetLayout(),this._manageStamps();var i=this._filterRevealAdded(e);this.layoutItems(this.filteredItems),this.filteredItems=i.concat(this.filteredItems),this.items=e.concat(this.items)}},l._filterRevealAdded=function(t){var e=this._filter(t);return this.hide(e.needHide),this.reveal(e.matches),this.layoutItems(e.matches,!0),e.matches},l.insert=function(t){var e=this.addItems(t);if(e.length){var i,o,n=e.length;for(i=0;i<n;i++)o=e[i],this.element.appendChild(o.element);var s=this._filter(e).matches;for(i=0;i<n;i++)e[i].isLayoutInstant=!0;for(this.arrange(),i=0;i<n;i++)delete e[i].isLayoutInstant;this.reveal(s)}};var c=l.remove;return l.remove=function(t){t=n.makeArray(t);var e=this.getItems(t);c.call(this,t);for(var i=e&&e.length,o=0;i&&o<i;o++){var s=e[o];n.removeFrom(this.filteredItems,s)}},l.shuffle=function(){for(var t=0;t<this.items.length;t++){var e=this.items[t];e.sortData.random=Math.random()}this.options.sortBy="random",this._sort(),this._layout()},l._noTransition=function(t,e){var i=this.options.transitionDuration;this.options.transitionDuration=0;var o=t.apply(this,e);return this.options.transitionDuration=i,o},l.getFilteredItemElements=function(){return this.filteredItems.map(function(t){return t.element})},d});
 OBB = {};
 OBB.controller = {};
+OBB.controller.vars = {};
 
 
 
@@ -1094,6 +1095,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
             rating_count: listing.ratingCount,
             nsfw: listing.nsfw,
             free_shipping: listing.freeShipping,
+            hash: listing.hash,
         });
     });
     return result;
@@ -1112,6 +1114,7 @@ OBB.controller.get_data.categories = function() {
 
     return result;
 };
+
 OBB.controller.get_data.countries = function() {
     var listings = OBB.controller.api_returns.listings;
     var result = [];
@@ -1186,129 +1189,6 @@ OBB.controller.get_data.singleListing = function(){
 
     return result;
 };
-
-
-// controller.render is used to render components using data from OBB.model
-OBB.controller.render = {
-    tabStore: function() {
-        // render header image and h1
-        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
-        // render #FilterCard--shipping
-        $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions( OBB.model.current_store.countries ) );
-        // render #FilterCard--category
-        $( "#FilterCard--category__list" ).replaceWith( OBB.templates.filterCardCategoryOptions( OBB.model.current_store.categories ) );
-        // render #CardContainer--listings
-        $( "#CardContainer--listings" ).replaceWith( OBB.templates.listingCardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
-        // render store name and avatar on overlay--listing
-        $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore( OBB.model.current_store.summary ) );
-    },
-
-    tabHome: function() {
-        // render header image and h1
-        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
-
-        // render current_node's store card in left column
-        $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
-
-        // TODO render information card in left column
-
-        // render About info
-        $( "#Tab--home__about" ).text( OBB.model.current_store.summary.description );
-    },
-
-    tabFollowing: function() {
-        // render header image and h1
-        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
-        // TODO render following cards
-    },
-
-    tabFollowers: function() {
-        // render header image and h1
-        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
-        // TODO render followers cards
-    },
-
-    pageNodeNavSummary: function() {
-        // render #NodeNavSummary in left of NodeNav
-        $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
-    },
-
-    pageNode: function() {
-
-        OBB.controller.render.pageNodeNavSummary();
-        OBB.controller.render.tabStore();
-        OBB.controller.render.tabHome();
-        OBB.controller.render.tabFollowing();
-        OBB.controller.render.tabFollowers();
-    },
-
-    overlayListingOverview: function(){
-        $( "#overlayListingOverview" ).replaceWith( OBB.templates.overlayListingOverview( OBB.model.current_store.single_listing ) );
-
-    },
-
-    overlayListingDescription: function(){
-        // render description on overlay--listing
-        $( "#overlayListingDescription" ).text( OBB.model.current_store.single_listing.description );
-    },
-
-    overlayListingSlideShow: function(){
-        // render slideshow on overlay--listing
-        $( "#ListingSlideshow" ).replaceWith( OBB.templates.overlayListingSlideShow( OBB.model.current_store.single_listing ) );
-        $( '.cycle-slideshow' ).cycle();
-    },
-
-    overlayListingReviews: function(){
-        // TODO
-    },
-
-    overlayListingShipping: function(){
-        // render shipping options on overlay--listing
-        $( "#overlayListingShipping" ).replaceWith( OBB.templates.overlayListingShipping( OBB.model.current_store.single_listing ) );
-    },
-
-    overlayReturnPolicy: function(){
-        // render Return Policy on overlay--listing
-        $( "#overlayListingReturnPolicy" ).text( OBB.model.current_store.single_listing.return_policy );
-
-    },
-
-    overlayTermsAndConditions: function(){
-        // render Terms and Conditions on overlay--listing
-        $( "#overlayListingTermsAndConditions" ).text( OBB.model.current_store.single_listing.terms_and_conditions );
-
-    },
-
-    overlayListing: function() {
-        OBB.controller.render.overlayListingOverview();
-        OBB.controller.render.overlayListingDescription();
-        OBB.controller.render.overlayListingSlideShow();
-        OBB.controller.render.overlayListingReviews();
-        OBB.controller.render.overlayListingShipping();
-        OBB.controller.render.overlayReturnPolicy();
-        OBB.controller.render.overlayTermsAndConditions();
-
-         // clicking "View photos" on overlay--listing scrolls to Slideshow
-        $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
-            // scroll back to top of slideshow
-            $('html, body').animate({
-                scrollTop: $('#ListingSlideshow').offset().top
-            }, 'slow');
-        });
-
-        // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
-        $(".overlay--listing .button--buy-now").click(function () {
-            $(".overlay--purchase").addClass("active");
-            // scroll to top
-            $('html, body').animate({
-                scrollTop: $('#page--node').offset().top
-            }, 'slow');
-        });
-    },
-
-};
-
-
 
 
 OBB.model = {};
@@ -1431,7 +1311,7 @@ OBB.templates = {
             if (listing.free_shipping.length > 0) {
                 to_print += ' filter--free-shipping';
             }
-            to_print += '">\n';
+            to_print += '" listing-hash="' + listing.hash + '">\n';
 
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';
@@ -1468,15 +1348,15 @@ OBB.templates = {
             temp = '';
 
         to_print += '            <select class="select-filters" name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
-        to_print += '               <option value="">SHOW ALL</option>\n';
+        to_print += '               <option value="">Show All</option>\n';
 
         $.each(countries_array, function(index, country) {
             temp = country;
             temp = temp.replace(/[^a-zA-Z]/g, "").toLowerCase();
-            if (country.replace(/\s+/g, "-").toLowerCase() == 'all') {
-                to_print += '           <option value=".filter--ships-to--' + temp + '">WORLDWIDE</option>\n';
+            if (temp == 'all') {
+                to_print += '           <option value=".filter--ships-to--' + temp + '">Worldwide</option>\n';
             } else {
-                to_print += '           <option value=".filter--ships-to--' + temp + '">' + country + '</option>\n';
+                to_print += '           <option value=".filter--ships-to--' + temp + '">' + OBB.functions.titleCase(country) + '</option>\n';
             }
         });
         to_print += '            </select>\n';
@@ -1638,9 +1518,16 @@ OBB.templates = {
         to_print += '                <div class="button--buy-now" name="button--buy-now">BUY NOW</div>\n';
         to_print += '            </div>\n';
         to_print += '            <ul class="ListingOverview__info">\n';
+        if (listing.type === "") {
+            listing.type = "???";
+        }
         to_print += '                <li>\n';
         to_print += '                    Type: <span>' + listing.type + '</span>\n';
         to_print += '                </li>\n';
+
+        if (listing.condition === "") {
+            listing.condition = "???";
+        }
         to_print += '                <li>\n';
         to_print += '                    Condition: <span>' + listing.condition + '</span>\n';
         to_print += '                </li>\n';
@@ -1774,6 +1661,129 @@ OBB.templates = {
 
 
 
+// controller.render is used to render components using data from OBB.model
+OBB.controller.render = {
+    tabStore: function() {
+        // render header image and h1
+        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
+        // render #FilterCard--shipping
+        $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions( OBB.model.current_store.countries ) );
+        // render #FilterCard--category
+        $( "#FilterCard--category__list" ).replaceWith( OBB.templates.filterCardCategoryOptions( OBB.model.current_store.categories ) );
+        // render #CardContainer--listings
+        $( "#CardContainer--listings" ).replaceWith( OBB.templates.listingCardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
+        // render store name and avatar on overlay--listing
+        $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore( OBB.model.current_store.summary ) );
+    },
+
+    tabHome: function() {
+        // render header image and h1
+        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
+
+        // render current_node's store card in left column
+        $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
+
+        // TODO render information card in left column
+
+        // render About info
+        $( "#Tab--home__about" ).text( OBB.model.current_store.summary.description );
+    },
+
+    tabFollowing: function() {
+        // render header image and h1
+        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
+        // TODO render following cards
+    },
+
+    tabFollowers: function() {
+        // render header image and h1
+        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
+        // TODO render followers cards
+    },
+
+    pageNodeNavSummary: function() {
+        // render #NodeNavSummary in left of NodeNav
+        $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
+    },
+
+    pageNode: function() {
+
+        OBB.controller.render.pageNodeNavSummary();
+        OBB.controller.render.tabStore();
+        OBB.controller.render.tabHome();
+        OBB.controller.render.tabFollowing();
+        OBB.controller.render.tabFollowers();
+    },
+
+    overlayListingOverview: function(){
+        $( "#overlayListingOverview" ).replaceWith( OBB.templates.overlayListingOverview( OBB.model.current_store.single_listing ) );
+
+    },
+
+    overlayListingDescription: function(){
+        // render description on overlay--listing
+        $( "#overlayListingDescription" ).text( OBB.model.current_store.single_listing.description );
+    },
+
+    overlayListingSlideShow: function(){
+        // render slideshow on overlay--listing
+        $( "#ListingSlideshow" ).replaceWith( OBB.templates.overlayListingSlideShow( OBB.model.current_store.single_listing ) );
+        $( '.cycle-slideshow' ).cycle();
+    },
+
+    overlayListingReviews: function(){
+        // TODO
+    },
+
+    overlayListingShipping: function(){
+        // render shipping options on overlay--listing
+        $( "#overlayListingShipping" ).replaceWith( OBB.templates.overlayListingShipping( OBB.model.current_store.single_listing ) );
+    },
+
+    overlayReturnPolicy: function(){
+        // render Return Policy on overlay--listing
+        $( "#overlayListingReturnPolicy" ).text( OBB.model.current_store.single_listing.return_policy );
+
+    },
+
+    overlayTermsAndConditions: function(){
+        // render Terms and Conditions on overlay--listing
+        $( "#overlayListingTermsAndConditions" ).text( OBB.model.current_store.single_listing.terms_and_conditions );
+
+    },
+
+    overlayListing: function() {
+        OBB.controller.render.overlayListingOverview();
+        OBB.controller.render.overlayListingDescription();
+        OBB.controller.render.overlayListingSlideShow();
+        OBB.controller.render.overlayListingReviews();
+        OBB.controller.render.overlayListingShipping();
+        OBB.controller.render.overlayReturnPolicy();
+        OBB.controller.render.overlayTermsAndConditions();
+
+         // clicking "View photos" on overlay--listing scrolls to Slideshow
+        $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
+            // scroll back to top of slideshow
+            $('html, body').animate({
+                scrollTop: $('#ListingSlideshow').offset().top
+            }, 'slow');
+        });
+
+        // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
+        $(".overlay--listing .button--buy-now").click(function () {
+            $(".overlay--purchase").addClass("active");
+            // scroll to top
+            $('html, body').animate({
+                scrollTop: $('#page--node').offset().top
+            }, 'slow');
+        });
+    },
+
+};
+
+
+
+
 $(document).ready(function() {
 
     OBB.controller.render.pageNode();
@@ -1788,6 +1798,8 @@ $(document).ready(function() {
 
     // clicking a listing card reveals listing overlay (unless NSFW)
     $(".ListingCard").click(function () {
+        var api_request;
+
         if (!$(this).hasClass("nsfw")) {
             $(".overlay--listing").addClass("active");
             // scroll to top of overlay--listing
@@ -1795,11 +1807,21 @@ $(document).ready(function() {
                 scrollTop: $('#page--node').offset().top
             }, 'slow');
         };
-        // TODO update model with clicked-listing data from API. My need to promise.
+        
+        // update model with clicked-listing data from API.
+        //  construct api request string
+        listing_hash = $(this).closest('.Card').attr('listing-hash');
+        api_request = 'https://gateway.ob1.io/ob/listing/' + OBB.model.current_store.peer_id + '/' + listing_hash;
+        
+        //  call api with that request string
+        $.getJSON(api_request, function( json ) {
+            OBB.controller.api_returns.single_listing = json;
+            // run get-data and store the result in the model
+            OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
+            // run render to render that overlay
+            OBB.controller.render.overlayListing();
+        });
 
-        // Render overlay listing.
-        console.log('fired');
-        OBB.controller.render.overlayListing();
     });
 
     // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
@@ -1838,14 +1860,6 @@ $(document).ready(function() {
         e.stopPropagation();
         $(this).closest(".ListingCard.nsfw").removeClass("nsfw")
     });
-
-
-
-
-
-
-
-
 
 
     // Listing Sorting / Filtering
@@ -2036,11 +2050,41 @@ $(document).ready(function() {
 
 
 
+// header search
 
+// header search
+$('#Header__search__button').click( function() {
+        // get user input
+        var user_input = $('#Header__search__input').val();
+        
+        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
+        // TODO
 
+        // update model with OBB.controller.get_data and store in OBB.model.current_store
+        //  TODO
+
+        // re-render page--node using OBB.controller.render
+        //  TODO
+    });
 
 });
 
+// 'return' key does same thing as clicking on header search button
+$('#Header__search__input').keypress(function (e) {
+    var key = e.which;
+    if(key == 13) {
+        $('#Header__search__button').click();
+        return false;  
+    }
+});   
 
 
 
+OBB.functions = {};
+OBB.functions.titleCase = function(str) {
+	var convertToArray = str.toLowerCase().split(" ");
+	var result = convertToArray.map(function(val){
+		return val.replace(val.charAt(0), val.charAt(0).toUpperCase());
+	});
+	return result.join(" ");
+}

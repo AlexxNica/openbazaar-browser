@@ -107,7 +107,7 @@ OBB.templates = {
             if (listing.free_shipping.length > 0) {
                 to_print += ' filter--free-shipping';
             }
-            to_print += '">\n';
+            to_print += '" listing-hash="' + listing.hash + '">\n';
 
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';
@@ -144,15 +144,15 @@ OBB.templates = {
             temp = '';
 
         to_print += '            <select class="select-filters" name="filter--listings--ships-to" id="filter--listings--ships-to">\n';
-        to_print += '               <option value="">SHOW ALL</option>\n';
+        to_print += '               <option value="">Show All</option>\n';
 
         $.each(countries_array, function(index, country) {
             temp = country;
             temp = temp.replace(/[^a-zA-Z]/g, "").toLowerCase();
-            if (country.replace(/\s+/g, "-").toLowerCase() == 'all') {
-                to_print += '           <option value=".filter--ships-to--' + temp + '">WORLDWIDE</option>\n';
+            if (temp == 'all') {
+                to_print += '           <option value=".filter--ships-to--' + temp + '">Worldwide</option>\n';
             } else {
-                to_print += '           <option value=".filter--ships-to--' + temp + '">' + country + '</option>\n';
+                to_print += '           <option value=".filter--ships-to--' + temp + '">' + OBB.functions.titleCase(country) + '</option>\n';
             }
         });
         to_print += '            </select>\n';
@@ -314,9 +314,16 @@ OBB.templates = {
         to_print += '                <div class="button--buy-now" name="button--buy-now">BUY NOW</div>\n';
         to_print += '            </div>\n';
         to_print += '            <ul class="ListingOverview__info">\n';
+        if (listing.type === "") {
+            listing.type = "???";
+        }
         to_print += '                <li>\n';
         to_print += '                    Type: <span>' + listing.type + '</span>\n';
         to_print += '                </li>\n';
+
+        if (listing.condition === "") {
+            listing.condition = "???";
+        }
         to_print += '                <li>\n';
         to_print += '                    Condition: <span>' + listing.condition + '</span>\n';
         to_print += '                </li>\n';

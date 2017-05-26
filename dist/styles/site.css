@@ -3213,7 +3213,8 @@ p {
     border: 1px solid #d2d2d9;
     padding: 10px 10px 10px 35px;
     font-weight: 100;
-    letter-spacing: .5px; }
+    letter-spacing: .5px;
+    margin-right: 0.72%; }
   .SearchListings:before {
     content: "";
     width: 30px;
@@ -3233,9 +3234,11 @@ p {
 .ListingsHeading__left {
   color: #222; }
 
-.ListingsHeading__right > form > select {
-  height: 30px;
-  background-color: #fff; }
+.ListingsHeading__right {
+  margin-right: 1%; }
+  .ListingsHeading__right > form > select {
+    height: 30px;
+    background-color: #fff; }
 
 .ListingOverlay__nav {
   display: -ms-flexbox;
@@ -3322,12 +3325,13 @@ p {
   .ListingOverview__buy-now__options > li {
     margin-bottom: 10px; }
     .ListingOverview__buy-now__options > li > span {
-      width: 40px;
-      margin-right: 15px; }
+      margin-right: 15px;
+      white-space: nowrap; }
     .ListingOverview__buy-now__options > li > select {
-      width: calc(100% - 40px);
       background-color: #fff;
-      color: #7a7a7a; }
+      color: #7a7a7a;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%; }
 
 .ListingOverview__img {
   width: 100%;

@@ -17,6 +17,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
             rating_count: listing.ratingCount,
             nsfw: listing.nsfw,
             free_shipping: listing.freeShipping,
+            hash: listing.hash,
         });
     });
     return result;
@@ -35,6 +36,7 @@ OBB.controller.get_data.categories = function() {
 
     return result;
 };
+
 OBB.controller.get_data.countries = function() {
     var listings = OBB.controller.api_returns.listings;
     var result = [];

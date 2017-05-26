@@ -41,17 +41,18 @@ gulp.task('lint', function() {
 gulp.task('scripts', function() {
     return gulp.src(['src/scripts/**/*.js', '!src/scripts/ie-only/*.js'])
     .pipe(order([
-       "libs/jquery-3.2.1.min.js",
-       "libs/jquery.cycle2.min.js",
-       "libs/isotope.js",
-       "controller.js",
-       "api_returns.js",
-       "get_data.js",
-       "render.js",
-       "model.js",
-       "templates.js",
-       "libs/*.js",
-       "site.js"
+        "libs/jquery-3.2.1.min.js",
+        "libs/jquery.cycle2.min.js",
+        "libs/isotope.js",
+        "controller.js",
+        "functions.js",
+        "api_returns.js",
+        "get_data.js",
+        "model.js",
+        "templates.js",
+        "render.js",
+        "libs/*.js",
+        "site.js"
      ]))
     .pipe(concat('site.js'))
     .pipe(gulp.dest('dist/scripts'))

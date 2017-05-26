@@ -74,7 +74,7 @@
                         <form>
                             <label for="filter--listings--sort-by">Sort by</label>
                             <select class="select-sort" name="filter--listings--sort-by" id="filter--listings--sort-by">
-                                <option value="original">---- Select ----</option>
+                                <option value="original">Default</option>
                                 <option value="price-low-to-high">Price (low to high)</option>
                                 <option value="price-high-to-low">Price (high to low)</option>
                                 <option value="ave-rating-high-to-low">Ave Rating (high to low)</option>
