@@ -276,7 +276,7 @@
 		<section class="section">
 			<h2>Return Policy</h2>
 			<p id="overlayListingReturnPolicy">
-				<!-- this will be rendered by OBB.controller.render.overlayReturnPolicy() -->
+				<!-- this will be rendered by OBB.controller.render.overlayListingReturnPolicy() -->
 			</p>
 		</section>
 		<section class="section">

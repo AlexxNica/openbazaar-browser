@@ -11,6 +11,8 @@ OBB.controller.render = {
         $( "#CardContainer--listings" ).replaceWith( OBB.templates.listingCardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
         // render store name and avatar on overlay--listing
         $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore( OBB.model.current_store.summary ) );
+        // add event listeners
+        OBB.controller.event_listeners.tabStore();
     },
 
     tabHome: function() {
@@ -50,6 +52,8 @@ OBB.controller.render = {
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();
         OBB.controller.render.tabFollowers();
+        // add event listeners
+        OBB.controller.event_listeners.pageNode();
     },
 
     overlayListingOverview: function(){
@@ -77,7 +81,7 @@ OBB.controller.render = {
         $( "#overlayListingShipping" ).replaceWith( OBB.templates.overlayListingShipping( OBB.model.current_store.single_listing ) );
     },
 
-    overlayReturnPolicy: function(){
+    overlayListingReturnPolicy: function(){
         // render Return Policy on overlay--listing
         $( "#overlayListingReturnPolicy" ).text( OBB.model.current_store.single_listing.return_policy );
 
@@ -95,25 +99,9 @@ OBB.controller.render = {
         OBB.controller.render.overlayListingSlideShow();
         OBB.controller.render.overlayListingReviews();
         OBB.controller.render.overlayListingShipping();
-        OBB.controller.render.overlayReturnPolicy();
+        OBB.controller.render.overlayListingReturnPolicy();
         OBB.controller.render.overlayTermsAndConditions();
-
-         // clicking "View photos" on overlay--listing scrolls to Slideshow
-        $(".overlay--listing .ListingOverview__body .click-to-slideshow").click(function () {
-            // scroll back to top of slideshow
-            $('html, body').animate({
-                scrollTop: $('#ListingSlideshow').offset().top
-            }, 'slow');
-        });
-
-        // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
-        $(".overlay--listing .button--buy-now").click(function () {
-            $(".overlay--purchase").addClass("active");
-            // scroll to top
-            $('html, body').animate({
-                scrollTop: $('#page--node').offset().top
-            }, 'slow');
-        });
+        OBB.controller.event_listeners.overlayListing();
     },
 
 };
