@@ -3706,6 +3706,12 @@ p {
   padding: 0 10px 10px;
   color: #222; }
 
+.ListingCard__title {
+  white-space: nowrap;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden; }
+
 .ListingCard__bottom {
   display: -ms-flexbox;
   display: flex;

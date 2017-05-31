@@ -3,6 +3,9 @@
 //  If you want use another API or data source, OBB.controller.get_data is the place where you'll specify 
 //  those changes.
 OBB.controller.get_data = {};
+OBB.controller.get_data.peerID = function(){
+    return OBB.controller.api_returns.profile.peerID;
+};
 OBB.controller.get_data.ListingCardInfo = function() {
     var listings = OBB.controller.api_returns.listings;
     var result = [];
@@ -111,4 +114,3 @@ OBB.controller.get_data.singleListing = function(){
 
     return result;
 };
-

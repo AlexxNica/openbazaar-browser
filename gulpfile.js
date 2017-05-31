@@ -45,6 +45,7 @@ gulp.task('scripts', function() {
         "libs/jquery.cycle2.min.js",
         "libs/isotope.js",
         "controller.js",
+        "event_listeners.js",
         "functions.js",
         "api_returns.js",
         "get_data.js",

@@ -1000,6 +1000,12 @@ p {
     padding: 0 10px 10px;
     color: $font-black;
 }
+.ListingCard__title {
+    white-space: nowrap;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 .ListingCard__bottom {
     display: flex;
     justify-content: space-between;

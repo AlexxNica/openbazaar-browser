@@ -125,7 +125,7 @@ OBB.templates = {
         var to_print = '',
             temp = '';
 
-        to_print += '    <ul class="button-group radio-filters" data-filter-group="category">\n';
+        to_print += '    <ul class="button-group radio-filters" data-filter-group="category" id="FilterCard--category__list">\n';
         to_print += '        <li><input class="filter-group--categories__category" type="radio" data-filter="" name="filter--listings--categories" checked>Any</li>\n';
 
         $.each(categories_array, function(index, category) {
