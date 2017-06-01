@@ -81,7 +81,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "language": "",
             "nsfw": false,
             "price": {
-                "amount": 200,
+                "amount": 2999,
                 "currencyCode": "USD"
             },
             "ratingCount": 0,
@@ -108,7 +108,7 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
             "language": "",
             "nsfw": false,
             "price": {
-                "amount": 200,
+                "amount": 288,
                 "currencyCode": "USD"
             },
             "ratingCount": 0,

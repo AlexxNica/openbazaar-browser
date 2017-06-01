@@ -112,10 +112,6 @@ OBB.templates = {
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';
         });
-
-        to_print += '    <li class="Card">\n';
-        to_print += '        <!-- Empty li.Card for proper card alignment. Do not remove. -->\n';
-        to_print += '    </li>\n';
         to_print += '</ul>\n';
 
         return to_print;

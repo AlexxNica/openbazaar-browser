@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="Header__right">
-		<a href="https://openbazaar.org/download.html" target="_blank">Download OpenBazzar</a>
+		<a href="https://openbazaar.org/download.html" target="_blank">Download OpenBazaar</a>
 		<a href="https://openbazaar.org/" target="_blank">About OpenBazaar</a>
 	</div>
 </header>

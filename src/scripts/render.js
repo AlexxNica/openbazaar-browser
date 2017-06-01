@@ -11,8 +11,8 @@ OBB.controller.render = {
         $( "#CardContainer--listings" ).replaceWith( OBB.templates.listingCardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
         // render store name and avatar on overlay--listing
         $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore( OBB.model.current_store.summary ) );
-        // add event listeners
-        OBB.controller.event_listeners.tabStore();
+        // initialize filtering
+        OBB.controller.addFiltering();
     },
 
     tabHome: function() {
@@ -52,13 +52,10 @@ OBB.controller.render = {
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();
         OBB.controller.render.tabFollowers();
-        // add event listeners
-        OBB.controller.event_listeners.pageNode();
     },
 
     overlayListingOverview: function(){
         $( "#overlayListingOverview" ).replaceWith( OBB.templates.overlayListingOverview( OBB.model.current_store.single_listing ) );
-
     },
 
     overlayListingDescription: function(){
@@ -90,7 +87,6 @@ OBB.controller.render = {
     overlayTermsAndConditions: function(){
         // render Terms and Conditions on overlay--listing
         $( "#overlayListingTermsAndConditions" ).text( OBB.model.current_store.single_listing.terms_and_conditions );
-
     },
 
     overlayListing: function() {
@@ -101,7 +97,6 @@ OBB.controller.render = {
         OBB.controller.render.overlayListingShipping();
         OBB.controller.render.overlayListingReturnPolicy();
         OBB.controller.render.overlayTermsAndConditions();
-        OBB.controller.event_listeners.overlayListing();
     },
 
 };

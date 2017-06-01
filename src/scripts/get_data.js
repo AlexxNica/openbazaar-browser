@@ -14,7 +14,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
             title: listing.title,
             categories_array: listing.categories,
             ships_to: listing.shipsTo,
-            price: listing.price.amount,
+            price: (parseFloat(listing.price.amount) / 100).toFixed(2),
             img_url: 'https://gateway.ob1.io/ob/image/' + listing.thumbnail.small,
             ave_rating: listing.averageRating,
             rating_count: listing.ratingCount,
@@ -98,7 +98,7 @@ OBB.controller.get_data.singleListing = function(){
 
     result = {
         title: listing.item.title,
-        price: listing.item.price,
+        price: (parseFloat(listing.item.price) / 100).toFixed(2),
         options: listing.item.options,
         type: type,
         condition: listing.item.condition,
