@@ -54,39 +54,45 @@ OBB.controller.render = {
         OBB.controller.render.tabFollowers();
     },
 
-    overlayListingOverview: function(){
+    overlayListingOverview: function() {
         $( "#overlayListingOverview" ).replaceWith( OBB.templates.overlayListingOverview( OBB.model.current_store.single_listing ) );
     },
 
-    overlayListingDescription: function(){
+    overlayListingDescription: function() {
         // render description on overlay--listing
         $( "#overlayListingDescription" ).text( OBB.model.current_store.single_listing.description );
     },
 
-    overlayListingSlideShow: function(){
+    overlayListingSlideShow: function() {
         // render slideshow on overlay--listing
         $( "#ListingSlideshow" ).replaceWith( OBB.templates.overlayListingSlideShow( OBB.model.current_store.single_listing ) );
         $( '.cycle-slideshow' ).cycle();
     },
 
-    overlayListingReviews: function(){
+    overlayListingReviews: function() {
         // TODO
     },
 
-    overlayListingShipping: function(){
+    overlayListingShipping: function() {
         // render shipping options on overlay--listing
         $( "#overlayListingShipping" ).replaceWith( OBB.templates.overlayListingShipping( OBB.model.current_store.single_listing ) );
     },
 
-    overlayListingReturnPolicy: function(){
+    overlayListingReturnPolicy: function() {
         // render Return Policy on overlay--listing
         $( "#overlayListingReturnPolicy" ).text( OBB.model.current_store.single_listing.return_policy );
 
     },
 
-    overlayTermsAndConditions: function(){
+    overlayTermsAndConditions: function() {
         // render Terms and Conditions on overlay--listing
         $( "#overlayListingTermsAndConditions" ).text( OBB.model.current_store.single_listing.terms_and_conditions );
+    },
+
+    overlayPurchase: function() {
+        // render buttons at bottom of overlay--purchase
+        $( "#PurchaseOverlay__body__bottom" ).replaceWith( OBB.templates.overlayPurchaseBottom( OBB.model.current_store.single_listing.url ) );
+
     },
 
     overlayListing: function() {
@@ -97,6 +103,7 @@ OBB.controller.render = {
         OBB.controller.render.overlayListingShipping();
         OBB.controller.render.overlayListingReturnPolicy();
         OBB.controller.render.overlayTermsAndConditions();
+        OBB.controller.render.overlayPurchase();
     },
 
 };

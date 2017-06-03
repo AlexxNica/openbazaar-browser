@@ -192,6 +192,37 @@ OBB.templates = {
         return to_print;
     },
 
+    overlayPurchaseBottom: function ( url ) {
+        to_print = '';
+
+        to_print += '<div class="PurchaseOverlay__body__bottom" id="PurchaseOverlay__body__bottom">\n';
+        to_print += '    <p>\n';
+        to_print += '        Already have the OpenBazaar app?\n';
+        to_print += '    </p>\n';
+        to_print += '    <div>\n';
+        to_print += '        <a href="' + url + '" class="button--shadowed strong">\n';
+        to_print += '            Open this listing in OpenBazaar\n';
+        to_print += '        </a> \n';
+        to_print += '        <p>\n';
+        to_print += '            View this listing in OpenBazaar\n';
+        to_print += '        </p>\n';
+        to_print += '    </div>\n';
+        to_print += '<div>\n';
+        to_print += '    <div class="button--shadowed strong" id="click-to-copy" data-clipboard-target="#listing-url">\n';
+        to_print += '        Copy URL\n';
+        to_print += '        <div id="copied-indicator">\n';
+        to_print += '            Copied!\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '    <p>\n';
+        to_print += '        Listing URL: <span id="listing-url">' + url + '</span>\n';
+        to_print += '    </p>\n';
+        to_print += '</div>\n';
+        to_print += '</div>\n';
+
+        return to_print;
+    },
+
     pageNodeNavSummary: function( node_summary ) {
         to_print = '';
 

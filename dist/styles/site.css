@@ -2976,6 +2976,7 @@ p {
       width: 50px; }
 
 .Header__search {
+  position: relative;
   display: -ms-inline-flexbox;
   display: inline-flex;
   -ms-flex-item-align: center;
@@ -3786,13 +3787,34 @@ p {
     margin-bottom: 15px;
     -ms-flex-align: center;
         align-items: center; }
-    .PurchaseOverlay__body__bottom > div > a {
-      margin-right: 10px; }
+    .PurchaseOverlay__body__bottom > div > .button--shadowed {
+      margin-right: 10px;
+      position: relative; }
     .PurchaseOverlay__body__bottom > div > p {
       color: #7a7a7a;
       font-size: 14px; }
     .PurchaseOverlay__body__bottom > div:last-child {
       margin-bottom: 0; }
+
+#copied-indicator {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
+  background-color: #222;
+  color: #fff; }
+
+#copied-indicator.active {
+  opacity: 1; }
 
 .NotViewable.max-width {
   max-width: 700px; }

@@ -9,11 +9,5 @@ OBB.functions.titleCase = function(str) {
 
 OBB.functions.apiStore = function( data, prop_name ) {
 	// store data in OBB.controller.api_returns['prop_name']
-	console.log('apiStore is being called');
-	console.log('prop_name is ' + prop_name);
-	console.log('thing being stored is ', data)
 	OBB.controller.api_returns[prop_name] = data;
-	console.log('finshed storing the data');
-	console.log('OBB.controller.api_returns[\'' + prop_name + '\'] is:');
-	console.log(OBB.controller.api_returns[prop_name]);
 };

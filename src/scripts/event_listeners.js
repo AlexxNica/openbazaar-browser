@@ -31,8 +31,6 @@ OBB.controller.event_listeners = function() {
                 url: api_request_profile,
                 type: 'GET',
                 success: function( data ){ 
-                    console.log( 'Profile call was successful' );
-                    console.log( data );
                     api_response_profile.resolve( data );
                 },
                 error: function( data ) {
@@ -46,8 +44,6 @@ OBB.controller.event_listeners = function() {
                 url: api_request_listings,
                 type: 'GET',
                 success: function( data ){ 
-                    console.log( 'Listings call was successful' );
-                    console.log( data );
                     api_response_listings.resolve( data );
                 },
                 error: function( data ) {
@@ -65,9 +61,6 @@ OBB.controller.event_listeners = function() {
         // After API calls resolve
         $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
             if ( profile && listings ) {
-                console.log( 'both were successful' );
-                console.log( profile );
-                console.log( listings );
 
                 // store api info in OBB.controller.api_returns. OBB.functions.apiStore will do this for us.
                 OBB.functions.apiStore( profile, 'profile' );
@@ -79,12 +72,10 @@ OBB.controller.event_listeners = function() {
                 // re-render page--node using OBB.controller.render
                 OBB.controller.render.pageNode();
 
-                console.log('re-rendered');
-
             } else { 
                 // At least one API call was unsuccessful
                 // TODO
-                console.log( 'at least one wasn\'t successful' );
+                console.log( 'at least one API call wasn\'t successful' );
             }
         });
     });
@@ -127,8 +118,6 @@ OBB.controller.event_listeners = function() {
                 url: api_request_single_listing,
                 type: 'GET',
                 success: function( json ){ 
-                    console.log( 'Single listing call was successful' );
-                    console.log( json );
                     OBB.controller.api_returns.single_listing = json;
                     // run get-data and store the result in the model
                     OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
@@ -151,7 +140,7 @@ OBB.controller.event_listeners = function() {
         // scroll back to top of listings
         $('html, body').animate({
             scrollTop: $('#TabContainer .Node__header > h1').offset().top
-        }, 'fast');
+        }, 'slow');
     });
 
      // clicking "View photos" on overlay--listing scrolls to Slideshow
@@ -159,7 +148,7 @@ OBB.controller.event_listeners = function() {
         // scroll back to top of slideshow
         $('html, body').animate({
             scrollTop: $('#ListingSlideshow').offset().top
-        }, 'fast');
+        }, 'slow');
     });
 
     // clicking 'BUY NOW' button on listing overlay reveals purchase overlay
@@ -168,22 +157,20 @@ OBB.controller.event_listeners = function() {
         // scroll to top
         $('html, body').animate({
             scrollTop: $('#page--node').offset().top
-        }, 'fast');
+        }, 'slow');
     });
 
     // pressing ESC key hides overlay--purchase or overlay--listing as appropriate
     $("body").on( 'keyup', function (e) {
-        console.log('event fired', e);
         if (e.keyCode == 27) { // escape key maps to keycode `27`
             if ($("#overlay--purchase").hasClass("active")) {
                 $(".overlay--purchase").removeClass("active");
-                console.log('overlay--purchase has class active');
             } else {
                 $(".overlay--listing").removeClass("active");
                 // scroll back to top of listings
                 $('html, body').animate({
                     scrollTop: $('#TabContainer .Node__header > h1').offset().top
-                }, 'fast');
+                }, 'slow');
             };
         };
     });
@@ -192,6 +179,16 @@ OBB.controller.event_listeners = function() {
     // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
     $("body").on( 'click', '.overlay--purchase .PurchaseOverlay__nav .click-to-close', function (e) {
         $(".overlay--purchase").removeClass("active");
+    });
+    // click to copy ob url button
+    clipboard = new Clipboard('#click-to-copy');
+    clipboard.on('success', function(e) {
+        e.clearSelection();
+        // show 'copied' indicator for 1 second
+        $('#copied-indicator').addClass("active");
+        setTimeout(function(){
+            $('#copied-indicator').removeClass("active");
+        }, 1000);
     });
 
 };

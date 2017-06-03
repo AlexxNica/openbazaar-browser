@@ -110,6 +110,7 @@ OBB.controller.get_data.singleListing = function(){
         shipping_options: listing.shippingOptions, // This could be more loosley coupled to the api
         return_policy: listing.refundPolicy,
         terms_and_conditions: listing.termsAndConditions,
+        ob_url: 'ob://' + listing.vendorID.peerID + '/store/' + listing.slug,
     };
 
     return result;
