@@ -1,4 +1,4 @@
-<div class="overlay--purchase overlay active" id="overlay--purchase">
+<div class="overlay--purchase overlay" id="overlay--purchase">
 	<div class="PurchaseOverlay max-width">
 		<nav class="PurchaseOverlay__nav">
 			<div class="click-to-close">

@@ -767,32 +767,19 @@ OBB.controller.api_returns = { // TODO remove this default testing data before l
     ],
     // response from https://gateway.ob1.io/ob/followers/[peerID]
     followers: [
-        "QmdbhP3spXaunm7k6gSbU5M3nwjTQxsBuzsyDLPzibSPtz",
-        "QmdswpzsKYsSNPXBmw7mFnfHwi31PwaGbnk8QPKFK9ZoAX",
-        "QmRDh9LuETJpJ1xDRZdeBy54fxez1KYUNdmgvtcQMQpgr6",
-        "QmXGXVADcGgp6eoaksccYaLQ3JcWgDd5NWQn7FbuaQC1Zz",
-        "QmcguX9HRJPH4L9aZjVoWjQXHw9sf9dp5MHgKz6sPxNeXT",
-        "QmcdnKmDwGAUUWa59ge6utrsZHr2PfntRVSLAbeEmJW2Rw",
-        "QmRieXKGL23vWTJcU8Z4jJS8zSmtpXf6w7RZwdNNfsuR6i",
-        "QmQd7NtnAwucjcoSyspX55usLiAQD2xYXZvWxe92XEdv8v",
-        "QmTdEppZWPcMhk7kPHL6qqxW7LUMX2SrymMfHExSrhXctZ"
+    
+        "QmfYJjS8yWUj57ez9bJbMYAPbYg8DtfanBKPtDGSpoKjKu",
+        "QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7",
+        "QmUv4Z57Sz9trwmDbb2rDWxZgjqLTSjcYZunNW2BVuZDCD",
+    
     ],
     // response from https://gateway.ob1.io/ob/following/[peerID]
     following: [
-        "QmNyYyRCEQPAvZRbwUqnvDkuqnrjni7VLWXirWMCzbzjPm",
-        "QmechoNQEBi3EJPYLrexRkuUCHLHKPsrNiS7BvAa5s5CNS",
-        "QmcwZ9HJKLq7jToUrTFsyNcbbJUC33V7sfQ8apSut9XTdp",
-        "QmanUuiLTckNXPDCfamKYJeWPjxBoCKrSwzi4XU7j9B3tr",
-        "QmZXGKrRRe5RTDhvzhZfSTe8vYBDGV7HBoNz5FS3U9FnUa",
-        "QmYcZjTpcpqnMpdPSyz27zVNkfWNsGaFWByAAu1pUBBQaN",
-        "QmbVRyhE2PVPz4ZjsjaaaphonRMKBeJC9KM5VFQbQLMYLk",
-        "QmdbhP3spXaunm7k6gSbU5M3nwjTQxsBuzsyDLPzibSPtz",
-        "QmPm9ygnVWNaU2Rq4j5xFFh9c4p86d8LLCWpG8y9aRDu4A",
-        "Qma1fPqcDKiLAWXQ9BCAsVCtftTL1FjDyjjX4rMMabd8Qf",
-        "QmbnoUad349NMDQfqdnLCYNupXxH5g2Qy1dS4uGYxNRXXw",
-        "QmRieXKGL23vWTJcU8Z4jJS8zSmtpXf6w7RZwdNNfsuR6i",
-        "QmcguX9HRJPH4L9aZjVoWjQXHw9sf9dp5MHgKz6sPxNeXT",
-        "QmNgBZN7z1CfMLbwyEwnGoixjbSaBcP9fS5ecMzZwCq3Ku"
+        "QmfYJjS8yWUj57ez9bJbMYAPbYg8DtfanBKPtDGSpoKjKu",
+        "QmZMt8gknPWSHRHNjJF31fd5rUZVUJdC49Fj5rVfaRiTkL",
+        "QmQEHtNVpeHzJS9jowdg7zFRVhL9ebcK3fimZk6yyxHqLT",
+        "QmUv4Z57Sz9trwmDbb2rDWxZgjqLTSjcYZunNW2BVuZDCD",
+        "QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7",
     ],
     // response from http://gateway.ob1.io/ipns/[nodeID]/ratings/index.json
     ratings: [

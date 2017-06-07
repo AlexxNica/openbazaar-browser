@@ -8,12 +8,18 @@ OBB.controller.event_listeners = function() {
     });
 
     // header search
-    $("body").on( 'click', "#Header__search__button", function () {
+    $("body").on( 'click', "#Header__search__button", function (e) {
+        e.stopPropagation();
         // get user input
         var user_input,
             api_request;
 
         user_input = $('#Header__search__input').val();
+
+        // show user status indicator
+        $('#Header__search__status').removeClass('error');
+        $('#Header__search__status').addClass('active');
+        $('#Header__search__status').text('searching...');
 
         // do some basic client side verifying of user_input so we aren't too hard on the API
         // TODO
@@ -34,7 +40,8 @@ OBB.controller.event_listeners = function() {
                     api_response_profile.resolve( data );
                 },
                 error: function( data ) {
-                    console.log('API call to https://gateway.ob1.io/ob/profile/user_input didn\'t go so well'); 
+                    console.log('API call to https://gateway.ob1.io/ob/profile/' + user_input + ' failed.');
+                    console.log( data );
                     api_response_profile.resolve( false );
                 }
             });
@@ -47,15 +54,17 @@ OBB.controller.event_listeners = function() {
                     api_response_listings.resolve( data );
                 },
                 error: function( data ) {
-                    console.log('API call to https://gateway.ob1.io/ob/listings/user_input didn\'t go so well'); 
+                    console.log('API call to https://gateway.ob1.io/ob/listings/' + user_input + ' failed.'); 
                     api_response_listings.resolve( false );
                 }
             });
         } catch(err) {
             // API calls didn't work out so well. Deal with it.
             // TODO
-            console.log( 'API calls didn\'t work out so well.' );
+            console.log( 'API calls didn\'t work out so well Err1.' );
             console.log( err );
+            $('#Header__search__status').addClass('error');
+            $('#Header__search__status').text('Error: Ajax failed.');
         }
         
         // After API calls resolve
@@ -72,10 +81,17 @@ OBB.controller.event_listeners = function() {
                 // re-render page--node using OBB.controller.render
                 OBB.controller.render.pageNode();
 
+                // Fetch Following and Follower peer IDs from API
+                OBB.controller.get_data.fetchFollowersAndFollowing();
+
+                // hide status indicator
+                $('#Header__search__status').text('Success!');
+                $('#Header__search__status').removeClass('active');
+
             } else { 
                 // At least one API call was unsuccessful
-                // TODO
-                console.log( 'at least one API call wasn\'t successful' );
+                $('#Header__search__status').addClass('error');
+                $('#Header__search__status').text('Store not found.');
             }
         });
     });
@@ -86,6 +102,13 @@ OBB.controller.event_listeners = function() {
         if(key == 13) {
             $('#Header__search__button').click();
             return false;  
+        }
+    });
+
+    // any click removes error message from header search
+    $("body").on( 'click', function () {
+        if ($('#Header__search__status').hasClass('active')) {
+            $('#Header__search__status').removeClass('active');
         }
     });
 
@@ -175,6 +198,23 @@ OBB.controller.event_listeners = function() {
         };
     });
 
+    // clicking Transaction Details on a review shows details
+    $("body").on( 'click', ".button--txn-details", function (e) {
+        e.stopPropagation();
+        console.log('txns clicked');
+        console.log($(this));
+        console.log('siblings', $(this).siblings('.ListingReview__bottom__txn-details').first());
+        if ($(this).siblings('.ListingReview__bottom__txn-details').first().hasClass('active')) {
+            // then remove active class and revert button color
+            $(this).siblings('.ListingReview__bottom__txn-details').first().removeClass('active');
+            $(this).removeClass('active');
+        } else {
+            // then add active class and change button color
+            $(this).siblings('.ListingReview__bottom__txn-details').first().addClass('active');
+            $(this).addClass('active');
+        }
+    });
+
     //  OVERLAY--PURCHASE LISTENERS
     // clicking &times; or "return to store" on overlay--purchase hides overlay--purchase
     $("body").on( 'click', '.overlay--purchase .PurchaseOverlay__nav .click-to-close', function (e) {
@@ -190,5 +230,70 @@ OBB.controller.event_listeners = function() {
             $('#copied-indicator').removeClass("active");
         }, 1000);
     });
+
+    // Get info and render Follower tab
+    $("body").on( 'click', "#tab--followers", function () {
+        console.log('followers tab clicked');
+        // make an api call for each peerID in OBB.model.current_store.follower_ids
+        var deferreds = [],
+            responses = [];
+
+        $.each(OBB.model.current_store.follower_ids, function(index, follower_id) {
+            console.log('deffered added');
+            deferreds[index] = $.Deferred()
+        });
+
+        $.each(OBB.model.current_store.follower_ids, function(index, follower_id) {
+            console.log('api request made');
+            // request profile info for each follower_id
+            try {                
+                // request for proile info
+                $.ajax({
+                    url: 'https://gateway.ob1.io/ob/profile/' + follower_id + '?usecache=true',
+                    type: 'GET',
+                    success: function( data ){
+                        responses.push(data);
+                        deferreds[index].resolve( true );
+                    },
+                    error: function( data ) {
+                        console.log('API call to https://gateway.ob1.io/ob/profile/' + follower_id + '?usecache=true failed');
+                        console.log( data );
+                        deferreds[index].resolve( false );
+                    }
+                });
+            } catch( err ) {
+                // API calls didn't work out so well.
+                console.log( 'Failed to fetch follower data.', err );
+            }
+        });        
+        
+        // After API calls resolve
+       $.when.apply($, deferreds).done(function () {
+            console.log('deffereds all resolved');
+            if ( responses.length > 0 ) {
+                // create cards and display them
+                $.each(responses, function(index, response) {
+                    console.log(response);
+                    //construct a store card and append it.
+                    //TODO
+                });
+            } else {
+                // then no follower data was retrieved from the API
+                // TODO
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
 
 };

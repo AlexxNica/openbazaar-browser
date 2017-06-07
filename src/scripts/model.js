@@ -9,3 +9,4 @@ OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCard
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
 OBB.model.current_store.countries = OBB.controller.get_data.countries();
 OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
+OBB.model.current_store.follower_ids = OBB.controller.get_data.followerIDs(); // array of peerIDs

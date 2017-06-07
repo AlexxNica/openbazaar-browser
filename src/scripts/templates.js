@@ -15,7 +15,9 @@ OBB.templates = {
         to_print += '   </div>\n';
         to_print += '   <div class="NodeCard__body">\n';
         to_print += '       <span class="NodeCard__name">' + data.name + '</span>\n';
-        to_print += '       <span class="NodeCard__handle">@' + data.handle + '</span>\n';
+        if (data.handle) {
+            to_print += '       <span class="NodeCard__handle">@' + data.handle + '</span>\n';
+        }
         to_print += '       <p>\n';
         to_print += '           ' + data.about + '\n';
         to_print += '       </p>\n';
@@ -406,10 +408,200 @@ OBB.templates = {
         return to_print;
     },
 
-    overlayListingReviews: function( listing ){
+    overlayListingIndividualReview: function( rating ){
+        var data = rating.data;
+
         to_print = '';
 
-        // TODO
+        to_print += '<div class="flex ListingReview">\n';
+        to_print += '    <div class="ListingReview__left">\n';
+        to_print += '        <div class="ListingReview__header">\n';
+        to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A'); + ' <a>Elon Musk</a>\n';
+        to_print += '        </div>\n';
+        to_print += '        <div class="ListingReview__body">\n';
+        to_print += '            <p>' + data.review + '<p>\n';
+        to_print += '        </div>\n';
+        to_print += '        <div class="ListingReview__bottom">\n';
+
+
+        to_print += '            <div class="ListingReview__bottom__txn-details">\n';
+        to_print += '                <pre>' + JSON.stringify(rating, null, 2) + '</pre>\n';
+        to_print += '            </div>\n';
+        to_print += '            <button class="button--shadowed button--txn-details">\n';
+        to_print += '                Transaction Details\n';
+        to_print += '            </button>\n';
+        to_print += '        </div>\n';
+        to_print += '    </div>\n';
+        to_print += '    <div class="ListingReview__right">\n';
+        to_print += '        <ul class="ListingRatings">\n';
+        to_print += '            <li class="ListingRating">\n';
+        to_print += '                <div class="ListingRating__left">\n';
+        to_print += '                    Overall\n';
+        to_print += '                </div>\n';
+        to_print += '                <div class="ListingRating__right';
+
+        switch(parseInt(data.overall, 10)) {
+            case 5:
+                to_print += ' stars--5">\n';
+                break;
+            case 4:
+                to_print += ' stars--4">\n';
+                break;
+            case 3:
+                to_print += ' stars--3">\n';
+                break;
+            case 2:
+                to_print += ' stars--2">\n';
+                break;
+            case 1:
+                to_print += ' stars--1">\n';
+                break;
+            default:
+                to_print += ' stars--0">\n';
+        }
+
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                </div>\n';
+        to_print += '            </li>\n';
+        to_print += '            <li class="ListingRating">\n';
+        to_print += '                <div class="ListingRating__left">\n';
+        to_print += '                    Quality\n';
+        to_print += '                </div>\n';
+        to_print += '                <div class="ListingRating__right';
+        
+        switch(parseInt(data.quality, 10)) {
+            case 5:
+                to_print += ' stars--5">\n';
+                break;
+            case 4:
+                to_print += ' stars--4">\n';
+                break;
+            case 3:
+                to_print += ' stars--3">\n';
+                break;
+            case 2:
+                to_print += ' stars--2">\n';
+                break;
+            case 1:
+                to_print += ' stars--1">\n';
+                break;
+            default:
+                to_print += ' stars--0">\n';
+        }
+
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                </div>\n';
+        to_print += '            </li>\n';
+        to_print += '            <li class="ListingRating">\n';
+        to_print += '                <div class="ListingRating__left">\n';
+        to_print += '                    Delivery Speed\n';
+        to_print += '                </div>\n';
+        to_print += '                <div class="ListingRating__right';
+
+        switch(parseInt(data.deliverySpeed, 10)) {
+            case 5:
+                to_print += ' stars--5">\n';
+                break;
+            case 4:
+                to_print += ' stars--4">\n';
+                break;
+            case 3:
+                to_print += ' stars--3">\n';
+                break;
+            case 2:
+                to_print += ' stars--2">\n';
+                break;
+            case 1:
+                to_print += ' stars--1">\n';
+                break;
+            default:
+                to_print += ' stars--0">\n';
+        }
+
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                </div>\n';
+        to_print += '            </li>\n';
+        to_print += '            <li class="ListingRating">\n';
+        to_print += '                <div class="ListingRating__left">\n';
+        to_print += '                    Matched Description\n';
+        to_print += '                </div>\n';
+        to_print += '                <div class="ListingRating__right';
+
+        switch(parseInt(data.description, 10)) {
+            case 5:
+                to_print += ' stars--5">\n';
+                break;
+            case 4:
+                to_print += ' stars--4">\n';
+                break;
+            case 3:
+                to_print += ' stars--3">\n';
+                break;
+            case 2:
+                to_print += ' stars--2">\n';
+                break;
+            case 1:
+                to_print += ' stars--1">\n';
+                break;
+            default:
+                to_print += ' stars--0">\n';
+        }
+
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                </div>\n';
+        to_print += '            </li>\n';
+        to_print += '            <li class="ListingRating">\n';
+        to_print += '                <div class="ListingRating__left">\n';
+        to_print += '                    Customer Service\n';
+        to_print += '                </div>\n';
+        to_print += '                <div class="ListingRating__right';
+
+        switch(parseInt(data.customerService, 10)) {
+            case 5:
+                to_print += ' stars--5">\n';
+                break;
+            case 4:
+                to_print += ' stars--4">\n';
+                break;
+            case 3:
+                to_print += ' stars--3">\n';
+                break;
+            case 2:
+                to_print += ' stars--2">\n';
+                break;
+            case 1:
+                to_print += ' stars--1">\n';
+                break;
+            default:
+                to_print += ' stars--0">\n';
+        }
+
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                    <i class="fa fa-star icon--star" aria-hidden="true"></i>\n';
+        to_print += '                </div>\n';
+        to_print += '            </li>\n';
+        to_print += '        </ul>\n';
+        to_print += '    </div>\n';
+        to_print += '</div>\n';
 
         return to_print;
     },

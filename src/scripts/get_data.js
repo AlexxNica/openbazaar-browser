@@ -70,7 +70,7 @@ OBB.controller.get_data.contactInfo = function() {
 
     return result;
 };
-OBB.controller.get_data.singleListing = function(){
+OBB.controller.get_data.singleListing = function() {
     var listing = OBB.controller.api_returns.single_listing.listing,
         images = [];
 
@@ -98,6 +98,7 @@ OBB.controller.get_data.singleListing = function(){
 
     result = {
         title: listing.item.title,
+        slug: listing.slug,
         price: (parseFloat(listing.item.price) / 100).toFixed(2),
         options: listing.item.options,
         type: type,
@@ -115,3 +116,22 @@ OBB.controller.get_data.singleListing = function(){
 
     return result;
 };
+
+OBB.controller.get_data.followerIDs = function() {
+    result = OBB.controller.api_returns.followers;
+
+    return result;
+};
+OBB.controller.get_data.fetchFollowersAndFollowing = function () {
+    // Make API calls to get following and follwer peerIDs, then store in OBB.controller.api_returns
+    //TODO
+};
+OBB.controller.get_data.followerCardInfo = function() {
+    result = OBB.controller.api_returns.profile.followers;
+
+    return result;
+};
+
+
+
+

@@ -70,7 +70,54 @@ OBB.controller.render = {
     },
 
     overlayListingReviews: function() {
-        // TODO
+        // Get list of rating hashes from API (one call)
+        try {                
+            // request for rating hashes
+            $.ajax({
+                url: 'https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug,
+                type: 'GET',
+                success: function( rating_hashes_response ){
+                    console.log('response is ', rating_hashes_response);
+                    rating_hashes = rating_hashes_response.ratings;
+                    if ( rating_hashes.length == 0 ) {
+                        $('#ListingReviews__wrapper').text('No ratings available.');
+                    }
+                    // For the first 5 rating hashes (or all of them if there are fewer than 5) get the full ratings (max num_reviews_to_show API calls)
+                    // TODO
+                    num_ratings_to_show = Math.max(5, rating_hashes.length);
+                    $.each(rating_hashes.slice(0, num_ratings_to_show), function(index, rating_hash) {
+                        try {                
+                            // request for individual rating
+                            $.ajax({
+                                url: 'https://gateway.ob1.io/ob/rating/' + OBB.model.current_store.peer_id + '/' + rating_hash,
+                                type: 'GET',
+                                success: function( rating_hash_response ){
+                                    rating = rating_hash_response;
+                                    // Build the rating info with OBB.controller.templates.overlayListingIndividualReview( rating )
+                                    //  and make it child of $('#ListingReviews__wrapper')
+                                    $('#ListingReviews__wrapper').append( OBB.templates.overlayListingIndividualReview( rating ) );
+                                },
+                                error: function( data ) {
+                                    console.log('https://gateway.ob1.io/ob/rating/' + OBB.model.current_store.peer_id + '/' + rating_hash + ' failed');
+                                    console.log( data );
+                                }
+                            });
+                        } catch( err ) {
+                            // Ajax didn't work out so well.
+                            console.log( 'Ajax call(s) failed', err );
+                        }
+                    });
+                },
+                error: function( data ) {
+                    $('#ListingReviews__wrapper').text('No ratings available.');
+                    console.log('https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug + ' failed');
+                    console.log( data );
+                }
+            });
+        } catch( err ) {
+            // API calls didn't work out so well.
+            console.log( 'Failed to fetch rating hashes.', err );
+        }
     },
 
     overlayListingShipping: function() {

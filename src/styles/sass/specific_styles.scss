@@ -214,9 +214,11 @@ p {
     position: relative;
     display: inline-flex;
     align-self: center;
+    --Header-search-input-width: 312px;
+    --Header-search-input-height: 36px;
     > input {
-        height: 36px;
-        width: 312px;
+        height: var(--Header-search-input-height);
+        width: var(--Header-search-input-width);
         border: 2px solid $background-gray;
         border-radius: 3px;
         padding: 10px 12px;
@@ -225,9 +227,25 @@ p {
         font-size: 14px;
         margin-right: 6px;
     }
-    > .Header__search__status {
-
-    }
+}
+#Header__search__status {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+    width: var(--Header-search-input-width);
+    top: var(--Header-search-input-height);
+    z-index: 100;
+    background-color: #1062a9;
+    border-radius: 3px;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 10px;
+}
+#Header__search__status.active {
+    opacity: 1;
+}
+#Header__search__status.error {
+    background-color: #b91303;
 }
 .Node {
     position: relative;
@@ -681,7 +699,6 @@ p {
     flex-direction: column;
     width: calc(100% - 350px);
     margin-right: 60px;
-    padding-bottom: 38px; // allows room for button
 }
 .ListingReview__header {
     font-weight: 600;
@@ -691,9 +708,31 @@ p {
     }
 }
 .ListingReview__bottom {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     > .button--txn-details {
-        position: absolute;
-        bottom: 20px;
+        width: 200px;
+        margin-top: 5px;
+        transition: background-color 0.6s ease-in;
+        &.active {
+            background-color: #000;
+            color: #fff;
+        }
+    }
+}
+.ListingReview__bottom__txn-details {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s ease-out;
+    background-color: lightgray;
+    > pre {
+        line-height: 18px;
+    }
+    &.active {
+        height: 200px;
+        overflow: scroll;
     }
 }
 .ListingRatings {
