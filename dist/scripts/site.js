@@ -261,13 +261,13 @@ OBB.controller.event_listeners = function() {
         // TODO
 
         // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
-        // TODO
+        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
+            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
+            api_response_profile = $.Deferred(),
+            api_response_listings = $.Deferred(),
+            api_response_followers = $.Deferred(),
+            api_response_following = $.Deferred();
         try {
-            var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input;
-            var api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input;
-            var api_response_profile = $.Deferred();
-            var api_response_listings = $.Deferred();
-            
             // request for proile info
             $.ajax({
                 url: api_request_profile,
@@ -282,7 +282,7 @@ OBB.controller.event_listeners = function() {
                 }
             });
 
-            // request for lisings info
+            // request for listings info
             $.ajax({
                 url: api_request_listings,
                 type: 'GET',
@@ -303,7 +303,7 @@ OBB.controller.event_listeners = function() {
             $('#Header__search__status').text('Error: Ajax failed.');
         }
         
-        // After API calls resolve
+        // After profile and listings API calls resolve
         $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
             if ( profile && listings ) {
 
@@ -317,18 +317,57 @@ OBB.controller.event_listeners = function() {
                 // re-render page--node using OBB.controller.render
                 OBB.controller.render.pageNode();
 
-                // Fetch Following and Follower peer IDs from API
-                OBB.controller.get_data.fetchFollowersAndFollowing();
-
                 // hide status indicator
                 $('#Header__search__status').text('Success!');
                 $('#Header__search__status').removeClass('active');
 
+                // grab following and followers hashes then update the nav tabs to show counts
+                try {                
+                    // request for following hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_following.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            api_response_following.resolve( [] );
+                        }
+                    });
+                    // request for followers hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_followers.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            api_response_followers.resolve( [] );
+                        }
+                    });
+                } catch( err ) {
+                    // AJAX call didn't work out so well.
+                    console.log( 'AJAX call failed', err );
+                }
             } else { 
                 // At least one API call was unsuccessful
                 $('#Header__search__status').addClass('error');
                 $('#Header__search__status').text('Store not found.');
             }
+        });
+
+        // After follwer and following API calls resolve
+        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
+            //store data in OBB.controller.api_returns
+            OBB.controller.api_returns.following = following;
+            OBB.controller.api_returns.following = following;
+            // add to model
+            OBB.model.current_store.following = OBB.controller.get_data.following();
+            OBB.model.current_store.followers = OBB.controller.get_data.followers();
+            // update view
+            OBB.controller.render.pageNodeNavTabs();
         });
     });
 
@@ -547,1028 +586,118 @@ OBB.functions.apiStore = function( data, prop_name ) {
 	OBB.controller.api_returns[prop_name] = data;
 };
 // controller.api_returns stores API responses
-OBB.controller.api_returns = { // TODO remove this default testing data before live.
+OBB.controller.api_returns = {
     // Keep the API calls separate from the rest of the model.
     // This will make it much easier to swap out the API later on without
     // interfering with the model.
 
     // response from https://gateway.ob1.io/ob/profile/[peerID]
     profile: {
-        "peerID": "Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J",
-        "handle": "drwasho",
-        "name": "Washington Sanchez",
-        "location": "Brisbane",
-        "about": "The Dude",
-        "shortDescription": "A long, long, time ago... in a galaxy far away, Naboo was under an attack... screw Jar Jar Binks.",
+        "peerID": "",
+        "handle": "",
+        "name": "",
+        "location": "",
+        "about": "",
+        "shortDescription": "",
         "nsfw": false,
-        "vendor": true,
-        "moderator": true,
+        "vendor": false,
+        "moderator": false,
         "moderatorInfo": {
-            "description": "I am awesome",
-            "termsAndConditions": "You suck",
-            "languages": [
-                "English",
-                "Spanish",
-                "Portugese"
-            ],
-            "acceptedCurrency": "TBTC",
+            "description": "",
+            "termsAndConditions": "Y",
+            "languages": [],
+            "acceptedCurrency": "",
             "fee": {
                 "fixedFee": {
-                    "currencyCode": "USD",
-                    "amount": 1000
+                    "currencyCode": "",
+                    "amount": 0,
                 },
-                "percentage": 6,
-                "feeType": "FIXED_PLUS_PERCENTAGE"
+                "percentage": 0,
+                "feeType": ""
             }
         },
         "contactInfo": {
-            "website": "openbazaar.org",
-            "email": "drwasho@openbazaar.org",
-            "phoneNumber": "12345"
+            "website": "",
+            "email": "",
+            "phoneNumber": ""
         },
         "colors": {
-            "primary": "#000000",
-            "secondary": "#FFD700",
-            "text": "#ffffff",
-            "highlight": "#123ABC",
-            "highlightText": "#DEAD00"
+            "primary": "#FFFFFF",
+            "secondary": "#FFFFFF",
+            "text": "#000000",
+            "highlight": "#FFFFFF",
+            "highlightText": "000000"
         },
         "avatarHashes": {
-            "tiny": "QmW79kUqtmic2hdrp99NxeQCsQkGrPN5wTwP68QrrJoRve",
-            "small": "QmTFfAm1kzYoN4C8qaob8GX1djg3N5ZU5H9DQTqj6opy4g",
-            "medium": "QmS5Am7af6HHkUus9m9mZQ4MzccYkLmcoqNLzxzGzyBAoM",
-            "large": "QmWVNEUnGXXBQWF1inXPmfUdkDLtv3ud6JPt2UkCah8uw4",
-            "original": "QmasPYtZaoY5WqGKFQWqhBwTnaUXcuxxDiCmvidBiYWksh"
+            "tiny": "",
+            "small": "",
+            "medium": "",
+            "large": "",
+            "original": ""
         },
         "headerHashes": {
-            "tiny": "Qmf9WAWVYwSj3ts6EFqJ7xu6Bn5ayLkS4d85HzUmsocUmF",
-            "small": "QmYbvPFsNfLVesp4hbavJ1kivJJngaqC2kBxMQLHY46W87",
-            "medium": "QmYXd4BwbKzEw3TS6PTnfC1J3k6P4AaaprqAGddtvQkoSG",
-            "large": "QmRMPfbaX9jsNdibQ2YwALX5oUjMxd5Gim9WgLJ5M3u6u8",
-            "original": "QmQ6WqnrP2BPPKR916FuBkk9oisVw8U1YfHMuLDYT6qhwh"
+            "tiny": "",
+            "small": "",
+            "medium": "",
+            "large": "",
+            "original": ""
         },
         "stats": {
-            "followerCount": 9,
-            "followingCount": 14,
-            "listingCount": 12,
+            "followerCount": 0,
+            "followingCount": 0,
+            "listingCount": 0,
             "ratingCount": 0,
             "averageRating": 0
         },
-        "bitcoinPubkey": "03b54f70a26768dfc6335ff1896de9fb34c7c8de98b45141fc264913583b867387",
-        "lastModified": "2017-05-12T14:08:18.678533994Z"
+        "bitcoinPubkey": "",
+        "lastModified": ""
     },
     // response from https://gateway.ob1.io/ob/listings/[peerID]
-    listings: [
-        {
-            "averageRating": 3.2,
-            "categories": ['dogs', 'cats', 'shoes'],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Shoe",
-            "freeShipping": [],
-            "hash": "QmaEejHcEVZKbJ6iHFKd6idWtLKTCK13Lh2YyyL2Q3vQY6",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 2999,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "shoe",
-            "thumbnail": {
-                "medium": "QmfP7aCXFd9mzjnn3csCmTHxTMPMFMS4fF8hcDc3zxQmvg",
-                "small": "QmU6NsKDr34zA7wPiCRhdaWa5QRnouUgSmR27tujLLMeNR",
-                "tiny": "QmPuXLACw2uhjLfX8wwy3udxHXsXAHPBDZEKA95ST6Vn7v"
-            },
-            "title": "Shoe"
-        },
-        {
-            "averageRating": 1.5,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Yo",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmSYvSgedB1ZPr4v9aMWLLtZWzPnbzNKBtv4DXQ8B3KTjd",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 288,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "nike",
-            "thumbnail": {
-                "medium": "QmRMpfUn1z4gFcJrADJd6tNhfY63tYUGqD6Pe8HaBXAWLz",
-                "small": "QmdgEc9k2k2131VWKzvDBaaasaRFQGrfgm9cR47PRL4371",
-                "tiny": "QmWGgYrnAbZGJFAYeBXzcMn5KxhDom3oktDNZSuYBoxhnf"
-            },
-            "title": "Nike"
-        },
-        {
-            "averageRating": 5.0,
-            "categories": ['cats', 'shoes'],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Blah",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmcfWt6Gogofy1R5kGKFDTT5DtKg3tnZxqPeco7WZxx6Nc",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "a-leaf-on-the-wind",
-            "thumbnail": {
-                "medium": "QmVsk85NzufcZtqoxZzU8N1PnksmoyuTQSVKJ65UycFzzb",
-                "small": "QmVTw7N6n29wHqLAi9vhwQxwYMAsuUUZ4eKbeRqWKAceeR",
-                "tiny": "Qmb22kXXvG8HJUoNWQHkjuPnwaVNnnpkP3jerYZnLAm5CK"
-            },
-            "title": "A leaf on the wind"
-        },
-        {
-            "averageRating": 3.7,
-            "categories": ['shoes'],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmU28bqgq2EBDV2qCGSyFs8ASDYD8k22Cu7nrWmxGC4T74",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "cheap-leaft",
-            "thumbnail": {
-                "medium": "QmeaNff4y6RxmHrVG5Y4LfciBickJxWzh5MGSzKmmxV3TZ",
-                "small": "QmRu6tMFaTbquWfAHKMDRVueasc6Sb5hWTMZCs3B5Y39ej",
-                "tiny": "QmaVMBtKADCBW68hYn8mHDQForhPAwTyNZU4B2xds7gN7v"
-            },
-            "title": "Cheap leaft"
-        },
-        {
-            "averageRating": 4.4,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Sounds like vomit, but apparently it is clothing.",
-            "freeShipping": [],
-            "hash": "QmZXEaFtMm2WrgsSTVWjcbVaWjiVwPa6as2xUPFEoDFwVo",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "blarf",
-            "thumbnail": {
-                "medium": "QmcsiL2wP7kviyN4jbx6UeXwioFqFxyXVocgQEx1YAnBWu",
-                "small": "QmP7Z8m6p3RYdArT6xCyEJGET4RSyJAe8KZ2MQpTCzzWes",
-                "tiny": "Qmar7W17swHhYmEqhanDuvfHUCKWz5iq6D7t23s3idUt6X"
-            },
-            "title": "Blarf"
-        },
-        {
-            "averageRating": 0.1,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "1 earring",
-            "freeShipping": [],
-            "hash": "QmcLyNhwFYKozsSLSzqyyq2NksZpz3x9mLW2e6BVmLnQWd",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "AFGHANISTAN"
-            ],
-            "slug": "earrings",
-            "thumbnail": {
-                "medium": "QmUXDeFwD19KwEsGt8oECVSUgepjDYQadzNmLkjboGVGGs",
-                "small": "QmTZFsGgfs96YbvSzjCShNup9eQorfX1TmmBoshPrFjceY",
-                "tiny": "QmPeGyFqLCTDUhFWkhCXqsp5mEPYgFPyvFA4eLwWKRCuiq"
-            },
-            "title": "Earrings"
-        },
-        {
-            "averageRating": 2.5,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Test",
-            "freeShipping": [],
-            "hash": "QmbEdUjpEXfvwzb8NkdYzbJaN8xutkNWo1SDyL15VdUQ97",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "test",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Test"
-        },
-        {
-            "averageRating": 5,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Stuff",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmY1QkeGbr5qAGasA7GHcggDn8R6mc2LVhna8SqcVSEszd",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "stuff",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Stuff"
-        },
-        {
-            "averageRating": 4,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "I don\u0026#39;t care",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmNoEPqv8DzzeJgkT4HHP6oNY7uqdzK1fS55hDqSq8VLj5",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "whatever",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Whatever"
-        },
-        {
-            "averageRating": 2.9,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Water",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmatqBSAtWzMwqX1iARErGnq3t3wAyo6pg99UpPKdf1Mgi",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "assfall",
-            "thumbnail": {
-                "medium": "QmbBigxQ9W9MhHt9u4xEawfbctBqunZsaryJ1VHNDwg18L",
-                "small": "QmQMhXC1NgdwaAxScUnQRsQdRA2oxqvxm1m3rtnehJ454Q",
-                "tiny": "QmaBnTE5SsaWmNs52XSZF3yiJQr8Q9kZwDeobER1Ep7y4i"
-            },
-            "title": "Assfall"
-        },
-        {
-            "averageRating": 3.3,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Green thing",
-            "freeShipping": [],
-            "hash": "QmVpADARfkvqsEqqGqGXdfVrVQvT4uP4vo3SDE62htvdHi",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "AFGHANISTAN",
-                "ALGERIA"
-            ],
-            "slug": "a-small-tree",
-            "thumbnail": {
-                "medium": "QmWK43EEst27qShmAFqPMgGCj1cowjvggcuJjKyK7Aem8N",
-                "small": "QmVR9PQiTKnGwc3Vgx624hcTtoPN7vscXipNLNEaYptjCX",
-                "tiny": "QmZLuV99jy7eqfadLR7z4ucqvdgSqy8QhyavtfcTq7CPQK"
-            },
-            "title": "A small tree"
-        },
-        {
-            "averageRating": 3,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "This is a listing example.",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmYxWoTH683GvzRMrum19iaRa61x5WLhvbb1cwFNk4WFCq",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "vintage-dress-options",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 2.4,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Test",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmeAr6oTt3H8kTwkzdFZcckH7gYbJruTVVuVhyxmeQuGSK",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "test1",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Test"
-        },
-        {
-            "averageRating": 4.5,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Test 2",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmckU3dnmTcHsPK3FgkB1cPajaKmhUr1sjPy3Nhn2FvtHQ",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "test-2",
-            "thumbnail": {
-                "medium": "QmcsiL2wP7kviyN4jbx6UeXwioFqFxyXVocgQEx1YAnBWu",
-                "small": "QmP7Z8m6p3RYdArT6xCyEJGET4RSyJAe8KZ2MQpTCzzWes",
-                "tiny": "Qmar7W17swHhYmEqhanDuvfHUCKWz5iq6D7t23s3idUt6X"
-            },
-            "title": "Test 2"
-        },
-        {
-            "averageRating": 4.7,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "This is a listing example.",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmebrxpfdsimQmBa2CBF7fM8iyj2kkGjZm4NHW47kZbka2",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "vintage-nice-dress-image-variants-a",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 0,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "This is a listing example.",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmaJ1gSSA8Hefwo6ZsP7D6BVoeDHwXm31jjujUhwrA1UUC",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "vintage-nice-dress-image-variants-b",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 2.5,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Testing",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "Qmc7AreZNJv9SxuwksSqpQgLZjTdvYVqQ8Tjj8U5dpcw5J",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "test-mix-in",
-            "thumbnail": {
-                "medium": "QmZvKEHvg9Qvf8344Eo5uRTpLAS8xZLGVpkpc2KCiqYYyU",
-                "small": "QmdySNWcF5DRa4mJiPaeWMcugNiCxeFv2hG9fzbabN25DM",
-                "tiny": "QmXM5YLcaiGj9DnfnTwGuJSyshQR9j1xZkHfwsgaUuNH4E"
-            },
-            "title": "Test mix-in"
-        },
-        {
-            "averageRating": 0,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Blah",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmV4U7QqrbkZboqGe4WLHHY6XjbyUfpGhQGmPKCKZCqdVx",
-            "language": "",
-            "nsfw": true,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "testing-something-else",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Testing something else"
-        },
-        {
-            "averageRating": 0,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Test",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmQfWiWSWfu4cXRSPRBrfm6pHsxeesn84NQ8Jpe2LSRA4P",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "test-2-options-mobile",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Test 2 options mobile"
-        },
-        {
-            "averageRating": 0,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Very shy",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "Qmbn5aM3eBRLEmnKdQc8T1iEJio6NR6PcBPds3wrbuGwYk",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "shy-leaf",
-            "thumbnail": {
-                "medium": "QmWk4NQPjPkjpQyWE2315MjMmdjqpwUsnF9m3orvrQmDZn",
-                "small": "QmZdieEwv9FjKzDZqiCnwrLfxSDAXnUuFKifjfH1FHHLny",
-                "tiny": "QmZuHP9kLcb73iuf6facowVjAp1TjvwnBdTMj1sJyyYHBe"
-            },
-            "title": "Shy Leaf"
-        },
-        {
-            "averageRating": 0,
-            "categories": [],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "Stuff",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmSF4Z98FYa68G4LFgDp7D5t1vn6jPHGjpqajy6qenMrJK",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 100,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "testing-stuff",
-            "thumbnail": {
-                "medium": "QmU6K13NwVr8aAT4ycaD9oqX9k222UQxd6kmTj4FrC6P9m",
-                "small": "QmZg84nusPK5CoFzxiphBmqtqJBFDv58FHFH3onvYjVx3B",
-                "tiny": "QmeXPeWv6cv2dhimFY1A6y7ogXBD8rQFz1sXjy7smBjthP"
-            },
-            "title": "Testing stuff"
-        },
-        {
-            "averageRating": 0,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "PHYSICAL_GOOD",
-            "description": "This is a listing example.",
-            "freeShipping": [
-                "ALL"
-            ],
-            "hash": "QmRaDLFvra1dGcxoHU8qnve8WLJeyfFuMG3cPGRouYUjtV",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [
-                "ALL"
-            ],
-            "slug": "vintage-dress-no-options",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 0,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "DIGITAL_GOOD",
-            "description": "This is a listing example.",
-            "freeShipping": [],
-            "hash": "QmYn8G41EfTXm8zsH6iLXHjDMtiYozQWhnfqtxCddnYgQT",
-            "language": "",
-            "nsfw": true,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [],
-            "slug": "vintage-nice-dress-image-variants-digital",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 0,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "DIGITAL_GOOD",
-            "description": "This is a listing example.",
-            "freeShipping": [],
-            "hash": "QmSxCxzZkMPoBN2iJAoUJ5BgvAxrz28AiV47sZCZimeFSS",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [],
-            "slug": "vintage-dress-no-options-digital",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 0,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "SERVICE",
-            "description": "This is a listing example.",
-            "freeShipping": [],
-            "hash": "QmV9bXsL3MK5mhRuLyEC8fFyVrAydtRm5xaUiChCFJpv1c",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [],
-            "slug": "vintage-nice-dress-image-variants-service",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        },
-        {
-            "averageRating": 0,
-            "categories": [
-                "ðŸ‘š Apparel \u0026amp; Accessories"
-            ],
-            "contractType": "SERVICE",
-            "description": "This is a listing example.",
-            "freeShipping": [],
-            "hash": "QmaZuxXSyBR6ru5zYiTVwyG8L3yruhMUDq6ShkS4K6wB7Y",
-            "language": "",
-            "nsfw": false,
-            "price": {
-                "amount": 200,
-                "currencyCode": "USD"
-            },
-            "ratingCount": 0,
-            "shipsTo": [],
-            "slug": "vintage-dress-no-options-service",
-            "thumbnail": {
-                "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-            },
-            "title": "YuooMuoo V-neck Knitted Dress"
-        }
-    ],
+    listings: [],
     // response from https://gateway.ob1.io/ob/followers/[peerID]
-    followers: [
-    
-        "QmfYJjS8yWUj57ez9bJbMYAPbYg8DtfanBKPtDGSpoKjKu",
-        "QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7",
-        "QmUv4Z57Sz9trwmDbb2rDWxZgjqLTSjcYZunNW2BVuZDCD",
-    
-    ],
+    followers: [],
     // response from https://gateway.ob1.io/ob/following/[peerID]
-    following: [
-        "QmfYJjS8yWUj57ez9bJbMYAPbYg8DtfanBKPtDGSpoKjKu",
-        "QmZMt8gknPWSHRHNjJF31fd5rUZVUJdC49Fj5rVfaRiTkL",
-        "QmQEHtNVpeHzJS9jowdg7zFRVhL9ebcK3fimZk6yyxHqLT",
-        "QmUv4Z57Sz9trwmDbb2rDWxZgjqLTSjcYZunNW2BVuZDCD",
-        "QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7",
-    ],
-    // response from http://gateway.ob1.io/ipns/[nodeID]/ratings/index.json
-    ratings: [
-        {
-            "hash": "QmP1hPwssz2mg7fHtYbc6cUerrFgZS3CMuTHr7n1Qi5bcP",
-            "slug": "physical-options"
-        },
-        {
-            "hash": "QmUE9D6idzXk2GMkvSK7Jyr2uhjsPDVRuRBp7W8Y3jnDzk",
-            "slug": "physical-options"
-        },
-        {
-            "hash": "QmXeEoUEyKyVWDCqpAgJXj3cS3tN4ZXFDhYtvjVYQwqwvd",
-            "slug": "physical-options"
-        },
-        {
-            "hash": "QmPxCrXUfEgPeLjysQ1JVShTVp3gpKseQT1TP8FRsPdmii",
-            "slug": "physical-options"
-        }
-    ],
+    following: [],
     // response from https://gateway.ob1.io/ob/listing/[peerID]/[listing hash or slug]
     single_listing: {
         "listing": {
-            "slug": "vintage-dress-physical-options",
+            "slug": "",
             "vendorID": {
-                "peerID": "QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486",
+                "peerID": "",
                 "pubkeys": {
-                    "identity": "CAESIHbzRf6rFp6+G7IRfNa958pZhw2ry9v9vUhnYCW91Jhl",
-                    "bitcoin": "A/pQRimsUjNAO4g5v1M+DYPVM3rmKadFw2r+3Ahvdx2J"
+                    "identity": "",
+                    "bitcoin": ""
                 },
-                "bitcoinSig": "MEQCIA25T8QsYr3KEJxgR6C3qFGe2salolII/sczFB6Q6EIsAiBJRFZyQGf86pR5MJVABGmgBeED4l4AJphVp3QkilqZmw=="
+                "bitcoinSig": ""
             },
             "metadata": {
-                "version": 1,
-                "contractType": "PHYSICAL_GOOD",
-                "format": "FIXED_PRICE",
-                "expiry": "2037-12-31T05:00:00.000Z",
-                "acceptedCurrency": "TBTC",
-                "pricingCurrency": "USD"
+                "version": 0,
+                "contractType": "",
+                "format": "",
+                "expiry": "",
+                "acceptedCurrency": "",
+                "pricingCurrency": ""
             },
             "item": {
-                "title": "Vintage dress (physical; w/ options)",
-                "description": "This is a listing example.",
-                "processingTime": "3 days",
-                "price": 200,
-                "tags": [
-                    "vintage dress"
-                ],
-                "images": [
-                    {
-                        "filename": "front",
-                        "original": "QmNexx7SaJCVCjyGGG3j2k7fenn3iVhtWdm9RvKvT7GTLq",
-                        "large": "QmfTKL3Z67mWKTKf9XKSCj1ptmDRaZLr5yjPS4JrVDgo5h",
-                        "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                        "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                        "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-                    },
-                    {
-                        "filename": "cream",
-                        "original": "QmTEUnCjuQPj1ggj5UL5vJujkgBiNYY4jkteugnogiCJny",
-                        "large": "QmNsFdsX2LNALG2WBxw6E6FTPZWgJcRAcLHnKdWczrCNf9",
-                        "medium": "QmQaSzaoHzp8raZLtPEFyCjTnwfXvDGKdXFM83STDVWG43",
-                        "small": "QmP3BVFuga7N4XEX8iU2MFYC7pc6mfTRQRrpZbKiVy2Csr",
-                        "tiny": "QmU1cBgjyHpuzDYbEd4iDVuPzxgKM3CqhRhDJqkHWCKBXq"
-                    },
-                    {
-                        "filename": "black",
-                        "original": "QmZsZ78FJwt281gfeUvGzDnsBW7WNjPWW3aJWDKskhpCRr",
-                        "large": "QmXixGseetihe6vZiWcTw9N1pieok1YtRoxwvyd5d7jz6s",
-                        "medium": "QmZydpAJoLsJWbP5vmh59W6bW1kuiCV34yD62hq28AtP7b",
-                        "small": "QmcADxUo89ZsEAWiYsuUk7hrgjWDMKXL1CtoA9sTNrQFFP",
-                        "tiny": "QmdA3Nmc8VnwSvt98Deo2RQztEiCsAkNLhron73bnBzARe"
-                    },
-                    {
-                        "filename": "other_red",
-                        "original": "QmZpgjK4jXmdqPg8Jt9YHGVmiuowVve3sbN2AZx7GXioDF",
-                        "large": "QmbSQZNAL3pZspUYWm6WNBD1oEQ6i9EnWPEsnk1DfdKnAv",
-                        "medium": "QmcD4pkp7SwCmN95pFnED2hz1LfsoYTPpynxeZbxCMoYPL",
-                        "small": "QmRdYph9YrfpdzMsaDnuySj6U4AY9dZhmjd8Cv2e6SscUG",
-                        "tiny": "QmbRFtxNWqACak1vvMJrrxUjzWjTJbMqi3vdUK5ZYvibgt"
-                    }
-                ],
-                "categories": [
-                    "👚 Apparel \u0026 Accessories"
-                ],
-                "condition": "New",
-                "options": [
-                    {
-                        "name": "Color",
-                        "description": "Color of the dress.",
-                        "variants": [
-                            {
-                                "name": "Red",
-                                "image": {
-                                    "filename": "front",
-                                    "original": "QmNexx7SaJCVCjyGGG3j2k7fenn3iVhtWdm9RvKvT7GTLq",
-                                    "large": "QmfTKL3Z67mWKTKf9XKSCj1ptmDRaZLr5yjPS4JrVDgo5h",
-                                    "medium": "QmTJfeeapZwFM8EoZAuf16JsSJyxZtKaAR6hmWiMf4CTcF",
-                                    "small": "QmVsoT9iabv6GZhxhvtjSpQMJA6QyMivGTs6MmHJr6TBm9",
-                                    "tiny": "QmbjyAxYee4y3443kAMLcmRVwggZsRDKiyXnXus1qdJJWz"
-                                }
-                            },
-                            {
-                                "name": "Cream",
-                                "image": {
-                                    "filename": "cream",
-                                    "original": "QmTEUnCjuQPj1ggj5UL5vJujkgBiNYY4jkteugnogiCJny",
-                                    "large": "QmNsFdsX2LNALG2WBxw6E6FTPZWgJcRAcLHnKdWczrCNf9",
-                                    "medium": "QmQaSzaoHzp8raZLtPEFyCjTnwfXvDGKdXFM83STDVWG43",
-                                    "small": "QmP3BVFuga7N4XEX8iU2MFYC7pc6mfTRQRrpZbKiVy2Csr",
-                                    "tiny": "QmU1cBgjyHpuzDYbEd4iDVuPzxgKM3CqhRhDJqkHWCKBXq"
-                                }
-                            },
-                            {
-                                "name": "Black",
-                                "image": {
-                                    "filename": "black",
-                                    "original": "QmZsZ78FJwt281gfeUvGzDnsBW7WNjPWW3aJWDKskhpCRr",
-                                    "large": "QmXixGseetihe6vZiWcTw9N1pieok1YtRoxwvyd5d7jz6s",
-                                    "medium": "QmZydpAJoLsJWbP5vmh59W6bW1kuiCV34yD62hq28AtP7b",
-                                    "small": "QmcADxUo89ZsEAWiYsuUk7hrgjWDMKXL1CtoA9sTNrQFFP",
-                                    "tiny": "QmdA3Nmc8VnwSvt98Deo2RQztEiCsAkNLhron73bnBzARe"
-                                }
-                            }
-                        ]
-                    },
-                    {
-                        "name": "Sizes",
-                        "description": "Size of the dress.",
-                        "variants": [
-                            {
-                                "name": "Small"
-                            },
-                            {
-                                "name": "Medium"
-                            },
-                            {
-                                "name": "Large"
-                            },
-                            {
-                                "name": "Extra Large"
-                            }
-                        ]
-                    }
-                ],
-                "skus": [
-                    {
-                        "variantCombo": [
-                            0,
-                            0
-                        ],
-                        "productID": "dress-red-small"
-                    },
-                    {
-                        "variantCombo": [
-                            0,
-                            1
-                        ],
-                        "productID": "dress-red-medium"
-                    },
-                    {
-                        "variantCombo": [
-                            0,
-                            2
-                        ],
-                        "productID": "dress-red-large"
-                    },
-                    {
-                        "variantCombo": [
-                            1,
-                            0
-                        ],
-                        "productID": "dress-cream-small"
-                    },
-                    {
-                        "variantCombo": [
-                            1,
-                            1
-                        ],
-                        "productID": "dress-cream-medium"
-                    },
-                    {
-                        "variantCombo": [
-                            1,
-                            2
-                        ],
-                        "productID": "dress-cream-large"
-                    },
-                    {
-                        "variantCombo": [
-                            2,
-                            0
-                        ],
-                        "productID": "dress-black-small"
-                    },
-                    {
-                        "variantCombo": [
-                            2,
-                            1
-                        ],
-                        "productID": "dress-black-medium"
-                    },
-                    {
-                        "variantCombo": [
-                            2,
-                            2
-                        ],
-                        "productID": "dress-black-large"
-                    }
-                ]
+                "title": "",
+                "description": "",
+                "processingTime": "",
+                "price": 0,
+                "tags": [],
+                "images": [],
+                "categories": [],
+                "condition": "",
+                "options": [],
+                "skus": []
             },
-            "shippingOptions": [
-                {
-                    "name": "Worldwide",
-                    "type": "FIXED_PRICE",
-                    "regions": [
-                        "ALL"
-                    ],
-                    "services": [
-                        {
-                            "name": "Standard",
-                            "estimatedDelivery": "3 days"
-                        },
-                        {
-                            "name": "Express",
-                            "price": 1,
-                            "estimatedDelivery": "3 days"
-                        }
-                    ]
-                }
-            ],
-            "taxes": [
-            ],
-            "coupons": [
-            ],
-            "moderators": [
-            ],
-            "termsAndConditions": "Terms and conditions.",
-            "refundPolicy": "Refund policy."
+            "shippingOptions": [],
+            "taxes": [],
+            "coupons": [],
+            "moderators": [],
+            "termsAndConditions": "",
+            "refundPolicy": ""
         },
-        "signature": "PrVMTogOSfK/qmnINJaCYGja07nvKe1Vsw9kGO7ktUtGslCgj/L+71dt+4Gi2kNvqmapuoqtMYj8rCbJIlQIBA=="
+        "signature": ""
     },
 };
 // controller.get_data grabs data from API responses (stored in OBB.controller.api_returns) and 
@@ -1629,7 +758,8 @@ OBB.controller.get_data.summary = function() {
         about: OBB.controller.api_returns.profile.about,
         description: OBB.controller.api_returns.profile.shortDescription,
         avatar: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.avatarHashes.tiny,
-        header_img: './dist/images/example--dog05.jpg',// TODO replace with: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.headerHashes.large,
+        header_img_tiny: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.tiny, 
+        header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.small, // TODO change to large before production 
         location: OBB.controller.api_returns.profile.location,
         ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
@@ -1690,15 +820,16 @@ OBB.controller.get_data.singleListing = function() {
     return result;
 };
 
-OBB.controller.get_data.followerIDs = function() {
+OBB.controller.get_data.followers = function() {
     result = OBB.controller.api_returns.followers;
-
     return result;
 };
-OBB.controller.get_data.fetchFollowersAndFollowing = function () {
-    // Make API calls to get following and follwer peerIDs, then store in OBB.controller.api_returns
-    //TODO
+
+OBB.controller.get_data.following = function() {
+    result = OBB.controller.api_returns.following;
+    return result;
 };
+
 OBB.controller.get_data.followerCardInfo = function() {
     result = OBB.controller.api_returns.profile.followers;
 
@@ -1720,7 +851,8 @@ OBB.model.current_store.listing_cards_info = OBB.controller.get_data.ListingCard
 OBB.model.current_store.categories = OBB.controller.get_data.categories();
 OBB.model.current_store.countries = OBB.controller.get_data.countries();
 OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
-OBB.model.current_store.follower_ids = OBB.controller.get_data.followerIDs(); // array of peerIDs
+OBB.model.current_store.following = [];
+OBB.model.current_store.followers = [];
 OBB.templates = {
 
     nodeCard: function( data, card_id ){
@@ -1732,7 +864,7 @@ OBB.templates = {
             to_print += ' id="' + card_id + '"';
         }
         to_print += '>\n';
-        to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img + ');">\n';
+        to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img_tiny + ');">\n';
         to_print += '       <!-- Store Avatar -->\n';
         to_print += '       <div class="Avatar" style="background-image: url(' + data.avatar + ')"></div>\n';
         to_print += '   </div>\n';
@@ -1917,7 +1049,8 @@ OBB.templates = {
         return to_print;
     },
 
-    overlayPurchaseBottom: function ( url ) {
+    overlayPurchaseBottom: function ( ob_url ) {
+        console.log('ob_url is ', ob_url);
         to_print = '';
 
         to_print += '<div class="PurchaseOverlay__body__bottom" id="PurchaseOverlay__body__bottom">\n';
@@ -1925,7 +1058,7 @@ OBB.templates = {
         to_print += '        Already have the OpenBazaar app?\n';
         to_print += '    </p>\n';
         to_print += '    <div>\n';
-        to_print += '        <a href="' + url + '" class="button--shadowed strong">\n';
+        to_print += '        <a href="' + ob_url + '" class="button--shadowed strong">\n';
         to_print += '            Open this listing in OpenBazaar\n';
         to_print += '        </a> \n';
         to_print += '        <p>\n';
@@ -1940,7 +1073,7 @@ OBB.templates = {
         to_print += '        </div>\n';
         to_print += '    </div>\n';
         to_print += '    <p>\n';
-        to_print += '        Listing URL: <span id="listing-url">' + url + '</span>\n';
+        to_print += '        Listing URL: <span id="listing-url">' + ob_url + '</span>\n';
         to_print += '    </p>\n';
         to_print += '</div>\n';
         to_print += '</div>\n';
@@ -1972,10 +1105,30 @@ OBB.templates = {
         return to_print;
     },
 
-    tabNodeHeader: function( node_summary, title ) {
+    pageNodeNavTabs: function( listings, following, followers ) {
+        to_print = '';
+        to_print += '<ul id="NodeNavTabs">\n';
+        to_print += '    <li class="navtab" name="tab--home">\n';
+        to_print += '        <div>Home</div>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li class="navtab active" name="tab--store">\n';
+        to_print += '        <div>Store <span class="green">' + listings.length + '</span></div>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li class="navtab" name="tab--following" id="tab--following">\n';
+        to_print += '        <div>Following <span class="green">' + following.length + '</span></div>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li class="navtab" name="tab--followers" id="tab--followers">\n';
+        to_print += '        <div>Followers <span class="green">' + followers.length + '</span></div>\n';
+        to_print += '    </li>\n';
+        to_print += '</ul>\n';
+
+        return to_print;
+    },
+
+    tabNodeHeader: function( node_summary, title, slug ) {
         to_print = '';
 
-        to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img + ');" id="Node__header">\n';
+        to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img_large + ');" id="Tab--' + slug + '__header">\n';
         to_print += '    <h1>' + title + '</h1>\n';
         to_print += '</div>\n';
 
@@ -2132,21 +1285,18 @@ OBB.templates = {
     },
 
     overlayListingIndividualReview: function( rating ){
-        var data = rating.data;
-
+        var data = rating.ratingData;
         to_print = '';
 
         to_print += '<div class="flex ListingReview">\n';
         to_print += '    <div class="ListingReview__left">\n';
         to_print += '        <div class="ListingReview__header">\n';
-        to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A'); + ' <a>Elon Musk</a>\n';
+        to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A') + ' <a>Anonymous</a>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__body">\n';
         to_print += '            <p>' + data.review + '<p>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__bottom">\n';
-
-
         to_print += '            <div class="ListingReview__bottom__txn-details">\n';
         to_print += '                <pre>' + JSON.stringify(rating, null, 2) + '</pre>\n';
         to_print += '            </div>\n';
@@ -2403,7 +1553,7 @@ OBB.templates = {
 OBB.controller.render = {
     tabStore: function() {
         // render header image and h1
-        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
+        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store', 'store' ) );
         // render #FilterCard--shipping
         $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions( OBB.model.current_store.countries ) );
         // render #FilterCard--category
@@ -2418,7 +1568,7 @@ OBB.controller.render = {
 
     tabHome: function() {
         // render header image and h1
-        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
+        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home', 'home' ) );
 
         // render current_node's store card in left column
         $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
@@ -2431,13 +1581,13 @@ OBB.controller.render = {
 
     tabFollowing: function() {
         // render header image and h1
-        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
+        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following', 'following' ) );
         // TODO render following cards
     },
 
     tabFollowers: function() {
         // render header image and h1
-        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
+        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers', 'followers' ) );
         // TODO render followers cards
     },
 
@@ -2446,8 +1596,12 @@ OBB.controller.render = {
         $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
     },
 
-    pageNode: function() {
+    pageNodeNavTabs: function() {
+        // render #NodeNavTabs in right of NodeNav
+        $( "#NodeNavTabs" ).replaceWith( OBB.templates.pageNodeNavTabs( OBB.model.current_store.listing_cards_info, OBB.model.current_store.following, OBB.model.current_store.followers ) );
+    },
 
+    pageNode: function() {
         OBB.controller.render.pageNodeNavSummary();
         OBB.controller.render.tabStore();
         OBB.controller.render.tabHome();
@@ -2478,14 +1632,20 @@ OBB.controller.render = {
                 url: 'https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug,
                 type: 'GET',
                 success: function( rating_hashes_response ){
-                    console.log('response is ', rating_hashes_response);
                     rating_hashes = rating_hashes_response.ratings;
                     if ( rating_hashes.length == 0 ) {
                         $('#ListingReviews__wrapper').text('No ratings available.');
+                    } else {
+                        $('#ListingReviews__wrapper').text('');
+                    }
+                    // if there are more than 5 ratings then show the 'Load More' button
+                    if ( rating_hashes.length > 5 ) {
+                        $('#ListingReviews__bottom__show-more').addClass('active');
+                    } else {
+                        $('#ListingReviews__bottom__show-more').removeClass('active');
                     }
                     // For the first 5 rating hashes (or all of them if there are fewer than 5) get the full ratings (max num_reviews_to_show API calls)
-                    // TODO
-                    num_ratings_to_show = Math.max(5, rating_hashes.length);
+                    num_ratings_to_show = Math.min(5, rating_hashes.length);
                     $.each(rating_hashes.slice(0, num_ratings_to_show), function(index, rating_hash) {
                         try {                
                             // request for individual rating
@@ -2539,7 +1699,7 @@ OBB.controller.render = {
 
     overlayPurchase: function() {
         // render buttons at bottom of overlay--purchase
-        $( "#PurchaseOverlay__body__bottom" ).replaceWith( OBB.templates.overlayPurchaseBottom( OBB.model.current_store.single_listing.url ) );
+        $( "#PurchaseOverlay__body__bottom" ).replaceWith( OBB.templates.overlayPurchaseBottom( OBB.model.current_store.single_listing.ob_url ) );
 
     },
 

@@ -26,7 +26,7 @@
 				<!-- this will be rendered by OBB.controller.render.overlayListingReviews() -->
 			</div>
 			<div class="ListingReviews__bottom">
-				<button class="button--shadowed strong">
+				<button class="button--shadowed strong" id="ListingReviews__bottom__show-more">
 					Load More
 				</button>
 			</div>

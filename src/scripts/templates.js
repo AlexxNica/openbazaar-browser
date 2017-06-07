@@ -9,7 +9,7 @@ OBB.templates = {
             to_print += ' id="' + card_id + '"';
         }
         to_print += '>\n';
-        to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img + ');">\n';
+        to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img_tiny + ');">\n';
         to_print += '       <!-- Store Avatar -->\n';
         to_print += '       <div class="Avatar" style="background-image: url(' + data.avatar + ')"></div>\n';
         to_print += '   </div>\n';
@@ -194,7 +194,8 @@ OBB.templates = {
         return to_print;
     },
 
-    overlayPurchaseBottom: function ( url ) {
+    overlayPurchaseBottom: function ( ob_url ) {
+        console.log('ob_url is ', ob_url);
         to_print = '';
 
         to_print += '<div class="PurchaseOverlay__body__bottom" id="PurchaseOverlay__body__bottom">\n';
@@ -202,7 +203,7 @@ OBB.templates = {
         to_print += '        Already have the OpenBazaar app?\n';
         to_print += '    </p>\n';
         to_print += '    <div>\n';
-        to_print += '        <a href="' + url + '" class="button--shadowed strong">\n';
+        to_print += '        <a href="' + ob_url + '" class="button--shadowed strong">\n';
         to_print += '            Open this listing in OpenBazaar\n';
         to_print += '        </a> \n';
         to_print += '        <p>\n';
@@ -217,7 +218,7 @@ OBB.templates = {
         to_print += '        </div>\n';
         to_print += '    </div>\n';
         to_print += '    <p>\n';
-        to_print += '        Listing URL: <span id="listing-url">' + url + '</span>\n';
+        to_print += '        Listing URL: <span id="listing-url">' + ob_url + '</span>\n';
         to_print += '    </p>\n';
         to_print += '</div>\n';
         to_print += '</div>\n';
@@ -249,10 +250,30 @@ OBB.templates = {
         return to_print;
     },
 
-    tabNodeHeader: function( node_summary, title ) {
+    pageNodeNavTabs: function( listings, following, followers ) {
+        to_print = '';
+        to_print += '<ul id="NodeNavTabs">\n';
+        to_print += '    <li class="navtab" name="tab--home">\n';
+        to_print += '        <div>Home</div>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li class="navtab active" name="tab--store">\n';
+        to_print += '        <div>Store <span class="green">' + listings.length + '</span></div>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li class="navtab" name="tab--following" id="tab--following">\n';
+        to_print += '        <div>Following <span class="green">' + following.length + '</span></div>\n';
+        to_print += '    </li>\n';
+        to_print += '    <li class="navtab" name="tab--followers" id="tab--followers">\n';
+        to_print += '        <div>Followers <span class="green">' + followers.length + '</span></div>\n';
+        to_print += '    </li>\n';
+        to_print += '</ul>\n';
+
+        return to_print;
+    },
+
+    tabNodeHeader: function( node_summary, title, slug ) {
         to_print = '';
 
-        to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img + ');" id="Node__header">\n';
+        to_print += '<div class="Node__header" style="background-image: url(' + node_summary.header_img_large + ');" id="Tab--' + slug + '__header">\n';
         to_print += '    <h1>' + title + '</h1>\n';
         to_print += '</div>\n';
 
@@ -409,21 +430,18 @@ OBB.templates = {
     },
 
     overlayListingIndividualReview: function( rating ){
-        var data = rating.data;
-
+        var data = rating.ratingData;
         to_print = '';
 
         to_print += '<div class="flex ListingReview">\n';
         to_print += '    <div class="ListingReview__left">\n';
         to_print += '        <div class="ListingReview__header">\n';
-        to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A'); + ' <a>Elon Musk</a>\n';
+        to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A') + ' <a>Anonymous</a>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__body">\n';
         to_print += '            <p>' + data.review + '<p>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__bottom">\n';
-
-
         to_print += '            <div class="ListingReview__bottom__txn-details">\n';
         to_print += '                <pre>' + JSON.stringify(rating, null, 2) + '</pre>\n';
         to_print += '            </div>\n';

@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="NodeNav__right">
-		<ul>
+		<ul id="NodeNavTabs">
 			<li class="navtab" name="tab--home">
 				<div>Home</div>
 			</li>

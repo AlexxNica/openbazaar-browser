@@ -3446,7 +3446,7 @@ p {
   .ListingReview__bottom > .button--txn-details {
     width: 200px;
     margin-top: 5px;
-    transition: background-color 0.6s ease-in; }
+    transition: background-color 0.5s ease-out; }
     .ListingReview__bottom > .button--txn-details.active {
       background-color: #000;
       color: #fff; }
@@ -3476,6 +3476,11 @@ p {
 .ListingRating {
   display: -ms-flexbox;
   display: flex; }
+
+#ListingReviews__bottom__show-more {
+  display: none; }
+  #ListingReviews__bottom__show-more.active {
+    display: block; }
 
 .ListingRating__left {
   display: -ms-flexbox;
@@ -3830,13 +3835,21 @@ p {
     display: flex;
     margin-bottom: 15px;
     -ms-flex-align: center;
-        align-items: center; }
+        align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; }
     .PurchaseOverlay__body__bottom > div > .button--shadowed {
       margin-right: 10px;
-      position: relative; }
+      position: relative;
+      white-space: nowrap; }
     .PurchaseOverlay__body__bottom > div > p {
       color: #7a7a7a;
-      font-size: 14px; }
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+      .PurchaseOverlay__body__bottom > div > p > span {
+        text-overflow: ellipsis; }
     .PurchaseOverlay__body__bottom > div:last-child {
       margin-bottom: 0; }
 

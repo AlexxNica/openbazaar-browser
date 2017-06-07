@@ -56,7 +56,8 @@ OBB.controller.get_data.summary = function() {
         about: OBB.controller.api_returns.profile.about,
         description: OBB.controller.api_returns.profile.shortDescription,
         avatar: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.avatarHashes.tiny,
-        header_img: './dist/images/example--dog05.jpg',// TODO replace with: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.headerHashes.large,
+        header_img_tiny: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.tiny, 
+        header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.small, // TODO change to large before production 
         location: OBB.controller.api_returns.profile.location,
         ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
@@ -117,15 +118,16 @@ OBB.controller.get_data.singleListing = function() {
     return result;
 };
 
-OBB.controller.get_data.followerIDs = function() {
+OBB.controller.get_data.followers = function() {
     result = OBB.controller.api_returns.followers;
-
     return result;
 };
-OBB.controller.get_data.fetchFollowersAndFollowing = function () {
-    // Make API calls to get following and follwer peerIDs, then store in OBB.controller.api_returns
-    //TODO
+
+OBB.controller.get_data.following = function() {
+    result = OBB.controller.api_returns.following;
+    return result;
 };
+
 OBB.controller.get_data.followerCardInfo = function() {
     result = OBB.controller.api_returns.profile.followers;
 

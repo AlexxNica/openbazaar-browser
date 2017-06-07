@@ -25,13 +25,13 @@ OBB.controller.event_listeners = function() {
         // TODO
 
         // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
-        // TODO
+        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
+            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
+            api_response_profile = $.Deferred(),
+            api_response_listings = $.Deferred(),
+            api_response_followers = $.Deferred(),
+            api_response_following = $.Deferred();
         try {
-            var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input;
-            var api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input;
-            var api_response_profile = $.Deferred();
-            var api_response_listings = $.Deferred();
-            
             // request for proile info
             $.ajax({
                 url: api_request_profile,
@@ -46,7 +46,7 @@ OBB.controller.event_listeners = function() {
                 }
             });
 
-            // request for lisings info
+            // request for listings info
             $.ajax({
                 url: api_request_listings,
                 type: 'GET',
@@ -67,7 +67,7 @@ OBB.controller.event_listeners = function() {
             $('#Header__search__status').text('Error: Ajax failed.');
         }
         
-        // After API calls resolve
+        // After profile and listings API calls resolve
         $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
             if ( profile && listings ) {
 
@@ -81,18 +81,57 @@ OBB.controller.event_listeners = function() {
                 // re-render page--node using OBB.controller.render
                 OBB.controller.render.pageNode();
 
-                // Fetch Following and Follower peer IDs from API
-                OBB.controller.get_data.fetchFollowersAndFollowing();
-
                 // hide status indicator
                 $('#Header__search__status').text('Success!');
                 $('#Header__search__status').removeClass('active');
 
+                // grab following and followers hashes then update the nav tabs to show counts
+                try {                
+                    // request for following hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_following.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            api_response_following.resolve( [] );
+                        }
+                    });
+                    // request for followers hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_followers.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            api_response_followers.resolve( [] );
+                        }
+                    });
+                } catch( err ) {
+                    // AJAX call didn't work out so well.
+                    console.log( 'AJAX call failed', err );
+                }
             } else { 
                 // At least one API call was unsuccessful
                 $('#Header__search__status').addClass('error');
                 $('#Header__search__status').text('Store not found.');
             }
+        });
+
+        // After follwer and following API calls resolve
+        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
+            //store data in OBB.controller.api_returns
+            OBB.controller.api_returns.following = following;
+            OBB.controller.api_returns.following = following;
+            // add to model
+            OBB.model.current_store.following = OBB.controller.get_data.following();
+            OBB.model.current_store.followers = OBB.controller.get_data.followers();
+            // update view
+            OBB.controller.render.pageNodeNavTabs();
         });
     });
 

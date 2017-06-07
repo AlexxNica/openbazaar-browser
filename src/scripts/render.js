@@ -2,7 +2,7 @@
 OBB.controller.render = {
     tabStore: function() {
         // render header image and h1
-        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store' ) );
+        $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store', 'store' ) );
         // render #FilterCard--shipping
         $( "#filter--listings--ships-to" ).replaceWith( OBB.templates.filterCardShippingOptions( OBB.model.current_store.countries ) );
         // render #FilterCard--category
@@ -17,7 +17,7 @@ OBB.controller.render = {
 
     tabHome: function() {
         // render header image and h1
-        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home' ) );
+        $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home', 'home' ) );
 
         // render current_node's store card in left column
         $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
@@ -30,13 +30,13 @@ OBB.controller.render = {
 
     tabFollowing: function() {
         // render header image and h1
-        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following' ) );
+        $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following', 'following' ) );
         // TODO render following cards
     },
 
     tabFollowers: function() {
         // render header image and h1
-        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers' ) );
+        $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers', 'followers' ) );
         // TODO render followers cards
     },
 
@@ -45,8 +45,12 @@ OBB.controller.render = {
         $( "#NodeNavSummary" ).replaceWith( OBB.templates.pageNodeNavSummary( OBB.model.current_store.summary ) );
     },
 
-    pageNode: function() {
+    pageNodeNavTabs: function() {
+        // render #NodeNavTabs in right of NodeNav
+        $( "#NodeNavTabs" ).replaceWith( OBB.templates.pageNodeNavTabs( OBB.model.current_store.listing_cards_info, OBB.model.current_store.following, OBB.model.current_store.followers ) );
+    },
 
+    pageNode: function() {
         OBB.controller.render.pageNodeNavSummary();
         OBB.controller.render.tabStore();
         OBB.controller.render.tabHome();
@@ -77,14 +81,20 @@ OBB.controller.render = {
                 url: 'https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug,
                 type: 'GET',
                 success: function( rating_hashes_response ){
-                    console.log('response is ', rating_hashes_response);
                     rating_hashes = rating_hashes_response.ratings;
                     if ( rating_hashes.length == 0 ) {
                         $('#ListingReviews__wrapper').text('No ratings available.');
+                    } else {
+                        $('#ListingReviews__wrapper').text('');
+                    }
+                    // if there are more than 5 ratings then show the 'Load More' button
+                    if ( rating_hashes.length > 5 ) {
+                        $('#ListingReviews__bottom__show-more').addClass('active');
+                    } else {
+                        $('#ListingReviews__bottom__show-more').removeClass('active');
                     }
                     // For the first 5 rating hashes (or all of them if there are fewer than 5) get the full ratings (max num_reviews_to_show API calls)
-                    // TODO
-                    num_ratings_to_show = Math.max(5, rating_hashes.length);
+                    num_ratings_to_show = Math.min(5, rating_hashes.length);
                     $.each(rating_hashes.slice(0, num_ratings_to_show), function(index, rating_hash) {
                         try {                
                             // request for individual rating
@@ -138,7 +148,7 @@ OBB.controller.render = {
 
     overlayPurchase: function() {
         // render buttons at bottom of overlay--purchase
-        $( "#PurchaseOverlay__body__bottom" ).replaceWith( OBB.templates.overlayPurchaseBottom( OBB.model.current_store.single_listing.url ) );
+        $( "#PurchaseOverlay__body__bottom" ).replaceWith( OBB.templates.overlayPurchaseBottom( OBB.model.current_store.single_listing.ob_url ) );
 
     },
 
