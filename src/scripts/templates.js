@@ -16,10 +16,10 @@ OBB.templates = {
         to_print += '   <div class="NodeCard__body">\n';
         to_print += '       <span class="NodeCard__name">' + data.name + '</span>\n';
         if (data.handle) {
-            to_print += '       <span class="NodeCard__handle">@' + data.handle + '</span>\n';
+            to_print += '       <span class="NodeCard__handle">' + data.handle + '</span>\n';
         }
         to_print += '       <p>\n';
-        to_print += '           ' + data.about + '\n';
+        to_print += '           ' + data.description + '\n';
         to_print += '       </p>\n';
         to_print += '       <div class="NodeCard__bottom">\n';
         to_print += '           <div class="NodeCard__location">\n';
@@ -195,7 +195,6 @@ OBB.templates = {
     },
 
     overlayPurchaseBottom: function ( ob_url ) {
-        console.log('ob_url is ', ob_url);
         to_print = '';
 
         to_print += '<div class="PurchaseOverlay__body__bottom" id="PurchaseOverlay__body__bottom">\n';

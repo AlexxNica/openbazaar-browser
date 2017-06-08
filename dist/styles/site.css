@@ -3624,7 +3624,6 @@ p {
       border: 2px solid #fff; }
 
 .CardContainer {
-  list-style-type: none;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
@@ -3635,6 +3634,9 @@ p {
     margin-left: -1%; }
     .CardContainer#CardContainer--listings > .Card {
       margin-left: 1%; }
+
+.tab--following .NodeCard, .tab--followers .NodeCard {
+  min-width: 30%; }
 
 .Card {
   width: 32%;

@@ -65,6 +65,22 @@ OBB.controller.get_data.summary = function() {
 
     return result;
 };
+OBB.controller.get_data.cardInfo = function( profile ) {
+    result = {
+        name: profile.name,
+        peer_id: profile.peerID,
+        handle: (profile.handle ? '@' + profile.handle.replace('@','') : 'no handle'),
+        about: profile.about,
+        description: profile.shortDescription,
+        avatar: 'https://gateway.ob1.io/ob/image/' + profile.avatarHashes.tiny,
+        header_img_tiny: 'https://gateway.ob1.io/ob/images/' + profile.peerID + '/' + profile.headerHashes.tiny, 
+        location: (profile.location ? profile.location : 'The Internet'),
+        ave_rating: profile.stats.averageRating,
+        rating_count: profile.stats.ratingCount,
+    }
+    
+    return result;
+};
 OBB.controller.get_data.contactInfo = function() {
 
     result = OBB.controller.api_returns.profile.contactInfo;

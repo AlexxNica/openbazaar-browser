@@ -187,12 +187,12 @@ OBB.controller.event_listeners = function() {
                     OBB.controller.render.overlayListing();
                 },
                 error: function( json ) {
-                    console.log('API call to https://gateway.ob1.io/ob/listing/[listing hash] didn\'t go so well'); 
+                    console.log('API call to ' + api_request_single_listing + ' failed'); 
                     // TODO deal with it
                 }
             });
         } catch(err) {
-            //TODO catch failure [most often it will be no internet connection / API unreachable]
+            console.log('AJAX call to get single_listing info failed'); 
         }
     });
 
@@ -240,9 +240,6 @@ OBB.controller.event_listeners = function() {
     // clicking Transaction Details on a review shows details
     $("body").on( 'click', ".button--txn-details", function (e) {
         e.stopPropagation();
-        console.log('txns clicked');
-        console.log($(this));
-        console.log('siblings', $(this).siblings('.ListingReview__bottom__txn-details').first());
         if ($(this).siblings('.ListingReview__bottom__txn-details').first().hasClass('active')) {
             // then remove active class and revert button color
             $(this).siblings('.ListingReview__bottom__txn-details').first().removeClass('active');
@@ -270,69 +267,32 @@ OBB.controller.event_listeners = function() {
         }, 1000);
     });
 
-    // Get info and render Follower tab
-    $("body").on( 'click', "#tab--followers", function () {
-        console.log('followers tab clicked');
-        // make an api call for each peerID in OBB.model.current_store.follower_ids
-        var deferreds = [],
-            responses = [];
-
-        $.each(OBB.model.current_store.follower_ids, function(index, follower_id) {
-            console.log('deffered added');
-            deferreds[index] = $.Deferred()
-        });
-
-        $.each(OBB.model.current_store.follower_ids, function(index, follower_id) {
-            console.log('api request made');
-            // request profile info for each follower_id
+    // Get info and render Following tab
+    $("body").on( 'click', "#tab--following", function () {
+        // for each following_hash in OBB.model.current_store.following make an API call to get thier profiles
+        $.each(OBB.model.current_store.following, function(index, hash) {
             try {                
-                // request for proile info
+            // request for profiles hashes
                 $.ajax({
-                    url: 'https://gateway.ob1.io/ob/profile/' + follower_id + '?usecache=true',
+                    url: 'https://gateway.ob1.io/ob/profile/' + hash + '?usecash=true',
                     type: 'GET',
-                    success: function( data ){
-                        responses.push(data);
-                        deferreds[index].resolve( true );
+                    success: function( profile ){
+                        // now that we have the profile data we can create a node card
+                        var card_info = OBB.controller.get_data.cardInfo( profile );
+                        var card = OBB.templates.nodeCard( card_info, 'Following-' + card_info.peer_id );
+                        // then append it to the #FollowingCards list
+                        $('#FollowingCards').prepend( card );
                     },
                     error: function( data ) {
-                        console.log('API call to https://gateway.ob1.io/ob/profile/' + follower_id + '?usecache=true failed');
-                        console.log( data );
-                        deferreds[index].resolve( false );
+                        console.log('API call to https://gateway.ob1.io/ob/profile/' + hash + '?usecash=true failed'); 
                     }
                 });
             } catch( err ) {
-                // API calls didn't work out so well.
-                console.log( 'Failed to fetch follower data.', err );
-            }
-        });        
-        
-        // After API calls resolve
-       $.when.apply($, deferreds).done(function () {
-            console.log('deffereds all resolved');
-            if ( responses.length > 0 ) {
-                // create cards and display them
-                $.each(responses, function(index, response) {
-                    console.log(response);
-                    //construct a store card and append it.
-                    //TODO
-                });
-            } else {
-                // then no follower data was retrieved from the API
-                // TODO
+                // AJAX calls didn't work out so well.
+                console.log( 'AJAX calls failed', err );
             }
         });
+
     });
-
-
-
-
-
-
-
-
-
-
-
-
 
 };

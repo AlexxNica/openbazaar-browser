@@ -914,7 +914,6 @@ p {
 }
 
 .CardContainer {
-    list-style-type: none;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -925,6 +924,9 @@ p {
             margin-left: 1%;
         }
     }
+}
+.tab--following .NodeCard, .tab--followers .NodeCard {
+    min-width: 30%;
 }
 .Card {
     width: 32%;

@@ -31,13 +31,11 @@ OBB.controller.render = {
     tabFollowing: function() {
         // render header image and h1
         $( "#Tab--following__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Following', 'following' ) );
-        // TODO render following cards
     },
 
     tabFollowers: function() {
         // render header image and h1
         $( "#Tab--followers__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Followers', 'followers' ) );
-        // TODO render followers cards
     },
 
     pageNodeNavSummary: function() {
