@@ -362,7 +362,7 @@ OBB.controller.event_listeners = function() {
         $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
             //store data in OBB.controller.api_returns
             OBB.controller.api_returns.following = following;
-            OBB.controller.api_returns.following = following;
+            OBB.controller.api_returns.followers = followers;
             // add to model
             OBB.model.current_store.following = OBB.controller.get_data.following();
             OBB.model.current_store.followers = OBB.controller.get_data.followers();
@@ -505,30 +505,62 @@ OBB.controller.event_listeners = function() {
 
     // Get info and render Following tab
     $("body").on( 'click', "#tab--following", function () {
-        // for each following_hash in OBB.model.current_store.following make an API call to get thier profiles
-        $.each(OBB.model.current_store.following, function(index, hash) {
-            try {                
-            // request for profiles hashes
-                $.ajax({
-                    url: 'https://gateway.ob1.io/ob/profile/' + hash + '?usecash=true',
-                    type: 'GET',
-                    success: function( profile ){
-                        // now that we have the profile data we can create a node card
-                        var card_info = OBB.controller.get_data.cardInfo( profile );
-                        var card = OBB.templates.nodeCard( card_info, 'Following-' + card_info.peer_id );
-                        // then append it to the #FollowingCards list
-                        $('#FollowingCards').prepend( card );
-                    },
-                    error: function( data ) {
-                        console.log('API call to https://gateway.ob1.io/ob/profile/' + hash + '?usecash=true failed'); 
-                    }
-                });
-            } catch( err ) {
-                // AJAX calls didn't work out so well.
-                console.log( 'AJAX calls failed', err );
-            }
-        });
+        if ( !$('#tab--following').hasClass('rendered') ) {
+            $('#tab--following').addClass('rendered');
+            // for each following_hash in OBB.model.current_store.following make an API call to get thier profiles
+            $.each(OBB.model.current_store.following, function(index, hash) {
+                try {                
+                // request for profiles hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true',
+                        type: 'GET',
+                        success: function( profile ){
+                            // now that we have the profile data we can create a node card
+                            var card_info = OBB.controller.get_data.cardInfo( profile );
+                            var card = OBB.templates.nodeCard( card_info, 'Following-' + card_info.peer_id );
+                            // then append it to the #FollowingCards list
+                            $('#FollowingCards').prepend( card );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true failed'); 
+                        }
+                    });
+                } catch( err ) {
+                    // AJAX calls didn't work out so well.
+                    console.log( 'AJAX calls failed', err );
+                }
+            });
+        }
+    });
 
+    // Get info and render Followers tab
+    $("body").on( 'click', "#tab--followers", function () {
+        if ( !$('#tab--followers').hasClass('rendered') ) {
+            $('#tab--followers').addClass('rendered');
+            // for each follower_hash in OBB.model.current_store.followers make an API call to get thier profiles
+            $.each(OBB.model.current_store.followers, function(index, hash) {
+                try {                
+                // request for profiles hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true',
+                        type: 'GET',
+                        success: function( profile ){
+                            // now that we have the profile data we can create a node card
+                            var card_info = OBB.controller.get_data.cardInfo( profile );
+                            var card = OBB.templates.nodeCard( card_info, 'Followers-' + card_info.peer_id );
+                            // then append it to the #FollowingCards list
+                            $('#FollowersCards').prepend( card );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true failed'); 
+                        }
+                    });
+                } catch( err ) {
+                    // AJAX calls didn't work out so well.
+                    console.log( 'AJAX calls failed', err );
+                }
+            });
+        }
     });
 
 };
