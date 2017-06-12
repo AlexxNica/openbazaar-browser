@@ -260,6 +260,9 @@ OBB.controller.event_listeners = function() {
 
         user_input = $('#Header__search__input').val();
 
+        // disallow empty input
+        if (!user_input) {return};
+
         // show user status indicator
         $('#Header__search__status').removeClass('error');
         $('#Header__search__status').addClass('active');
@@ -574,13 +577,6 @@ OBB.controller.event_listeners = function() {
         }
     });
 
-
-
-
-
-
-
-
     // start page search
     $("body").on( 'click', "#Start__search__button", function (e) {
         e.stopPropagation();
@@ -589,6 +585,9 @@ OBB.controller.event_listeners = function() {
             api_request;
 
         user_input = $('#Start__search__input').val();
+
+        // disallow empty input
+        if (!user_input) {return};
 
         // show user status indicator
         $('#Start__search__status').removeClass('error');

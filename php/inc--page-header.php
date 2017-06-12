@@ -10,7 +10,7 @@
 			</div>
 		</div>
 		<div class="Header__search">
-			<input class="border-box" type="text" placeholder="Enter an OpenBazaar @handle or ID" id="Header__search__input" value="QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486">
+			<input class="border-box" type="text" placeholder="Enter an OpenBazaar @handle or ID" id="Header__search__input">
 			<button type="submit" class="button--search" id="Header__search__button">Go</button>
 			<div id="Header__search__status">
 				<!-- text will be added dynamically -->
