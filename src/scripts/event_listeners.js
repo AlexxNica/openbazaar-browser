@@ -47,8 +47,7 @@ OBB.controller.event_listeners = function() {
                     api_response_profile.resolve( data );
                 },
                 error: function( data ) {
-                    console.log('API call to https://gateway.ob1.io/ob/profile/' + user_input + ' failed.');
-                    console.log( data );
+                    console.log('request for profile info failed', data);
                     api_response_profile.resolve( false );
                 }
             });
@@ -61,17 +60,15 @@ OBB.controller.event_listeners = function() {
                     api_response_listings.resolve( data );
                 },
                 error: function( data ) {
-                    console.log('API call to https://gateway.ob1.io/ob/listings/' + user_input + ' failed.'); 
+                    console.log('request for list of listings failed.', data); 
                     api_response_listings.resolve( false );
                 }
             });
         } catch(err) {
             // API calls didn't work out so well. Deal with it.
-            // TODO
-            console.log( 'API calls didn\'t work out so well Err1.' );
-            console.log( err );
+            console.log( 'AJAX calls for profile and/or listings info failed', err );
             $('#Header__search__status').addClass('error');
-            $('#Header__search__status').text('Error: Ajax failed.');
+            $('#Header__search__status').text('Error: Request failed.');
         }
         
         // After profile and listings API calls resolve
@@ -102,7 +99,7 @@ OBB.controller.event_listeners = function() {
                             api_response_following.resolve( data );
                         },
                         error: function( data ) {
-                            console.log('API call to https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            console.log('request for following hashes failed.', data); 
                             api_response_following.resolve( [] );
                         }
                     });
@@ -114,13 +111,13 @@ OBB.controller.event_listeners = function() {
                             api_response_followers.resolve( data );
                         },
                         error: function( data ) {
-                            console.log('API call to https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            console.log('request for followers hashes failed.', data); 
                             api_response_followers.resolve( [] );
                         }
                     });
                 } catch( err ) {
                     // AJAX call didn't work out so well.
-                    console.log( 'AJAX call failed', err );
+                    console.log( 'AJAX request for Followers and Following data failed.', err );
                 }
             } else { 
                 // At least one API call was unsuccessful
@@ -193,13 +190,13 @@ OBB.controller.event_listeners = function() {
                     // run render to render that overlay
                     OBB.controller.render.overlayListing();
                 },
-                error: function( json ) {
-                    console.log('API call to ' + api_request_single_listing + ' failed'); 
-                    // TODO deal with it
+                error: function( err ) {
+                    console.log('AJAX call to get single listing info failed', err); 
+                    //TODO show "not viewable" overlay
                 }
             });
-        } catch(err) {
-            console.log('AJAX call to get single_listing info failed'); 
+        } catch( err ) {
+            console.log('Call to get single listing info failed', err); 
         }
     });
 
@@ -295,13 +292,13 @@ OBB.controller.event_listeners = function() {
                             // then append it to the #FollowingCards list
                             $('#FollowingCards').prepend( card );
                         },
-                        error: function( data ) {
-                            console.log('API call to https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true failed'); 
+                        error: function( err ) {
+                            console.log('AJAX call to get profile hashes failed', err); 
                         }
                     });
                 } catch( err ) {
                     // AJAX calls didn't work out so well.
-                    console.log( 'AJAX calls failed', err );
+                    console.log( 'Failed to get profile info for Following stores', err );
                 }
             });
         }
@@ -329,12 +326,12 @@ OBB.controller.event_listeners = function() {
                             $('#FollowersCards').prepend( card );
                         },
                         error: function( data ) {
-                            console.log('API call to https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true failed'); 
+                            console.log('Call to get a followers profile failed', data); 
                         }
                     });
                 } catch( err ) {
                     // AJAX calls didn't work out so well.
-                    console.log( 'AJAX calls failed', err );
+                    console.log( 'AJAX calls failed to get follower profile', err );
                 }
             });
         }
@@ -350,7 +347,6 @@ OBB.controller.event_listeners = function() {
     // start page search
     $("body").on( 'click', "#Start__search__button", function (e) {
         e.stopPropagation();
-        console.log('start clicked');
         // get user input
         var user_input,
             api_request;
@@ -379,11 +375,9 @@ OBB.controller.event_listeners = function() {
                 type: 'GET',
                 success: function( data ){ 
                     api_response_profile.resolve( data );
-                    console.log('request for profile successful');
                 },
                 error: function( data ) {
-                    console.log('API call to https://gateway.ob1.io/ob/profile/' + user_input + ' failed.');
-                    console.log( data );
+                    console.log('Call to get profile data failed.', data);
                     api_response_profile.resolve( false );
                 }
             });
@@ -396,15 +390,13 @@ OBB.controller.event_listeners = function() {
                     api_response_listings.resolve( data );
                 },
                 error: function( data ) {
-                    console.log('API call to https://gateway.ob1.io/ob/listings/' + user_input + ' failed.'); 
+                    console.log('Call to get listing info failed.', data); 
                     api_response_listings.resolve( false );
                 }
             });
         } catch(err) {
             // API calls didn't work out so well. Deal with it.
-            // TODO
-            console.log( 'API calls didn\'t work out so well Err1.' );
-            console.log( err );
+            console.log( 'AJAX call to get profile and listing info from start page search failed', err );
             $('#Start__search__status').addClass('error');
             $('#Start__search__status').text('Error: Ajax failed.');
         }
@@ -441,7 +433,7 @@ OBB.controller.event_listeners = function() {
                             api_response_following.resolve( data );
                         },
                         error: function( data ) {
-                            console.log('API call to https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            console.log('Call to get following hashes failed.', data); 
                             api_response_following.resolve( [] );
                         }
                     });
@@ -453,13 +445,13 @@ OBB.controller.event_listeners = function() {
                             api_response_followers.resolve( data );
                         },
                         error: function( data ) {
-                            console.log('API call to https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            console.log('Call to get followers hashes failed.', data); 
                             api_response_followers.resolve( [] );
                         }
                     });
                 } catch( err ) {
                     // AJAX call didn't work out so well.
-                    console.log( 'AJAX call failed', err );
+                    console.log( 'AJAX call to get follower and following hashes failed', err );
                 }
             } else { 
                 // At least one API call was unsuccessful

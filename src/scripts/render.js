@@ -131,20 +131,18 @@ OBB.controller.render = {
                                     $('#ListingReviews__wrapper').append( OBB.templates.overlayListingIndividualReview( rating ) );
                                 },
                                 error: function( data ) {
-                                    console.log('https://gateway.ob1.io/ob/rating/' + OBB.model.current_store.peer_id + '/' + rating_hash + ' failed');
-                                    console.log( data );
+                                    console.log('request for individual rating failed', data);
                                 }
                             });
                         } catch( err ) {
                             // Ajax didn't work out so well.
-                            console.log( 'Ajax call(s) failed', err );
+                            console.log( 'Ajax call(s) failed when requesting individual ratings', err );
                         }
                     });
                 },
                 error: function( data ) {
                     $('#ListingReviews__wrapper').text('No ratings available.');
-                    console.log('https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug + ' failed');
-                    console.log( data );
+                    console.log('request for ratings hashes failed', data);
                 }
             });
         } catch( err ) {
