@@ -124,7 +124,7 @@ OBB.controller.get_data.singleListing = function() {
         num_of_photos: listing.item.images.length,
         description: listing.item.description,
         images: images,
-        reviews: [], // TODO
+        reviews: [],
         shipping_options: listing.shippingOptions, // This could be more loosley coupled to the api
         return_policy: listing.refundPolicy,
         terms_and_conditions: listing.termsAndConditions,
@@ -150,6 +150,16 @@ OBB.controller.get_data.followerCardInfo = function() {
     return result;
 };
 
+OBB.controller.get_data.colors = function() {
+    var api_colors = OBB.controller.api_returns.profile.colors,
+        result = {};
+    result["primary"] = (api_colors["primary"] ? api_colors["primary"] : '#222');
+    result["secondary"] = (api_colors["secondary"] ? api_colors["secondary"] : '#222');
+    result["text"] = (api_colors["text"] ? api_colors["text"] : '#222');
+    result["highlight"] = (api_colors["highlight"] ? api_colors["highlight"] : '#222');
+    result["highlight_text"] = (api_colors["highlightText"] ? api_colors["highlightText"] : '#CCC');
 
+    return result;
+},
 
 

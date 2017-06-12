@@ -2793,6 +2793,13 @@ section, div {
 .text-left {
   text-align: left; }
 
+:root {
+  --primary: #222;
+  --secondary: #222;
+  --text: #222;
+  --highlight: #222;
+  --highlight_text: #222; }
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: #222; }
@@ -2929,8 +2936,7 @@ p {
   width: 27%; }
 
 .tab--store .Column--right {
-  width: 72%;
-  min-height: 900px; }
+  width: 72%; }
 
 .Page {
   margin: 10px auto 100px;
@@ -3144,7 +3150,8 @@ p {
     left: 0;
     right: 0;
     margin: auto;
-    padding: 0 30px; }
+    padding: 0 30px;
+    color: var(--highlight_text); }
 
 .Node__body {
   margin: 20px auto;
@@ -3261,6 +3268,9 @@ p {
     position: absolute;
     margin: 3px; }
 
+.SearchListings__container {
+  min-height: 900px; }
+
 .ListingsHeading {
   display: -ms-flexbox;
   display: flex;
@@ -3326,9 +3336,7 @@ p {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-pack: center;
-      justify-content: center; }
+      flex-direction: column; }
   .ListingOverview__body > .Column--left > div.click-to-slideshow {
     text-decoration: underline;
     margin: 10px auto 0;

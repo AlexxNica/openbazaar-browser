@@ -60,11 +60,25 @@ OBB.controller.render = {
         // render Nav
         OBB.controller.render.pageNodeNavSummary();
 
+        // set colors to user specified colors
+
+        //  primary
+        // TODO
+        //  secondary
+        // TODO
+        //  text
+        // TODO
+        //  highlight
+        // TODO
+        //  highlight text
+        $(':root').css('--highlight_text', OBB.model.current_store.colors.highlight_text);
+
         // render tabs
         OBB.controller.render.tabStore();
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();
         OBB.controller.render.tabFollowers();
+
     },
 
     overlayListingOverview: function() {

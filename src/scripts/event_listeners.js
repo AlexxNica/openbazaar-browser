@@ -469,7 +469,7 @@ OBB.controller.event_listeners = function() {
             }
         });
 
-        // After follwer and following API calls resolve
+        // After follower and following API calls resolve
         $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
             //store data in OBB.controller.api_returns
             OBB.controller.api_returns.following = following;

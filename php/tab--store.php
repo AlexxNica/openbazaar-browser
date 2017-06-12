@@ -65,7 +65,7 @@
                     </ul>
                 </section>
             </div>
-            <div class="Column--right">
+            <div class="Column--right SearchListings__container">
                 <section class="ListingsHeading">
                     <div class="ListingsHeading__left">
                         <span class="strong">26 listings</span> found

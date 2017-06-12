@@ -10,6 +10,7 @@ OBB.controller.updateModel = function() {
 	OBB.model.current_store.categories = OBB.controller.get_data.categories();
 	OBB.model.current_store.countries = OBB.controller.get_data.countries();
 	OBB.model.current_store.single_listing = OBB.controller.get_data.singleListing();
+	OBB.model.current_store.colors = OBB.controller.get_data.colors();
 }
 
 
