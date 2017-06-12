@@ -1292,7 +1292,7 @@ p {
     justify-content: center;
     width: 100%;
     margin-bottom: 15px;
-    > input {
+    input {
         height: 48px;
         width: 50%;
         border: 2px solid $background-gray;
@@ -1303,7 +1303,7 @@ p {
         font-size: 14px;
         margin-right: 8px;
     }
-    > .button--search {
+    .button--search {
         height: 48px;
         border: 2px solid #eef0f4;
         padding: 0 25px;
@@ -1330,10 +1330,15 @@ p {
     top: 8px;
     border-radius: 3px;
     z-index: -1;
-    &.active.error {
+    box-shadow: 10px 10px 5px #888;
+    background-color: #1062a9;
+    color: #fff;
+    &.active {
         z-index: 200;
-        opacity: 0.9;
-        background-color: #b91303;
-
+        opacity: 1;
+        &.error {
+            color: #fff;
+            background-color: #b91303;
+        }
     }
 }

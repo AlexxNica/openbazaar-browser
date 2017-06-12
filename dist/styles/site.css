@@ -3980,7 +3980,7 @@ p {
       justify-content: center;
   width: 100%;
   margin-bottom: 15px; }
-  .Start__search > input {
+  .Start__search input {
     height: 48px;
     width: 50%;
     border: 2px solid #eef0f4;
@@ -3990,7 +3990,7 @@ p {
     letter-spacing: 0.5px;
     font-size: 14px;
     margin-right: 8px; }
-  .Start__search > .button--search {
+  .Start__search .button--search {
     height: 48px;
     border: 2px solid #eef0f4;
     padding: 0 25px;
@@ -4016,8 +4016,13 @@ p {
   transition: opacity 0.2s ease-in;
   top: 8px;
   border-radius: 3px;
-  z-index: -1; }
-  #Start__search__status.active.error {
+  z-index: -1;
+  box-shadow: 10px 10px 5px #888;
+  background-color: #1062a9;
+  color: #fff; }
+  #Start__search__status.active {
     z-index: 200;
-    opacity: 0.9;
-    background-color: #b91303; }
+    opacity: 1; }
+    #Start__search__status.active.error {
+      color: #fff;
+      background-color: #b91303; }

@@ -356,7 +356,6 @@ OBB.controller.event_listeners = function() {
             api_request;
 
         user_input = $('#Start__search__input').val();
-        console.log('user input was: ', user_input);
 
         // show user status indicator
         $('#Start__search__status').removeClass('error');
