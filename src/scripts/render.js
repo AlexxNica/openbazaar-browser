@@ -20,12 +20,13 @@ OBB.controller.render = {
         $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home', 'home' ) );
 
         // render current_node's store card in left column
-        $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
+        $( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card", OBB.model.current_store.peer_id ) );
 
-        // TODO render information card in left column
+        // render information card in left column
+        $( "#Tab--home__information" ).replaceWith( OBB.templates.tabHomeInformation( OBB.model.current_store.contact_info, OBB.model.current_store.peer_id ) );
 
         // render About info
-        $( "#Tab--home__about" ).text( OBB.model.current_store.summary.description );
+        $( "#Tab--home__about" ).text( OBB.model.current_store.summary.about );
     },
 
     tabFollowing: function() {
@@ -49,7 +50,17 @@ OBB.controller.render = {
     },
 
     pageNode: function() {
+        // remove active class from nav tabs except tab--store
+        $( ".navtab" ).not( "[name='tab--store']" ).removeClass( 'active' );
+        $( "[name='tab--store']" ).addClass( 'active' );
+
+        // remove active class from overlays
+        $( ".overlay" ).removeClass( 'active' );
+
+        // render Nav
         OBB.controller.render.pageNodeNavSummary();
+
+        // render tabs
         OBB.controller.render.tabStore();
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();

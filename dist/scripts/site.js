@@ -506,6 +506,9 @@ OBB.controller.event_listeners = function() {
     // Get info and render Following tab
     $("body").on( 'click', "#tab--following", function () {
         if ( !$('#tab--following').hasClass('rendered') ) {
+            // remove any cards already there (except the last/empty one that's needed for proper formatting)
+            $('#FollowingCards').children().not(':last-child').remove()
+            // add 'rendered' class so this doesn't call the API more than once
             $('#tab--following').addClass('rendered');
             // for each following_hash in OBB.model.current_store.following make an API call to get thier profiles
             $.each(OBB.model.current_store.following, function(index, hash) {
@@ -517,7 +520,7 @@ OBB.controller.event_listeners = function() {
                         success: function( profile ){
                             // now that we have the profile data we can create a node card
                             var card_info = OBB.controller.get_data.cardInfo( profile );
-                            var card = OBB.templates.nodeCard( card_info, 'Following-' + card_info.peer_id );
+                            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
                             // then append it to the #FollowingCards list
                             $('#FollowingCards').prepend( card );
                         },
@@ -536,6 +539,9 @@ OBB.controller.event_listeners = function() {
     // Get info and render Followers tab
     $("body").on( 'click', "#tab--followers", function () {
         if ( !$('#tab--followers').hasClass('rendered') ) {
+            // remove any cards already there (except the last/empty one that's needed for proper formatting)
+            $('#FollowersCards').children().not(':last-child').remove()
+            // add 'rendered' class so this doesn't call the API more than once
             $('#tab--followers').addClass('rendered');
             // for each follower_hash in OBB.model.current_store.followers make an API call to get thier profiles
             $.each(OBB.model.current_store.followers, function(index, hash) {
@@ -547,7 +553,7 @@ OBB.controller.event_listeners = function() {
                         success: function( profile ){
                             // now that we have the profile data we can create a node card
                             var card_info = OBB.controller.get_data.cardInfo( profile );
-                            var card = OBB.templates.nodeCard( card_info, 'Followers-' + card_info.peer_id );
+                            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
                             // then append it to the #FollowingCards list
                             $('#FollowersCards').prepend( card );
                         },
@@ -863,13 +869,16 @@ OBB.model.current_store.following = [];
 OBB.model.current_store.followers = [];
 OBB.templates = {
 
-    nodeCard: function( data, card_id ){
+    nodeCard: function( data, card_id, peer_id ){
         var to_print = '';
 
         to_print += '<div class="NodeCard"';
         // add the card_id if it was passed as a parameter
         if (card_id) {
             to_print += ' id="' + card_id + '"';
+        }
+        if (peer_id) {
+            to_print += ' peer_id="' + peer_id + '"';
         }
         to_print += '>\n';
         to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img_tiny + ');">\n';
@@ -1142,42 +1151,27 @@ OBB.templates = {
         return to_print;
     },
 
-    tabHomeInformation: function( info_obj ){
+    tabHomeInformation: function( info_obj, peer_id){
         to_print = '';
 
-        // TODO loop through OBB.model.current_store.contact_info and replace this info.
-        // I need a more representative example of OBB.api_returns.current_node.profile.contactInfo 
-        // before I can code this properly.
-
+        // loop through OBB.model.current_store.contact_info and replace this info.
+        // NOTE: I'm not sure if the keys of info_object are user-defined or not. But if they are standardized
+        //  then we do much better than this (creating working links for each of these, for example). Until I
+        //  know whether they are standardized though, I'll leave it like this.
+        
         to_print += '<ul id="Tab--home__information">\n';
         to_print += '    <li>\n';
         to_print += '        <h5>OpenBazaar ID</h5>\n';
-        to_print += '        <p title="Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J">Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>\n';
+        to_print += '        <p title="' + peer_id + '">' + peer_id + '</p>\n';
         to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Website</h5>\n';
-        to_print += '        <p><a href="http://urbanart.com">http://urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Email</h5>\n';
-        to_print += '        <p><a href="mailto:contact@urbanart.com">contact@urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Twitter</h5>\n';
-        to_print += '        <p><a href="https://twitter.com/@urbanart">@urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Facebook</h5>\n';
-        to_print += '        <p><a href="https://www.facebook.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Instagram</h5>\n';
-        to_print += '        <p><a href="https://www.instagram.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>SnapChat</h5>\n';
-        to_print += '        <p>urbanart</p>\n';
-        to_print += '    </li>\n';
+
+        $.each(info_obj, function(key, value) {
+            to_print += '    <li>\n';
+            to_print += '        <h5>' + key + '</h5>\n';
+            to_print += '        <p>' + value + '</p>\n';
+            to_print += '    </li>\n';
+        });
+
         to_print += '</ul>\n';
 
         return to_print;
@@ -1578,12 +1572,13 @@ OBB.controller.render = {
         $( "#Tab--home__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Home', 'home' ) );
 
         // render current_node's store card in left column
-        $ ( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card" ) );
+        $( "#Tab--home__node-card" ).replaceWith( OBB.templates.nodeCard( OBB.model.current_store.summary, "Tab--home__node-card", OBB.model.current_store.peer_id ) );
 
-        // TODO render information card in left column
+        // render information card in left column
+        $( "#Tab--home__information" ).replaceWith( OBB.templates.tabHomeInformation( OBB.model.current_store.contact_info, OBB.model.current_store.peer_id ) );
 
         // render About info
-        $( "#Tab--home__about" ).text( OBB.model.current_store.summary.description );
+        $( "#Tab--home__about" ).text( OBB.model.current_store.summary.about );
     },
 
     tabFollowing: function() {
@@ -1607,7 +1602,17 @@ OBB.controller.render = {
     },
 
     pageNode: function() {
+        // remove active class from nav tabs except tab--store
+        $( ".navtab" ).not( "[name='tab--store']" ).removeClass( 'active' );
+        $( "[name='tab--store']" ).addClass( 'active' );
+
+        // remove active class from overlays
+        $( ".overlay" ).removeClass( 'active' );
+
+        // render Nav
         OBB.controller.render.pageNodeNavSummary();
+
+        // render tabs
         OBB.controller.render.tabStore();
         OBB.controller.render.tabHome();
         OBB.controller.render.tabFollowing();

@@ -270,6 +270,9 @@ OBB.controller.event_listeners = function() {
     // Get info and render Following tab
     $("body").on( 'click', "#tab--following", function () {
         if ( !$('#tab--following').hasClass('rendered') ) {
+            // remove any cards already there (except the last/empty one that's needed for proper formatting)
+            $('#FollowingCards').children().not(':last-child').remove()
+            // add 'rendered' class so this doesn't call the API more than once
             $('#tab--following').addClass('rendered');
             // for each following_hash in OBB.model.current_store.following make an API call to get thier profiles
             $.each(OBB.model.current_store.following, function(index, hash) {
@@ -281,7 +284,7 @@ OBB.controller.event_listeners = function() {
                         success: function( profile ){
                             // now that we have the profile data we can create a node card
                             var card_info = OBB.controller.get_data.cardInfo( profile );
-                            var card = OBB.templates.nodeCard( card_info, 'Following-' + card_info.peer_id );
+                            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
                             // then append it to the #FollowingCards list
                             $('#FollowingCards').prepend( card );
                         },
@@ -300,6 +303,9 @@ OBB.controller.event_listeners = function() {
     // Get info and render Followers tab
     $("body").on( 'click', "#tab--followers", function () {
         if ( !$('#tab--followers').hasClass('rendered') ) {
+            // remove any cards already there (except the last/empty one that's needed for proper formatting)
+            $('#FollowersCards').children().not(':last-child').remove()
+            // add 'rendered' class so this doesn't call the API more than once
             $('#tab--followers').addClass('rendered');
             // for each follower_hash in OBB.model.current_store.followers make an API call to get thier profiles
             $.each(OBB.model.current_store.followers, function(index, hash) {
@@ -311,7 +317,7 @@ OBB.controller.event_listeners = function() {
                         success: function( profile ){
                             // now that we have the profile data we can create a node card
                             var card_info = OBB.controller.get_data.cardInfo( profile );
-                            var card = OBB.templates.nodeCard( card_info, 'Followers-' + card_info.peer_id );
+                            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
                             // then append it to the #FollowingCards list
                             $('#FollowersCards').prepend( card );
                         },

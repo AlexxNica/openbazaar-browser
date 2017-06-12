@@ -1,12 +1,15 @@
 OBB.templates = {
 
-    nodeCard: function( data, card_id ){
+    nodeCard: function( data, card_id, peer_id ){
         var to_print = '';
 
         to_print += '<div class="NodeCard"';
         // add the card_id if it was passed as a parameter
         if (card_id) {
             to_print += ' id="' + card_id + '"';
+        }
+        if (peer_id) {
+            to_print += ' peer_id="' + peer_id + '"';
         }
         to_print += '>\n';
         to_print += '   <div class="NodeCard__header" style="background-image: url(' + data.header_img_tiny + ');">\n';
@@ -279,42 +282,27 @@ OBB.templates = {
         return to_print;
     },
 
-    tabHomeInformation: function( info_obj ){
+    tabHomeInformation: function( info_obj, peer_id){
         to_print = '';
 
-        // TODO loop through OBB.model.current_store.contact_info and replace this info.
-        // I need a more representative example of OBB.api_returns.current_node.profile.contactInfo 
-        // before I can code this properly.
-
+        // loop through OBB.model.current_store.contact_info and replace this info.
+        // NOTE: I'm not sure if the keys of info_object are user-defined or not. But if they are standardized
+        //  then we do much better than this (creating working links for each of these, for example). Until I
+        //  know whether they are standardized though, I'll leave it like this.
+        
         to_print += '<ul id="Tab--home__information">\n';
         to_print += '    <li>\n';
         to_print += '        <h5>OpenBazaar ID</h5>\n';
-        to_print += '        <p title="Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J">Qmai9U7856XKgDSvMFExPbQufcsc4ksG779VyG4Md5dn4J</p>\n';
+        to_print += '        <p title="' + peer_id + '">' + peer_id + '</p>\n';
         to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Website</h5>\n';
-        to_print += '        <p><a href="http://urbanart.com">http://urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Email</h5>\n';
-        to_print += '        <p><a href="mailto:contact@urbanart.com">contact@urbanart.com</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Twitter</h5>\n';
-        to_print += '        <p><a href="https://twitter.com/@urbanart">@urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Facebook</h5>\n';
-        to_print += '        <p><a href="https://www.facebook.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>Instagram</h5>\n';
-        to_print += '        <p><a href="https://www.instagram.com/">/urbanart</a><i class="fa fa-external-link icon--offsite" aria-hidden="true"></i></p>\n';
-        to_print += '    </li>\n';
-        to_print += '    <li>\n';
-        to_print += '        <h5>SnapChat</h5>\n';
-        to_print += '        <p>urbanart</p>\n';
-        to_print += '    </li>\n';
+
+        $.each(info_obj, function(key, value) {
+            to_print += '    <li>\n';
+            to_print += '        <h5>' + key + '</h5>\n';
+            to_print += '        <p>' + value + '</p>\n';
+            to_print += '    </li>\n';
+        });
+
         to_print += '</ul>\n';
 
         return to_print;
