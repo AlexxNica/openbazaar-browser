@@ -18,6 +18,7 @@
 <body>
 
 	<?php include './php/page--node.php';?>
+	<?php include './php/page--start.php';?>
 
 
     <script src="./dist/scripts/site.min.js"></script>

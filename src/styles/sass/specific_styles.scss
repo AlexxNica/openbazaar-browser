@@ -162,6 +162,7 @@ p {
 }
 .tab--store .Column--right {
     width: 72%;
+    min-height: 900px; // prevents a jerkiness issue when isotope.js resizes
 }
 
 // End columns
@@ -169,6 +170,19 @@ p {
 .Page {
     margin: 10px auto 100px;
     padding: 0 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+    max-height: 100vmin;
+    overflow: hidden;
+    &.active {
+        opacity: 1;
+        z-index: 1;
+        overflow: visible;
+        max-height: none;
+    }
 }
 .Header {
     display: flex;
@@ -189,6 +203,7 @@ p {
     }
 }
 .Header__logo {
+    cursor: pointer;
     margin-right: 26px;
     > .ob-logo {
         width: 40px;
@@ -1257,6 +1272,7 @@ p {
 }
 .Start__search {
     display: inline-flex;
+    position: relative;
     justify-content: center;
     width: 100%;
     margin-bottom: 15px;
@@ -1288,5 +1304,20 @@ p {
     font-weight: 400;
     > a:first-child() {
         margin-right: 15px;
+    }
+}
+#Start__search__status {
+    position: absolute;
+    width: 25%;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    top: 8px;
+    border-radius: 3px;
+    z-index: -1;
+    &.active.error {
+        z-index: 200;
+        opacity: 0.9;
+        background-color: #b91303;
+
     }
 }

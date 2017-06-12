@@ -243,6 +243,13 @@ OBB.controller.event_listeners = function() {
         $(".tab." + tab_target).addClass("active");
     });
 
+    // logo click brings back to start page
+    $("body").on( 'click', "#Header__logo", function () {
+        $(".Page").removeClass("active");
+        $("#PageStartContainer").addClass("active");
+
+    });
+
     // header search
     $("body").on( 'click', "#Header__search__button", function (e) {
         e.stopPropagation();
@@ -566,6 +573,164 @@ OBB.controller.event_listeners = function() {
                     console.log( 'AJAX calls failed', err );
                 }
             });
+        }
+    });
+
+
+
+
+
+
+
+
+    // start page search
+    $("body").on( 'click', "#Start__search__button", function (e) {
+        e.stopPropagation();
+        console.log('start clicked');
+        // get user input
+        var user_input,
+            api_request;
+
+        user_input = $('#Start__search__input').val();
+        console.log('user input was: ', user_input);
+
+        // show user status indicator
+        $('#Start__search__status').removeClass('error');
+        $('#Start__search__status').addClass('active');
+        $('#Start__search__status').text('searching...');
+
+        // do some basic client side verifying of user_input so we aren't too hard on the API
+        // TODO
+
+        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
+        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
+            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
+            api_response_profile = $.Deferred(),
+            api_response_listings = $.Deferred(),
+            api_response_followers = $.Deferred(),
+            api_response_following = $.Deferred();
+        try {
+            // request for proile info
+            $.ajax({
+                url: api_request_profile,
+                type: 'GET',
+                success: function( data ){ 
+                    api_response_profile.resolve( data );
+                    console.log('request for profile successful');
+                },
+                error: function( data ) {
+                    console.log('API call to https://gateway.ob1.io/ob/profile/' + user_input + ' failed.');
+                    console.log( data );
+                    api_response_profile.resolve( false );
+                }
+            });
+
+            // request for listings info
+            $.ajax({
+                url: api_request_listings,
+                type: 'GET',
+                success: function( data ){ 
+                    api_response_listings.resolve( data );
+                },
+                error: function( data ) {
+                    console.log('API call to https://gateway.ob1.io/ob/listings/' + user_input + ' failed.'); 
+                    api_response_listings.resolve( false );
+                }
+            });
+        } catch(err) {
+            // API calls didn't work out so well. Deal with it.
+            // TODO
+            console.log( 'API calls didn\'t work out so well Err1.' );
+            console.log( err );
+            $('#Start__search__status').addClass('error');
+            $('#Start__search__status').text('Error: Ajax failed.');
+        }
+        
+        // After profile and listings API calls resolve
+        $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
+            if ( profile && listings ) {
+
+                // store api info in OBB.controller.api_returns. OBB.functions.apiStore will do this for us.
+                OBB.functions.apiStore( profile, 'profile' );
+                OBB.functions.apiStore( listings, 'listings' );
+
+                // update model with the new data
+                OBB.controller.updateModel();
+
+                // render page--node using OBB.controller.render
+                OBB.controller.render.pageNode();
+
+                // hide status indicator
+                $('#Start__search__status').text('Success!');
+                $('#Start__search__status').removeClass('active');
+
+                // hide start page and show node page
+                $('#PageStartContainer').removeClass('active');
+                $('#PageNodeContainer').addClass('active');
+
+                // grab following and followers hashes then update the nav tabs to show counts
+                try {                
+                    // request for following hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_following.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            api_response_following.resolve( [] );
+                        }
+                    });
+                    // request for followers hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_followers.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('API call to https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id + ' failed.'); 
+                            api_response_followers.resolve( [] );
+                        }
+                    });
+                } catch( err ) {
+                    // AJAX call didn't work out so well.
+                    console.log( 'AJAX call failed', err );
+                }
+            } else { 
+                // At least one API call was unsuccessful
+                $('#Start__search__status').addClass('error');
+                $('#Start__search__status').text('Store not found.');
+            }
+        });
+
+        // After follwer and following API calls resolve
+        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
+            //store data in OBB.controller.api_returns
+            OBB.controller.api_returns.following = following;
+            OBB.controller.api_returns.followers = followers;
+            // add to model
+            OBB.model.current_store.following = OBB.controller.get_data.following();
+            OBB.model.current_store.followers = OBB.controller.get_data.followers();
+            // update view
+            OBB.controller.render.pageNodeNavTabs();
+        });
+    });
+
+    // 'return' key does same thing as clicking on start page 'Go' button
+    $("body").on( 'keypress', "#Start__search__input", function (e) {
+        var key = e.which;
+        if(key == 13) {
+            $('#Start__search__button').click();
+            return false;  
+        }
+    });
+
+    // any click removes error message from start search
+    $("body").on( 'click', function () {
+        if ($('#Start__search__status').hasClass('active')) {
+            $('#Start__search__status').removeClass('active');
         }
     });
 

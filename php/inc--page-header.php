@@ -1,6 +1,6 @@
 <header class="Header">
 	<div class="Header__left">
-		<div class="Header__logo">
+		<div class="Header__logo" id="Header__logo">
 			<img class="ob-logo" src="./dist/images/logo--openbazaar.png">
 			<div class="ob-icons">
 				<h3>OpenBazaar</h3>
