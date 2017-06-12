@@ -10,13 +10,13 @@
 				<div>Home</div>
 			</li>
 			<li class="navtab active" name="tab--store">
-				<div>Store <span class="green">26</span></div>
+				<div>Store <span class="green"></span></div>
 			</li>
 			<li class="navtab" name="tab--following" id="tab--following">
-				<div>Following <span class="green">5</span></div>
+				<div>Following <span class="green"></span></div>
 			</li>
 			<li class="navtab" name="tab--followers" id="tab--followers">
-				<div>Followers <span class="green">10.3k</span></div>
+				<div>Followers <span class="green"></span></div>
 			</li>
 		</ul>
 	</div>
