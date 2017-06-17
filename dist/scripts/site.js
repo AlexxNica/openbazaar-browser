@@ -463,6 +463,7 @@ OBB.controller.event_listeners = function() {
 
     // start page search
     $("body").on( 'click', "#Start__search__button", function (e) {
+        console.log('start go clicked');
         e.stopPropagation();
         // get user input
         var user_input,
@@ -521,8 +522,8 @@ OBB.functions.loadNode = function( peer_id, status_selector ){
     // disallow empty input
     if ( !peer_id ) {return};
 
-    // dissallow current_store's node id
-    if ( OBB.model.current_store.peer_id == peer_id ) {return};
+    // dissallow current_store's node id if page isn't start page
+    if ( !$("#PageStartContainer").hasClass("active") && OBB.model.current_store.peer_id == peer_id ) {return};
 
     // show user status indicator
     $(status_selector).removeClass('error');

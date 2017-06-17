@@ -226,6 +226,7 @@ OBB.controller.event_listeners = function() {
 
     // start page search
     $("body").on( 'click', "#Start__search__button", function (e) {
+        console.log('start go clicked');
         e.stopPropagation();
         // get user input
         var user_input,

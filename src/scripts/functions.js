@@ -20,8 +20,8 @@ OBB.functions.loadNode = function( peer_id, status_selector ){
     // disallow empty input
     if ( !peer_id ) {return};
 
-    // dissallow current_store's node id
-    if ( OBB.model.current_store.peer_id == peer_id ) {return};
+    // dissallow current_store's node id if page isn't start page
+    if ( !$("#PageStartContainer").hasClass("active") && OBB.model.current_store.peer_id == peer_id ) {return};
 
     // show user status indicator
     $(status_selector).removeClass('error');
