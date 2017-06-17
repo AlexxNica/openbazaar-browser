@@ -79,6 +79,11 @@ OBB.controller.render = {
         OBB.controller.render.tabFollowing();
         OBB.controller.render.tabFollowers();
 
+        // make store tab active
+        $('.tab').removeClass('active');
+        $('.tab--store').addClass('active');
+        $('.navtab').removeClass('active');
+        $('#tab--store').addClass('active');
     },
 
     overlayListingOverview: function() {

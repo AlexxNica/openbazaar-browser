@@ -151,7 +151,7 @@ OBB.controller.get_data.followerCardInfo = function() {
 };
 
 OBB.controller.get_data.colors = function() {
-    var api_colors = OBB.controller.api_returns.profile.colors,
+    var api_colors = (OBB.controller.api_returns.profile.colors ? OBB.controller.api_returns.profile.colors : {}),
         result = {};
     result["primary"] = (api_colors["primary"] ? api_colors["primary"] : '#222');
     result["secondary"] = (api_colors["secondary"] ? api_colors["secondary"] : '#222');

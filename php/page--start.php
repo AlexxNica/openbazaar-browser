@@ -8,7 +8,7 @@
 		<div class="Start__search">
 			<input class="border-box" type="text" placeholder="Enter an OpenBazaar @handle or ID" id="Start__search__input" value="QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486">
 			<button type="submit" class="button--search" id="Start__search__button">Go</button>
-			<div id="Start__search__status">
+			<div id="Start__search__status" class="status">
 				<!-- text will be added dynamically -->
 			</div>
 		</div>

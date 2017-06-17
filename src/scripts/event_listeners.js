@@ -151,11 +151,10 @@ OBB.controller.event_listeners = function() {
         }
     });
 
-    // any click removes error message from header search
+    // any click removes status / error messages
+    //  applies to start page search, header search, and node cards
     $("body").on( 'click', function () {
-        if ($('#Header__search__status').hasClass('active')) {
-            $('#Header__search__status').removeClass('active');
-        }
+        $('.status').removeClass('active');
     });
 
     // clicking "Show Mature Content" reveals the NSFW listing images
@@ -481,11 +480,133 @@ OBB.controller.event_listeners = function() {
         }
     });
 
-    // any click removes error message from start search
-    $("body").on( 'click', function () {
-        if ($('#Start__search__status').hasClass('active')) {
-            $('#Start__search__status').removeClass('active');
+    // clicking node card load that node's page
+    $("body").on( 'click', ".NodeCard", function (e) {
+        e.stopPropagation();
+
+        // get user input
+        var user_input,
+            api_request;
+        
+        user_input = $(this)[0]['attributes']['peer_id']['nodeValue']; // peer_id of clicked node card
+        
+        // disallow empty input
+        if ( !user_input ) {return};
+
+        // dissallow current_store's node id
+        if ( OBB.model.current_store.peer_id == user_input ) {return};
+
+        // show user status indicator
+        $('[peer_id=' + user_input + '] > .NodeCard__search__status').removeClass('error');
+        $('[peer_id=' + user_input + '] > .NodeCard__search__status').addClass('active');
+        $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Searching...');
+
+        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
+        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
+            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
+            api_response_profile = $.Deferred(),
+            api_response_listings = $.Deferred(),
+            api_response_followers = $.Deferred(),
+            api_response_following = $.Deferred();
+        try {
+            // request for proile info
+            $.ajax({
+                url: api_request_profile,
+                type: 'GET',
+                success: function( data ){ 
+                    api_response_profile.resolve( data );
+                },
+                error: function( data ) {
+                    console.log('request for profile info failed', data);
+                    api_response_profile.resolve( false );
+                }
+            });
+
+            // request for listings info
+            $.ajax({
+                url: api_request_listings,
+                type: 'GET',
+                success: function( data ){ 
+                    api_response_listings.resolve( data );
+                },
+                error: function( data ) {
+                    console.log('request for list of listings failed.', data); 
+                    api_response_listings.resolve( false );
+                }
+            });
+        } catch(err) {
+            // API calls didn't work out so well. Deal with it.
+            console.log( 'AJAX calls for profile and/or listings info failed', err );
+            $('[peer_id=' + user_input + '] > .NodeCard__search__status').addClass('error');
+            $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Error: Request failed.');
         }
+        
+        // After profile and listings API calls resolve
+        $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
+            if ( profile && listings ) {
+
+                // store api info in OBB.controller.api_returns. OBB.functions.apiStore will do this for us.
+                OBB.functions.apiStore( profile, 'profile' );
+                OBB.functions.apiStore( listings, 'listings' );
+
+                // update model with the new data
+                OBB.controller.updateModel();
+
+                // re-render page--node using OBB.controller.render
+                OBB.controller.render.pageNode();
+
+                // hide status indicator
+                $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Success!');
+                $('[peer_id=' + user_input + '] > .NodeCard__search__status').removeClass('active');
+
+                // grab following and followers hashes then update the nav tabs to show counts
+                try {                
+                    // request for following hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_following.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('request for following hashes failed.', data); 
+                            api_response_following.resolve( [] );
+                        }
+                    });
+                    // request for followers hashes
+                    $.ajax({
+                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
+                        type: 'GET',
+                        success: function( data ){
+                            api_response_followers.resolve( data );
+                        },
+                        error: function( data ) {
+                            console.log('request for followers hashes failed.', data); 
+                            api_response_followers.resolve( [] );
+                        }
+                    });
+                } catch( err ) {
+                    // AJAX call didn't work out so well.
+                    console.log( 'AJAX request for Followers and Following data failed.', err );
+                }
+            } else { 
+                // At least one API call was unsuccessful
+                $('[peer_id=' + user_input + '] > .NodeCard__search__status').addClass('error');
+                $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Unavailable.');
+            }
+        });
+
+        // After follwer and following API calls resolve
+        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
+            //store data in OBB.controller.api_returns
+            OBB.controller.api_returns.following = following;
+            OBB.controller.api_returns.followers = followers;
+            // add to model
+            OBB.model.current_store.following = OBB.controller.get_data.following();
+            OBB.model.current_store.followers = OBB.controller.get_data.followers();
+            // update view
+            OBB.controller.render.pageNodeNavTabs();
+        });
     });
 
 };

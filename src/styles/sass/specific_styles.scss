@@ -960,6 +960,9 @@ p {
     min-width: 32%;
     margin-bottom: 20px;
 }
+.tab--home .NodeCard {
+    cursor: initial;
+}
 .Card {
     width: 32%;
     margin-bottom: 15px;
@@ -973,6 +976,7 @@ p {
 .NodeCard {
     position: relative;
     border: 1px solid $border-gray;
+    cursor: pointer;
 }
 .NodeCard__header {
     width: 100%;
@@ -1024,6 +1028,28 @@ p {
 .NodeCard__ratings > .NodeCard__ratings__count {
     text-decoration: underline;
     display: inline-block;
+}
+.NodeCard__search__status {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
+    top: calc(50% - 20px);
+    right: 20px;
+    left: 20px;
+    border-radius: 3px;
+    z-index: -1;
+    box-shadow: 10px 10px 5px #888;
+    background-color: #1062a9;
+    color: #fff;
+    text-align: center;
+    &.active {
+        z-index: 200;
+        opacity: 1;
+        &.error {
+            color: #fff;
+            background-color: #b91303;
+        }
+    }
 }
 // End Node Cards
 

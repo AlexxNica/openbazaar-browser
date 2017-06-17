@@ -36,6 +36,7 @@ OBB.templates = {
         to_print += '           </div>\n';
         to_print += '       </div>\n';
         to_print += '   </div>\n';
+        to_print += '   <div class="NodeCard__search__status status">Searching...</div>\n';
         to_print += '</div>\n';
 
         return to_print;
