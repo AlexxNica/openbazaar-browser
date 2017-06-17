@@ -19,127 +19,12 @@ OBB.controller.event_listeners = function() {
         e.stopPropagation();
         // get user input
         var user_input,
-            api_request;
+            status_selector;
 
         user_input = $('#Header__search__input').val();
+        status_selector = '#Header__search__status';
 
-        // disallow empty input
-        if (!user_input) {return};
-
-        // show user status indicator
-        $('#Header__search__status').removeClass('error');
-        $('#Header__search__status').addClass('active');
-        $('#Header__search__status').text('Searching...');
-
-        // do some basic client side verifying of user_input so we aren't too hard on the API
-        // TODO
-
-        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
-        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
-            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
-            api_response_profile = $.Deferred(),
-            api_response_listings = $.Deferred(),
-            api_response_followers = $.Deferred(),
-            api_response_following = $.Deferred();
-        try {
-            // request for proile info
-            $.ajax({
-                url: api_request_profile,
-                type: 'GET',
-                success: function( data ){ 
-                    api_response_profile.resolve( data );
-                },
-                error: function( data ) {
-                    console.log('request for profile info failed', data);
-                    api_response_profile.resolve( false );
-                }
-            });
-
-            // request for listings info
-            $.ajax({
-                url: api_request_listings,
-                type: 'GET',
-                success: function( data ){ 
-                    api_response_listings.resolve( data );
-                },
-                error: function( data ) {
-                    console.log('request for list of listings failed.', data); 
-                    api_response_listings.resolve( false );
-                }
-            });
-        } catch(err) {
-            // API calls didn't work out so well. Deal with it.
-            console.log( 'AJAX calls for profile and/or listings info failed', err );
-            $('#Header__search__status').addClass('error');
-            $('#Header__search__status').text('Error: Request failed.');
-        }
-        
-        // After profile and listings API calls resolve
-        $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
-            if ( profile && listings ) {
-
-                // store api info in OBB.controller.api_returns. OBB.functions.apiStore will do this for us.
-                OBB.functions.apiStore( profile, 'profile' );
-                OBB.functions.apiStore( listings, 'listings' );
-
-                // update model with the new data
-                OBB.controller.updateModel();
-
-                // re-render page--node using OBB.controller.render
-                OBB.controller.render.pageNode();
-
-                // hide status indicator
-                $('#Header__search__status').text('Success!');
-                $('#Header__search__status').removeClass('active');
-
-                // grab following and followers hashes then update the nav tabs to show counts
-                try {                
-                    // request for following hashes
-                    $.ajax({
-                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
-                        type: 'GET',
-                        success: function( data ){
-                            api_response_following.resolve( data );
-                        },
-                        error: function( data ) {
-                            console.log('request for following hashes failed.', data); 
-                            api_response_following.resolve( [] );
-                        }
-                    });
-                    // request for followers hashes
-                    $.ajax({
-                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
-                        type: 'GET',
-                        success: function( data ){
-                            api_response_followers.resolve( data );
-                        },
-                        error: function( data ) {
-                            console.log('request for followers hashes failed.', data); 
-                            api_response_followers.resolve( [] );
-                        }
-                    });
-                } catch( err ) {
-                    // AJAX call didn't work out so well.
-                    console.log( 'AJAX request for Followers and Following data failed.', err );
-                }
-            } else { 
-                // At least one API call was unsuccessful
-                $('#Header__search__status').addClass('error');
-                $('#Header__search__status').text('Store not found.');
-            }
-        });
-
-        // After follwer and following API calls resolve
-        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
-            //store data in OBB.controller.api_returns
-            OBB.controller.api_returns.following = following;
-            OBB.controller.api_returns.followers = followers;
-            // add to model
-            OBB.model.current_store.following = OBB.controller.get_data.following();
-            OBB.model.current_store.followers = OBB.controller.get_data.followers();
-            // update view
-            OBB.controller.render.pageNodeNavTabs();
-        });
+        OBB.functions.loadNode( user_input, status_selector );
     });
 
     // 'return' key does same thing as clicking on header search button
@@ -344,131 +229,12 @@ OBB.controller.event_listeners = function() {
         e.stopPropagation();
         // get user input
         var user_input,
-            api_request;
+            status_selector;
 
         user_input = $('#Start__search__input').val();
+        status_selector = '#Start__search__status';
 
-        // disallow empty input
-        if (!user_input) {return};
-
-        // show user status indicator
-        $('#Start__search__status').removeClass('error');
-        $('#Start__search__status').addClass('active');
-        $('#Start__search__status').text('Searching...');
-
-        // do some basic client side verifying of user_input so we aren't too hard on the API
-        // TODO
-
-        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
-        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
-            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
-            api_response_profile = $.Deferred(),
-            api_response_listings = $.Deferred(),
-            api_response_followers = $.Deferred(),
-            api_response_following = $.Deferred();
-        try {
-            // request for proile info
-            $.ajax({
-                url: api_request_profile,
-                type: 'GET',
-                success: function( data ){ 
-                    api_response_profile.resolve( data );
-                },
-                error: function( data ) {
-                    console.log('Call to get profile data failed.', data);
-                    api_response_profile.resolve( false );
-                }
-            });
-
-            // request for listings info
-            $.ajax({
-                url: api_request_listings,
-                type: 'GET',
-                success: function( data ){ 
-                    api_response_listings.resolve( data );
-                },
-                error: function( data ) {
-                    console.log('Call to get listing info failed.', data); 
-                    api_response_listings.resolve( false );
-                }
-            });
-        } catch(err) {
-            // API calls didn't work out so well. Deal with it.
-            console.log( 'AJAX call to get profile and listing info from start page search failed', err );
-            $('#Start__search__status').addClass('error');
-            $('#Start__search__status').text('Error: Ajax failed.');
-        }
-        
-        // After profile and listings API calls resolve
-        $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
-            if ( profile && listings ) {
-
-                // store api info in OBB.controller.api_returns. OBB.functions.apiStore will do this for us.
-                OBB.functions.apiStore( profile, 'profile' );
-                OBB.functions.apiStore( listings, 'listings' );
-
-                // update model with the new data
-                OBB.controller.updateModel();
-
-                // render page--node using OBB.controller.render
-                OBB.controller.render.pageNode();
-
-                // hide status indicator
-                $('#Start__search__status').text('Success!');
-                $('#Start__search__status').removeClass('active');
-
-                // hide start page and show node page
-                $('#PageStartContainer').removeClass('active');
-                $('#PageNodeContainer').addClass('active');
-
-                // grab following and followers hashes then update the nav tabs to show counts
-                try {                
-                    // request for following hashes
-                    $.ajax({
-                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
-                        type: 'GET',
-                        success: function( data ){
-                            api_response_following.resolve( data );
-                        },
-                        error: function( data ) {
-                            console.log('Call to get following hashes failed.', data); 
-                            api_response_following.resolve( [] );
-                        }
-                    });
-                    // request for followers hashes
-                    $.ajax({
-                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
-                        type: 'GET',
-                        success: function( data ){
-                            api_response_followers.resolve( data );
-                        },
-                        error: function( data ) {
-                            console.log('Call to get followers hashes failed.', data); 
-                            api_response_followers.resolve( [] );
-                        }
-                    });
-                } catch( err ) {
-                    // AJAX call didn't work out so well.
-                    console.log( 'AJAX call to get follower and following hashes failed', err );
-                }
-            } else { 
-                // At least one API call was unsuccessful
-                $('#Start__search__status').addClass('error');
-                $('#Start__search__status').text('Store not found.');
-            }
-        });
-
-        // After follower and following API calls resolve
-        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
-            //store data in OBB.controller.api_returns
-            OBB.controller.api_returns.following = following;
-            OBB.controller.api_returns.followers = followers;
-            // add to model
-            OBB.model.current_store.following = OBB.controller.get_data.following();
-            OBB.model.current_store.followers = OBB.controller.get_data.followers();
-            // update view
-            OBB.controller.render.pageNodeNavTabs();
-        });
+        OBB.functions.loadNode( user_input, status_selector );
     });
 
     // 'return' key does same thing as clicking on start page 'Go' button
@@ -486,127 +252,13 @@ OBB.controller.event_listeners = function() {
 
         // get user input
         var user_input,
-            api_request;
+            status_selector;
         
         user_input = $(this)[0]['attributes']['peer_id']['nodeValue']; // peer_id of clicked node card
-        
-        // disallow empty input
-        if ( !user_input ) {return};
+        status_selector = '[peer_id=' + user_input + '] > .NodeCard__search__status';
 
-        // dissallow current_store's node id
-        if ( OBB.model.current_store.peer_id == user_input ) {return};
+        OBB.functions.loadNode( user_input, status_selector );
 
-        // show user status indicator
-        $('[peer_id=' + user_input + '] > .NodeCard__search__status').removeClass('error');
-        $('[peer_id=' + user_input + '] > .NodeCard__search__status').addClass('active');
-        $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Searching...');
-
-        // call api to get profile and listings info, then store in OBB.controller.api_returns (handle errors)
-        var api_request_profile = 'https://gateway.ob1.io/ob/profile/' + user_input,
-            api_request_listings = 'https://gateway.ob1.io/ob/listings/' + user_input,
-            api_response_profile = $.Deferred(),
-            api_response_listings = $.Deferred(),
-            api_response_followers = $.Deferred(),
-            api_response_following = $.Deferred();
-        try {
-            // request for proile info
-            $.ajax({
-                url: api_request_profile,
-                type: 'GET',
-                success: function( data ){ 
-                    api_response_profile.resolve( data );
-                },
-                error: function( data ) {
-                    console.log('request for profile info failed', data);
-                    api_response_profile.resolve( false );
-                }
-            });
-
-            // request for listings info
-            $.ajax({
-                url: api_request_listings,
-                type: 'GET',
-                success: function( data ){ 
-                    api_response_listings.resolve( data );
-                },
-                error: function( data ) {
-                    console.log('request for list of listings failed.', data); 
-                    api_response_listings.resolve( false );
-                }
-            });
-        } catch(err) {
-            // API calls didn't work out so well. Deal with it.
-            console.log( 'AJAX calls for profile and/or listings info failed', err );
-            $('[peer_id=' + user_input + '] > .NodeCard__search__status').addClass('error');
-            $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Error: Request failed.');
-        }
-        
-        // After profile and listings API calls resolve
-        $.when( api_response_profile, api_response_listings ).done(function ( profile, listings ) {
-            if ( profile && listings ) {
-
-                // store api info in OBB.controller.api_returns. OBB.functions.apiStore will do this for us.
-                OBB.functions.apiStore( profile, 'profile' );
-                OBB.functions.apiStore( listings, 'listings' );
-
-                // update model with the new data
-                OBB.controller.updateModel();
-
-                // re-render page--node using OBB.controller.render
-                OBB.controller.render.pageNode();
-
-                // hide status indicator
-                $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Success!');
-                $('[peer_id=' + user_input + '] > .NodeCard__search__status').removeClass('active');
-
-                // grab following and followers hashes then update the nav tabs to show counts
-                try {                
-                    // request for following hashes
-                    $.ajax({
-                        url: 'https://gateway.ob1.io/ob/following/' + OBB.model.current_store.peer_id,
-                        type: 'GET',
-                        success: function( data ){
-                            api_response_following.resolve( data );
-                        },
-                        error: function( data ) {
-                            console.log('request for following hashes failed.', data); 
-                            api_response_following.resolve( [] );
-                        }
-                    });
-                    // request for followers hashes
-                    $.ajax({
-                        url: 'https://gateway.ob1.io/ob/followers/' + OBB.model.current_store.peer_id,
-                        type: 'GET',
-                        success: function( data ){
-                            api_response_followers.resolve( data );
-                        },
-                        error: function( data ) {
-                            console.log('request for followers hashes failed.', data); 
-                            api_response_followers.resolve( [] );
-                        }
-                    });
-                } catch( err ) {
-                    // AJAX call didn't work out so well.
-                    console.log( 'AJAX request for Followers and Following data failed.', err );
-                }
-            } else { 
-                // At least one API call was unsuccessful
-                $('[peer_id=' + user_input + '] > .NodeCard__search__status').addClass('error');
-                $('[peer_id=' + user_input + '] > .NodeCard__search__status').text('Unavailable.');
-            }
-        });
-
-        // After follwer and following API calls resolve
-        $.when( api_response_following, api_response_followers ).done(function ( following, followers ) {
-            //store data in OBB.controller.api_returns
-            OBB.controller.api_returns.following = following;
-            OBB.controller.api_returns.followers = followers;
-            // add to model
-            OBB.model.current_store.following = OBB.controller.get_data.following();
-            OBB.model.current_store.followers = OBB.controller.get_data.followers();
-            // update view
-            OBB.controller.render.pageNodeNavTabs();
-        });
     });
 
 };
