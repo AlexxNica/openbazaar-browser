@@ -266,7 +266,7 @@ OBB.controller.event_listeners = function() {
         // show user status indicator
         $('#Header__search__status').removeClass('error');
         $('#Header__search__status').addClass('active');
-        $('#Header__search__status').text('searching...');
+        $('#Header__search__status').text('Searching...');
 
         // do some basic client side verifying of user_input so we aren't too hard on the API
         // TODO
@@ -592,7 +592,7 @@ OBB.controller.event_listeners = function() {
         // show user status indicator
         $('#Start__search__status').removeClass('error');
         $('#Start__search__status').addClass('active');
-        $('#Start__search__status').text('searching...');
+        $('#Start__search__status').text('Searching...');
 
         // do some basic client side verifying of user_input so we aren't too hard on the API
         // TODO
@@ -913,7 +913,7 @@ OBB.controller.get_data.summary = function() {
         description: OBB.controller.api_returns.profile.shortDescription,
         avatar: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.avatarHashes.tiny,
         header_img_tiny: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.tiny, 
-        header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.small, // TODO change to large before production 
+        header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.large,
         location: OBB.controller.api_returns.profile.location,
         ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
@@ -1118,6 +1118,9 @@ OBB.templates = {
         to_print += '<ul class="CardContainer" id="' + id + '">\n';
 
         $.each(listing_cards, function(index, listing) {
+            if (listing.title == 'social' || listing.title == '#social') {
+                return; // TODO remove this if statement, it's only here to prevent social listings from showing temporarily.
+            };
             to_print += '    <li class="Card';
             // add filter classes
 

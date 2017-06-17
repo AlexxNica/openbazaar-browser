@@ -442,16 +442,15 @@ p {
         left: 0;
         margin-bottom: 30px;
         background-color: $background-gray;
-        opacity: 0;
-        transition: opacity 300ms ease-in;
         z-index: -1;
         border: 1px solid $border-gray;
         border-top: none;
+        transform: scale(0);
     }
     > .tab.active {
-        opacity: 1;
         z-index: 1;
         overflow-y: initial;
+        transform: scale(1);
     }
 }
 .FilterCard {
@@ -542,7 +541,7 @@ p {
     }
 }
 .SearchListings__container {
-    min-height: 900px; // prevents a jerkiness issue when isotope.js resizes
+    min-height: 480px; // prevents a jerkiness issue when isotope.js resizes
 }
 .ListingsHeading {
     display: flex;

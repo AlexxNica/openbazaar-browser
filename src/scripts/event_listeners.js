@@ -29,7 +29,7 @@ OBB.controller.event_listeners = function() {
         // show user status indicator
         $('#Header__search__status').removeClass('error');
         $('#Header__search__status').addClass('active');
-        $('#Header__search__status').text('searching...');
+        $('#Header__search__status').text('Searching...');
 
         // do some basic client side verifying of user_input so we aren't too hard on the API
         // TODO
@@ -355,7 +355,7 @@ OBB.controller.event_listeners = function() {
         // show user status indicator
         $('#Start__search__status').removeClass('error');
         $('#Start__search__status').addClass('active');
-        $('#Start__search__status').text('searching...');
+        $('#Start__search__status').text('Searching...');
 
         // do some basic client side verifying of user_input so we aren't too hard on the API
         // TODO

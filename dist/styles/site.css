@@ -3191,15 +3191,14 @@ p {
     left: 0;
     margin-bottom: 30px;
     background-color: #eef0f4;
-    opacity: 0;
-    transition: opacity 300ms ease-in;
     z-index: -1;
     border: 1px solid #d2d2d9;
-    border-top: none; }
+    border-top: none;
+    transform: scale(0); }
   .TabContainer > .tab.active {
-    opacity: 1;
     z-index: 1;
-    overflow-y: initial; }
+    overflow-y: initial;
+    transform: scale(1); }
 
 .FilterCard, .FilterCard--shipping, .FilterCard--category, .FilterCard--rating {
   padding: 10px;
@@ -3269,7 +3268,7 @@ p {
     margin: 3px; }
 
 .SearchListings__container {
-  min-height: 900px; }
+  min-height: 480px; }
 
 .ListingsHeading {
   display: -ms-flexbox;

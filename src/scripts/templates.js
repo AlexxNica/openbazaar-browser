@@ -93,6 +93,9 @@ OBB.templates = {
         to_print += '<ul class="CardContainer" id="' + id + '">\n';
 
         $.each(listing_cards, function(index, listing) {
+            if (listing.title == 'social' || listing.title == '#social') {
+                return; // TODO remove this if statement, it's only here to prevent social listings from showing temporarily.
+            };
             to_print += '    <li class="Card';
             // add filter classes
 
