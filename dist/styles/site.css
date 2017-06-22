@@ -2802,7 +2802,8 @@ section, div {
 
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #222; }
+  color: #222;
+  min-height: 100vh; }
 
 h1, h2, .ListingOverview__top__left, .ListingOverview__top__right, h3, h4, .ListingOverview__buy-now__options > li > span, h5 {
   color: #222;
@@ -2888,7 +2889,8 @@ p {
   opacity: 1;
   max-height: initial;
   overflow-y: initial;
-  z-index: 200; }
+  z-index: 200;
+  margin-bottom: 80px; }
 
 .section, .NodeInformation {
   padding: 20px 20px 40px 20px;
@@ -2939,7 +2941,6 @@ p {
   width: 72%; }
 
 .Page {
-  margin: 10px auto 100px;
   padding: 0 30px;
   opacity: 0;
   transition: opacity 0.5s ease-in;
@@ -2947,12 +2948,16 @@ p {
   width: 100%;
   z-index: -1;
   max-height: 100vmin;
-  overflow: hidden; }
+  overflow: hidden;
+  height: 0; }
   .Page.active {
+    position: relative;
     opacity: 1;
     z-index: 1;
     overflow: visible;
-    max-height: none; }
+    max-height: none;
+    height: initial;
+    margin: 10px auto 40px; }
 
 .Header {
   display: -ms-flexbox;
@@ -3032,6 +3037,26 @@ p {
 
 #Header__search__status.error {
   background-color: #b91303; }
+
+.Footer {
+  background-color: #eef0f4;
+  border-top: 1px solid #d2d2d9;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: stretch;
+      align-items: stretch; }
+  .Footer > a {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+        align-items: center;
+    height: 60px;
+    margin: 0 8px;
+    cursor: pointer; }
+  .Footer img {
+    width: 1.4rem; }
 
 .Node {
   position: relative;
@@ -3181,9 +3206,8 @@ p {
       margin-top: 0; }
 
 .TabContainer {
-  position: absolute;
-  width: 100%;
-  height: 0; }
+  position: relative;
+  width: 100%; }
   .TabContainer > .tab {
     position: absolute;
     top: 0;
@@ -3198,7 +3222,8 @@ p {
   .TabContainer > .tab.active {
     z-index: 1;
     overflow-y: initial;
-    transform: scale(1); }
+    transform: scale(1);
+    position: relative; }
 
 .FilterCard, .FilterCard--shipping, .FilterCard--category, .FilterCard--rating {
   padding: 10px;
@@ -3651,7 +3676,8 @@ p {
   -ms-flex-pack: justify;
       justify-content: space-between;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  list-style-type: none; }
   .CardContainer#CardContainer--listings {
     margin-left: -1%; }
     .CardContainer#CardContainer--listings > .Card {
@@ -3978,9 +4004,11 @@ p {
     .NotViewable__body__bottom > div:last-child {
       margin-bottom: 0; }
 
-.Start {
-  text-align: center;
+#PageStartContainer {
   margin-top: 80px; }
+
+.Start {
+  text-align: center; }
 
 .Start__header > img {
   width: 100px;

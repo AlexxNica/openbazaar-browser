@@ -19,7 +19,7 @@
 
 	<?php include './php/page--node.php';?>
 	<?php include './php/page--start.php';?>
-
+    <?php include './php/inc--footer.php';?>
 
     <script src="./dist/scripts/site.min.js"></script>
 </body>

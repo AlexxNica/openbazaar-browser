@@ -15,6 +15,9 @@
 		<div class="Start__bottom">
 			<a href="https://openbazaar.org/download.html" target="_blank">Download OpenBazzar</a>
 			<a href="https://openbazaar.org/" target="_blank">About OpenBazaar</a>
-		</div>		
+		</div>
+		<div class="Start__featured">		
+			Featured stores will go here.
+		</div>
 	</div>
 </div>
