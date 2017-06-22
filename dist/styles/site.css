@@ -2957,7 +2957,8 @@ p {
     overflow: visible;
     max-height: none;
     height: initial;
-    margin: 10px auto 40px; }
+    margin: 10px auto 40px;
+    min-height: calc(100vh - 61px); }
 
 .Header {
   display: -ms-flexbox;
@@ -4004,8 +4005,10 @@ p {
     .NotViewable__body__bottom > div:last-child {
       margin-bottom: 0; }
 
-#PageStartContainer {
-  margin-top: 80px; }
+#PageStartContainer.active {
+  padding-top: 80px;
+  margin-top: 0;
+  margin-bottom: 0; }
 
 .Start {
   text-align: center; }

@@ -17,7 +17,7 @@
 			<a href="https://openbazaar.org/" target="_blank">About OpenBazaar</a>
 		</div>
 		<div class="Start__featured">		
-			Featured stores will go here.
+			<!-- Featured stores will go here. -->
 		</div>
 	</div>
 </div>

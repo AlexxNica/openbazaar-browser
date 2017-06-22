@@ -199,6 +199,7 @@ p {
         max-height: none;
         height: initial;
         margin: 10px auto 40px;
+        min-height: calc(100vh - 61px);
     }
 }
 .Header {
@@ -1314,8 +1315,10 @@ p {
     }
 }
 //End NotViewable overlay
-#PageStartContainer {
-    margin-top: 80px;
+#PageStartContainer.active {
+    padding-top: 80px;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 .Start {
     text-align: center;
