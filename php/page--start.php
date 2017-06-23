@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="Start__bottom center">
-			<a href="https://openbazaar.org/download.html" target="_blank">Download OpenBazzar</a>
+			<a href="https://openbazaar.org/download.html" target="_blank">Download OpenBazaar</a>
 			<a href="https://openbazaar.org/" target="_blank">About OpenBazaar</a>
 		</div>
 		<div class="Start__featured">		
