@@ -4,7 +4,10 @@ A web-based OpenBazaar 2.0 network browser.
 ## Operation
 You can see a live version [here](http://austinkwilliams.com/tempdev/).
 To host your own, or to run locally, just copy the repo to your web server or local machine:
+
 ```$ git clone https://github.com/Austin-Williams/openbazaar-browser.git```
+
+Then open `index.php` in any modern web browser.
 
 ## Swapping Out API's
 All of the listings you see are served from the OB1 api: gateway.ob1.io. If you want to swap out OB1's API for your own, you can do that by modifying the `get_data.js` file. You'll also have to change the URLs in `event_listeners.js` and `functions.js` to point to your endpoint instead of OB1's.
