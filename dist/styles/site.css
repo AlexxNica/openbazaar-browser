@@ -2833,6 +2833,9 @@ p {
   font-size: 16px;
   line-height: 24px; }
 
+.center {
+  text-align: center; }
+
 .button, .button--search, .button--shadowed, .ListingOverview__buy-now > .button--buy-now {
   border: 1px solid #d2d2d9;
   border-radius: 3px;
@@ -3684,7 +3687,7 @@ p {
     .CardContainer#CardContainer--listings > .Card {
       margin-left: 1%; }
 
-.tab--following .NodeCard, .tab--followers .NodeCard {
+.tab--following .NodeCard, .tab--followers .NodeCard, #FeaturedCards .NodeCard {
   min-width: 32%;
   margin-bottom: 20px; }
 
@@ -4010,9 +4013,6 @@ p {
   margin-top: 0;
   margin-bottom: 0; }
 
-.Start {
-  text-align: center; }
-
 .Start__header > img {
   width: 100px;
   margin: auto; }
@@ -4052,14 +4052,16 @@ p {
     color: #7e757e; }
 
 .Start__bottom {
+  width: 100%;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -ms-flex-align: center;
-      align-items: center;
+  -ms-flex-pack: center;
+      justify-content: center;
   color: #3602ff;
   font-size: 14px;
   letter-spacing: 0.5px;
-  font-weight: 400; }
+  font-weight: 400;
+  margin-bottom: 100px; }
   .Start__bottom > a:first-child {
     margin-right: 15px; }
 
@@ -4080,3 +4082,10 @@ p {
     #Start__search__status.active.error {
       color: #fff;
       background-color: #b91303; }
+
+.Start__featured {
+  border-top: 1px solid #d2d2d9;
+  padding-top: 30px;
+  margin-bottom: 80px; }
+  .Start__featured > h2, .Start__featured > .ListingOverview__top__left, .Start__featured > .ListingOverview__top__right {
+    margin-bottom: 30px; }

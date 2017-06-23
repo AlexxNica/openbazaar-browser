@@ -59,6 +59,9 @@ p {
     font-size: 16px;
     line-height: 24px;
 }
+.center {
+    text-align: center;
+}
 .button {
     border: 1px solid $border-gray;
     border-radius: 3px;
@@ -979,7 +982,7 @@ p {
         }
     }
 }
-.tab--following .NodeCard, .tab--followers .NodeCard {
+.tab--following .NodeCard, .tab--followers .NodeCard, #FeaturedCards .NodeCard {
     min-width: 32%;
     margin-bottom: 20px;
 }
@@ -1320,9 +1323,6 @@ p {
     margin-top: 0;
     margin-bottom: 0;
 }
-.Start {
-    text-align: center;
-}
 .Start__header {
     > img {
         width: 100px;
@@ -1364,12 +1364,14 @@ p {
     }
 }
 .Start__bottom {
+    width: 100%;
     display: inline-flex;
-    align-items: center;
+    justify-content: center;
     color: $blue;
     font-size: 14px;
     letter-spacing: 0.5px;
     font-weight: 400;
+    margin-bottom: 100px;
     > a:first-child() {
         margin-right: 15px;
     }
@@ -1392,5 +1394,13 @@ p {
             color: #fff;
             background-color: #b91303;
         }
+    }
+}
+.Start__featured {
+    border-top: 1px solid $border-gray;
+    padding-top: 30px;
+    margin-bottom: 80px;
+    > h2 {
+        margin-bottom: 30px;
     }
 }

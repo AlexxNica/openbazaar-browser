@@ -926,6 +926,14 @@ OBB.controller.get_data.colors = function() {
 
 OBB.model = {};
 OBB.model.current_store = {};
+OBB.model.featured_stores = [
+	'QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486',
+	'QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7',
+	'QmY65w8zaWjein4Yz17cpLQUTuRNpnXSVHqZQnpzfJhnNS',
+	'QmWh4G8UsAtKAEWaYGrayQ8wJHqFtYS2nAZScafCrvSJ1N',
+	'QmVD3WwjZKRwEnczMcVEwEm9Xq9ZKoZpQbDkqPp5Uoi9RZ',
+	'QmQEHtNVpeHzJS9jowdg7zFRVhL9ebcK3fimZk6yyxHqLT',
+];
 
 OBB.templates = {
 
@@ -1832,7 +1840,30 @@ $(document).ready(function() {
     $(window).bind("mousewheel", function() {
         $("html, body").stop(true, false);
     });
+
+    // render featured store cards on Start page
+	$.each(OBB.model.featured_stores, function(index, hash) {
+	    try {                
+	    // request for profiles hashes
+		    $.ajax({
+		        url: 'https://gateway.ob1.io/ob/profile/' + hash + '?usecache=true',
+		        type: 'GET',
+		        success: function( profile ){
+		            // now that we have the profile data we can create a node card
+		            var card_info = OBB.controller.get_data.cardInfo( profile );
+		            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
+		            // then append it to the #FeaturedCards list
+		            $('#FeaturedCards').prepend( card );
+		        },
+		        error: function( data ) {
+		            console.log('Call to get a followers profile failed', data); 
+		        }
+		    });
+	    } catch( err ) {
+	        // AJAX calls didn't work out so well.
+	        console.log( 'AJAX calls failed to get follower profile', err );
+	    }
+	});
+
+
 });
-
-
-
