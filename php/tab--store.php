@@ -68,7 +68,7 @@
             <div class="Column--right SearchListings__container">
                 <section class="ListingsHeading">
                     <div class="ListingsHeading__left">
-                        <span class="strong">26 listings</span> found
+                        <span class="strong" id="NumOfListings">26 listings</span> found
                     </div>
                     <div class="ListingsHeading__right">
                         <form>

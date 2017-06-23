@@ -1,6 +1,7 @@
 // controller.render is used to render components using data from OBB.model
 OBB.controller.render = {
     tabStore: function() {
+        var listing_text;
         // render header image and h1
         $( "#Tab--store__header" ).replaceWith( OBB.templates.tabNodeHeader( OBB.model.current_store.summary, 'Store', 'store' ) );
         // render #FilterCard--shipping
@@ -11,6 +12,9 @@ OBB.controller.render = {
         $( "#CardContainer--listings" ).replaceWith( OBB.templates.listingCardContainer( OBB.model.current_store.listing_cards_info, 'CardContainer--listings' ) );
         // render store name and avatar on overlay--listing
         $( "#ListingOverlay__nav__return-to-store" ).replaceWith( OBB.templates.overlayListingReturnToStore( OBB.model.current_store.summary ) );
+        // show number of listings
+        listing_text = $("#CardContainer--listings > .Card").length.toString() + ' listings';
+        $( "#NumOfListings" ).text( listing_text );
         // initialize filtering
         OBB.controller.addFiltering();
     },
