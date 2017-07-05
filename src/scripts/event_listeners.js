@@ -175,9 +175,9 @@ OBB.controller.event_listeners = function() {
                         success: function( profile ){
                             // now that we have the profile data we can create a node card
                             var card_info = OBB.controller.get_data.cardInfo( profile );
-                            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
-                            // then append it to the #FollowingCards list
-                            $('#FollowingCards').prepend( card );
+                            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );                            
+                            // then append it to the #FollowingCards list (must go before the placeholder/formatting card)
+                            $(card).insertBefore('#FollowingCards .Card:last-child');
                         },
                         error: function( err ) {
                             console.log('AJAX call to get profile hashes failed', err); 
@@ -209,8 +209,8 @@ OBB.controller.event_listeners = function() {
                             // now that we have the profile data we can create a node card
                             var card_info = OBB.controller.get_data.cardInfo( profile );
                             var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
-                            // then append it to the #FollowingCards list
-                            $('#FollowersCards').prepend( card );
+                            // then append it to the #FollowersCards list (must go before the placeholder/formatting card)
+                            $(card).insertBefore('#FollowersCards .Card:last-child');
                         },
                         error: function( data ) {
                             console.log('Call to get a followers profile failed', data); 

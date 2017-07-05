@@ -19,7 +19,7 @@ $(document).ready(function() {
 		            var card_info = OBB.controller.get_data.cardInfo( profile );
 		            var card = OBB.templates.nodeCard( card_info, false, card_info.peer_id );
 		            // then append it to the #FeaturedCards list
-		            $('#FeaturedCards').prepend( card );
+		            $(card).insertBefore('#FeaturedCards .Card:last-child');
 		        },
 		        error: function( data ) {
 		            console.log('Call to get a followers profile failed', data); 
