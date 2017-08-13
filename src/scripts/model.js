@@ -1,10 +1,10 @@
 OBB.model = {};
 OBB.model.current_store = {};
 OBB.model.featured_stores = [
-	'QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486',
-	'QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7',
-	'QmY65w8zaWjein4Yz17cpLQUTuRNpnXSVHqZQnpzfJhnNS',
-	'QmWh4G8UsAtKAEWaYGrayQ8wJHqFtYS2nAZScafCrvSJ1N',
-	'QmVD3WwjZKRwEnczMcVEwEm9Xq9ZKoZpQbDkqPp5Uoi9RZ',
-	'QmQEHtNVpeHzJS9jowdg7zFRVhL9ebcK3fimZk6yyxHqLT',
+	'QmYsPDkREkhWxvmFK33pNekzjwkPk1SecTnfUkZkdHwqKk',
+	'QmRPzH1UNR6goDqAkhXZH2axk1JMD95aGVPXGYoXu9f17J',
+	'QmerNH41pAmRzfqYDD48XkkNi3jpXFr6Bsru8swYWbWm2q',
+	'QmW8zs6HTZ8vNfCmYdMv8dimJf6aP2VvwknephaEGGZ2FN',
+	'QmddmuPQeRWfHmq7FdqvmwV7oLh2BAhEUFLz7KTnTG9T5Q',
+	'QmSKXac8JtGFa2f3xutj3qFiDeRYz6QRK92oKDhaHoPSCP',
 ];
