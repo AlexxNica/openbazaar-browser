@@ -300,8 +300,8 @@ OBB.controller.event_listeners = function() {
         // update model with clicked-listing data from API.
         try {
             //  construct api request string
-            listing_hash = $(this).closest('.Card').attr('listing-hash');
-            api_request_single_listing = 'https://gateway.ob1.io/ob/listing/' + OBB.model.current_store.peer_id + '/' + listing_hash;
+            listing_slug = $(this).closest('.Card').attr('listing-slug');
+            api_request_single_listing = 'https://gateway.ob1.io/ob/listing/' + OBB.model.current_store.peer_id + '/' + listing_slug;
             
             // request for single listing info
             $.ajax({
@@ -780,7 +780,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
             rating_count: listing.ratingCount,
             nsfw: listing.nsfw,
             free_shipping: listing.freeShipping,
-            hash: listing.hash,
+            slug: listing.slug,
         });
     });
     return result;
@@ -927,12 +927,12 @@ OBB.controller.get_data.colors = function() {
 OBB.model = {};
 OBB.model.current_store = {};
 OBB.model.featured_stores = [
-	'QmbcXa9fQyALiq34WkPxqRSTZYg8shWN4ypr5Pj3GPK486',
-	'QmXxVq64BdKmQq6fUYFAkRmzgcfLwMwTW8nUMuGUHQdRK7',
-	'QmY65w8zaWjein4Yz17cpLQUTuRNpnXSVHqZQnpzfJhnNS',
-	'QmWh4G8UsAtKAEWaYGrayQ8wJHqFtYS2nAZScafCrvSJ1N',
-	'QmVD3WwjZKRwEnczMcVEwEm9Xq9ZKoZpQbDkqPp5Uoi9RZ',
-	'QmQEHtNVpeHzJS9jowdg7zFRVhL9ebcK3fimZk6yyxHqLT',
+	'QmYsPDkREkhWxvmFK33pNekzjwkPk1SecTnfUkZkdHwqKk',
+	'QmRPzH1UNR6goDqAkhXZH2axk1JMD95aGVPXGYoXu9f17J',
+	'QmerNH41pAmRzfqYDD48XkkNi3jpXFr6Bsru8swYWbWm2q',
+	'QmW8zs6HTZ8vNfCmYdMv8dimJf6aP2VvwknephaEGGZ2FN',
+	'QmddmuPQeRWfHmq7FdqvmwV7oLh2BAhEUFLz7KTnTG9T5Q',
+	'QmSKXac8JtGFa2f3xutj3qFiDeRYz6QRK92oKDhaHoPSCP',
 ];
 
 OBB.templates = {
@@ -1053,7 +1053,7 @@ OBB.templates = {
             if (listing.free_shipping.length > 0) {
                 to_print += ' filter--free-shipping';
             }
-            to_print += '" listing-hash="' + listing.hash + '">\n';
+            to_print += '" listing-slug="' + listing.slug + '">\n';
 
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';

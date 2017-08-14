@@ -20,7 +20,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
             rating_count: listing.ratingCount,
             nsfw: listing.nsfw,
             free_shipping: listing.freeShipping,
-            hash: listing.hash,
+            slug: listing.slug,
         });
     });
     return result;

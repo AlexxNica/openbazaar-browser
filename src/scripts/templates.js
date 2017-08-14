@@ -116,7 +116,7 @@ OBB.templates = {
             if (listing.free_shipping.length > 0) {
                 to_print += ' filter--free-shipping';
             }
-            to_print += '" listing-hash="' + listing.hash + '">\n';
+            to_print += '" listing-slug="' + listing.slug + '">\n';
 
             to_print += OBB.templates.listingCard( listing ) + '\n';
             to_print += '    </li>\n';

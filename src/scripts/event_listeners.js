@@ -63,8 +63,8 @@ OBB.controller.event_listeners = function() {
         // update model with clicked-listing data from API.
         try {
             //  construct api request string
-            listing_hash = $(this).closest('.Card').attr('listing-hash');
-            api_request_single_listing = 'https://gateway.ob1.io/ob/listing/' + OBB.model.current_store.peer_id + '/' + listing_hash;
+            listing_slug = $(this).closest('.Card').attr('listing-slug');
+            api_request_single_listing = 'https://gateway.ob1.io/ob/listing/' + OBB.model.current_store.peer_id + '/' + listing_slug;
             
             // request for single listing info
             $.ajax({
