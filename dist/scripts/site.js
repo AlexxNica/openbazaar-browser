@@ -776,7 +776,7 @@ OBB.controller.get_data.ListingCardInfo = function() {
             ships_to: listing.shipsTo,
             price: (parseFloat(listing.price.amount) / 100).toFixed(2),
             img_url: 'https://gateway.ob1.io/ob/image/' + listing.thumbnail.small,
-            ave_rating: listing.averageRating,
+            ave_rating: Math.round(listing.averageRating * 10) / 10,
             rating_count: listing.ratingCount,
             nsfw: listing.nsfw,
             free_shipping: listing.freeShipping,
@@ -819,7 +819,7 @@ OBB.controller.get_data.summary = function() {
         header_img_tiny: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.tiny, 
         header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.large,
         location: OBB.controller.api_returns.profile.location,
-        ave_rating: OBB.controller.api_returns.profile.stats.averageRating,
+        ave_rating: Math.round(OBB.controller.api_returns.profile.stats.averageRating * 10) / 10,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
     }
 
@@ -835,7 +835,7 @@ OBB.controller.get_data.cardInfo = function( profile ) {
         avatar: 'https://gateway.ob1.io/ob/image/' + profile.avatarHashes.tiny,
         header_img_tiny: 'https://gateway.ob1.io/ob/images/' + profile.peerID + '/' + profile.headerHashes.tiny, 
         location: (profile.location ? profile.location : 'The Internet'),
-        ave_rating: profile.stats.averageRating,
+        ave_rating: Math.round(profile.stats.averageRating * 10) / 10,
         rating_count: profile.stats.ratingCount,
     }
     
