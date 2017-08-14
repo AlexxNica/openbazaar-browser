@@ -302,8 +302,10 @@ OBB.templates = {
 
         $.each(info_obj, function(key, value) {
             to_print += '    <li>\n';
-            to_print += '        <h5>' + key + '</h5>\n';
-            to_print += '        <p>' + value + '</p>\n';
+            if ( value ) {
+                to_print += '        <h5>' + key + '</h5>\n';
+                to_print += '        <p>' + value + '</p>\n';
+            };
             to_print += '    </li>\n';
         });
 
