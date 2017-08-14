@@ -432,7 +432,7 @@ OBB.templates = {
         to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A') + ' <a>Anonymous</a>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__body">\n';
-        to_print += '            <p>' + data.review + '<p>\n';
+        to_print += '            <p>' + (data.review ? data.review : 'None available.') + '<p>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__bottom">\n';
         to_print += '            <div class="ListingReview__bottom__txn-details">\n';

@@ -53,12 +53,12 @@ OBB.controller.get_data.summary = function() {
     result = {
         name: OBB.controller.api_returns.profile.name,
         handle: OBB.controller.api_returns.profile.handle,
-        about: OBB.controller.api_returns.profile.about,
+        about: (OBB.controller.api_returns.profile.about ? OBB.controller.api_returns.profile.about : 'Not available.'),
         description: OBB.controller.api_returns.profile.shortDescription,
         avatar: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.avatarHashes.tiny,
         header_img_tiny: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.tiny, 
         header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.large,
-        location: OBB.controller.api_returns.profile.location,
+        location: (OBB.controller.api_returns.profile.location ? OBB.controller.api_returns.profile.location : 'The Internet'),
         ave_rating: Math.round(OBB.controller.api_returns.profile.stats.averageRating * 10) / 10,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
     }

@@ -113,7 +113,7 @@ OBB.controller.render = {
                 url: 'https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug,
                 type: 'GET',
                 success: function( rating_hashes_response ){
-                    rating_hashes = rating_hashes_response.ratings;
+                    rating_hashes = (rating_hashes_response !== null ? rating_hashes_response.ratings : []);
                     if ( rating_hashes.length == 0 ) {
                         $('#ListingReviews__wrapper').text('No ratings available.');
                     } else {

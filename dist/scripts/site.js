@@ -813,12 +813,12 @@ OBB.controller.get_data.summary = function() {
     result = {
         name: OBB.controller.api_returns.profile.name,
         handle: OBB.controller.api_returns.profile.handle,
-        about: OBB.controller.api_returns.profile.about,
+        about: (OBB.controller.api_returns.profile.about ? OBB.controller.api_returns.profile.about : 'Not available.'),
         description: OBB.controller.api_returns.profile.shortDescription,
         avatar: 'https://gateway.ob1.io/ob/image/' + OBB.controller.api_returns.profile.avatarHashes.tiny,
         header_img_tiny: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.tiny, 
         header_img_large: 'https://gateway.ob1.io/ob/images/' + OBB.controller.api_returns.profile.peerID + '/' + OBB.controller.api_returns.profile.headerHashes.large,
-        location: OBB.controller.api_returns.profile.location,
+        location: (OBB.controller.api_returns.profile.location ? OBB.controller.api_returns.profile.location : 'The Internet'),
         ave_rating: Math.round(OBB.controller.api_returns.profile.stats.averageRating * 10) / 10,
         rating_count: OBB.controller.api_returns.profile.stats.ratingCount,
     }
@@ -1369,7 +1369,7 @@ OBB.templates = {
         to_print += '            ' + moment(data.timestamp.seconds * 1000).format('MMMM Do YYYY, h:mm A') + ' <a>Anonymous</a>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__body">\n';
-        to_print += '            <p>' + data.review + '<p>\n';
+        to_print += '            <p>' + (data.review ? data.review : 'None available.') + '<p>\n';
         to_print += '        </div>\n';
         to_print += '        <div class="ListingReview__bottom">\n';
         to_print += '            <div class="ListingReview__bottom__txn-details">\n';
@@ -1739,7 +1739,7 @@ OBB.controller.render = {
                 url: 'https://gateway.ob1.io/ob/ratings/' + OBB.model.current_store.peer_id + '/' + OBB.model.current_store.single_listing.slug,
                 type: 'GET',
                 success: function( rating_hashes_response ){
-                    rating_hashes = rating_hashes_response.ratings;
+                    rating_hashes = (rating_hashes_response !== null ? rating_hashes_response.ratings : []);
                     if ( rating_hashes.length == 0 ) {
                         $('#ListingReviews__wrapper').text('No ratings available.');
                     } else {
